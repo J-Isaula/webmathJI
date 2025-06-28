@@ -1,0 +1,62 @@
+---
+title: "Cursos Impartidos en UNAH"
+page-layout: full
+---
+
+Saludos! Bienvenido a esta sección de mi website. Aquí podrá encontrar información sobre algnos cursos que he impartido.
+
+<h1>2023</h1>
+
+<h2>Estadística Aplicada - Maestría UNAH</h2>
+
+Este apartado está dedicado a los estudiantes de la maestría en Formulación, Gestión y Evaluación de Proyectos de la UNAH. Donde podrán encontrar el contenido sobre el taller de ***fundamentos estadísticos utilizando el Software de `R`***. Mismo que tuve la oportunidad de impartirles.
+
+-   [Fundamentos estadísticos utilizando el Software de R](https://rpubs.com/Juan-Isaula/1065080)
+
+-   [Libro sobre fundamentos estadísticos con R - Juan Isaula](https://j-isaula.github.io/Fudamentos_estadisticos_con_R/)
+
+    -   Bases de datos utilizadas
+
+        -   [co2.csv](https://drive.google.com/file/d/1WkpTw2l98euLOg8tzatGynkom1CvzGxb/view?usp=sharing)
+
+        -   [AAPL.csv](https://drive.google.com/file/d/1QA2Mr2AFJLj6rli6-Lt_vAdd6N-KtmYU/view?usp=sharing)
+
+<h2>Microeconomía II - UNAH</h2>
+
+-   [Programa del curso](https://rpubs.com/Juan-Isaula/1044986)
+
+<h4>Modulo I - Teoria del Consumidor</h4>
+
+-   [kaggle - Comandos Generales Python](https://www.kaggle.com/code/juanisaula/comandos-generales-python)
+
+-   [Material de repaso - Matemáticas de la optimización](https://j-isaula.github.io/micreoeconomics/)
+
+-   [Aula virtual Classroom](https://classroom.google.com/c/NTU0MTk3NDM2MzEw?cjc=kxeyk6r)
+
+<h4>Modulo II - Teoria del Productor</h4>
+
+-   [Elasticidad Sustitución, Función de costos y matriz sustitución](https://rpubs.com/Juan-Isaula/1057243)
+
+<h5>Videos</h5>
+
+1.  [Comandos Generales Python](https://youtu.be/tEAe82p6mAc)
+
+<h4>Modulo III - Estructuras de Mercado</h4>
+
+-   [Ejercicios equilibro a corto plazo - Competencia Perfecta](https://www.kaggle.com/code/juanisaula/microeconom-a-competencia-perfecta)
+-   [Competencia Perfecta: Largo y Corto Plazo](https://youtu.be/6d4HtvQE6hs)
+-   [Presentaciones sobre Monopolios](https://rpubs.com/Juan-Isaula/1065998)
+
+<h5>Asignaciones</h5>
+
+-   [Tarea I](https://drive.google.com/file/d/1tUYGfeYfEuzw5lQnxp4PurJmtz9PYCR8/view?usp=sharing)
+-   [Tarea 3 - Teoría del Productor](https://rpubs.com/Juan-Isaula/1058573)
+-   [Tarea Final - Estructuras de Mercado utilizando Python](https://rpubs.com/Juan-Isaula/1066709)
+
+<h4>Bibliografía Recomendada</h4>
+
+-   [Advanced Microeconomic Theory, Geoffrey A. Jehle Philip J.Reny](https://zalamsyah.staff.unja.ac.id/wp-content/uploads/sites/286/2019/11/1-Advanced-Microeconomic-Theory-3rd-Ed.-JEHLE-RENY.pdf)
+
+-   [Teoría Microeconómica (Principios básicos y ampliaciones-Walter Nikolso)](https://elvisjgblog.files.wordpress.com/2019/04/teorc3ada-microeconc3b3mica-9c2b0-edicic3b3n-walter-nicholson.pdf)
+
+-   [Microeconomia II - UNAH - Juan Isaula](https://j-isaula.github.io/1619/documentos.html)

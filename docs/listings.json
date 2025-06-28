@@ -1,0 +1,12 @@
+[
+  {
+    "listing": "/blog.html",
+    "items": [
+      "/posts/DL_PyTorch/index.html",
+      "/posts/Neural Network/index.html",
+      "/posts/Credit_Scoring/index.html",
+      "/posts/estructuras_mercado/index.html",
+      "/posts/microeconomia_R/index.html"
+    ]
+  }
+]

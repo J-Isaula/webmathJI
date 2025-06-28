@@ -1,0 +1,43 @@
+project:
+  type: website
+  output-dir: docs
+  render:
+    - "*.qmd"
+    - "*.md"
+    - "!/unbelievable/"
+    - "!/prato/"
+
+website:
+  title: "Juan Isaula"
+  site-url: https://j-isaula.github.io/Web_JI/
+  description: "Technology and the Environment"
+  open-graph:
+    locale: en_US
+  twitter-card:
+    creator: "@isaula_im"
+  comments:
+    utterances:
+      repo: mikemahoney218/mm218.dev
+  navbar:
+    right:
+      - text: "Home"
+        href: index.html
+      - text: "Articles"
+        href: papers
+      - text: "UNAH Courses"
+        href: cursos_impartidos
+      - text: "Blog"
+        href: blog.html
+      - text: "Dashboards"
+        href: Dasboard
+      - text: "Historias"
+        href: Sobre_mi
+        
+        
+  page-footer:
+    left: "© Copyright 2022 Juan Isaula"
+format:
+  html:
+    theme: flatly
+    linkcolor: rgb(214, 122, 127)
+    css: styles.css

@@ -1,0 +1,35 @@
+<html>
+
+<head>
+
+<title>Artículos</title>
+
+</head>
+
+<body>
+
+<h2>Artículos</h2>
+
+Bienvenidos! En esta sección encontrará una selección de **artículos** que he escrito a lo largo de mi trayectoria profesional.
+
+<hr>
+
+</body>
+
+</html>
+
+-   [Impacto Aranceles de EE.UU sobre el desempeño de las Tarjetas de Crédito y Préstamos en Honduras](https://github.com/J-Isaula/ArancelesEEUU/blob/main/Impacto_Aranceles_EEUU_Banca_Comercial%20(2).pdf)
+
+-   [Modelando Riesgo Crediticio con Python](https://j-isaula.github.io/Credit-Risk-Modeling/)
+
+-   [Fundamentos Estadísticos con R](https://j-isaula.github.io/Fudamentos_estadisticos_con_R/)
+
+-   [Matemáticas de la Optimización - Microeconomía](https://j-isaula.github.io/micreoeconomics/)
+
+-   [Test de Jarque-Bera con Python](https://github.com/J-Isaula/Finance-using-python/blob/main/Finance_Python_Clas1.ipynb)
+
+-   [Redes Neuronales LSTM vs GRU](https://github.com/J-Isaula/LSTM-vs-GRU/blob/main/LSTM_vs_GRU.ipynb)
+
+-   [Pronósticos de Inflación Honduras utilizando Redes Neuronales](https://github.com/J-Isaula/Inflation-Forecast/blob/main/LSTM_PyTorch.ipynb)
+
+-   [Credit Scoring](https://j-isaula.github.io/Credit-Scoring-/)

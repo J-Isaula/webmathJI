@@ -1,0 +1,29 @@
+---
+title: "Juan Isaula"
+subtitle: "Assistant Manager - Data Science "
+image: perfil_ovalado.png
+about:
+  template: trestles
+  image-shape: rounded
+  links:
+    - text: LinkedIn
+      url: "https://www.linkedin.com/in/juan-isaula-817531239/?originalSubdomain=hn"
+    - text: Twitter
+      icon: twitter
+      url: "https://twitter.com/isaula_juan"
+    - text: GitHub
+      icon: github
+      url: "https://github.com/J-Isaula"
+    - text: Blog
+      url: "https://j-isaula.github.io/Web_JI/blog.html"
+comments: false
+page-layout: full
+---
+
+# Hola!
+
+Soy un profesional apasionado por transformar datos en soluciones estratégicas que impulsen el crecimiento y la innovación en el sector financiero. Actualmente, como ***Subgerente de Ciencia de Datos en Grupo Financiero Ficohsa***, lidero proyectos de analitica avanzada y modelado predictivo, la gestión del riesgo y la toma de decisiones basadas en evidencia.
+
+Mi sólida formación en ***Matemáticas y Estadística*** me permite abordar los desafíos complejos del entorno financiero con rigor técnico y visión analítica. Trabajo continuamente en el desarrollo de metodologías y herramientas innovadoras que integren el análisis de datos al corazón de la estrategia corporativa.
+
+Estoy comprometido con la excelencia, la innovación y la mejora continua, buscando siempre generar un impacto positivo en las organizaciones con la que colaboro.

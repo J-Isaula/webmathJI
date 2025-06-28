@@ -1,0 +1,13 @@
+---
+title: "App/Dashboards"
+---
+
+En esta sección encontrará algunas `herramientas (App)` que he desarrollado en lenguajes de programación `R` y `Python`, elaborados para distintas instituciones del país (Honduras) .
+
+-   [GeoRGe](https://juanisaula.shinyapps.io/GeorGE/?_ga=2.82240022.1240928687.1675353549-1442211681.1673756750)
+
+    Aplicación creada `R`, utilizando principalmente los paquetes `shiny` \| `shinydashboard` \| `DT` \| `tidyverse` \| `shinyWidgets` \| `fresh`. En la actualizad es utilizada en el **I*nstituto Hondureño de Seguridad Social (IHSS).*** [\[Ver aplicación aquí\]](https://juanisaula.shinyapps.io/GeorGE/?_ga=2.82240022.1240928687.1675353549-1442211681.1673756750)
+
+-   [IA-JIM](https://juanisaula.shinyapps.io/IAIHSS/?_ga=2.183163558.1415305719.1677687400-1442211681.1673756750)
+
+    Aplicación diseñada para facilitar el cálculo de gran parte de los indicadores actuariales primarios y secundarios del IHSS, en el marco del ***Régimen del Seguro de Previsión Social (RSPS).*** [\[Ver aplicación aquí\]](https://juanisaula.shinyapps.io/IAIHSS/?_ga=2.183163558.1415305719.1677687400-1442211681.1673756750)
