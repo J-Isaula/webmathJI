@@ -43,7 +43,7 @@ Si bien existen varios framework y paquetes para implementar el aprendizaje prof
 
 Está diseñado para ser intuitivo y fácil de usar, compartiendo muchas similitudes con la biblioteca de Python NumPy.
 
-#### PyTorch Tensors 
+#### PyTorch Tensors
 
 Podemos importar el módulo PyTorch llamando a
 
@@ -79,7 +79,7 @@ print(tensor.dtype)
 
 Verificar la forma y el tipo de datos garantiza que los tensores se alineen correctamente con nuestro modelo y tarea, y puede ayudarnos en caso de depuración.
 
-#### Operaciones con Tensores 
+#### Operaciones con Tensores
 
 Se pueden sumar o restar tensores de PyTorch, siempre que sus formas sean compatibles.
 
@@ -108,3 +108,200 @@ print(a @ b)
 ```
 
 Detras de escena, los modelos de aprendizaje profundo realizan innumerables operaciones como la suma y multiplicación para procesar datos y aprender patrones.
+
+# Redes Neuronales y Capas
+
+Vamos a contruir nuestra primer red neuronal usando tensores de PyTorch.
+
+Una red neuronal consta de capas de entrada, ocultas y de salida.
+
+![](img/fig7.png){fig-align="center" width="200"}
+
+La **capa de entrada** contiene las características del conjunto de datos,
+
+![](img/fig8.png){fig-align="center" width="200"}
+
+La **capa de salida** contiene las predicciones,
+
+![](img/fig9.png){fig-align="center" width="200"}
+
+Y hay **capas ocultas (hidden layers)** en el medio
+
+![](img/fig10.png){fig-align="center" width="200"}
+
+Si bien una red puede tener cualquier cantidad de capas ocultas, comenzaremos construyendo una red sin capas ocultas donde la capa de salida es una capa lineal.
+
+![](img/fig11.png){fig-align="center" width="200"}
+
+-   Aquí, cada neurona de entrada se conecta a cada neurona de salida, lo que se denomina una red "totalmente conectada".
+
+-   Esta red es equivalente a un modelo lineal y nos ayuda a comprender los fundamentos antes de agregar complejidad.
+
+Usaremos el módulo `torch.nn` para construir nuestras redes. Esto hace que el código de la red sea más conciso y flexible y se importa convencionalmente como `nn`.
+
+```{python}
+import torch.nn as nn
+```
+
+Al diseñar una red neuronal, las dimensiones de las capas de entrada y salida están predefinidas.
+
+-   La cantidad de neuronas en la capa de entrada es la cantidad de características en nuestro conjunto de datos.
+
+-   Y el número de neuronas en la capa de salida es el número de clases que queremos predecir.
+
+Digamos que creamos un input_tensor con forma de $1\times 3$.
+
+```{python}
+import torch
+import torch.nn as nn
+input_tensor = torch.tensor(
+  [[0.3471, 0.4547, -0.2356]]
+)
+```
+
+Podemos pensar en esto como una fila con tres *"carectísticas"* o *"neuronas"* .
+
+A continuación, pasamos este input_tensor a una capa lineal, que aplica una función lineal para realizar predicciones.
+
+![](img/fig12.png){fig-align="center" width="100"}
+
+Para ello usaremos `nn.Linear()` toma dos argumentos: `int_features` es el número de características en nuestra entrada ( en este caso, tres) y `out_features` es el tamaño del tensor de salida (en este caso, dos).
+
+![](img/fig13.png){fig-align="center" width="100"}
+
+```{python}
+linear_layer = nn.Linear(
+  in_features = 3,
+  out_features = 2
+)
+```
+
+Especificar correctamente `in_features` garantiza que nuestra capa lineal pueda recibir el input_tensor.
+
+Por último, pasamos input_tensor a linear_layer para generar una salida.
+
+```{python}
+output = linear_layer(input_tensor)
+print(output)
+```
+
+Tenga en cuenta que esta salida tiene dos características o neuronas debido a las `out_features` especificadas en nuestra capa lineal.
+
+Cuando input_tensor se pasa a linear_layer, se realiza una operación lineal para incluir pesos y sesgos.
+
+![](img/fig14.png){fig-align="center" width="500"}
+
+## Pesos (weights) y Sesgos (biases) 
+
+Cada capa lineal tiene un conjunto de pesos y sesgos asociados. Estas son las cantidades clave que definen una neurona.
+
+```{python}
+print(linear_layer.weight)
+```
+
+```{python}
+print(linear_layer.bias)
+```
+
+-   Los pesos reflejan la importancia de diferentes características.
+
+-   El sesgos es un término adicional que es independiente de los pesos, y proporciona a las neurona una salida de referencia.
+
+Al principio, la capa lineal asigna pesos y sesgos aleatorios; estos se ajustan posteriormente.
+
+Imaginemos nuestra red totalmente conectada en acción.
+
+Digamos que tenemos un conjunto de datos meteorológicos con tres características: *temperatura (temperature), humedad (humidity) y viento (wind).* Y queremos predecir si *lloverá (rain) o estará nublado (cloudy).*
+
+1.  La característica humeda tendrá un peso más significativo en comparación a las demás características, ya que es un fuerte predictor de lluvia y nubes.
+
+2.  Los datos meteorológicos corresponden a una región tropical con alta probabilidad de lluvia, por lo que agrega un sesgo para tener en cuenta esta información de referencia.
+
+Con esta información, nuestro modelo hace una predicción.
+
+## Capaz y Parámetros Ocultos
+
+Hasta ahora, hemos utilizado una capa de entrada y una capa de lineal. Ahora, agregaremos más capas para ayudar a la red a aprender patrones complejos.
+
+### Apilamiento de capaz con nn.Sequential()
+
+Apilaremos tres capas lineales usando `nn.Sequential()`, un contenedor de PyTorch para apilar capas en secuencia. Esta red toma la entrada, la pasa a cada capa lineal en secuencia y devuelve la salida.
+
+```{bash}
+model = nn.Sequential(
+  nn.Linear(n_features, 8),
+  nn.Linear(8, 4),
+  nn.Linear(4, n_classes)
+)
+```
+
+-   En este caso, las capas dentro de `nn.Sequential()` son capas ocultas.
+
+-   `n_features` representa el número de características de entrada y `n_classes` representa el número de clases de salida, ambas definidas por el conjunto de datos.
+
+### Adición de capas 
+
+Podemos añadir tantas capas ocultas como queramos.
+
+![](img/fig17.png){width="450"}
+
+La dimensión de cada capa coincide con la dimensión de salida de la anterior.
+
+```{python}
+model = nn.Sequential(
+  nn.Linear(10, 18),
+  nn.Linear(18, 20),
+  nn.Linear(20, 5)
+)
+```
+
+En nuestro ejemplo de tres capas, la primera capa toma 10 características y genera 18. La segunda toda 18 y genera 20. Finalmente, la tercera toma 20 y genera 5.
+
+### Las capas están hechas de neuronas
+
+![](img/fig18.png){fig-align="center" width="200"}
+
+Una capa está completamente conectada cuando cada neurona se vincula a todas las neuronas de la capa anterior, como se muestra en rojo en la figura.
+
+Cada neurona es una capa lineal:
+
+-   realiza una operación lineal utilizando todas las neuonras de la capa anterior.
+
+-   Por tanto, una sola neurona tiene $N+1$ parámetros que se puede aprender, siendo la dimensión de salida la capa anterior, más 1 para el sesgo.
+
+### Parámetros y Capacidad del Modelo
+
+Aumetar el número de capas ocultas aumenta el número total de parámetros en el modelo, también conocido como capacidad del modelo. Los modelos de mayor capacidad pueden manejar conjuntos de datos más complejos, pero su entrenamiento puede llevar más tiempo.
+
+Una forma eficaz de evaluar la capacidad de un modelo es calcular su número total de parámetros.
+
+Vamos a desglosarlo con una red de dos capas,
+
+```{python}
+model = nn.Sequential(
+  nn.Linear(8, 4),
+  nn.Linear(4, 2)
+)
+```
+
+-   **La primera capa** tiene 4 neuronas, cada neurona tiene 8 pesos y un sesgo, lo que da como resultado 36 parámetros.
+
+-   La segunda capa tiene 2 neuronas, cada neurona tiene 4 pesos y un sesgo, para un total de 10 parámetros.
+
+-   Sumándolos todos, este modelo tiene 46 parámetros que se pueden aprender en total
+
+También podemos calcular esto en PyTorch usando el método `.numel()`. Este método devuelve el número de elementos de un tensor.
+
+```{python}
+total = 0
+for parameter in model.parameters():
+  total += parameter.numel()
+  
+print(total)
+```
+
+### Balance entre complejidad y eficiencia
+
+![](img/fig19.png){fig-align="center" width="400"}
+
+Comprender el recuento de parámetros nos ayuda a equilibrar la complejidad y la eficiencia del modelo. Demasiados parámetros pueden dar lugar a tiempos de entrenamiento largos o sobreajuste, mientras que muy pocos pueden limitar la capacidad de aprendizaje.
