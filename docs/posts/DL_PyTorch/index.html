@@ -234,6 +234,10 @@ window.Quarto = {
   <li><a href="#clasificación-multi-class-forward-pass" id="toc-clasificación-multi-class-forward-pass" class="nav-link" data-scroll-target="#clasificación-multi-class-forward-pass">Clasificación Multi-Class: Forward Pass</a></li>
   <li><a href="#regresión-forward-pass" id="toc-regresión-forward-pass" class="nav-link" data-scroll-target="#regresión-forward-pass">Regresión: Forward Pass</a></li>
   </ul></li>
+  <li><a href="#funciones-de-pérdida-para-evaluar-las-predicciones-del-modelo" id="toc-funciones-de-pérdida-para-evaluar-las-predicciones-del-modelo" class="nav-link" data-scroll-target="#funciones-de-pérdida-para-evaluar-las-predicciones-del-modelo">Funciones de Pérdida para Evaluar las Predicciones del Modelo</a>
+  <ul class="collapse">
+  <li><a href="#función-de-pérdida-cross-entropy-en-pytorch" id="toc-función-de-pérdida-cross-entropy-en-pytorch" class="nav-link" data-scroll-target="#función-de-pérdida-cross-entropy-en-pytorch">Función de Pérdida Cross Entropy en PyTorch</a></li>
+  </ul></li>
   </ul></li>
   </ul>
 </nav>
@@ -326,7 +330,7 @@ window.Quarto = {
 <section id="pytorch-tensors" class="level4">
 <h4 class="anchored" data-anchor-id="pytorch-tensors">PyTorch Tensors</h4>
 <p>Podemos importar el módulo PyTorch llamando a</p>
-<div id="f392a2e7" class="cell" data-execution_count="1">
+<div id="8db79070" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> torch</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <ul>
@@ -334,7 +338,7 @@ window.Quarto = {
 <li><p>Puede soportar muchas operaciones matemáticas y constituye un componente básico para nuestras redes neuronales.</p></li>
 <li><p>Se pueden crear tensores a partir de listas de Python o matrices NumPy utilizando la clase <code>torch.tensor()</code> esta clase convierte los datos a un formato compatible para el aprendizaje profundo.</p></li>
 </ul>
-<div id="de84a159" class="cell" data-execution_count="2">
+<div id="6a9496a4" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>mi_lista <span class="op">=</span> [[<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>], [<span class="dv">4</span>,<span class="dv">5</span>,<span class="dv">6</span>]]</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>tensor <span class="op">=</span> torch.tensor(mi_lista)</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(tensor)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -347,14 +351,14 @@ window.Quarto = {
 <section id="atributos-de-los-tensores" class="level3">
 <h3 class="anchored" data-anchor-id="atributos-de-los-tensores">Atributos de los Tensores</h3>
 <p>Podemos llamar a <code>tensor.shape</code> para mostrar la forma de nuestro objeto recién creado.</p>
-<div id="51ee47af" class="cell" data-execution_count="3">
+<div id="0566b43b" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(tensor.shape)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>torch.Size([2, 3])</code></pre>
 </div>
 </div>
 <p>Y <code>tensor.dtype()</code> para mostrar su tipo de datos, aquí un entero de 64 bits.</p>
-<div id="caf09ad9" class="cell" data-execution_count="4">
+<div id="8960e80c" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(tensor.dtype)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>torch.int64</code></pre>
@@ -364,12 +368,12 @@ window.Quarto = {
 <section id="operaciones-con-tensores" class="level4">
 <h4 class="anchored" data-anchor-id="operaciones-con-tensores">Operaciones con Tensores</h4>
 <p>Se pueden sumar o restar tensores de PyTorch, siempre que sus formas sean compatibles.</p>
-<div id="eee1f714" class="cell" data-execution_count="5">
+<div id="f5d85298" class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> torch.tensor([[<span class="dv">1</span>,<span class="dv">1</span>], [<span class="dv">2</span>,<span class="dv">2</span>]])</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>b <span class="op">=</span> torch.tensor([[<span class="dv">2</span>,<span class="dv">2</span>],[<span class="dv">3</span>,<span class="dv">3</span>]])</span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>c <span class="op">=</span> torch.tensor([[<span class="dv">2</span>,<span class="dv">2</span>,<span class="dv">2</span>], [<span class="dv">3</span>,<span class="dv">3</span>,<span class="dv">5</span>]])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="62a2f3f1" class="cell" data-execution_count="6">
+<div id="50de8887" class="cell" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(a <span class="op">+</span> b)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>tensor([[3, 3],
@@ -378,7 +382,7 @@ window.Quarto = {
 </div>
 <p>Cuando las dimensiones no son compatibles, obtendremos un error.</p>
 <p>También podemos realizar la multiplicación por elemento, lo que implica multiplicar cada elemento correspondiente.</p>
-<div id="4580d3a3" class="cell" data-execution_count="7">
+<div id="8dbc7ee8" class="cell" data-execution_count="7">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(a<span class="op">*</span>b)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>tensor([[2, 2],
@@ -386,7 +390,7 @@ window.Quarto = {
 </div>
 </div>
 <p>También esta incluida la multiplicación de matrices, que no es más que uno forma de combinar dos matrices para crear una nueva.</p>
-<div id="4c90955a" class="cell" data-execution_count="8">
+<div id="48774ff6" class="cell" data-execution_count="8">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(a <span class="op">@</span> b)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>tensor([[ 5,  5],
@@ -435,7 +439,7 @@ window.Quarto = {
 <li><p>Esta red es equivalente a un modelo lineal y nos ayuda a comprender los fundamentos antes de agregar complejidad.</p></li>
 </ul>
 <p>Usaremos el módulo <code>torch.nn</code> para construir nuestras redes. Esto hace que el código de la red sea más conciso y flexible y se importa convencionalmente como <code>nn</code>.</p>
-<div id="c5442f16" class="cell" data-execution_count="9">
+<div id="e08b9b08" class="cell" data-execution_count="9">
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> torch.nn <span class="im">as</span> nn</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Al diseñar una red neuronal, las dimensiones de las capas de entrada y salida están predefinidas.</p>
@@ -444,7 +448,7 @@ window.Quarto = {
 <li><p>Y el número de neuronas en la capa de salida es el número de clases que queremos predecir.</p></li>
 </ul>
 <p>Digamos que creamos un input_tensor con forma de <span class="math inline">\(1\times 3\)</span>.</p>
-<div id="15d2f095" class="cell" data-execution_count="10">
+<div id="d31b3467" class="cell" data-execution_count="10">
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> torch</span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> torch.nn <span class="im">as</span> nn</span>
 <span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>input_tensor <span class="op">=</span> torch.tensor(</span>
@@ -464,7 +468,7 @@ window.Quarto = {
 <p><img src="img/fig13.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="100"></p>
 </figure>
 </div>
-<div id="52c9f0cb" class="cell" data-execution_count="11">
+<div id="cb06aca8" class="cell" data-execution_count="11">
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>linear_layer <span class="op">=</span> nn.Linear(</span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>  in_features <span class="op">=</span> <span class="dv">3</span>,</span>
 <span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>  out_features <span class="op">=</span> <span class="dv">2</span></span>
@@ -472,11 +476,11 @@ window.Quarto = {
 </div>
 <p>Especificar correctamente <code>in_features</code> garantiza que nuestra capa lineal pueda recibir el input_tensor.</p>
 <p>Por último, pasamos input_tensor a linear_layer para generar una salida.</p>
-<div id="15130485" class="cell" data-execution_count="12">
+<div id="dd915158" class="cell" data-execution_count="12">
 <div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>output <span class="op">=</span> linear_layer(input_tensor)</span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(output)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>tensor([[0.2355, 0.4585]], grad_fn=&lt;AddmmBackward0&gt;)</code></pre>
+<pre><code>tensor([[0.1882, 0.3615]], grad_fn=&lt;AddmmBackward0&gt;)</code></pre>
 </div>
 </div>
 <p>Tenga en cuenta que esta salida tiene dos características o neuronas debido a las <code>out_features</code> especificadas en nuestra capa lineal.</p>
@@ -490,19 +494,19 @@ window.Quarto = {
 <section id="pesos-weights-y-sesgos-biases" class="level2">
 <h2 class="anchored" data-anchor-id="pesos-weights-y-sesgos-biases">Pesos (weights) y Sesgos (biases)</h2>
 <p>Cada capa lineal tiene un conjunto de pesos y sesgos asociados. Estas son las cantidades clave que definen una neurona.</p>
-<div id="2a7423ab" class="cell" data-execution_count="13">
+<div id="28b9c191" class="cell" data-execution_count="13">
 <div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(linear_layer.weight)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Parameter containing:
-tensor([[ 0.5486,  0.2111, -0.0616],
-        [ 0.5284,  0.1770, -0.3370]], requires_grad=True)</code></pre>
+tensor([[ 0.4484, -0.4355,  0.0992],
+        [-0.4661,  0.4183, -0.0626]], requires_grad=True)</code></pre>
 </div>
 </div>
-<div id="cfa9e3a0" class="cell" data-execution_count="14">
+<div id="1b57dffc" class="cell" data-execution_count="14">
 <div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(linear_layer.bias)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Parameter containing:
-tensor([-0.0654,  0.1152], requires_grad=True)</code></pre>
+tensor([0.2540, 0.3183], requires_grad=True)</code></pre>
 </div>
 </div>
 <ul>
@@ -539,7 +543,7 @@ tensor([-0.0654,  0.1152], requires_grad=True)</code></pre>
 <p>Podemos añadir tantas capas ocultas como queramos.</p>
 <p><img src="img/fig17.png" class="img-fluid" width="450"></p>
 <p>La dimensión de cada capa coincide con la dimensión de salida de la anterior.</p>
-<div id="3a780310" class="cell" data-execution_count="15">
+<div id="13d47093" class="cell" data-execution_count="15">
 <div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> nn.Sequential(</span>
 <span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>  nn.Linear(<span class="dv">10</span>, <span class="dv">18</span>),</span>
 <span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>  nn.Linear(<span class="dv">18</span>, <span class="dv">20</span>),</span>
@@ -567,7 +571,7 @@ tensor([-0.0654,  0.1152], requires_grad=True)</code></pre>
 <p>Aumetar el número de capas ocultas aumenta el número total de parámetros en el modelo, también conocido como capacidad del modelo. Los modelos de mayor capacidad pueden manejar conjuntos de datos más complejos, pero su entrenamiento puede llevar más tiempo.</p>
 <p>Una forma eficaz de evaluar la capacidad de un modelo es calcular su número total de parámetros.</p>
 <p>Vamos a desglosarlo con una red de dos capas,</p>
-<div id="14b9ca8b" class="cell" data-execution_count="16">
+<div id="100aafb1" class="cell" data-execution_count="16">
 <div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> nn.Sequential(</span>
 <span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>  nn.Linear(<span class="dv">8</span>, <span class="dv">4</span>),</span>
 <span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>  nn.Linear(<span class="dv">4</span>, <span class="dv">2</span>)</span>
@@ -579,7 +583,7 @@ tensor([-0.0654,  0.1152], requires_grad=True)</code></pre>
 <li><p>Sumándolos todos, este modelo tiene 46 parámetros que se pueden aprender en total</p></li>
 </ul>
 <p>También podemos calcular esto en PyTorch usando el método <code>.numel()</code>. Este método devuelve el número de elementos de un tensor.</p>
-<div id="3b6b8e71" class="cell" data-execution_count="17">
+<div id="cfe92ac7" class="cell" data-execution_count="17">
 <div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>total <span class="op">=</span> <span class="dv">0</span></span>
 <span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> parameter <span class="kw">in</span> model.parameters():</span>
 <span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>  total <span class="op">+=</span> parameter.numel()</span>
@@ -642,7 +646,7 @@ tensor([-0.0654,  0.1152], requires_grad=True)</code></pre>
 </figure>
 </div>
 <p>Ahora, implementemos sigmoide en PyTorch.</p>
-<div id="8e2ca607" class="cell" data-execution_count="18">
+<div id="ad67c0b6" class="cell" data-execution_count="18">
 <div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> torch</span>
 <span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> torch.nn <span class="im">as</span> nn</span>
 <span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -655,7 +659,7 @@ tensor([-0.0654,  0.1152], requires_grad=True)</code></pre>
 </div>
 </div>
 <p>Normalmente, <code>nn.Sigmoid()</code> se agrega como el último paso en <code>nn.Sequential()</code>, transformando automáticamente la salida de la capa lineal final.</p>
-<div id="0245eb3e" class="cell" data-execution_count="19">
+<div id="76cdcbdc" class="cell" data-execution_count="19">
 <div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> nn.Sequential(</span>
 <span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>  nn.Linear(<span class="dv">6</span>, <span class="dv">4</span>), <span class="co"># Primera capa lineal </span></span>
 <span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>  nn.Linear(<span class="dv">4</span>, <span class="dv">1</span>), <span class="co"># Segunda capa lineal</span></span>
@@ -696,7 +700,7 @@ tensor([-0.0654,  0.1152], requires_grad=True)</code></pre>
 </figure>
 </div>
 <p>En PyTorch, usamos <code>nn.Softmax()</code></p>
-<div id="8ce08e4b" class="cell" data-execution_count="20">
+<div id="b510bdcf" class="cell" data-execution_count="20">
 <div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> torch</span>
 <span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> torch.nn <span class="im">as</span> nn</span>
 <span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -739,7 +743,7 @@ tensor([-0.0654,  0.1152], requires_grad=True)</code></pre>
 </div>
 <p>Veremos un ejemplo de cada uno.</p>
 <p>Digamos que tenemos datos de entrada de cinco animales, con seís características o neuronas por punto de datos.</p>
-<div id="65f1a6a7" class="cell" data-execution_count="21">
+<div id="f081f958" class="cell" data-execution_count="21">
 <div class="sourceCode cell-code" id="cb34"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>input_data <span class="op">=</span> torch.tensor(</span>
 <span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>  [[<span class="op">-</span><span class="fl">0.4421</span>, <span class="fl">1.5207</span>, <span class="fl">2.0607</span>, <span class="op">-</span><span class="fl">0.3647</span>, <span class="fl">0.4691</span>, <span class="fl">0.0946</span>],</span>
 <span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>  [<span class="op">-</span><span class="fl">0.9155</span>, <span class="op">-</span><span class="fl">0.0475</span>, <span class="op">-</span><span class="fl">1.3645</span>, <span class="op">-</span><span class="fl">0.6336</span>, <span class="op">-</span><span class="fl">1.9520</span>, <span class="op">-</span><span class="fl">0.3398</span>],</span>
@@ -749,7 +753,7 @@ tensor([-0.0654,  0.1152], requires_grad=True)</code></pre>
 <span id="cb34-7"><a href="#cb34-7" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Creamos una pequeña red con dos capas lineales y una función de activación sigmoidea en secuencia.</p>
-<div id="89fc86ec" class="cell" data-execution_count="22">
+<div id="8c3c8ca9" class="cell" data-execution_count="22">
 <div class="sourceCode cell-code" id="cb35"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> torch</span>
 <span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> torch.nn <span class="im">as</span> nn</span>
 <span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> nn.Sequential(</span>
@@ -763,15 +767,15 @@ tensor([-0.0654,  0.1152], requires_grad=True)</code></pre>
 <li><p>La segunda capa procesa esto para obtener una probailidad final.</p></li>
 </ul>
 <p>El resultado de nuestra clasificación binaria es una única probabilidad entre cero y uno para cada uno de nuestros cinco animales.</p>
-<div id="e7d36d03" class="cell" data-execution_count="23">
+<div id="deb4deaa" class="cell" data-execution_count="23">
 <div class="sourceCode cell-code" id="cb36"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>output <span class="op">=</span> model(input_data)</span>
 <span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(output)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>tensor([[0.3101],
-        [0.6297],
-        [0.6314],
-        [0.3041],
-        [0.4569]], grad_fn=&lt;SigmoidBackward0&gt;)</code></pre>
+<pre><code>tensor([[0.4524],
+        [0.2152],
+        [0.3693],
+        [0.3907],
+        [0.3434]], grad_fn=&lt;SigmoidBackward0&gt;)</code></pre>
 </div>
 </div>
 <p>Recuerde que comúnmente utilizamos un umbral de 0.5 para convertirlos en etiquetaas de 0 y 1, es decir:</p>
@@ -786,7 +790,7 @@ tensor([-0.0654,  0.1152], requires_grad=True)</code></pre>
 <p>El modelo sería similar si quisiéramos ejecutar una clasificación de múltiples clases.</p>
 <p>Digamos que estamos prediciendo tres clases: <em>mamíferos (Class 1), aves (Class 2) o reptiles (Class 3).</em></p>
 <p>Específicamos que nuestro modelo tiene tres clases, estableciendo este valor como la dimensión de salida de la última capa lineal.</p>
-<div id="7c21542f" class="cell" data-execution_count="24">
+<div id="43fef11c" class="cell" data-execution_count="24">
 <div class="sourceCode cell-code" id="cb38"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>n_classes <span class="op">=</span> <span class="dv">3</span></span>
 <span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> nn.Sequential(</span>
 <span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a>  nn.Linear(<span class="dv">6</span>, <span class="dv">4</span>),</span>
@@ -795,7 +799,7 @@ tensor([-0.0654,  0.1152], requires_grad=True)</code></pre>
 <span id="cb38-6"><a href="#cb38-6" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Usamos Softmax en lugar de Sigmoid, con <span class="math inline">\(dim = -1\)</span> para indicar los 5 animales. Los anímales tiene la misma última dimensión que la salida de la última capa lineal.</p>
-<div id="0556f544" class="cell" data-execution_count="25">
+<div id="e12df618" class="cell" data-execution_count="25">
 <div class="sourceCode cell-code" id="cb39"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>output <span class="op">=</span> model(input_data)</span>
 <span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(output.shape)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -803,14 +807,14 @@ tensor([-0.0654,  0.1152], requires_grad=True)</code></pre>
 </div>
 </div>
 <p>Utilizando la misma entrada que antes, la forma de salida es <span class="math inline">\(5\times 3\)</span>.</p>
-<div id="0a843cac" class="cell" data-execution_count="26">
+<div id="abb76a11" class="cell" data-execution_count="26">
 <div class="sourceCode cell-code" id="cb41"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(output)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>tensor([[0.3996, 0.3324, 0.2680],
-        [0.3156, 0.2140, 0.4703],
-        [0.3118, 0.2794, 0.4088],
-        [0.3555, 0.1770, 0.4675],
-        [0.3295, 0.3139, 0.3566]], grad_fn=&lt;SoftmaxBackward0&gt;)</code></pre>
+<pre><code>tensor([[0.1030, 0.4780, 0.4190],
+        [0.2256, 0.4572, 0.3172],
+        [0.1414, 0.3071, 0.5515],
+        [0.1300, 0.4956, 0.3744],
+        [0.1173, 0.4805, 0.4022]], grad_fn=&lt;SoftmaxBackward0&gt;)</code></pre>
 </div>
 </div>
 <p>Note que cuando imprimimos la salida, cada fila representa las probabilidades de tres clases, que suman uno. La etiqueta prevista para cada fila se asigna a la clase con la mayor probabilidad.</p>
@@ -820,7 +824,7 @@ tensor([-0.0654,  0.1152], requires_grad=True)</code></pre>
 <h3 class="anchored" data-anchor-id="regresión-forward-pass">Regresión: Forward Pass</h3>
 <p>El último modelo que analizaremos es la regresión: predecir valores numéricos continuos.</p>
 <p>Ahora usaremos las mismos datos para predecir el peso de los animales en función de sus propiedades.</p>
-<div id="8387f25c" class="cell" data-execution_count="27">
+<div id="f1a62acd" class="cell" data-execution_count="27">
 <div class="sourceCode cell-code" id="cb43"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> nn.Sequential(</span>
 <span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a>  nn.Linear(<span class="dv">6</span>, <span class="dv">4</span>), </span>
 <span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a>  nn.Linear(<span class="dv">4</span>, <span class="dv">1</span>)</span>
@@ -829,15 +833,151 @@ tensor([-0.0654,  0.1152], requires_grad=True)</code></pre>
 <span id="cb43-6"><a href="#cb43-6" aria-hidden="true" tabindex="-1"></a>output <span class="op">=</span> model(input_data)</span>
 <span id="cb43-7"><a href="#cb43-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(output)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>tensor([[ 0.2031],
-        [-1.1993],
-        [-0.4812],
-        [-0.3679],
-        [-0.4028]], grad_fn=&lt;AddmmBackward0&gt;)</code></pre>
+<pre><code>tensor([[-0.4942],
+        [ 0.4047],
+        [ 0.2897],
+        [-0.3131],
+        [ 0.1651]], grad_fn=&lt;AddmmBackward0&gt;)</code></pre>
 </div>
 </div>
 <p>Esta vez no hay función de activación al final, y la última dimensión de la última capa lineal devuelve una salida con una característica.</p>
 <p>Las dimensiones de salida son <span class="math inline">\(5\times 1\)</span>: cinco valores continuos, uno para cada fila.</p>
+</section>
+</section>
+<section id="funciones-de-pérdida-para-evaluar-las-predicciones-del-modelo" class="level2">
+<h2 class="anchored" data-anchor-id="funciones-de-pérdida-para-evaluar-las-predicciones-del-modelo">Funciones de Pérdida para Evaluar las Predicciones del Modelo</h2>
+<p>Hemos generado predicciones ejecutando un paso hacia adelante, el siguiente paso es ver qué tan buenas son nuestras predicciones en comparación con los valores reales.</p>
+<section id="función-de-pérdida" class="level4">
+<h4 class="anchored" data-anchor-id="función-de-pérdida">Función de pérdida</h4>
+<p>La función de pérdida, otro componente de las redes neuronales, nos dicen qué tan bueno es nuestro modelo para hacer predicciones durante el entrenamiento.</p>
+<p>Toma una predicción del modelo <span class="math inline">\((\hat{y})\)</span> y una etiqueta verdadera <span class="math inline">\(y\)</span>, o dato real, y genera un dato flotante, tal como se puede apreciar en el siguiente esquema</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="img/fig30.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="800"></p>
+</figure>
+</div>
+<p>Utilicemos nuestra multiclase</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 8%">
+<col style="width: 13%">
+<col style="width: 8%">
+<col style="width: 8%">
+<col style="width: 8%">
+<col style="width: 8%">
+<col style="width: 8%">
+<col style="width: 13%">
+<col style="width: 12%">
+<col style="width: 9%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Hair</th>
+<th>Feathers</th>
+<th>Eggs</th>
+<th>Milk</th>
+<th>Fins</th>
+<th>Legs</th>
+<th>Tail</th>
+<th>Domestic</th>
+<th>Catsize</th>
+<th>Class</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>4</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+</tr>
+</tbody>
+</table>
+<p>modelo de clasificación que predice si un animal es un mamífero (0), ave (1) o reptil (2).</p>
+<ul>
+<li><p>Si nuestro modelo predice que la clase es igual a cero, es correcto y el valor de la pérdida será bajo.</p></li>
+<li><p>Una predicción incorrecta haría que el valor de la pérdida fuera alto.</p></li>
+<li><p>Nuestro objetivo es minimizar las pérdidas.</p></li>
+</ul>
+</section>
+<section id="calculo-de-la-pérdida" class="level4">
+<h4 class="anchored" data-anchor-id="calculo-de-la-pérdida">Calculo de la pérdida</h4>
+<p>La pérdida se calcula utilizando una función de pérdida, <span class="math inline">\(F\)</span>, que toma el dato real y el predicho, es decir,</p>
+<p><span class="math display">\[
+Loss = F(y, \hat{y})
+\]</span></p>
+<ul>
+<li><p>En nuestro ejemplo de los animales, los valores posibles para nuestra verdadera clase de <span class="math inline">\(y\)</span> son los n<u>úmeros enteros 0, 1 o 2, es decir,</u> <span class="math inline">\(y \in \{0, 1 , 2\}\)</span>.</p></li>
+<li><p><span class="math inline">\(\hat{y}\)</span> es un tensor con las mismas dimensiones que el número de clases <span class="math inline">\(N\)</span>, es decir, <span class="math inline">\(\hat{y}\in \{-5.2, 4.6, 0.8\}\)</span>. Si <span class="math inline">\(N=3\)</span> entonces la salidad softmax es un tensor de forma <span class="math inline">\(1\times 3\)</span>.</p></li>
+</ul>
+</section>
+<section id="codificación-one-hot" class="level4">
+<h4 class="anchored" data-anchor-id="codificación-one-hot">Codificación one-hot</h4>
+<p>Usamos codificación one-hot para convertir un entero <span class="math inline">\(y\)</span> en un tensor de ceros y unos para que podamos comparar para evaluar el rendimiento del modelo.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="img/fig31.png" class="img-fluid figure-img" width="300"></p>
+<figcaption>Figura 1</figcaption>
+</figure>
+</div>
+<p>Por ejemplo, si <span class="math inline">\(y=0\)</span> con tres clases, la forma codificada es 1, 0, 0 como se aprecia en <strong>Figura 1.</strong></p>
+<p>Podemos importar <code>torch.nn.functional</code> como <code>F</code> para evitar la codificación one-hot manual.</p>
+<div id="dd4cd62f" class="cell" data-execution_count="28">
+<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> torch.nn.functional <span class="im">as</span> F</span>
+<span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb45-3"><a href="#cb45-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(F.one_hot(torch.tensor(<span class="dv">0</span>), num_classes <span class="op">=</span> <span class="dv">3</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>tensor([1, 0, 0])</code></pre>
+</div>
+</div>
+<p>En el primer ejemplo, la verdad fundamental es cero (la primera clase). Tenemos 3 clases, por lo que la función genera un tensor de tres elementos con uno en la primera posición y ceros en el resto.</p>
+<div id="a7691059" class="cell" data-execution_count="29">
+<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(F.one_hot(torch.tensor(<span class="dv">1</span>), num_classes <span class="op">=</span> <span class="dv">3</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>tensor([0, 1, 0])</code></pre>
+</div>
+</div>
+<p>Notemos ahora que si <span class="math inline">\(y=1\)</span> (la segunda clase), el tensor de salida tiene un uno en la segunda posición y ceros en caso contrario.</p>
+<div id="f8402329" class="cell" data-execution_count="30">
+<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(F.one_hot(torch.tensor(<span class="dv">2</span>), num_classes <span class="op">=</span> <span class="dv">3</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>tensor([0, 0, 1])</code></pre>
+</div>
+</div>
+<p>Por último, si <span class="math inline">\(y=2\)</span> (tercera clase), el tensor de salida tiene un uno en la última posición y ceros en el resto de los casos.</p>
+</section>
+<section id="función-de-pérdida-cross-entropy-en-pytorch" class="level3">
+<h3 class="anchored" data-anchor-id="función-de-pérdida-cross-entropy-en-pytorch">Función de Pérdida Cross Entropy en PyTorch</h3>
+<p>Una vez completada la codificación, podemos pasarla junto con nuestras predicciones a una función de pérdida. Lo que almacenaríamos será el tensor de <em>“puntuaciones”</em>.</p>
+<div id="66a4b033" class="cell" data-execution_count="31">
+<div class="sourceCode cell-code" id="cb51"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> torch.nn <span class="im">import</span> CrossEntropyLoss</span>
+<span id="cb51-2"><a href="#cb51-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb51-3"><a href="#cb51-3" aria-hidden="true" tabindex="-1"></a>scores <span class="op">=</span> torch.tensor([<span class="op">-</span><span class="fl">5.2</span>, <span class="fl">4.6</span>, <span class="fl">0.8</span>])</span>
+<span id="cb51-4"><a href="#cb51-4" aria-hidden="true" tabindex="-1"></a>one_hot_target <span class="op">=</span> torch.tensor([<span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">0</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>La función de pérdida más comunmente utilizada para la clasificaci´øn es la pérdida de entropía cruzada.</p>
+<p>Comencemos definiendo nuestra función de pérdida como <em>“criterio”.</em> Luego le pasamos el método <code>.double()</code> del tensor de puntuaciones y del tensor <code>one_hot_target.</code></p>
+<div id="2da5cd56" class="cell" data-execution_count="32">
+<div class="sourceCode cell-code" id="cb52"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a>criterion <span class="op">=</span> CrossEntropyLoss()</span>
+<span id="cb52-2"><a href="#cb52-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(criterion(scores.double(), one_hot_target.double()))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>tensor(9.8222, dtype=torch.float64)</code></pre>
+</div>
+</div>
+<p>Esto garantiza que los tensores estén en el formato correcto para la función de pérdida. La salida es el valor de pérdida calculado.</p>
+<p>En resumen, la función de pérdida toma como entrada el tensor de puntuaciones, que es el modelo, predice antes de la función softmax final y la etiqueta de verdad codificada one-hot. Emite un único flotante, la pérdida de esa muestra.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="img/fig32.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="550"></p>
+</figure>
+</div>
+<p>Recordemos que nuestro objetivo es minimizar esa pérdida.</p>
 
 
 </section>

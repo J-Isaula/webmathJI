@@ -535,3 +535,99 @@ print(output)
 Esta vez no hay función de activación al final, y la última dimensión de la última capa lineal devuelve una salida con una característica.
 
 Las dimensiones de salida son $5\times 1$: cinco valores continuos, uno para cada fila.
+
+## Funciones de Pérdida para Evaluar las Predicciones del Modelo 
+
+Hemos generado predicciones ejecutando un paso hacia adelante, el siguiente paso es ver qué tan buenas son nuestras predicciones en comparación con los valores reales.
+
+#### Función de pérdida
+
+La función de pérdida, otro componente de las redes neuronales, nos dicen qué tan bueno es nuestro modelo para hacer predicciones durante el entrenamiento.
+
+Toma una predicción del modelo $(\hat{y})$ y una etiqueta verdadera $y$, o dato real, y genera un dato flotante, tal como se puede apreciar en el siguiente esquema
+
+![](img/fig30.png){fig-align="center" width="800"}
+
+Utilicemos nuestra multiclase
+
+| Hair | Feathers | Eggs | Milk | Fins | Legs | Tail | Domestic | Catsize | Class |
+|------|----------|------|------|------|------|------|----------|---------|-------|
+| 1    | 0        | 0    | 1    | 0    | 4    | 0    | 0        | 1       | 0     |
+
+modelo de clasificación que predice si un animal es un mamífero (0), ave (1) o reptil (2).
+
+-   Si nuestro modelo predice que la clase es igual a cero, es correcto y el valor de la pérdida será bajo.
+
+-   Una predicción incorrecta haría que el valor de la pérdida fuera alto.
+
+-   Nuestro objetivo es minimizar las pérdidas.
+
+#### Calculo de la pérdida 
+
+La pérdida se calcula utilizando una función de pérdida, $F$, que toma el dato real y el predicho, es decir,
+
+$$
+Loss = F(y, \hat{y})
+$$
+
+-   En nuestro ejemplo de los animales, los valores posibles para nuestra verdadera clase de $y$ son los n[úmeros enteros 0, 1 o 2, es decir,]{.underline} $y \in \{0, 1 , 2\}$.
+
+-   $\hat{y}$ es un tensor con las mismas dimensiones que el número de clases $N$, es decir, $\hat{y}\in \{-5.2, 4.6, 0.8\}$. Si $N=3$ entonces la salidad softmax es un tensor de forma $1\times 3$.
+
+#### Codificación one-hot
+
+Usamos codificación one-hot para convertir un entero $y$ en un tensor de ceros y unos para que podamos comparar para evaluar el rendimiento del modelo.
+
+![Figura 1](img/fig31.png){fig-align="center" width="300"}
+
+Por ejemplo, si $y=0$ con tres clases, la forma codificada es 1, 0, 0 como se aprecia en **Figura 1.**
+
+Podemos importar `torch.nn.functional` como `F` para evitar la codificación one-hot manual.
+
+```{python}
+import torch.nn.functional as F
+
+print(F.one_hot(torch.tensor(0), num_classes = 3))
+```
+
+En el primer ejemplo, la verdad fundamental es cero (la primera clase). Tenemos 3 clases, por lo que la función genera un tensor de tres elementos con uno en la primera posición y ceros en el resto.
+
+```{python}
+print(F.one_hot(torch.tensor(1), num_classes = 3))
+```
+
+Notemos ahora que si $y=1$ (la segunda clase), el tensor de salida tiene un uno en la segunda posición y ceros en caso contrario.
+
+```{python}
+print(F.one_hot(torch.tensor(2), num_classes = 3))
+```
+
+Por último, si $y=2$ (tercera clase), el tensor de salida tiene un uno en la última posición y ceros en el resto de los casos.
+
+### Función de Pérdida Cross Entropy en PyTorch
+
+Una vez completada la codificación, podemos pasarla junto con nuestras predicciones a una función de pérdida. Lo que almacenaríamos será el tensor de *"puntuaciones"*.
+
+```{python}
+from torch.nn import CrossEntropyLoss
+
+scores = torch.tensor([-5.2, 4.6, 0.8])
+one_hot_target = torch.tensor([1,0,0])
+```
+
+La función de pérdida más comunmente utilizada para la clasificaci´øn es la pérdida de entropía cruzada.
+
+Comencemos definiendo nuestra función de pérdida como *"criterio".* Luego le pasamos el método `.double()` del tensor de puntuaciones y del tensor `one_hot_target.`
+
+```{python}
+criterion = CrossEntropyLoss()
+print(criterion(scores.double(), one_hot_target.double()))
+```
+
+Esto garantiza que los tensores estén en el formato correcto para la función de pérdida. La salida es el valor de pérdida calculado.
+
+En resumen, la función de pérdida toma como entrada el tensor de puntuaciones, que es el modelo, predice antes de la función softmax final y la etiqueta de verdad codificada one-hot. Emite un único flotante, la pérdida de esa muestra.
+
+![](img/fig32.png){fig-align="center" width="550"}
+
+Recordemos que nuestro objetivo es minimizar esa pérdida.
