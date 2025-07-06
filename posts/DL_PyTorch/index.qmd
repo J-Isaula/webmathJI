@@ -826,4 +826,14 @@ Esto nos permite almacenar nuestras características (X) y etiquetas destino (y)
     dataset = TensorDataset(torch.tensor(X), torch.tensor(y))
     ```
 
+2.  Para acceder a una muestra individual, utilizamos la indexación de corchetes.
+
+    ```{python}
+    input_sample, label_sample = dataset[0]
+    print('input sample:', input_sample)
+    print('input_sample:', label_sample)
+    ```
+
+    \
+    \
     \
