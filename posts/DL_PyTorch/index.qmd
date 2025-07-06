@@ -631,3 +631,131 @@ En resumen, la función de pérdida toma como entrada el tensor de puntuaciones,
 ![](img/fig32.png){fig-align="center" width="550"}
 
 Recordemos que nuestro objetivo es minimizar esa pérdida.
+
+## Utilizar derivadas para Actualizar los Parámetros del Modelo 
+
+Veamos ahora cómo podemos minímizar la pérdida. Sabemos que un modelo predice mal cuando la pérdida es alta. Podemos utilizar derivadas o gradientes para minimizar esta pérdida.
+
+![](img/fig33.png){fig-align="center" width="300"}
+
+Imaginemos la función de pérdida como un valle. La derivada representa la pendiente, es decir qué tan pronunciada sube o baja la curva.
+
+-   Las pendientes pronunciadas, mostradas con flechas rojas, indican derivadas altas y pesos grandes.
+
+-   Las pendientes más suaves, representadas por flechas verdes, tienen derivadas pequeñas y pesos más pequeños.
+
+-   En el fondo del valle, mostrado por la flecha azul, la pendiente es plana y la derivada es cero. **Este punto es el mínimo de la función de pérdida que pretendemos alcanzar.**
+
+### Funciones Convexas y No-Convexas 
+
+Las funciones convexas tienen un mínimo global.
+
+![](img/fig34.png){fig-align="center" width="1000"}
+
+Las funciones no convexas, como las funciones de pérdida, tienen múltiples mínimos locales, donde el valor es inferior al de los puntos cercanos pero no el más bajo en general.
+
+Al minimizar las funciones de pérdida, nuestro objetivo es localizar el mínimo global cuando $x$ es aproximadamente uno.
+
+### Conexión de derivadas y entrenamiento de modelos 
+
+Durante el entrenamiento, ejecutamos un ***paso hacia adelante*** en las características y calculamos la pérdida comparando las predicciones con el valor objetivo.
+
+![](img/fig38.png){fig-align="center" width="500"}
+
+Recuerde que los ***pesos*** y ***sesgos*** de las capas se inicializan aleatoriamente cuando se crea un modelo. Los actualizamos durante el entrenamiento mediante un ***paso hacia atrás*** o ***retropropogación.***
+
+En el Deep Learning, **las derivadas se conocen como gradientes.**
+
+![](img/fig39.png){fig-align="center" width="600"}
+
+Calculamos los gradientes de la función de pérdida y los usamos para actualizar los parámetros del modelo. Incluyendo pesos y sesgos, con retropropagación, repitiendo hasta que las capas esten sintonizadas.
+
+### Backpropagation (Retropropagación)
+
+Durante la retropropagación, si consideramos una red de tres capas lineales:
+
+-   podemos calcular gradientes de pérdida locales con respecto a $L_2$
+
+-   Usamos $L_2$ para calcular el gradiente $L_1$
+
+-   Y repetimos hasta llegar a la capa inicial $L_0$.
+
+![](img/fig40.png){fig-align="center" width="300"}
+
+Veamos esto con PyTorch:
+
+```{bash}
+model = nn.Sequential(nn.Linear(16, 8),
+nn.Linear(8, 4),
+nn.Linear(4, 2))
+prediction = model(sample)
+
+criterion = CrossEntropyLoss()
+loss = criterion(prediction, target)
+loss.backward
+```
+
+Después de ejecutar un paso hacia adelante, definimos una función de pérdida, aquí `CrossEntropyLoss()` y úselo para comparar predicciones con valores objetivo.
+
+Usando `.backward()`, calculamos gradientes basados en esta pérdida, que se almacenan en los atributos `.grad` de los pesos y `.bias` de los sesgos de cada capa.
+
+```{bash}
+model[0].weight.grad
+model[0].bias.grad
+model[1].weight.grad
+model[1].bias.grad
+model[2].weight.grad
+model[2].bias.grad
+```
+
+Cada capa del modelo se puede indexar comenzando desde cero para acceder a sus pesos, sesgos y gradientes.
+
+### Actualizar Manualmente los Parámetros del Modelo 
+
+Para actualizar manualmente los parámetros del modelo, accedemos al gradiente de cada capa.
+
+```{bash}
+# Tasa de aprendizaje tipicamente pequeña
+lr = 0.001
+
+# updater the pesos
+weight = model[0].weight
+weight_grad = model[0].weight.grad
+
+# update de sesgos 
+bias = model[0].bias
+bias_grad = model[0].bias.grad 
+```
+
+luego multiplicamos por la tasa de aprendizaje y restamos este producto del peso.
+
+```{bash}
+bias = bias - lr*bias_grad 
+```
+
+La tasa de aprendizaje es otro parámetros ajustable. Discutiremos esto y el ciclo de entranamiento más adelante en este documento.
+
+### Gradiente Descendente 
+
+-   Utilizamos un mecanismo llamado *"gradiente desendiente"* para encontrar el mínimo global de las funciones de pérdida.
+
+-   PyTorch simplifica esto con optimizadores, como el descenso de gradiente estocástico (SGD).
+
+```{python}
+import torch.optim as optim
+
+# Creamos el optimizador
+optimizer = optim.SGD(model.parameters(), lr = 0.001)
+```
+
+-   Usamos `optim` para instanciar `SGD.`
+
+-   `.parameters()` devuelve un iterable de todos los parámetros del modelo, que pasamos al optimizador.
+
+-   Aquí utilizamos una tasa de aprendizaje estándar, "lr".
+
+El optimizador calcula automáticamente los gradientes y actualiza los parámetros del modelo con `.step()`
+
+```{python}
+optimizer.step()
+```
