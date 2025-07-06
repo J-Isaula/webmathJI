@@ -759,3 +759,71 @@ El optimizador calcula automáticamente los gradientes y actualiza los parámetr
 ```{python}
 optimizer.step()
 ```
+
+# Entrenar una red neuronal con PyTorch
+
+Ahora que hemos visto los componentes clave de una red neuronal, entrenaremos una utilizando un bucle de entrenamiento. Exploraremos posibles problemas, como la fuga de gradiente, y aprenderemos estrategías para resolverlos, como funciones de activación alternativas y el análisis de la tasa de aprendizaje.
+
+### Inmmersión profunda en la carga de datos 
+
+El manejo eficiente de datos es clave para entrenar modelos de aprendizaje profundo (Deep Learnig)
+
+| animal_name | hair | feathers | eggs | milk | predator | legs | tail | type |
+|-------------|------|----------|------|------|----------|------|------|------|
+| sparrow     | 0    | 1        | 1    | 0    | 0        | 2    | 1    | 0    |
+| eagle       | 0    | 1        | 1    | 0    | 1        | 2    | 1    | 0    |
+| cat         | 1    | 0        | 0    | 1    | 1        | 4    | 1    | 1    |
+| dog         | 1    | 0        | 0    | 1    | 0        | 4    | 1    | 1    |
+| lizard      | 0    | 0        | 1    | 0    | 1        | 4    | 1    | 2    |
+
+Nuestros datos de clasificación de animales estan en un archivo csv y se pueden cargar utilizando `pd.read_csv()`.
+
+```{python}
+import pandas as pd
+import numpy as np
+animals = pd.read_csv('animal_dataset.csv', sep = ";")
+```
+
+Usaremos pelo, plumas, huevos, leche, depredador, patas y cola como características para predecir todo el tipo de animal.
+
+-   La columna **animal_name** no es necesaria ya que los nombres no determinan la clasificación.
+
+-   Tenga en cuenta que la columna **type** tiene tres categorías: ave (0), mamífero (1) y reptil (2).
+
+```{python}
+features = animals.iloc[:, 1:-1]
+X = features.to_numpy()
+print(X)
+```
+
+-   Usaremos `.iloc` para seleccionar todas las columnas excepto la primera y la (animal_name) última (type), lo que nos dará nuestras características de entrada.
+
+-   Estos se convierten en una matriz NumPy (X), para un manejo más sencillo con PyTorch.
+
+De manera similar, podemos extraer la última columna (type) y almacenarla como una matriz de nuestros valores objetivo, que representan las etiquetas de clase para cada animal, a esto lo llamaremos **y**.
+
+```{python}
+target = animals.iloc[:, -1]
+y = target.to_numpy()
+print(y)
+```
+
+### TensorDataset
+
+Usaremos TensorDataset para preparar datos para los modelos de PyTorch.
+
+```{python}
+import torch 
+from torch.utils.data import TensorDataset
+
+```
+
+Esto nos permite almacenar nuestras características (X) y etiquetas destino (y) como tensores, lo que hace que sean fáciles de administrar.
+
+1.  Convertimos $X$ e $y$ en tensores usando el método tensor de PyTorch y los pasamos a TensorDataset
+
+    ```{python}
+    dataset = TensorDataset(torch.tensor(X), torch.tensor(y))
+    ```
+
+    \
