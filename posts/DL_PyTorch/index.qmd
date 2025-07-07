@@ -944,3 +944,156 @@ for epoch in range(num_epochs):
     optimizer.step()
     
 ```
+
+## Funciones de Activación ReLU
+
+Hemos visto como las funciones de activación introducen no linealidad para ayudar a las redes neuronales a aprender patrones complejos y hemos aprendido sobre los gradientes y su papel dentro del ciclo de entrenamiento.
+
+A veces, las funciones de activación pueden reducir demasiado los gradientes, lo que hace que el entrenamiento sea ineficiente.
+
+Hasta ahora hemos trabajado con dos funciones de activación: **sigmoidea** y **softmax,** que normalmente se utilizan en la capa final de un modelo.
+
+![](img/fig41.png){fig-align="center" width="900"}
+
+### Limitaciones de Sigmoid y Softmax
+
+Comenzaremos por comprender algunas de las limitaciones de la función sigmoidea.
+
+![](img/fig42.png){fig-align="center" width="300"}
+
+-   Las salidas de sigmoid están limitadas entre 0 y 1, lo que significa que para cualquier entrada, la salida siempre estará dentro de este rango.
+
+-   Sigmoid podría usarse en cualquier punto de una red. Sin embargo, los gradientes de la sigmoide, que se muestran en naranja, son muy pequeños para valores grandes y pequeños de $x$. Este fenómeno se llama saturación. Durante la retropropagación, esto se vuelve problemático porque cada gradiente depende del anterior. Cuando los gradientes son extremadamente pequeños, no logran actualizar los pesos de manera efectiva.
+
+-   Este problema se conoce como el problema de los gradientes avanescentes y puede dificultar mucho el entrenamiento de redes profundas.
+
+La **función softmax**, que también produce salidas acotadas entre 0 y 1, sufre saturación de manera similar.
+
+Por tanto, ambas funciones de activación no son ideales para capas ocultas y es mejor utilizarlas solo en la última capa.
+
+### ReLU
+
+Descubriremos dos funciones de activación ampliamente utilizadas, diseñadas para su uso entre capas lineales o en capas ocultas.
+
+![Función ReLU](img/fig43.png){fig-align="center" width="300"}
+
+-   $f(x) = \max(x,0)$ aquí está la unidad lineal rectificada o ReLU. ReLU genera el valor máximo entre su entrada y cero. Como se muestra en el gráfico.
+
+-   Para **entradas positivas,** la salida es igual a la entrada.
+
+-   Para **entradas negativas,** la salida es cero.
+
+Esta función no tiene límite superior y sus gradientes no se aproximan a cero. Para valores grandes de $x$, lo que ayuda a superar el problema de los gradientes que desaparecen.
+
+En PyTorch, ReLU se puede utilizar a través del módulo torch.nn
+
+```{python}
+relu = nn.ReLU()
+```
+
+### Leaky ReLU (ReLU con fugas) 
+
+La ReLU con fugas es una variación de la función ReLU. Para entradas positivas, se comporta exactamente como ReLU.
+
+![Leaky ReLU](img/fig44.png){fig-align="center" width="300"}
+
+-   Para **entradas positivas**, se comporta exactamente como ReLU.
+
+-   Para **entradas negativas**, multiplica la entrada por un coeficiente pequeño (predeterminado a 0.01 en PyTorch).
+
+Esto garantiza que los gradientes para entradas negativas permanezcan distintos de cero, lo que evita que las neuronas dejen de aprender por completo, lo que puede suceder con ReLU estándar.
+
+En PyTorch, la función ReLU con fugas se implementa utilizando el módulo torch.nn.
+
+```{python}
+leaky_relu = nn.LeakyReLU(
+  negative_slope = 0.05
+)
+```
+
+El parámetro **negative_slope** controla el coeficiente aplicado a las entradas negativas.
+
+## Tasa de Aprendizaje 
+
+Hemos hablado anteriormente sobre la tasa de aprendizaje, pero llego el momento de que profundicemos más.
+
+### Actualización de Pesos con SGD
+
+-   Entrenar una red neuronal significa = resolver una optimización. El problema planteado es minimizar la función de pérdida y ajustando los parámetros del modelo. \
+    \
+    - Para ello utilizamos un algoritmo llamado **descenso de gradiente estocástico, o SGD**, implementado en PyTorch.
+
+    ```{python}
+    sgd = optim.SGD(model.parameters(), lr = 0.01, momentum = 0.95)
+    ```
+
+    Recuerde que este es el optimizador que usamos para encontrar el mínimo global de las funciones de pérdida.
+
+-   El optimizador toma los parámetros del modelo junto con dos argumentos claves: \
+    \
+    - **Tasa de aprendizaje:** controla el tamaño del paso de las actualizaciones. \
+    \
+    - momentum: añade inercia para ayudar al optimizador a moverse con suavidad y evitar atascarse. \
+
+### Impaco de learning rate: tasa de aprendizaje óptima
+
+Comprender su impacto nos ayuda a optimizar la eficiencia.
+
+Intentemos encontrar el mínimo de una función en forma de U.
+
+![](img/fig45.png){fig-align="center" width="500"}
+
+Comenzamos en $x = -2$ y ejecutamos el optimizador SGD durante diez pasos. Luego de estos pasos observamos que el optimizador está cerca del mínimo.
+
+También podemos observar que a medida que nos acercamos al mínimo, el tamaño del paso disminuye gradualmente. Esto sucede porque el tamaño del paso es el gradiente multiplicado por la tasa de aprendizaje. Como la función es menos pronunciada cerca de cero, el gradiente, y por tanto el tamaño del paso, se hace más pequeño.
+
+### Impacto de learning rate tasa de aprendizaje pequeña
+
+![](img/fig46.png){fig-align="center" width="600"}
+
+Sin embargo, si utilizamos el mismo algoritmo para un aprendizaje, si reducimos la velocidad diez veces, nos damos cuenta de que todavía estamos lejos del mínimo de la función después de diez pasos. El optimizador tardará mucho más tiempo en encontrar el mínimo de la función.
+
+### Impacto learning rate: tasa de aprendizaje alto 
+
+Si utilizamos un valor alto para la tasa de aprendizaje, observamos que el optimizador no puede encontrar el mínimo y rebota de un lado a otro en ambos lados de la función.
+
+![](img/fig47.png){fig-align="center" width="600"}
+
+Recuerde que las funciones de pérdida no son convexas.
+
+![](img/fig48.png){fig-align="center" width="800"}
+
+Uno de los desafíos al intentar encontrar el mínimo de una función no convexa es quedarse atrapado en un mínimo local.
+
+### Sin momentum 
+
+-   $lr = 0.01$ $momentum = 0$, ejecutemos nuestro optimizador durante 100 pasos con un momento nulo en esta función no convexa para $x = -1.23$ y $y = -0.14$. \
+    \
+    ![](img/fig49.png){width="500"}
+
+    -   Vemos que el optimizador se queda atascado en esta primera caída de la función, que no es su mínimo global.
+
+-   Sin embargo, al utilizar lr = 0.01, momentum = 0.9 ejecutando nuestro optimizador durante 100 pasos para $x = 0.92$ y $y = -2.04$. Podemos encontrar el mínimo de la función. \
+    \
+    ![](img/fig50.png){width="500"}
+
+Este parámetro proporciona impulso al optimizador permitiendole superar caídas locales, como se muestra en la figura previa.
+
+El impulso (momentum) mantiene el tamaño del paso grande cuando los pasos anteriores también fueron grandes, incluso si el gradiente actual es pequeño.
+
+### Summary
+
+Enr esumen, dos parámetros optimizadores clave impactan el entrenamiento: la tasa de aprendizaje (learning rate) y el impulso (momentum):
+
+| Learning Rate | Momentum |
+|----|----|
+| Controla el tamaño del paso | Controla la inercia |
+| Valor de tasa alta -\> bajo rendimiento | Ayuda a escapar de mínimos locales |
+| Valor de tasa bajo -\> entrenamiento lento | Demasiado pequeño -\> el optimizador se queda atascado |
+| Valores tipicos varían de 0.01 a 0.0001. | Rango típico: 0.85 a 0.99 |
+
+**El `momentum` y `learning` rate son críticos par el entrenamiento de tu red neuronal. Una buena regla general es comenzar con una learning rate de 0.001 y un momentum de 0.95.**
+
+# Evaluación y Mejora de los Modelos
+
+Entrenar un modelo de aprendizaje profundo es un arte, y para asegurarnos de que nuestro modelo se entrene correctamente, necesitamos hacer un seguimiento de ciertos parámetros durante el entrenamiento, como la pérdida o la exactitud. Aprenderemos a calcular estas métricas y a reducir el sobreajuste.
