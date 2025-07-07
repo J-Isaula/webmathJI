@@ -1097,3 +1097,87 @@ Enr esumen, dos parámetros optimizadores clave impactan el entrenamiento: la ta
 # Evaluación y Mejora de los Modelos
 
 Entrenar un modelo de aprendizaje profundo es un arte, y para asegurarnos de que nuestro modelo se entrene correctamente, necesitamos hacer un seguimiento de ciertos parámetros durante el entrenamiento, como la pérdida o la exactitud. Aprenderemos a calcular estas métricas y a reducir el sobreajuste.
+
+### Inicialización de capas y aprendizaje por transferencia 
+
+Hemos explorado cómo las redes neuronales aprenden actualizando los pesos durante el entrenamiento. Este capítulo final analizará técnicas para evaluar y mejorar la eficiencia del rendimiento del modelo.
+
+Antes de comenzar, tenga en cuenta que los temas aquí son más avanzados y los cubriremos aun alto nivel.
+
+#### Inicialización de Capa 
+
+La normalización de datos escala las características de entrada para lograr estabilidad; de manera similar, los pesos de una capa lineal también se inicializan en valores pequeños. Esto se conoce como inicialización de capa.
+
+Creemos una pequeña capa lineal y verifiquemos su rango de peso.
+
+```{python}
+import torch.nn as nn 
+
+layer = nn.Linear(64, 128)
+print(layer.weight.min(), layer.weight.max())
+```
+
+Observemos que los pesos están entre -0.1250 y $\pm$ 0.125
+
+#### Por qué es esto importante?
+
+La salida de una neurona en una capa lineal es una suma ponderada de las entradas de la capa anterior.
+
+Mantener pequeños tanto los datos de entrada como los pesos de las capas garantiza salidas estables, evitando valores extremos que podrían ralentizar el entrenamiento.
+
+Las capas de pueden inicializar de diferentes maneras y sigue siendo un área de investigación activa.
+
+PyTorch proporciona una forma sencilla de inicializar los pesos de las capas con el módulo `nn.init.`
+
+```{python}
+layer = nn.Linear(64, 128)
+nn.init.uniform_(layer.weight)
+
+print(layer.weight.min(), layer.weight.max())
+```
+
+Por ejemplo, aquí inicializamos una capa lineal con una distribución uniforme. Como puedes ver, los valores de los pesos ahora varían de 0 a 1.
+
+### Aprendizaje por Transferencia  
+
+En la práctica, los ingenieros rara vez entrenan un modelo a partir de pesos inicializados aleatoriamente. En lugar de ello, se basan en un concepto llamado aprendizaje por transferencia.
+
+El aprendizaje por transferencia toma un modelo que fue entrenado en una primera tarea y lo reutiliza para una segunda tarea. Por ejemplo, entrenamos un modelo sobre los salarios de los científicos de datos en EE.UU.
+
+Ahora tenemos nuevos datos de los salarios en Europa. En lugar de entrenar un modelo usando pesos inicializados aleatoriamente, podemos cargar los pesos del primer modelo y usarlos como punto de partida para entrenar en este nuevo conjunto de datos.
+
+Se pueden guardar y cargar pesos utilizando las funciones `torch.save` y `torch.load`
+
+```{bash}
+import torch
+
+layer = nn.Linear(64, 128)
+torch.save(layer, 'layer.pth')
+
+new_layer = torch.load('layer.pth')
+```
+
+Estas funciones funcionan en cualquier tipo de objetos de PyTorch.
+
+### Ajuste Fino
+
+A veces, la segunda tarea es similar a la primera tarea: queremos realizar un tipo específico de aprendizaje por transferencia llamado ajuste fino.
+
+En este caso, cargamos pesos de un modelo previamente entrenado, pero entrenamos el modelo con una tasa de aprendizaje más pequeña.
+
+Incluso podemos entrenar parte de una red, si decidimos que alguna de las capas de red no necesitan ser entrenadas y elige congelarla.
+
+Una regla general es congelar las primeras capas de la red y ajustar las capas más cercanas a la capa de salida.
+
+Esto se puede lograr estableciendo el atributo `requires_grad` de cada parámetro en Falso.
+
+```{python}
+model = nn.Sequential(nn.Linear(64, 128),
+nn.Linear(128, 256))
+
+for name, param in model.named_parameters():
+  if name == '0.weight':
+    param.requires_grad = False
+```
+
+Aquí, utilizamos el método `named_parameters()` del modelo, que devuelve el nombe y el parámetro en sí.
