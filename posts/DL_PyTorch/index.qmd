@@ -836,4 +836,111 @@ Esto nos permite almacenar nuestras características (X) y etiquetas destino (y)
 
     \
     \
-    \
+
+## Escribir nuestro primer bucle de entrenamiento
+
+Ahora que ya tenemos los componentes principales para entrenar un modelo de aprendizaje profundo con PyTorch.
+
+### Entrenando una Red Neuronal 
+
+Una vez que creamos un modelo, elegimos una función de pérdida, definimos un conjunto de datos y configuramos un optimizador, estamos listos para entrenar. Esto implica recorrer el conjunto de datos, calcular la pérdida, calcular gradientes y actualizar los parámetros del modelo. Este proceso, es llamado **bucle de entrenamiento**, se repite varias veces.
+
+Un bucle de entrenamiento permite una mayor flexibilidad y control, dándonos la opción de personalizar diferentes elementos.
+
+Trabajaremos con un conjunto de datos de salarios de científicos de datos para ver esto en acción.
+
+| experience_level | employment_type | remote_ratio | company_size | salary_in_usd |
+|------------------|-----------------|--------------|--------------|---------------|
+| 0                | 0               | 0.5          | 1            | 0.036         |
+| 1                | 0               | 1.0          | 2            | 0.133         |
+| 2                | 0               | 0.0          | 1            | 0.234         |
+| 1                | 0               | 1.0          | 0            | 0.076         |
+| 2                | 0               | 1.0          | 1            | 0.170         |
+
+-   Las características son categóricas y el objetivo es el salario en dólares (salary_in_usd), ya normalizado. Dado que el objetivo es un valor continuo, este es un problema de regresión.
+
+-   Para la regresión, utilizaremos una capa lineal como salida final en lugar de softmax o sigomoide.
+
+-   Además, aplicaremos una función de pérdida específica de regresión, ya que la entropía cruzada solo se utiliza para tareas de clasificación.
+
+#### Mean Squared Error Loss
+
+Podemos utilizar la pérdida de error cuadrático medio (MSE) para problemas de regresión. La pérdida de MSE es la media de la diferencia al cuadrado entre predicciones y el dato real o verdad fundamental, como se muestra en esta implementación en Python:
+
+```{python}
+def mean_squared_loss(prediction, target):
+  return np.mean((prediction - target)**2)
+```
+
+En PyTorch, utilizamos la función `nn.MSELoss` como criterio.
+
+```{bash}
+criterion = nn.MSELoss()
+loss = criterion(prediction, target)
+```
+
+Tenga en cuenta que tanto las predicciones como los objetivos deben ser tensores flotantes.
+
+Pongamos todo junto ahora, tenemos dos matrices NumPy, "características" y "objetivo", que tienen nuestros datos y etiquetas.
+
+```{python}
+data = pd.read_csv("salary_datascince.csv", sep = ";")
+data
+```
+
+```{python}
+features = data.iloc[:, :-1]
+X = features.to_numpy()
+print(X)
+```
+
+```{python}
+target = data.iloc[:, -1]
+y = target.to_numpy()
+print(y)
+```
+
+```{python}
+from torch.utils.data import TensorDataset, DataLoader
+
+dataset = TensorDataset(torch.tensor(X),
+torch.tensor(y))
+
+dataloader = DataLoader(dataset, batch_size = 4, shuffle = True)
+```
+
+Ahora podemos cargar nuestro conjunto de datos en la clase `DataLoader()` para habilitar el procesamiento por lotes.
+
+-   Aquí utilizamos un tamaño de lote pequeño de cuatro, pero la selección del tamaño de lote es personalizable dependiendo del caso de uso.
+
+A continuación creamos nuestro modelo, este conjunto de datos tiene cuatro características de entrada y un destino (salida).
+
+```{python}
+model = nn.Sequential(nn.Linear(4, 2), 
+nn.Linear(2, 1))
+```
+
+No necesitaremos codificación one-hot ya que se trata de un problema de regresión.
+
+Finalmente, creamos el criterio de pérdida MSE y el optimizador, con una taza de aprendizaje predeterminada para la mayoría de los problemas de deep learning.
+
+```{python}
+criterio = nn.MSELoss()
+optimizer = optim.SGD(model.parameters(), lr = 0.001)
+```
+
+Ahora podemos recorrer el conjunto de datos varias veces:
+
+-   Recorrer todo el conjunto de datos una vez se denomina época y entrenamos en múltiples época, indicadas por num_epochs. Para cada época, recorremos el cargador de datos. Cada iteración del cargador de datos proporciona un lote de muestras, que vimos anteriormente. Antes del pase hacia adelante , establecemos los gradientes a cero usando `optimizer.zero_grad()`, porque el optimizador almacena gradientes de pasos anteriores de manera predeterminada, obtenemos características y objetivos de cada muestra del cargador de datos. Utilizamos las características para el paso hacia adelante del modelo y utilizamos el objetivo para el cálculo de la pérdida y finalmente, utilizamos el optimizador para actualizar los parámetros del modelo.
+
+```{bash}
+for epoch in range(num_epochs):
+  for data in dataloader: 
+    optimizer.zero_grad()
+    feature, target = data 
+    pred = model(feature)
+    loss = criterion(pred, target)
+    loss.backward()
+    optimizer.step()
+    
+```
