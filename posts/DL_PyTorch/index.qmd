@@ -1181,3 +1181,242 @@ for name, param in model.named_parameters():
 ```
 
 Aquí, utilizamos el método `named_parameters()` del modelo, que devuelve el nombe y el parámetro en sí.
+
+## Evaluación del Rendimiento de los Modelos 
+
+Hemos realizado mucho entrenamiento. Ahora vamos a evaluar nuestros modelos. En el Machine Learning, los datos se dividen en conjuntos de entrenamiento, validación y prueba.
+
+|             |          |                                        |
+|-------------|----------|----------------------------------------|
+| Training    | 80-90%   | Ajusta los parámetros del modelo       |
+| Validación  | 10 - 20% | Ajusta los hiperparámetros del model   |
+| Test        | 5 - 10%  | Evalúa el rendimiento final del modelo |
+
+Los datos de entrenamiento ajustan los parámetros del modelo, como pesos y sesgos, y los datos de validación ajustan hiperparámetros como la tasa de aprendizaje y el impulso, y el conjunto de pruebas evalúa el rendimiento final del modelo.
+
+Realizaremos un seguimiento de dos métricas clave: pérdida y precisión durante el entrenamiento y la validación.
+
+### Calculando Pérdida de Entrenamiento
+
+-   La pérdida de entrenamiento se calcula sumando la pérdida de todos los lotes en el cargador de datos de entrenamiento.
+
+-   Al final de cada época (epoch), calculamos la pérdida de entrenamiento media dividiendo la pérdida total por el número de epoch.
+
+```{bash}
+training_loss = 0.0 
+
+for inputs, labels in trainloader: 
+  outputs = model(inputs)
+  loss = criterion(outputs, labels)
+  loss.backward()
+  optimizer.step()
+  optimizer.zero_grad()
+  
+  training_loss += loss.item()
+  
+epoch_loss = training_loss / len(trainloader)
+```
+
+Iteramos a través del cargador de entranamiento, ejecutamos un pase hacia adelante y calculamos la pérdida. Como es habitual, el modelo calcula gradiente y actualiza pesos mediante retropropagación. Y agregamos cada valor de pérdida al total usando `.item()`, que extrae el valor numérico de u tensor.
+
+Dqdo que una epoch es un paso completo a través del cargado de datos de entrenamiento, calculamos la pérdida media dividiendo training_loss por el número de lotes en el cargador de train.
+
+### Calculo de la pérdida de validación 
+
+Después de cada epoch de entrenamiento, ejecutamos un ciclo de validación.
+
+-   Primero, establecemos el modelo en modo evaluación usando `.eval(),` como algunas capas se comportan de manera diferente durante el entrenamiento y la validación.
+
+-   Para mejorar la eficiencia, utilizamos `torch.no_grad()` , que deshabilita cálculos de gradiente ya que no actualizamos los pesos durante la validación.
+
+-   Luego, iteramos a través del cargador de datos de validación, ejecutamos un pase hacia adelante y calculamos la pérdida, sumándola en los lotes.
+
+-   Al final de la época, calculamos la pérdida de validación media.
+
+-   Finalmente, volvemos al modo de entrenamiento con .`train()`, preparándolo para la siguiente epoch de entrenamiento.
+
+```{bash}
+validation_loss = 0.0
+
+model.eval()
+
+with torch.no_grad(): 
+  for inputs, labels in validationloader: 
+    outputs = model(inputs)
+    loss = criterion(outputs, labels)
+    validation_loss += loss.item()
+    
+epoch_loss = validation_loss / len(validationloader) 
+model.train()
+
+```
+
+### Sobreajuste o Overfitting 
+
+Realizar un seguimiento de la pérdida de entrenamiento y validación nos ayuda a detectar el sobreajuste.
+
+![](img/fig51.png){fig-align="center" width="400"}
+
+**Cuando un modelo se sobreajusta**, la pérdida de entrenamiento continúa disminuyendo, pero la pérdida de validación comienza a aumentar. Esto significa que el **modelo está aprendiendo demasiado bien los datos de entrenamiento** y no funcionará bien con datos nuevos.
+
+### Calculando accuracy con `torchmetrics`
+
+La pérdida nos indica qué tan bien está aprendiendo un modelo, pero no siempre refleja con qué precisión hace predicciones.
+
+1.  Hacemos un seguimiento de la precisión utilizando torchmetrics.
+
+2.  Para tareas de clasificación de múltiples clases, creamos una métrica de precisión con `torchmetrics.Accuracy()`
+
+3.  A medida que el modelo procesa cada lote, actualizamos esta métrica utilizando sus predicciones y las etiquetas reales.
+
+4.  Dado que el modelo genera probabilidades para múltiples clases, podemos utilizar `argmax(dim=-1)` para seleccionar la clase con mayor probabilidad. Esto convierte las predicciones codificadas one-hot en índices de clase antes de pasarlas a la métrica.
+
+5.  Al final de cada epoch, calculamos la precisión general utilizando `.compute().`
+
+6.  Finalmente, reiniciamos la métrica con `.reset()` para borrar su estado antes de la próxima epoch.
+
+```{bash}
+import torchmetrics 
+
+metrics = torchmetrics.Accuracy(task = "multiclass", num_classes = 3)
+
+for features, labels in dataloader: 
+  outputs = model(features)
+  metrics.update(outputs, labels.argmax(dim=-1))
+  
+accuracy = metrics.compute()
+
+metric.reset()
+
+```
+
+## Lucha contra el Sobreajuste 
+
+Anteriormente, aprendimos cómo detectar el sobreajuste observando las pérdidas de entrenamiento y validación. Ahora, descubriremos algunas formas de combatir el sobreajuste.
+
+Recuerde que el sobreajuste ocurre cuando el modelo no se generaliza a datos no vistos. Si no entrenamos correctamente el modelo, comenzará a memorizar los datos de entrenamiento, lo que conduce a un buen rendimiento en el conjunto de entrenamiento pero a un rendimiento deficiente en el conjunto de validación.
+
+Posibles causas:
+
+| Problema                       | Solución                         |
+|--------------------------------|----------------------------------|
+| Conjunto de datos pequeños     | Más data                         |
+| Modelo con demasiada capacidad | Reducir el tamaño del modelo     |
+| Valores grandes de los pesos   | Reducir los valores de los pesos |
+
+-   Para contrarrestar el sobreajuste, podemos reducir el tamaño del modelo o agregar un nuevo tipo de capa llamada **dropout**.
+
+-   También podemos utilizar la descomposición del peso para forzar que los parámetros permanezcan pequeños.
+
+-   Para obtener más datos o utilizar la ampliación de datos
+
+Exploremos estas estrategías.
+
+### Regularización usando una capa dropout
+
+Una forma común de combatir el sobreajuste es agregar capas dropout a nuestra red neuronal.
+
+`El dropout` es una técnica de **regularización** que desactiva aleatoriamente una fracción de las neuronas durante el entrenamiento, evitando que el modelo se vuelva demasiado dependiente de características específicas.
+
+-   Las capas dropout normalmente se agregan después de las funciones de activación.
+
+```{python}
+model = nn.Sequential(nn.Linear(8, 4),
+nn.ReLU(),
+nn.Dropout(p = 0.5))
+
+features = torch.randn((1, 8))
+print(model(features))
+```
+
+El argumento **p** determina la probabilidad de que una neurona se establezca en cero. En este ejemplo se descartan el 75% de las neuronas.
+
+El dropout se comporta de manera diferente durante el entrenamiento y la evaluación, durante el entrenamiento, desactiva neuronas aleatoriamente, mientras que durante la evaluación se deshabilita, lo que garantiza que todas las neuronas estén activas para obtener predicciones estables.
+
+Para cambiar entre estos modos, utilizamos `model.train()` y `model.eval()`
+
+### Regularización con disminución de pesos 
+
+La siguiente estratefia para reducir el sobreajuste que descubriremos es la disminución de pesos, otra forma de regularización.
+
+En PyTorch, la disminución del peso se agreha al optimizador mediante el parámetro weight_decay, normalmente establecido en un valor pequeño, por ejemplo 0.0001. Este parámetro agrega una penalización a la función de pérdida, formando pesos más pequeños y ayudando al modelo a generalizar mejor.
+
+```{bash}
+optimizer = optim.SGD(model.parameters(), lr = 0.001, weight_decay = 0.0001)
+```
+
+-   Durante la retropropagación, esta penalización se resta del gradiente, lo que evita un crecimiento excesivo del peso.
+
+-   Cuanto más alto fijemos la caída del peso, más fuerte será la regularización y hará que el sobreajuste sea menos probable.
+
+### Aumentación de Data
+
+![](img/fig52.png){fig-align="center" width="700"}
+
+-   Recopilar más datos puede ser costoso, pero los investigadores han encontrado una forma de expandir conjuntos de datos artificialmente usando **aumento de datos**.
+
+-   El aumento de datos se aplica comúnmente a los datos de imágenes, que se pueden rotar y escalados, de modo que diferentes vistas de la misma cara estén disponibles como puntos de datos nuevos.
+
+-   Si bien no analizaremos aquí como aumentar los datos, sigue siendo un método valioso para combatir el sobreajuste cuando no hay datos adicionales disponibles.
+
+## Mejorar el Rendimiento del Modelo 
+
+En esta sessión final, reuniremos todo y aprenderemos una receta para abordar cualquier problema de Deep Learning.
+
+-   Primero, creamos un modelo que pueda sobreajustarse al conjunto de entrenamiento. Esto garantizará que el problema tenga solución. También establecemos un línea base de rendimiento a la que aspirar con el conjunto de validación.
+
+-   Luego, necesitamos reducir el sobreajuste para aumentar el rendimiento en el conjunto de validación.
+
+-   Por último, podemos ajustar ligeramente los diferentes hiperparámetros para garantizar que logremos el mejor rendimiento posible.
+
+Es útil comenzar con un solo punto de datos antes de sobreajustar todo el conjunto de entrenamiento.
+
+```{bash}
+features, labels = next(iter(dataloader))
+
+for i in range(1000): 
+  outputs = model(features)
+  loss = criterion(outputs, labels)
+  optimizer.zero_grad()
+  loss.backward()
+  optimizer.step()
+```
+
+-   Cuando el modelo está configurado correctamente, debería alcanzar rápidamente una pérdida a cero y una predicción del 100% en ese punto de datos. Una vez que este paso sea exitoso, escalamos al conjunto de entrenamiento completo.
+
+-   En esta etapa, utilizamos una arquitectura de modelo existente lo suficientemente grande como para sobreajustar mientras mantiene los hiperparámetros, como la tasa de aprendizaje, en sus valores predeterminados.
+
+Ahora necesitamos crear un modelo que se generalice bien para maximizar la precisión de la validación.
+
+![](img/fig53.png){fig-align="center" width="400"}
+
+Reducir el sobreajuste a menudo tiene un costo, ya que aplicar la regularización puede afectar significativamente el rendimiento del modelo.
+
+![](img/fig54.png){fig-align="center" width="800"}
+
+El modelo original se ajusta al conjunto de entrenamiento, logrando una alta precisión pero sin generalizarse bien a datos nuevos. Por el contrario, con demasiada regularización, el modelo actualizado muestra una caída en la precisión del entrenamiento y la validación, lo que limita su capacidad de aprender de manera efectiva. Esto resalta la importancia de equilibrar la reducción del sobreajuste.
+
+Estrategías mientras monitoreamos de cerca las métricas clave para encontrar el modelo con mejor rendimiento.
+
+Una vez que estemos satisfechos con el rendimiento, el paso final es ajustar los hiperparámetros. Esto se hace a menudo en configuraciones del optimizador, como la tasa de aprendizaje o el impulso.
+
+La busqueda de cuadrícula prueba parámetros a intervalos fijos. Por ejemplo, valores de impulso de 0.85 a 0.99 y tasas de aprendizaje de diez elvado a menos seís
+
+```{python}
+# Grid Search
+for factor in range(2, 6): 
+  lr = 10 ** -factor
+```
+
+![](img/fig55.png){fig-align="center" width="300"}
+
+La búsqueda aleatoria adopta un enfoque diferente. En lugar de probar valores establecidos, los seleccionamos aleatoriamente dentro de un rango determinado. La función `np.random.uniform(2, 6)`, por ejemplo, elige un número entre 2 y 6, lo que nos permite explorar una variedad más amplia de ritmos de aprendizaje.
+
+```{python}
+factor = np.random.uniform(2, 6)
+lr = 10** - factor
+```
+
+![](img/fig56.png){fig-align="center" width="300"}
+
+La búsqueda aleatoria suele ser más eficiente, ya que evita pruebas innecesarias y aumenta la posibilidad de encontrar configuraciones óptimas.
