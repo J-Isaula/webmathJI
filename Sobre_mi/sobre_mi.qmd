@@ -1,8 +1,14 @@
 ---
-title: "Historias"
+title: "Mi Bitacora Profesional"
 ---
 
-En esta sección de mi `website` conoceras un poco de las diferentes actividades que realizó o he realizado en algunos de mis días.
+En esta sección comparto algunos momentos clave de mi trayectoria académica y profesional. Aquí encontrarás experiencias que me han enriquecido y personas con las que he tenido el privilegio de colaborar
+
+**Innovation Day ASICA 2025 - Honduras - Hotel Clarion**
+
+Una jornada llena de aprendizajes, pero también de risas y conexiones genuinas. Me motiva seguir explorando soluciones que transformen nuestra forma de analizar los datos.
+
+![](ASICA.jpeg){width="13.3cm"}
 
 **Compartiendo con compañeros de la Maestría en Economía Matemática, México.**
 
