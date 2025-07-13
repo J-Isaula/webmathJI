@@ -6,7 +6,7 @@ En esta sección comparto algunos momentos clave de mi trayectoria académica y 
 
 **Innovation Day ASICA 2025 - Honduras - Hotel Clarion**
 
-Una jornada llena de aprendizajes, pero también de risas y conexiones genuinas. Me motiva seguir explorando soluciones que transformen nuestra forma de analizar los datos.
+<p>Participamos en un evento organizado por Grupo ASICA donde conocimos herramientas de análisis y soluciones avanzadas de <strong>SAS</strong>. Fue una excelente oportunidad para conectar con profesionales del sector y compartir ideas innovadoras.</p>
 
 ![](ASICA.jpeg){width="13.3cm"}
 
