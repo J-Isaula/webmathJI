@@ -1,0 +1,263 @@
+---
+title: "Aprendizaje No Supervisado"
+subtitle: "Python"
+author: "Juan Isaula"
+date: "2025-09-07"
+categories: [Python]
+image: "fondo.png"
+---
+
+Supongamos que tiene una colección de clientes con diversas características, como *edad, ubicación e historial financiero*, y deseas descubrir patrones y clasificarlos en grupos. O quizás tengas un conjunto de textos, como páginas de Wikipedia, y quieras segmentarlos en categorías en función de su contenido. Este es el mundo del aprendizaje no supervizado, llamado así porque no estás guiando, o supervisando, el descubrimiento de patrones mediante alguna tarea de predicción, sino descubriendo la estructura oculta a partir de datos no etiquetados. El aprendizaje no supervizado engloba diversas técnicas de aprendizaje automático, desde la agrupación hasta la reducción de dimensiones y la factorización de matrices. En este artículo, aprenderás los fundamentos de **aprendizaje no supervizado** e implementarás los algoritmos esenciales utilizando `scikit-learn` y `SciPy`. Aprenderás a agrupar, transformar, visualizar y extraer información de conjuntos de datos no etiquetados.
+
+# Agrupación para la exploración de conjuntos de datos
+
+El objetivo de esta sección es aprender a descubrir los grupos subyacentes (o clústeres) en un conjunto de datos. En esta sección aprendera a agrupar empresas utilizando sus cotizaciones bursátiles,y distinguir diferentes especies agrupando sus medidas.
+
+## Aprendizaje no supervizado 
+
+El aprendizaje no supervizado es una clase de técnica de aprendizaje automático para descrubrir patrones en los datos. Por ejemplo:
+
+-   Encontrar los grupos naturales de clientes en función de sus historiales de compras o buscar:
+
+-   Patrones y correlaciones entre estas compras, y utilizar estos patrones para expresar los datos en forma comprimida.
+
+Estos son ejemplos de técnicas de aprendizaje no supervizadas llamadas *agrupación* y *reducción de dimensiones.*
+
+> El aprendizaje no supervizado se define en oposición al aprendizaje supervizado.
+
+-   Un ejemplo de ***aprendizaje supervisado*** es utilizar las medidas de los tumores para clasificarlos como benignos o cancerosos. En este caso, el descubrimiento de patrones es guiado o supervizado, de modo que los patrones son lo más utilies posible para predecir la etiqueta: benigno o canceroso.
+
+-   El ***aprendizaje no supervisado***, por el contrario, es un aprendizaje sin etiquetas. Es puro descubrimiento de patrones, sin la guía de una tarea de predicción.
+
+### Iris dataset 
+
+El conjunto de datos iris consta de mediciones de muchas plantas iris de tres especies diferentes:
+
+-   Setosa
+
+-   Versicolor
+
+-   Virginica
+
+Hay cuatro medidas:
+
+1.  Largo de pétalo (Petal length)
+
+2.  Ancho de pétalo (Petal width)
+
+3.  Largo de sépalo (Sepal length)
+
+4.  Ancho de sépalo (sepal width)
+
+Estas son las características del conjunto de datos.
+
+#### Matrices, características y muestras 
+
+Conjuntos de datos como este (iris) se escribiran como matrices numerosas bidimensionales.
+
+-   Las columnas de la matriz corresponderán a las características.
+
+-   Las medidas de plantas individuales son las muestras del conjunto de datos, estas corresponden a filas de la matriz.
+
+#### Iris datases es 4-dimensional 
+
+Las muestras del conjunto de datos iris tienen cuatro medidas y, por lo tanto, corresponden a puntos en un espacio de cuatro dimensiones. Es decir:
+
+-   Dimensiones = número de características o features.
+
+No podemos visualizar cuatro dimensiones directamente, pero utilizando técnicas de aprendizaje no supervizado aún podemos obtener información.
+
+### K-Means Clustering 
+
+Agruparemos estas muestras utilizando la agrupación de k-Means. K-Means encuentra un número específico de grupos en las muestras. Está implementado en la biblioteca de `scikit-learn` o `sklearn`.
+
+Veamos KMeans en acción con el conjunto de datos iris.
+
+```{python}
+import pandas as pd         
+from sklearn import datasets    # Librería utilizada para importar iris dataset
+iris = datasets.load_iris()     # importamos el conjunto de datos iris
+
+iris = pd.DataFrame(iris.data, columns = iris.feature_names) # Convertimos iris a dataframe
+```
+
+Para comenzar:
+
+1.   Importamos KMeans de scikit-learn.
+
+2.  Luego creamos un modelo KMeans, especificando la cantidad de clústeres que deseamos encontrar con `n_clusters` especificamos n_cluster = 3, ya que hay tres especies de iris.
+
+3.  Posteriormente, llamamos el método de ajuste del modelo `.fit()`, pasando la matriz del iris dataset. Esto ajusta el modelo a los datos, localizando y recordando las regiones donde ocurren los diferentes grupos.
+
+4.  Por último, podemos utilizar el método de predicción del modelo en este mismo conjunto de datos.
+
+```{python}
+from sklearn.cluster import KMeans
+
+model = KMeans(n_clusters = 3, random_state = 42)
+model.fit(iris)
+```
+
+```{python}
+labels = model.predict(iris)
+print(labels)
+```
+
+Esto nos devuelve una etiqueta de grupo para cada muestra, que indica a qué grupo pertenece una muestra.
+
+#### Etiquetas de clúster para nuevas muestras 
+
+Si alguien viene con un algún dataset iris nuevo, kMeans puede determinar a qué grupos pertenecen sin tener que empezar de nuevo.
+
+KMeans hace esto recordando la media (o promedio) de las muestras en cada grupo. Estos se llaman **centroides** se asignan nuevas muestras al grupo cuyo centroide esté más cercano.
+
+Voy a tomar 3 registros aleatorios del dataset iris y asumiremos que estas son muestras nuevas.
+
+```{python}
+new_samples = iris.sample(n = 3, random_state = 42)
+print(new_samples)
+```
+
+Para asignar las nuevas muestras a los grupos existentes, pasaremos el conjunto de nueva muestra al método de predicción del modelo kmeans.
+
+```{python}
+new_labels = model.predict(new_samples)
+print(new_labels)
+```
+
+Como puede observar, esto devuelve las etiquetas de grupo para los datos nuevos o muestra de datos nueva.
+
+> En la siguiente sección aprenderá cómo evaluar la calidad de su agrupación.
+
+#### Scatter Plots
+
+Por ahora, visualizaremos nuestra agrupación de las muestras de iris usando diagramas de dispersión. A continuación se muestra un diagrama de dispersión de la longitud del sépalo frente a la longitud del pétalo del dataset iris.
+
+![](img/fig1.png){fig-align="center" width="300"}
+
+Cada punto representa una muestra de iris y está coloreada según el grupo de la muestra. Para crear un diagrama de dispersión como este, usaremos `PyPlot`.
+
+-   La longitud del sépalo está en la columna 0 de la matriz iris, mientras que la longitud de los pétalos está en la segunda columna.
+
+-   Y labels o etiquetas que encontramos previamente lo usamos para colorear por etiqueta de clúster como un paramétro en `.scatter()`.
+
+```{python}
+import matplotlib.pyplot as plt 
+
+xs = iris.iloc[:, 0]   # Longitud de los sépalos 
+ys = iris.iloc[:, 2]   # Longitud de los pétalos
+
+plt.scatter(xs, ys, c = labels)
+plt.show()
+```
+
+Ahora, calculemos las coordenadas de los centroides utilizando el atributo `.cluster_centers_` de `model`. y asignaremos la columna 0 de `centroids` a `centroids_x`, y la columna 2 de `centroids` a `centroids_y`. Posterior a ello, realizaremos un diagrama de dispersión de centroids_x y centroids_y, utilizando `marker = 'D'` (un rombo) como marcador especificando el parámetro marker. El tamaño de los marcadores en 50 utilizando `s = 50`.
+
+```{python}
+xs = iris.iloc[:, 0]   # Longitud de los sépalos 
+ys = iris.iloc[:, 2]   # Longitud de los pétalos
+
+plt.scatter(xs, ys, c = labels, alpha = 0.5)
+centroids = model.cluster_centers_
+
+centroids_x = centroids[:,0]
+centroids_y = centroids[:,2]
+
+plt.scatter(centroids_x, centroids_y, marker = 'D', s = 50)
+plt.show()
+```
+
+## Evaluar una agrupación 
+
+En la sección anterior, utilizamos KMeans para agrupar el dataset de iris en tres grupos. Pero **¿cómo podemos evaluar la calidad de esta agrupación?**
+
+Un enfoque directo es comparar los grupos con las especies de iris. Primero aprenderá sobre esto, antes de considerar el problema de cómo medir la calidad de una agrupación de una manera que no requiera que nuestras muestras vengan preagrupadas en especies. Esta medida de calidad puede utilizarse más adelante para tomar una decisión informada sobre el número de conglomerados a buscar.
+
+### Iris: Clusters vs Especies
+
+En primer lugar, comprobemos si los 3 grupos de muestras de iris tienen alguna correspondencia con la especie de iris.
+
+La correspondencia se describe en esta tabla:
+
+![](img/fig2.png){fig-align="center" width="400"}
+
+Existe una columna para cada una de las tres especies de iris: setosa, versicolor y virginica, y una fila para cada una de las tres etiquetas de grupo: 0, 1 y 2.
+
+La tabla muestra el número de muestras que tienen cada combinación posible de etiquetas de grupo/especie. Por ejemplo:
+
+-   Vemos que el grupo 0 se corresponde perfectamente con la especie setosa.
+
+-   Por otro lado, mientras que el cluster 1 contiene principalmente muestras de virginica en el grupo 2.
+
+Tablass como esta, se denominan **tabulaciones cruzadas** o **Cross tabulation**
+
+### Cross Tabulation con Pandas
+
+Para construir uno, usareos la biblioteca `pandas.` Como podemos observar en el bloque de código siguiente, creamos un dataframe de dos columnas, donde la primera columna son las etiquetas del grupo y la segunda son las especies de iris, de modo que cada fila proporciona la etiqueta del grupo y la especie de una sola muestra.
+
+```{python}
+iris_raw = datasets.load_iris() 
+iris = pd.DataFrame(iris_raw.data, columns = iris_raw.feature_names)
+# Agregamos columna de especie verdadera al dataframe iiris
+species = pd.Categorical.from_codes(iris_raw.target, iris_raw.target_names)
+
+# 
+
+df = pd.DataFrame({'labels':labels, 'species':species})
+print(df)
+```
+
+Ahora usamos la función de tabla cruzuda de pandas para crear la tubulación cruzada, pasando las dos columnas del DataFrame.
+
+```{python}
+ct = pd.crosstab(df['labels'], df['species'])
+print(ct)
+```
+
+Tabulaciones cruzadas como estás proporcionan información valiosa sobre qué tipo de muestras se encuentran en qué grupo. Pero la mayoría de los conjuntos de datos, las muestras no están etiquetadas por especie.
+
+**¿Cómo se puede evaluar la calidad de un clustering en estos casos?**
+
+### Medición de la calidad de la agrupación 
+
+Una buena agrupación tiene grupos compactos, lo que significa que las muestras de cada grupo están agrupadas, no dispersas.
+
+La **inercia** puede medir la distribución de las muestras dentro de cada grupo. Intuitivamente, la inercia mide qué tan lejos están las muestras de sus centroides. Puede encontrar la definición precisa en la documentación de scikit-learn. Queremos grupos que no estén dispersos, por lo que los valores más bajos de inercia son mejores.
+
+La inercia de un modelo KMeans se mide automaticamente cuando se llama al metodo de ajuste .fit y luego están disponibles como atributos de `inertia_`.
+
+De hecho, KMeans pretende colocar los clusters de forma que se minimice la inercia.
+
+```{python}
+model = KMeans(n_clusters = 3, random_state = 42)
+model.fit(iris)
+print(model.inertia_)
+```
+
+A continuación se muestra un gráfico de los valores de inercia de las agrupaciones del conjunto de datos de iris con diferentes números de agrupaciones.
+
+![](img/fig3.png){fig-align="center" width="400"}
+
+Nuestro modelo KMeans con 3 grupos tiene una inercia relativamente baja, lo cual es genial. Pero observe que la incercia continúa disminuyendo lentamente. Entonces, **¿cuál es la mejor cantidad de clústeres para elegir?** En última instacia se trata de una compensación.
+
+Una buena agrupación tiene agrupaciones estrechas (lo que significa inercia baja). Pero tampoco tiene demasiados grupos.
+
+Una buena regla general es elegir un codo en el gráfico de inercia, es decir, un punto donde la inercia comienza a disminuir más lentamente.
+
+Por ejemplo, según este criterio, 3 es un buen número de grupos para el conjunto de datos del iris.
+
+```{python}
+ks = range(1, 11)
+inertias = []
+
+for k in ks:
+    model = KMeans(n_clusters=k, random_state=42)
+    model.fit(iris)
+    inertias.append(model.inertia_)   # suma de distancias cuadradas intracluster
+
+plt.plot(ks, inertias, '-o')
+plt.xlabel('número de clusters')
+plt.ylabel('inertia')
+plt.xticks(ks)
+plt.show()
+```

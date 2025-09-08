@@ -10,7 +10,7 @@
   </url>
   <url>
     <loc>https://j-isaula.github.io/Web_JI/index.html</loc>
-    <lastmod>2025-04-28T04:38:57.615Z</lastmod>
+    <lastmod>2025-07-13T18:19:33.000Z</lastmod>
   </url>
   <url>
     <loc>https://j-isaula.github.io/Web_JI/Sobre_mi/index.html</loc>
@@ -42,7 +42,7 @@
   </url>
   <url>
     <loc>https://j-isaula.github.io/Web_JI/blog.html</loc>
-    <lastmod>2025-04-28T04:02:05.667Z</lastmod>
+    <lastmod>2025-07-13T18:19:33.000Z</lastmod>
   </url>
   <url>
     <loc>https://j-isaula.github.io/Web_JI/posts/microeconomia_R/index.html</loc>
@@ -55,5 +55,9 @@
   <url>
     <loc>https://j-isaula.github.io/Web_JI/posts/DL_PyTorch/index.html</loc>
     <lastmod>2025-07-13T04:39:53.028Z</lastmod>
+  </url>
+  <url>
+    <loc>https://j-isaula.github.io/Web_JI/posts/Unsupervised_Learning/index.html</loc>
+    <lastmod>2025-09-08T05:20:16.744Z</lastmod>
   </url>
 </urlset>

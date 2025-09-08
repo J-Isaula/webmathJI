@@ -10,7 +10,907 @@
 <atom:link href="https://j-isaula.github.io/Web_JI/blog.xml" rel="self" type="application/rss+xml"/>
 <description>Technology and the Environment</description>
 <generator>quarto-1.6.42</generator>
-<lastBuildDate>Tue, 01 Jul 2025 06:00:00 GMT</lastBuildDate>
+<lastBuildDate>Sun, 07 Sep 2025 06:00:00 GMT</lastBuildDate>
+<item>
+  <title>Aprendizaje No Supervisado</title>
+  <dc:creator>Juan Isaula</dc:creator>
+  <link>https://j-isaula.github.io/Web_JI/posts/Unsupervised_Learning/</link>
+  <description><![CDATA[ 
+
+
+
+
+<p>Supongamos que tiene una colección de clientes con diversas características, como <em>edad, ubicación e historial financiero</em>, y deseas descubrir patrones y clasificarlos en grupos. O quizás tengas un conjunto de textos, como páginas de Wikipedia, y quieras segmentarlos en categorías en función de su contenido. Este es el mundo del aprendizaje no supervizado, llamado así porque no estás guiando, o supervisando, el descubrimiento de patrones mediante alguna tarea de predicción, sino descubriendo la estructura oculta a partir de datos no etiquetados. El aprendizaje no supervizado engloba diversas técnicas de aprendizaje automático, desde la agrupación hasta la reducción de dimensiones y la factorización de matrices. En este artículo, aprenderás los fundamentos de <strong>aprendizaje no supervizado</strong> e implementarás los algoritmos esenciales utilizando <code>scikit-learn</code> y <code>SciPy</code>. Aprenderás a agrupar, transformar, visualizar y extraer información de conjuntos de datos no etiquetados.</p>
+<section id="agrupación-para-la-exploración-de-conjuntos-de-datos" class="level1">
+<h1>Agrupación para la exploración de conjuntos de datos</h1>
+<p>El objetivo de esta sección es aprender a descubrir los grupos subyacentes (o clústeres) en un conjunto de datos. En esta sección aprendera a agrupar empresas utilizando sus cotizaciones bursátiles,y distinguir diferentes especies agrupando sus medidas.</p>
+<section id="aprendizaje-no-supervizado" class="level2">
+<h2 class="anchored" data-anchor-id="aprendizaje-no-supervizado">Aprendizaje no supervizado</h2>
+<p>El aprendizaje no supervizado es una clase de técnica de aprendizaje automático para descrubrir patrones en los datos. Por ejemplo:</p>
+<ul>
+<li><p>Encontrar los grupos naturales de clientes en función de sus historiales de compras o buscar:</p></li>
+<li><p>Patrones y correlaciones entre estas compras, y utilizar estos patrones para expresar los datos en forma comprimida.</p></li>
+</ul>
+<p>Estos son ejemplos de técnicas de aprendizaje no supervizadas llamadas <em>agrupación</em> y <em>reducción de dimensiones.</em></p>
+<blockquote class="blockquote">
+<p>El aprendizaje no supervizado se define en oposición al aprendizaje supervizado.</p>
+</blockquote>
+<ul>
+<li><p>Un ejemplo de <strong><em>aprendizaje supervisado</em></strong> es utilizar las medidas de los tumores para clasificarlos como benignos o cancerosos. En este caso, el descubrimiento de patrones es guiado o supervizado, de modo que los patrones son lo más utilies posible para predecir la etiqueta: benigno o canceroso.</p></li>
+<li><p>El <strong><em>aprendizaje no supervisado</em></strong>, por el contrario, es un aprendizaje sin etiquetas. Es puro descubrimiento de patrones, sin la guía de una tarea de predicción.</p></li>
+</ul>
+<section id="iris-dataset" class="level3">
+<h3 class="anchored" data-anchor-id="iris-dataset">Iris dataset</h3>
+<p>El conjunto de datos iris consta de mediciones de muchas plantas iris de tres especies diferentes:</p>
+<ul>
+<li><p>Setosa</p></li>
+<li><p>Versicolor</p></li>
+<li><p>Virginica</p></li>
+</ul>
+<p>Hay cuatro medidas:</p>
+<ol type="1">
+<li><p>Largo de pétalo (Petal length)</p></li>
+<li><p>Ancho de pétalo (Petal width)</p></li>
+<li><p>Largo de sépalo (Sepal length)</p></li>
+<li><p>Ancho de sépalo (sepal width)</p></li>
+</ol>
+<p>Estas son las características del conjunto de datos.</p>
+<section id="matrices-características-y-muestras" class="level4">
+<h4 class="anchored" data-anchor-id="matrices-características-y-muestras">Matrices, características y muestras</h4>
+<p>Conjuntos de datos como este (iris) se escribiran como matrices numerosas bidimensionales.</p>
+<ul>
+<li><p>Las columnas de la matriz corresponderán a las características.</p></li>
+<li><p>Las medidas de plantas individuales son las muestras del conjunto de datos, estas corresponden a filas de la matriz.</p></li>
+</ul>
+</section>
+<section id="iris-datases-es-4-dimensional" class="level4">
+<h4 class="anchored" data-anchor-id="iris-datases-es-4-dimensional">Iris datases es 4-dimensional</h4>
+<p>Las muestras del conjunto de datos iris tienen cuatro medidas y, por lo tanto, corresponden a puntos en un espacio de cuatro dimensiones. Es decir:</p>
+<ul>
+<li>Dimensiones = número de características o features.</li>
+</ul>
+<p>No podemos visualizar cuatro dimensiones directamente, pero utilizando técnicas de aprendizaje no supervizado aún podemos obtener información.</p>
+</section>
+</section>
+<section id="k-means-clustering" class="level3">
+<h3 class="anchored" data-anchor-id="k-means-clustering">K-Means Clustering</h3>
+<p>Agruparemos estas muestras utilizando la agrupación de k-Means. K-Means encuentra un número específico de grupos en las muestras. Está implementado en la biblioteca de <code>scikit-learn</code> o <code>sklearn</code>.</p>
+<p>Veamos KMeans en acción con el conjunto de datos iris.</p>
+<div id="adadf36e" class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">import</span> pandas <span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">as</span> pd         </span>
+<span id="cb1-2"><span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">from</span> sklearn <span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">import</span> datasets    <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Librería utilizada para importar iris dataset</span></span>
+<span id="cb1-3">iris <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> datasets.load_iris()     <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># importamos el conjunto de datos iris</span></span>
+<span id="cb1-4"></span>
+<span id="cb1-5">iris <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> pd.DataFrame(iris.data, columns <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> iris.feature_names) <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Convertimos iris a dataframe</span></span></code></pre></div>
+</div>
+<p>Para comenzar:</p>
+<ol type="1">
+<li><p>Importamos KMeans de scikit-learn.</p></li>
+<li><p>Luego creamos un modelo KMeans, especificando la cantidad de clústeres que deseamos encontrar con <code>n_clusters</code> especificamos n_cluster = 3, ya que hay tres especies de iris.</p></li>
+<li><p>Posteriormente, llamamos el método de ajuste del modelo <code>.fit()</code>, pasando la matriz del iris dataset. Esto ajusta el modelo a los datos, localizando y recordando las regiones donde ocurren los diferentes grupos.</p></li>
+<li><p>Por último, podemos utilizar el método de predicción del modelo en este mismo conjunto de datos.</p></li>
+</ol>
+<div id="1fb4a8de" class="cell" data-execution_count="2">
+<div class="sourceCode cell-code" id="cb2" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">from</span> sklearn.cluster <span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">import</span> KMeans</span>
+<span id="cb2-2"></span>
+<span id="cb2-3">model <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> KMeans(n_clusters <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">3</span>, random_state <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">42</span>)</span>
+<span id="cb2-4">model.fit(iris)</span></code></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="23">
+<style>#sk-container-id-3 {
+  /* Definition of color scheme common for light and dark mode */
+  --sklearn-color-text: #000;
+  --sklearn-color-text-muted: #666;
+  --sklearn-color-line: gray;
+  /* Definition of color scheme for unfitted estimators */
+  --sklearn-color-unfitted-level-0: #fff5e6;
+  --sklearn-color-unfitted-level-1: #f6e4d2;
+  --sklearn-color-unfitted-level-2: #ffe0b3;
+  --sklearn-color-unfitted-level-3: chocolate;
+  /* Definition of color scheme for fitted estimators */
+  --sklearn-color-fitted-level-0: #f0f8ff;
+  --sklearn-color-fitted-level-1: #d4ebff;
+  --sklearn-color-fitted-level-2: #b3dbfd;
+  --sklearn-color-fitted-level-3: cornflowerblue;
+
+  /* Specific color for light theme */
+  --sklearn-color-text-on-default-background: var(--sg-text-color, var(--theme-code-foreground, var(--jp-content-font-color1, black)));
+  --sklearn-color-background: var(--sg-background-color, var(--theme-background, var(--jp-layout-color0, white)));
+  --sklearn-color-border-box: var(--sg-text-color, var(--theme-code-foreground, var(--jp-content-font-color1, black)));
+  --sklearn-color-icon: #696969;
+
+  @media (prefers-color-scheme: dark) {
+    /* Redefinition of color scheme for dark theme */
+    --sklearn-color-text-on-default-background: var(--sg-text-color, var(--theme-code-foreground, var(--jp-content-font-color1, white)));
+    --sklearn-color-background: var(--sg-background-color, var(--theme-background, var(--jp-layout-color0, #111)));
+    --sklearn-color-border-box: var(--sg-text-color, var(--theme-code-foreground, var(--jp-content-font-color1, white)));
+    --sklearn-color-icon: #878787;
+  }
+}
+
+#sk-container-id-3 {
+  color: var(--sklearn-color-text);
+}
+
+#sk-container-id-3 pre {
+  padding: 0;
+}
+
+#sk-container-id-3 input.sk-hidden--visually {
+  border: 0;
+  clip: rect(1px 1px 1px 1px);
+  clip: rect(1px, 1px, 1px, 1px);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px;
+}
+
+#sk-container-id-3 div.sk-dashed-wrapped {
+  border: 1px dashed var(--sklearn-color-line);
+  margin: 0 0.4em 0.5em 0.4em;
+  box-sizing: border-box;
+  padding-bottom: 0.4em;
+  background-color: var(--sklearn-color-background);
+}
+
+#sk-container-id-3 div.sk-container {
+  /* jupyter's `normalize.less` sets `[hidden] { display: none; }`
+     but bootstrap.min.css set `[hidden] { display: none !important; }`
+     so we also need the `!important` here to be able to override the
+     default hidden behavior on the sphinx rendered scikit-learn.org.
+     See: https://github.com/scikit-learn/scikit-learn/issues/21755 */
+  display: inline-block !important;
+  position: relative;
+}
+
+#sk-container-id-3 div.sk-text-repr-fallback {
+  display: none;
+}
+
+div.sk-parallel-item,
+div.sk-serial,
+div.sk-item {
+  /* draw centered vertical line to link estimators */
+  background-image: linear-gradient(var(--sklearn-color-text-on-default-background), var(--sklearn-color-text-on-default-background));
+  background-size: 2px 100%;
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+
+/* Parallel-specific style estimator block */
+
+#sk-container-id-3 div.sk-parallel-item::after {
+  content: "";
+  width: 100%;
+  border-bottom: 2px solid var(--sklearn-color-text-on-default-background);
+  flex-grow: 1;
+}
+
+#sk-container-id-3 div.sk-parallel {
+  display: flex;
+  align-items: stretch;
+  justify-content: center;
+  background-color: var(--sklearn-color-background);
+  position: relative;
+}
+
+#sk-container-id-3 div.sk-parallel-item {
+  display: flex;
+  flex-direction: column;
+}
+
+#sk-container-id-3 div.sk-parallel-item:first-child::after {
+  align-self: flex-end;
+  width: 50%;
+}
+
+#sk-container-id-3 div.sk-parallel-item:last-child::after {
+  align-self: flex-start;
+  width: 50%;
+}
+
+#sk-container-id-3 div.sk-parallel-item:only-child::after {
+  width: 0;
+}
+
+/* Serial-specific style estimator block */
+
+#sk-container-id-3 div.sk-serial {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: var(--sklearn-color-background);
+  padding-right: 1em;
+  padding-left: 1em;
+}
+
+
+/* Toggleable style: style used for estimator/Pipeline/ColumnTransformer box that is
+clickable and can be expanded/collapsed.
+- Pipeline and ColumnTransformer use this feature and define the default style
+- Estimators will overwrite some part of the style using the `sk-estimator` class
+*/
+
+/* Pipeline and ColumnTransformer style (default) */
+
+#sk-container-id-3 div.sk-toggleable {
+  /* Default theme specific background. It is overwritten whether we have a
+  specific estimator or a Pipeline/ColumnTransformer */
+  background-color: var(--sklearn-color-background);
+}
+
+/* Toggleable label */
+#sk-container-id-3 label.sk-toggleable__label {
+  cursor: pointer;
+  display: flex;
+  width: 100%;
+  margin-bottom: 0;
+  padding: 0.5em;
+  box-sizing: border-box;
+  text-align: center;
+  align-items: start;
+  justify-content: space-between;
+  gap: 0.5em;
+}
+
+#sk-container-id-3 label.sk-toggleable__label .caption {
+  font-size: 0.6rem;
+  font-weight: lighter;
+  color: var(--sklearn-color-text-muted);
+}
+
+#sk-container-id-3 label.sk-toggleable__label-arrow:before {
+  /* Arrow on the left of the label */
+  content: "▸";
+  float: left;
+  margin-right: 0.25em;
+  color: var(--sklearn-color-icon);
+}
+
+#sk-container-id-3 label.sk-toggleable__label-arrow:hover:before {
+  color: var(--sklearn-color-text);
+}
+
+/* Toggleable content - dropdown */
+
+#sk-container-id-3 div.sk-toggleable__content {
+  max-height: 0;
+  max-width: 0;
+  overflow: hidden;
+  text-align: left;
+  /* unfitted */
+  background-color: var(--sklearn-color-unfitted-level-0);
+}
+
+#sk-container-id-3 div.sk-toggleable__content.fitted {
+  /* fitted */
+  background-color: var(--sklearn-color-fitted-level-0);
+}
+
+#sk-container-id-3 div.sk-toggleable__content pre {
+  margin: 0.2em;
+  border-radius: 0.25em;
+  color: var(--sklearn-color-text);
+  /* unfitted */
+  background-color: var(--sklearn-color-unfitted-level-0);
+}
+
+#sk-container-id-3 div.sk-toggleable__content.fitted pre {
+  /* unfitted */
+  background-color: var(--sklearn-color-fitted-level-0);
+}
+
+#sk-container-id-3 input.sk-toggleable__control:checked~div.sk-toggleable__content {
+  /* Expand drop-down */
+  max-height: 200px;
+  max-width: 100%;
+  overflow: auto;
+}
+
+#sk-container-id-3 input.sk-toggleable__control:checked~label.sk-toggleable__label-arrow:before {
+  content: "▾";
+}
+
+/* Pipeline/ColumnTransformer-specific style */
+
+#sk-container-id-3 div.sk-label input.sk-toggleable__control:checked~label.sk-toggleable__label {
+  color: var(--sklearn-color-text);
+  background-color: var(--sklearn-color-unfitted-level-2);
+}
+
+#sk-container-id-3 div.sk-label.fitted input.sk-toggleable__control:checked~label.sk-toggleable__label {
+  background-color: var(--sklearn-color-fitted-level-2);
+}
+
+/* Estimator-specific style */
+
+/* Colorize estimator box */
+#sk-container-id-3 div.sk-estimator input.sk-toggleable__control:checked~label.sk-toggleable__label {
+  /* unfitted */
+  background-color: var(--sklearn-color-unfitted-level-2);
+}
+
+#sk-container-id-3 div.sk-estimator.fitted input.sk-toggleable__control:checked~label.sk-toggleable__label {
+  /* fitted */
+  background-color: var(--sklearn-color-fitted-level-2);
+}
+
+#sk-container-id-3 div.sk-label label.sk-toggleable__label,
+#sk-container-id-3 div.sk-label label {
+  /* The background is the default theme color */
+  color: var(--sklearn-color-text-on-default-background);
+}
+
+/* On hover, darken the color of the background */
+#sk-container-id-3 div.sk-label:hover label.sk-toggleable__label {
+  color: var(--sklearn-color-text);
+  background-color: var(--sklearn-color-unfitted-level-2);
+}
+
+/* Label box, darken color on hover, fitted */
+#sk-container-id-3 div.sk-label.fitted:hover label.sk-toggleable__label.fitted {
+  color: var(--sklearn-color-text);
+  background-color: var(--sklearn-color-fitted-level-2);
+}
+
+/* Estimator label */
+
+#sk-container-id-3 div.sk-label label {
+  font-family: monospace;
+  font-weight: bold;
+  display: inline-block;
+  line-height: 1.2em;
+}
+
+#sk-container-id-3 div.sk-label-container {
+  text-align: center;
+}
+
+/* Estimator-specific */
+#sk-container-id-3 div.sk-estimator {
+  font-family: monospace;
+  border: 1px dotted var(--sklearn-color-border-box);
+  border-radius: 0.25em;
+  box-sizing: border-box;
+  margin-bottom: 0.5em;
+  /* unfitted */
+  background-color: var(--sklearn-color-unfitted-level-0);
+}
+
+#sk-container-id-3 div.sk-estimator.fitted {
+  /* fitted */
+  background-color: var(--sklearn-color-fitted-level-0);
+}
+
+/* on hover */
+#sk-container-id-3 div.sk-estimator:hover {
+  /* unfitted */
+  background-color: var(--sklearn-color-unfitted-level-2);
+}
+
+#sk-container-id-3 div.sk-estimator.fitted:hover {
+  /* fitted */
+  background-color: var(--sklearn-color-fitted-level-2);
+}
+
+/* Specification for estimator info (e.g. "i" and "?") */
+
+/* Common style for "i" and "?" */
+
+.sk-estimator-doc-link,
+a:link.sk-estimator-doc-link,
+a:visited.sk-estimator-doc-link {
+  float: right;
+  font-size: smaller;
+  line-height: 1em;
+  font-family: monospace;
+  background-color: var(--sklearn-color-background);
+  border-radius: 1em;
+  height: 1em;
+  width: 1em;
+  text-decoration: none !important;
+  margin-left: 0.5em;
+  text-align: center;
+  /* unfitted */
+  border: var(--sklearn-color-unfitted-level-1) 1pt solid;
+  color: var(--sklearn-color-unfitted-level-1);
+}
+
+.sk-estimator-doc-link.fitted,
+a:link.sk-estimator-doc-link.fitted,
+a:visited.sk-estimator-doc-link.fitted {
+  /* fitted */
+  border: var(--sklearn-color-fitted-level-1) 1pt solid;
+  color: var(--sklearn-color-fitted-level-1);
+}
+
+/* On hover */
+div.sk-estimator:hover .sk-estimator-doc-link:hover,
+.sk-estimator-doc-link:hover,
+div.sk-label-container:hover .sk-estimator-doc-link:hover,
+.sk-estimator-doc-link:hover {
+  /* unfitted */
+  background-color: var(--sklearn-color-unfitted-level-3);
+  color: var(--sklearn-color-background);
+  text-decoration: none;
+}
+
+div.sk-estimator.fitted:hover .sk-estimator-doc-link.fitted:hover,
+.sk-estimator-doc-link.fitted:hover,
+div.sk-label-container:hover .sk-estimator-doc-link.fitted:hover,
+.sk-estimator-doc-link.fitted:hover {
+  /* fitted */
+  background-color: var(--sklearn-color-fitted-level-3);
+  color: var(--sklearn-color-background);
+  text-decoration: none;
+}
+
+/* Span, style for the box shown on hovering the info icon */
+.sk-estimator-doc-link span {
+  display: none;
+  z-index: 9999;
+  position: relative;
+  font-weight: normal;
+  right: .2ex;
+  padding: .5ex;
+  margin: .5ex;
+  width: min-content;
+  min-width: 20ex;
+  max-width: 50ex;
+  color: var(--sklearn-color-text);
+  box-shadow: 2pt 2pt 4pt #999;
+  /* unfitted */
+  background: var(--sklearn-color-unfitted-level-0);
+  border: .5pt solid var(--sklearn-color-unfitted-level-3);
+}
+
+.sk-estimator-doc-link.fitted span {
+  /* fitted */
+  background: var(--sklearn-color-fitted-level-0);
+  border: var(--sklearn-color-fitted-level-3);
+}
+
+.sk-estimator-doc-link:hover span {
+  display: block;
+}
+
+/* "?"-specific style due to the `<a>` HTML tag */
+
+#sk-container-id-3 a.estimator_doc_link {
+  float: right;
+  font-size: 1rem;
+  line-height: 1em;
+  font-family: monospace;
+  background-color: var(--sklearn-color-background);
+  border-radius: 1rem;
+  height: 1rem;
+  width: 1rem;
+  text-decoration: none;
+  /* unfitted */
+  color: var(--sklearn-color-unfitted-level-1);
+  border: var(--sklearn-color-unfitted-level-1) 1pt solid;
+}
+
+#sk-container-id-3 a.estimator_doc_link.fitted {
+  /* fitted */
+  border: var(--sklearn-color-fitted-level-1) 1pt solid;
+  color: var(--sklearn-color-fitted-level-1);
+}
+
+/* On hover */
+#sk-container-id-3 a.estimator_doc_link:hover {
+  /* unfitted */
+  background-color: var(--sklearn-color-unfitted-level-3);
+  color: var(--sklearn-color-background);
+  text-decoration: none;
+}
+
+#sk-container-id-3 a.estimator_doc_link.fitted:hover {
+  /* fitted */
+  background-color: var(--sklearn-color-fitted-level-3);
+}
+</style><div id="sk-container-id-3" class="sk-top-container"><div class="sk-text-repr-fallback"><pre>KMeans(n_clusters=3, random_state=42)</pre><b>In a Jupyter environment, please rerun this cell to show the HTML representation or trust the notebook. <br>On GitHub, the HTML representation is unable to render, please try loading this page with nbviewer.org.</b></div><div class="sk-container" hidden=""><div class="sk-item"><div class="sk-estimator fitted sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-3" type="checkbox" checked=""><label for="sk-estimator-id-3" class="sk-toggleable__label fitted sk-toggleable__label-arrow"><div><div>KMeans</div></div><div><a class="sk-estimator-doc-link fitted" rel="noreferrer" target="_blank" href="https://scikit-learn.org/1.6/modules/generated/sklearn.cluster.KMeans.html">?<span>Documentation for KMeans</span></a><span class="sk-estimator-doc-link fitted">i<span>Fitted</span></span></div></label><div class="sk-toggleable__content fitted"><pre>KMeans(n_clusters=3, random_state=42)</pre></div> </div></div></div></div>
+</div>
+</div>
+<div id="44c7ae9d" class="cell" data-execution_count="3">
+<div class="sourceCode cell-code" id="cb3" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1">labels <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> model.predict(iris)</span>
+<span id="cb3-2"><span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">print</span>(labels)</span></code></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
+ 1 1 1 1 1 1 1 1 1 1 1 1 1 0 2 0 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2
+ 2 2 2 0 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 0 2 0 0 0 0 2 0 0 0 0
+ 0 0 2 2 0 0 0 0 2 0 2 0 2 0 0 2 2 0 0 0 0 0 2 0 0 0 0 2 0 0 0 2 0 0 0 2 0
+ 0 2]</code></pre>
+</div>
+</div>
+<p>Esto nos devuelve una etiqueta de grupo para cada muestra, que indica a qué grupo pertenece una muestra.</p>
+<section id="etiquetas-de-clúster-para-nuevas-muestras" class="level4">
+<h4 class="anchored" data-anchor-id="etiquetas-de-clúster-para-nuevas-muestras">Etiquetas de clúster para nuevas muestras</h4>
+<p>Si alguien viene con un algún dataset iris nuevo, kMeans puede determinar a qué grupos pertenecen sin tener que empezar de nuevo.</p>
+<p>KMeans hace esto recordando la media (o promedio) de las muestras en cada grupo. Estos se llaman <strong>centroides</strong> se asignan nuevas muestras al grupo cuyo centroide esté más cercano.</p>
+<p>Voy a tomar 3 registros aleatorios del dataset iris y asumiremos que estas son muestras nuevas.</p>
+<div id="203428e7" class="cell" data-execution_count="4">
+<div class="sourceCode cell-code" id="cb5" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1">new_samples <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> iris.sample(n <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">3</span>, random_state <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">42</span>)</span>
+<span id="cb5-2"><span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">print</span>(new_samples)</span></code></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>     sepal length (cm)  sepal width (cm)  petal length (cm)  petal width (cm)
+73                 6.1               2.8                4.7               1.2
+18                 5.7               3.8                1.7               0.3
+118                7.7               2.6                6.9               2.3</code></pre>
+</div>
+</div>
+<p>Para asignar las nuevas muestras a los grupos existentes, pasaremos el conjunto de nueva muestra al método de predicción del modelo kmeans.</p>
+<div id="2797ef73" class="cell" data-execution_count="5">
+<div class="sourceCode cell-code" id="cb7" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1">new_labels <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> model.predict(new_samples)</span>
+<span id="cb7-2"><span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">print</span>(new_labels)</span></code></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[2 1 0]</code></pre>
+</div>
+</div>
+<p>Como puede observar, esto devuelve las etiquetas de grupo para los datos nuevos o muestra de datos nueva.</p>
+<blockquote class="blockquote">
+<p>En la siguiente sección aprenderá cómo evaluar la calidad de su agrupación.</p>
+</blockquote>
+</section>
+<section id="scatter-plots" class="level4">
+<h4 class="anchored" data-anchor-id="scatter-plots">Scatter Plots</h4>
+<p>Por ahora, visualizaremos nuestra agrupación de las muestras de iris usando diagramas de dispersión. A continuación se muestra un diagrama de dispersión de la longitud del sépalo frente a la longitud del pétalo del dataset iris.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://j-isaula.github.io/Web_JI/posts/Unsupervised_Learning/img/fig1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="300"></p>
+</figure>
+</div>
+<p>Cada punto representa una muestra de iris y está coloreada según el grupo de la muestra. Para crear un diagrama de dispersión como este, usaremos <code>PyPlot</code>.</p>
+<ul>
+<li><p>La longitud del sépalo está en la columna 0 de la matriz iris, mientras que la longitud de los pétalos está en la segunda columna.</p></li>
+<li><p>Y labels o etiquetas que encontramos previamente lo usamos para colorear por etiqueta de clúster como un paramétro en <code>.scatter()</code>.</p></li>
+</ul>
+<div id="4bf0303a" class="cell" data-execution_count="6">
+<div class="sourceCode cell-code" id="cb9" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">import</span> matplotlib.pyplot <span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">as</span> plt </span>
+<span id="cb9-2"></span>
+<span id="cb9-3">xs <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> iris.iloc[:, <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0</span>]   <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Longitud de los sépalos </span></span>
+<span id="cb9-4">ys <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> iris.iloc[:, <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2</span>]   <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Longitud de los pétalos</span></span>
+<span id="cb9-5"></span>
+<span id="cb9-6">plt.scatter(xs, ys, c <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> labels)</span>
+<span id="cb9-7">plt.show()</span></code></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="https://j-isaula.github.io/Web_JI/posts/Unsupervised_Learning/index_files/figure-html/cell-7-output-1.png" width="558" height="411" class="figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Ahora, calculemos las coordenadas de los centroides utilizando el atributo <code>.cluster_centers_</code> de <code>model</code>. y asignaremos la columna 0 de <code>centroids</code> a <code>centroids_x</code>, y la columna 2 de <code>centroids</code> a <code>centroids_y</code>. Posterior a ello, realizaremos un diagrama de dispersión de centroids_x y centroids_y, utilizando <code>marker = 'D'</code> (un rombo) como marcador especificando el parámetro marker. El tamaño de los marcadores en 50 utilizando <code>s = 50</code>.</p>
+<div id="06d86e47" class="cell" data-execution_count="7">
+<div class="sourceCode cell-code" id="cb10" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1">xs <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> iris.iloc[:, <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0</span>]   <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Longitud de los sépalos </span></span>
+<span id="cb10-2">ys <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> iris.iloc[:, <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2</span>]   <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Longitud de los pétalos</span></span>
+<span id="cb10-3"></span>
+<span id="cb10-4">plt.scatter(xs, ys, c <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> labels, alpha <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.5</span>)</span>
+<span id="cb10-5">centroids <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> model.cluster_centers_</span>
+<span id="cb10-6"></span>
+<span id="cb10-7">centroids_x <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> centroids[:,<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0</span>]</span>
+<span id="cb10-8">centroids_y <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> centroids[:,<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2</span>]</span>
+<span id="cb10-9"></span>
+<span id="cb10-10">plt.scatter(centroids_x, centroids_y, marker <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'D'</span>, s <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">50</span>)</span>
+<span id="cb10-11">plt.show()</span></code></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="https://j-isaula.github.io/Web_JI/posts/Unsupervised_Learning/index_files/figure-html/cell-8-output-1.png" width="558" height="411" class="figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+</section>
+</section>
+<section id="evaluar-una-agrupación" class="level2">
+<h2 class="anchored" data-anchor-id="evaluar-una-agrupación">Evaluar una agrupación</h2>
+<p>En la sección anterior, utilizamos KMeans para agrupar el dataset de iris en tres grupos. Pero <strong>¿cómo podemos evaluar la calidad de esta agrupación?</strong></p>
+<p>Un enfoque directo es comparar los grupos con las especies de iris. Primero aprenderá sobre esto, antes de considerar el problema de cómo medir la calidad de una agrupación de una manera que no requiera que nuestras muestras vengan preagrupadas en especies. Esta medida de calidad puede utilizarse más adelante para tomar una decisión informada sobre el número de conglomerados a buscar.</p>
+<section id="iris-clusters-vs-especies" class="level3">
+<h3 class="anchored" data-anchor-id="iris-clusters-vs-especies">Iris: Clusters vs Especies</h3>
+<p>En primer lugar, comprobemos si los 3 grupos de muestras de iris tienen alguna correspondencia con la especie de iris.</p>
+<p>La correspondencia se describe en esta tabla:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://j-isaula.github.io/Web_JI/posts/Unsupervised_Learning/img/fig2.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="400"></p>
+</figure>
+</div>
+<p>Existe una columna para cada una de las tres especies de iris: setosa, versicolor y virginica, y una fila para cada una de las tres etiquetas de grupo: 0, 1 y 2.</p>
+<p>La tabla muestra el número de muestras que tienen cada combinación posible de etiquetas de grupo/especie. Por ejemplo:</p>
+<ul>
+<li><p>Vemos que el grupo 0 se corresponde perfectamente con la especie setosa.</p></li>
+<li><p>Por otro lado, mientras que el cluster 1 contiene principalmente muestras de virginica en el grupo 2.</p></li>
+</ul>
+<p>Tablass como esta, se denominan <strong>tabulaciones cruzadas</strong> o <strong>Cross tabulation</strong></p>
+</section>
+<section id="cross-tabulation-con-pandas" class="level3">
+<h3 class="anchored" data-anchor-id="cross-tabulation-con-pandas">Cross Tabulation con Pandas</h3>
+<p>Para construir uno, usareos la biblioteca <code>pandas.</code> Como podemos observar en el bloque de código siguiente, creamos un dataframe de dos columnas, donde la primera columna son las etiquetas del grupo y la segunda son las especies de iris, de modo que cada fila proporciona la etiqueta del grupo y la especie de una sola muestra.</p>
+<div id="f157768a" class="cell" data-execution_count="8">
+<div class="sourceCode cell-code" id="cb11" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1">iris_raw <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> datasets.load_iris() </span>
+<span id="cb11-2">iris <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> pd.DataFrame(iris_raw.data, columns <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> iris_raw.feature_names)</span>
+<span id="cb11-3"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Agregamos columna de especie verdadera al dataframe iiris</span></span>
+<span id="cb11-4">species <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> pd.Categorical.from_codes(iris_raw.target, iris_raw.target_names)</span>
+<span id="cb11-5"></span>
+<span id="cb11-6"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># </span></span>
+<span id="cb11-7"></span>
+<span id="cb11-8">df <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> pd.DataFrame({<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'labels'</span>:labels, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'species'</span>:species})</span>
+<span id="cb11-9"><span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">print</span>(df)</span></code></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>     labels    species
+0         1     setosa
+1         1     setosa
+2         1     setosa
+3         1     setosa
+4         1     setosa
+..      ...        ...
+145       0  virginica
+146       2  virginica
+147       0  virginica
+148       0  virginica
+149       2  virginica
+
+[150 rows x 2 columns]</code></pre>
+</div>
+</div>
+<p>Ahora usamos la función de tabla cruzuda de pandas para crear la tubulación cruzada, pasando las dos columnas del DataFrame.</p>
+<div id="cbf5969d" class="cell" data-execution_count="9">
+<div class="sourceCode cell-code" id="cb13" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1">ct <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> pd.crosstab(df[<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'labels'</span>], df[<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'species'</span>])</span>
+<span id="cb13-2"><span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">print</span>(ct)</span></code></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>species  setosa  versicolor  virginica
+labels                                
+0             0           3         36
+1            50           0          0
+2             0          47         14</code></pre>
+</div>
+</div>
+<p>Tabulaciones cruzadas como estás proporcionan información valiosa sobre qué tipo de muestras se encuentran en qué grupo. Pero la mayoría de los conjuntos de datos, las muestras no están etiquetadas por especie.</p>
+<p><strong>¿Cómo se puede evaluar la calidad de un clustering en estos casos?</strong></p>
+</section>
+<section id="medición-de-la-calidad-de-la-agrupación" class="level3">
+<h3 class="anchored" data-anchor-id="medición-de-la-calidad-de-la-agrupación">Medición de la calidad de la agrupación</h3>
+<p>Una buena agrupación tiene grupos compactos, lo que significa que las muestras de cada grupo están agrupadas, no dispersas.</p>
+<p>La <strong>inercia</strong> puede medir la distribución de las muestras dentro de cada grupo. Intuitivamente, la inercia mide qué tan lejos están las muestras de sus centroides. Puede encontrar la definición precisa en la documentación de scikit-learn. Queremos grupos que no estén dispersos, por lo que los valores más bajos de inercia son mejores.</p>
+<p>La inercia de un modelo KMeans se mide automaticamente cuando se llama al metodo de ajuste .fit y luego están disponibles como atributos de <code>inertia_</code>.</p>
+<p>De hecho, KMeans pretende colocar los clusters de forma que se minimice la inercia.</p>
+<div id="be9baf25" class="cell" data-execution_count="10">
+<div class="sourceCode cell-code" id="cb15" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1">model <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> KMeans(n_clusters <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">3</span>, random_state <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">42</span>)</span>
+<span id="cb15-2">model.fit(iris)</span>
+<span id="cb15-3"><span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">print</span>(model.inertia_)</span></code></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>78.8556658259773</code></pre>
+</div>
+</div>
+<p>A continuación se muestra un gráfico de los valores de inercia de las agrupaciones del conjunto de datos de iris con diferentes números de agrupaciones.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://j-isaula.github.io/Web_JI/posts/Unsupervised_Learning/img/fig3.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="400"></p>
+</figure>
+</div>
+<p>Nuestro modelo KMeans con 3 grupos tiene una inercia relativamente baja, lo cual es genial. Pero observe que la incercia continúa disminuyendo lentamente. Entonces, <strong>¿cuál es la mejor cantidad de clústeres para elegir?</strong> En última instacia se trata de una compensación.</p>
+<p>Una buena agrupación tiene agrupaciones estrechas (lo que significa inercia baja). Pero tampoco tiene demasiados grupos.</p>
+<p>Una buena regla general es elegir un codo en el gráfico de inercia, es decir, un punto donde la inercia comienza a disminuir más lentamente.</p>
+<p>Por ejemplo, según este criterio, 3 es un buen número de grupos para el conjunto de datos del iris.</p>
+<div id="9f3312a5" class="cell" data-execution_count="11">
+<div class="sourceCode cell-code" id="cb17" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1">ks <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">range</span>(<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>, <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">11</span>)</span>
+<span id="cb17-2">inertias <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> []</span>
+<span id="cb17-3"></span>
+<span id="cb17-4"><span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">for</span> k <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">in</span> ks:</span>
+<span id="cb17-5">    model <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> KMeans(n_clusters<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span>k, random_state<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">42</span>)</span>
+<span id="cb17-6">    model.fit(iris)</span>
+<span id="cb17-7">    inertias.append(model.inertia_)   <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># suma de distancias cuadradas intracluster</span></span>
+<span id="cb17-8"></span>
+<span id="cb17-9">plt.plot(ks, inertias, <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'-o'</span>)</span>
+<span id="cb17-10">plt.xlabel(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'número de clusters'</span>)</span>
+<span id="cb17-11">plt.ylabel(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'inertia'</span>)</span>
+<span id="cb17-12">plt.xticks(ks)</span>
+<span id="cb17-13">plt.show()</span></code></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="https://j-isaula.github.io/Web_JI/posts/Unsupervised_Learning/index_files/figure-html/cell-12-output-1.png" width="593" height="429" class="figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+
+
+</section>
+</section>
+</section>
+
+ ]]></description>
+  <category>Python</category>
+  <guid>https://j-isaula.github.io/Web_JI/posts/Unsupervised_Learning/</guid>
+  <pubDate>Sun, 07 Sep 2025 06:00:00 GMT</pubDate>
+  <media:content url="https://j-isaula.github.io/Web_JI/posts/Unsupervised_Learning/fondo.png" medium="image" type="image/png" height="81" width="144"/>
+</item>
 <item>
   <title>Deep Learning</title>
   <dc:creator>Juan Isaula</dc:creator>
@@ -69,7 +969,7 @@
 <section id="pytorch-tensors" class="level4">
 <h4 class="anchored" data-anchor-id="pytorch-tensors">PyTorch Tensors</h4>
 <p>Podemos importar el módulo PyTorch llamando a</p>
-<div id="919b62c1" class="cell" data-execution_count="1">
+<div id="d0fe282a" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><span class="im" style="color: #00769E;
 background-color: null;
 font-style: inherit;">import</span> torch</span></code></pre></div>
@@ -79,7 +979,7 @@ font-style: inherit;">import</span> torch</span></code></pre></div>
 <li><p>Puede soportar muchas operaciones matemáticas y constituye un componente básico para nuestras redes neuronales.</p></li>
 <li><p>Se pueden crear tensores a partir de listas de Python o matrices NumPy utilizando la clase <code>torch.tensor()</code> esta clase convierte los datos a un formato compatible para el aprendizaje profundo.</p></li>
 </ul>
-<div id="6f771392" class="cell" data-execution_count="2">
+<div id="3fa0b7d0" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb2" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1">mi_lista <span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span> [[<span class="dv" style="color: #AD0000;
@@ -110,7 +1010,7 @@ font-style: inherit;">print</span>(tensor)</span></code></pre></div>
 <section id="atributos-de-los-tensores" class="level3">
 <h3 class="anchored" data-anchor-id="atributos-de-los-tensores">Atributos de los Tensores</h3>
 <p>Podemos llamar a <code>tensor.shape</code> para mostrar la forma de nuestro objeto recién creado.</p>
-<div id="2c2e1a13" class="cell" data-execution_count="3">
+<div id="21527f76" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb4" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><span class="bu" style="color: null;
 background-color: null;
 font-style: inherit;">print</span>(tensor.shape)</span></code></pre></div>
@@ -119,7 +1019,7 @@ font-style: inherit;">print</span>(tensor.shape)</span></code></pre></div>
 </div>
 </div>
 <p>Y <code>tensor.dtype()</code> para mostrar su tipo de datos, aquí un entero de 64 bits.</p>
-<div id="8c75b707" class="cell" data-execution_count="4">
+<div id="56c1d064" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb6" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><span class="bu" style="color: null;
 background-color: null;
 font-style: inherit;">print</span>(tensor.dtype)</span></code></pre></div>
@@ -131,7 +1031,7 @@ font-style: inherit;">print</span>(tensor.dtype)</span></code></pre></div>
 <section id="operaciones-con-tensores" class="level4">
 <h4 class="anchored" data-anchor-id="operaciones-con-tensores">Operaciones con Tensores</h4>
 <p>Se pueden sumar o restar tensores de PyTorch, siempre que sus formas sean compatibles.</p>
-<div id="0eb14449" class="cell" data-execution_count="5">
+<div id="4804647c" class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb8" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1">a <span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span> torch.tensor([[<span class="dv" style="color: #AD0000;
@@ -170,7 +1070,7 @@ font-style: inherit;">3</span>,<span class="dv" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">5</span>]])</span></code></pre></div>
 </div>
-<div id="0b092554" class="cell" data-execution_count="6">
+<div id="08ca5b8b" class="cell" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb9" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><span class="bu" style="color: null;
 background-color: null;
 font-style: inherit;">print</span>(a <span class="op" style="color: #5E5E5E;
@@ -183,7 +1083,7 @@ font-style: inherit;">+</span> b)</span></code></pre></div>
 </div>
 <p>Cuando las dimensiones no son compatibles, obtendremos un error.</p>
 <p>También podemos realizar la multiplicación por elemento, lo que implica multiplicar cada elemento correspondiente.</p>
-<div id="d3be80a4" class="cell" data-execution_count="7">
+<div id="516798c1" class="cell" data-execution_count="7">
 <div class="sourceCode cell-code" id="cb11" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><span class="bu" style="color: null;
 background-color: null;
 font-style: inherit;">print</span>(a<span class="op" style="color: #5E5E5E;
@@ -195,7 +1095,7 @@ font-style: inherit;">*</span>b)</span></code></pre></div>
 </div>
 </div>
 <p>También esta incluida la multiplicación de matrices, que no es más que uno forma de combinar dos matrices para crear una nueva.</p>
-<div id="dd752390" class="cell" data-execution_count="8">
+<div id="2f58068c" class="cell" data-execution_count="8">
 <div class="sourceCode cell-code" id="cb13" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><span class="bu" style="color: null;
 background-color: null;
 font-style: inherit;">print</span>(a <span class="op" style="color: #5E5E5E;
@@ -207,10 +1107,2175 @@ font-style: inherit;">@</span> b)</span></code></pre></div>
 </div>
 </div>
 <p>Detras de escena, los modelos de aprendizaje profundo realizan innumerables operaciones como la suma y multiplicación para procesar datos y aprender patrones.</p>
-
-
 </section>
 </section>
+</section>
+<section id="redes-neuronales-y-capas" class="level2">
+<h2 class="anchored" data-anchor-id="redes-neuronales-y-capas">Redes Neuronales y Capas</h2>
+<p>Vamos a contruir nuestra primer red neuronal usando tensores de PyTorch.</p>
+<p>Una red neuronal consta de capas de entrada, ocultas y de salida.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://j-isaula.github.io/Web_JI/posts/DL_PyTorch/img/fig7.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="200"></p>
+</figure>
+</div>
+<p>La <strong>capa de entrada</strong> contiene las características del conjunto de datos,</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://j-isaula.github.io/Web_JI/posts/DL_PyTorch/img/fig8.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="200"></p>
+</figure>
+</div>
+<p>La <strong>capa de salida</strong> contiene las predicciones,</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://j-isaula.github.io/Web_JI/posts/DL_PyTorch/img/fig9.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="200"></p>
+</figure>
+</div>
+<p>Y hay <strong>capas ocultas (hidden layers)</strong> en el medio</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://j-isaula.github.io/Web_JI/posts/DL_PyTorch/img/fig10.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="200"></p>
+</figure>
+</div>
+<p>Si bien una red puede tener cualquier cantidad de capas ocultas, comenzaremos construyendo una red sin capas ocultas donde la capa de salida es una capa lineal.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://j-isaula.github.io/Web_JI/posts/DL_PyTorch/img/fig11.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="200"></p>
+</figure>
+</div>
+<ul>
+<li><p>Aquí, cada neurona de entrada se conecta a cada neurona de salida, lo que se denomina una red “totalmente conectada”.</p></li>
+<li><p>Esta red es equivalente a un modelo lineal y nos ayuda a comprender los fundamentos antes de agregar complejidad.</p></li>
+</ul>
+<p>Usaremos el módulo <code>torch.nn</code> para construir nuestras redes. Esto hace que el código de la red sea más conciso y flexible y se importa convencionalmente como <code>nn</code>.</p>
+<div id="84de8914" class="cell" data-execution_count="9">
+<div class="sourceCode cell-code" id="cb15" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">import</span> torch.nn <span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">as</span> nn</span></code></pre></div>
+</div>
+<p>Al diseñar una red neuronal, las dimensiones de las capas de entrada y salida están predefinidas.</p>
+<ul>
+<li><p>La cantidad de neuronas en la capa de entrada es la cantidad de características en nuestro conjunto de datos.</p></li>
+<li><p>Y el número de neuronas en la capa de salida es el número de clases que queremos predecir.</p></li>
+</ul>
+<p>Digamos que creamos un input_tensor con forma de <img src="https://latex.codecogs.com/png.latex?1%5Ctimes%203">.</p>
+<div id="ef395d4e" class="cell" data-execution_count="10">
+<div class="sourceCode cell-code" id="cb16" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">import</span> torch</span>
+<span id="cb16-2"><span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">import</span> torch.nn <span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">as</span> nn</span>
+<span id="cb16-3">input_tensor <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> torch.tensor(</span>
+<span id="cb16-4">  [[<span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.3471</span>, <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.4547</span>, <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">-</span><span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.2356</span>]]</span>
+<span id="cb16-5">)</span></code></pre></div>
+</div>
+<p>Podemos pensar en esto como una fila con tres <em>“carectísticas”</em> o <em>“neuronas”</em> .</p>
+<p>A continuación, pasamos este input_tensor a una capa lineal, que aplica una función lineal para realizar predicciones.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://j-isaula.github.io/Web_JI/posts/DL_PyTorch/img/fig12.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="100"></p>
+</figure>
+</div>
+<p>Para ello usaremos <code>nn.Linear()</code> toma dos argumentos: <code>int_features</code> es el número de características en nuestra entrada ( en este caso, tres) y <code>out_features</code> es el tamaño del tensor de salida (en este caso, dos).</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://j-isaula.github.io/Web_JI/posts/DL_PyTorch/img/fig13.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="100"></p>
+</figure>
+</div>
+<div id="8213524a" class="cell" data-execution_count="11">
+<div class="sourceCode cell-code" id="cb17" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1">linear_layer <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> nn.Linear(</span>
+<span id="cb17-2">  in_features <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">3</span>,</span>
+<span id="cb17-3">  out_features <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2</span></span>
+<span id="cb17-4">)</span></code></pre></div>
+</div>
+<p>Especificar correctamente <code>in_features</code> garantiza que nuestra capa lineal pueda recibir el input_tensor.</p>
+<p>Por último, pasamos input_tensor a linear_layer para generar una salida.</p>
+<div id="b8ae3f36" class="cell" data-execution_count="12">
+<div class="sourceCode cell-code" id="cb18" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1">output <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> linear_layer(input_tensor)</span>
+<span id="cb18-2"><span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">print</span>(output)</span></code></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>tensor([[0.3101, 0.5936]], grad_fn=&lt;AddmmBackward0&gt;)</code></pre>
+</div>
+</div>
+<p>Tenga en cuenta que esta salida tiene dos características o neuronas debido a las <code>out_features</code> especificadas en nuestra capa lineal.</p>
+<p>Cuando input_tensor se pasa a linear_layer, se realiza una operación lineal para incluir pesos y sesgos.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://j-isaula.github.io/Web_JI/posts/DL_PyTorch/img/fig14.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="500"></p>
+</figure>
+</div>
+</section>
+<section id="pesos-weights-y-sesgos-biases" class="level2">
+<h2 class="anchored" data-anchor-id="pesos-weights-y-sesgos-biases">Pesos (weights) y Sesgos (biases)</h2>
+<p>Cada capa lineal tiene un conjunto de pesos y sesgos asociados. Estas son las cantidades clave que definen una neurona.</p>
+<div id="588228c1" class="cell" data-execution_count="13">
+<div class="sourceCode cell-code" id="cb20" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">print</span>(linear_layer.weight)</span></code></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Parameter containing:
+tensor([[ 0.3821, -0.4537,  0.3866],
+        [-0.2932,  0.2641, -0.0264]], requires_grad=True)</code></pre>
+</div>
+</div>
+<div id="e1f4d20c" class="cell" data-execution_count="14">
+<div class="sourceCode cell-code" id="cb22" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">print</span>(linear_layer.bias)</span></code></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Parameter containing:
+tensor([0.4748, 0.5690], requires_grad=True)</code></pre>
+</div>
+</div>
+<ul>
+<li><p>Los pesos reflejan la importancia de diferentes características.</p></li>
+<li><p>El sesgos es un término adicional que es independiente de los pesos, y proporciona a las neurona una salida de referencia.</p></li>
+</ul>
+<p>Al principio, la capa lineal asigna pesos y sesgos aleatorios; estos se ajustan posteriormente.</p>
+<p>Imaginemos nuestra red totalmente conectada en acción.</p>
+<p>Digamos que tenemos un conjunto de datos meteorológicos con tres características: <em>temperatura (temperature), humedad (humidity) y viento (wind).</em> Y queremos predecir si <em>lloverá (rain) o estará nublado (cloudy).</em></p>
+<ol type="1">
+<li><p>La característica humeda tendrá un peso más significativo en comparación a las demás características, ya que es un fuerte predictor de lluvia y nubes.</p></li>
+<li><p>Los datos meteorológicos corresponden a una región tropical con alta probabilidad de lluvia, por lo que agrega un sesgo para tener en cuenta esta información de referencia.</p></li>
+</ol>
+<p>Con esta información, nuestro modelo hace una predicción.</p>
+</section>
+<section id="capaz-y-parámetros-ocultos" class="level2">
+<h2 class="anchored" data-anchor-id="capaz-y-parámetros-ocultos">Capaz y Parámetros Ocultos</h2>
+<p>Hasta ahora, hemos utilizado una capa de entrada y una capa de lineal. Ahora, agregaremos más capas para ayudar a la red a aprender patrones complejos.</p>
+<section id="apilamiento-de-capaz-con-nn.sequential" class="level3">
+<h3 class="anchored" data-anchor-id="apilamiento-de-capaz-con-nn.sequential">Apilamiento de capaz con nn.Sequential()</h3>
+<p>Apilaremos tres capas lineales usando <code>nn.Sequential()</code>, un contenedor de PyTorch para apilar capas en secuencia. Esta red toma la entrada, la pasa a cada capa lineal en secuencia y devuelve la salida.</p>
+<pre class="{bash}"><code>model = nn.Sequential(
+  nn.Linear(n_features, 8),
+  nn.Linear(8, 4),
+  nn.Linear(4, n_classes)
+)</code></pre>
+<ul>
+<li><p>En este caso, las capas dentro de <code>nn.Sequential()</code> son capas ocultas.</p></li>
+<li><p><code>n_features</code> representa el número de características de entrada y <code>n_classes</code> representa el número de clases de salida, ambas definidas por el conjunto de datos.</p></li>
+</ul>
+</section>
+<section id="adición-de-capas" class="level3">
+<h3 class="anchored" data-anchor-id="adición-de-capas">Adición de capas</h3>
+<p>Podemos añadir tantas capas ocultas como queramos.</p>
+<p><img src="https://j-isaula.github.io/Web_JI/posts/DL_PyTorch/img/fig17.png" class="img-fluid" width="450"></p>
+<p>La dimensión de cada capa coincide con la dimensión de salida de la anterior.</p>
+<div id="2be80e74" class="cell" data-execution_count="15">
+<div class="sourceCode cell-code" id="cb25" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1">model <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> nn.Sequential(</span>
+<span id="cb25-2">  nn.Linear(<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">10</span>, <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">18</span>),</span>
+<span id="cb25-3">  nn.Linear(<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">18</span>, <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">20</span>),</span>
+<span id="cb25-4">  nn.Linear(<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">20</span>, <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">5</span>)</span>
+<span id="cb25-5">)</span></code></pre></div>
+</div>
+<p>En nuestro ejemplo de tres capas, la primera capa toma 10 características y genera 18. La segunda toda 18 y genera 20. Finalmente, la tercera toma 20 y genera 5.</p>
+</section>
+<section id="las-capas-están-hechas-de-neuronas" class="level3">
+<h3 class="anchored" data-anchor-id="las-capas-están-hechas-de-neuronas">Las capas están hechas de neuronas</h3>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://j-isaula.github.io/Web_JI/posts/DL_PyTorch/img/fig18.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="200"></p>
+</figure>
+</div>
+<p>Una capa está completamente conectada cuando cada neurona se vincula a todas las neuronas de la capa anterior, como se muestra en rojo en la figura.</p>
+<p>Cada neurona es una capa lineal:</p>
+<ul>
+<li><p>realiza una operación lineal utilizando todas las neuonras de la capa anterior.</p></li>
+<li><p>Por tanto, una sola neurona tiene <img src="https://latex.codecogs.com/png.latex?N+1"> parámetros que se puede aprender, siendo la dimensión de salida la capa anterior, más 1 para el sesgo.</p></li>
+</ul>
+</section>
+<section id="parámetros-y-capacidad-del-modelo" class="level3">
+<h3 class="anchored" data-anchor-id="parámetros-y-capacidad-del-modelo">Parámetros y Capacidad del Modelo</h3>
+<p>Aumetar el número de capas ocultas aumenta el número total de parámetros en el modelo, también conocido como capacidad del modelo. Los modelos de mayor capacidad pueden manejar conjuntos de datos más complejos, pero su entrenamiento puede llevar más tiempo.</p>
+<p>Una forma eficaz de evaluar la capacidad de un modelo es calcular su número total de parámetros.</p>
+<p>Vamos a desglosarlo con una red de dos capas,</p>
+<div id="9a559cad" class="cell" data-execution_count="16">
+<div class="sourceCode cell-code" id="cb26" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1">model <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> nn.Sequential(</span>
+<span id="cb26-2">  nn.Linear(<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">8</span>, <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">4</span>),</span>
+<span id="cb26-3">  nn.Linear(<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">4</span>, <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2</span>)</span>
+<span id="cb26-4">)</span></code></pre></div>
+</div>
+<ul>
+<li><p><strong>La primera capa</strong> tiene 4 neuronas, cada neurona tiene 8 pesos y un sesgo, lo que da como resultado 36 parámetros.</p></li>
+<li><p>La segunda capa tiene 2 neuronas, cada neurona tiene 4 pesos y un sesgo, para un total de 10 parámetros.</p></li>
+<li><p>Sumándolos todos, este modelo tiene 46 parámetros que se pueden aprender en total</p></li>
+</ul>
+<p>También podemos calcular esto en PyTorch usando el método <code>.numel()</code>. Este método devuelve el número de elementos de un tensor.</p>
+<div id="fc3a363a" class="cell" data-execution_count="17">
+<div class="sourceCode cell-code" id="cb27" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1">total <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0</span></span>
+<span id="cb27-2"><span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">for</span> parameter <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">in</span> model.parameters():</span>
+<span id="cb27-3">  total <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">+=</span> parameter.numel()</span>
+<span id="cb27-4">  </span>
+<span id="cb27-5"><span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">print</span>(total)</span></code></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>46</code></pre>
+</div>
+</div>
+</section>
+<section id="balance-entre-complejidad-y-eficiencia" class="level3">
+<h3 class="anchored" data-anchor-id="balance-entre-complejidad-y-eficiencia">Balance entre complejidad y eficiencia</h3>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://j-isaula.github.io/Web_JI/posts/DL_PyTorch/img/fig19.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="400"></p>
+</figure>
+</div>
+<p>Comprender el recuento de parámetros nos ayuda a equilibrar la complejidad y la eficiencia del modelo. Demasiados parámetros pueden dar lugar a tiempos de entrenamiento largos o sobreajuste, mientras que muy pocos pueden limitar la capacidad de aprendizaje.</p>
+</section>
+</section>
+</section>
+<section id="hiperparámetros-y-arquitectura-de-redes-neuronales" class="level1">
+<h1>Hiperparámetros y arquitectura de redes neuronales</h1>
+<p>Para entrenar una red neuronal en PyTorch, primero tendremos que entender componentes adicionales, como las funciones de activación y pérdida. Entonces nos daremos cuenta de que entrenar una red requiere reducir mínimo esa función de pérdida, lo que se hace calculando gradientes. Aprenderemos a utilizar estos gradientes para actualizar los parámetros de tu modelo.</p>
+<section id="funciones-de-activación" class="level2">
+<h2 class="anchored" data-anchor-id="funciones-de-activación">Funciones de Activación</h2>
+<p>Hasta ahora hemos visto redes neuronales formadas únicamente por capas lineales.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://j-isaula.github.io/Web_JI/posts/DL_PyTorch/img/fig20.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="250"></p>
+</figure>
+</div>
+<p>Podemos agregar <strong>no linealidad</strong> a nuestros modelos usando funciones de activación. Discutiremos dos funciones de activación:</p>
+<ul>
+<li><p><strong>Sigmoid</strong> para clasificación binaria y,</p></li>
+<li><p><strong>Softmax</strong> para clasificación multiclase.</p></li>
+</ul>
+<p>Esta no linealidad permite que las redes aprendan cosas más complejas, interacciones entre entradas y objetivos que son relaciones <strong>no linealeales.</strong></p>
+<p>Llamaremos a la salida de la última capa lineal la <strong>“pre-activación”.</strong> Salida, que pasaremos a funciones de activación para obtener la salida transformada.</p>
+<section id="función-sigmoid" class="level3">
+<h3 class="anchored" data-anchor-id="función-sigmoid">Función Sigmoid</h3>
+<p>La función de activación sigmoidea se utiliza ampliamente para problemas de clasificación binaria. Digamos que estamos tratando de clasificar un animal como mamífero o no?. Tenemos tres datos: el número de extremidades, si pone huevos y si tiene pelo. Las dos últimas son variables binarias: 1 si es si, 0 si no.</p>
+<p><img src="https://j-isaula.github.io/Web_JI/posts/DL_PyTorch/img/fig21.png" class="img-fluid" width="700"></p>
+<p>Pasar la entrada a un modelo con dos capas lineales devuelve una única salida: el número 6, tal como apreciamos en la siguiente figura:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://j-isaula.github.io/Web_JI/posts/DL_PyTorch/img/fig22.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="700"></p>
+</figure>
+</div>
+<p>Este número aún no es interpretable. <strong>Tenemos que pasar el número 6 por la función sigmoide</strong>, transformandolo en un rango que represente la probabilidad entre cero y uno.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://j-isaula.github.io/Web_JI/posts/DL_PyTorch/img/fig23.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="700"></p>
+</figure>
+</div>
+<p>Si el resultado está más cerca de uno (mayor que 0.5), lo etiquetamos como clase uno (mamífero). Si fuese menor que 0.5 la predección sería cero (no un mamifero).</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://j-isaula.github.io/Web_JI/posts/DL_PyTorch/img/fig24.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="700"></p>
+</figure>
+</div>
+<p>Ahora, implementemos sigmoide en PyTorch.</p>
+<div id="f90f1a95" class="cell" data-execution_count="18">
+<div class="sourceCode cell-code" id="cb29" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">import</span> torch</span>
+<span id="cb29-2"><span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">import</span> torch.nn <span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">as</span> nn</span>
+<span id="cb29-3"></span>
+<span id="cb29-4">input_tensor <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> torch.tensor([[<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">6</span>]])</span>
+<span id="cb29-5">sigmoid <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> nn.Sigmoid()</span>
+<span id="cb29-6">output <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> sigmoid(input_tensor)</span>
+<span id="cb29-7"><span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">print</span>(output)</span></code></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>tensor([[0.9975]])</code></pre>
+</div>
+</div>
+<p>Normalmente, <code>nn.Sigmoid()</code> se agrega como el último paso en <code>nn.Sequential()</code>, transformando automáticamente la salida de la capa lineal final.</p>
+<div id="b9dda281" class="cell" data-execution_count="19">
+<div class="sourceCode cell-code" id="cb31" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1">model <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> nn.Sequential(</span>
+<span id="cb31-2">  nn.Linear(<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">6</span>, <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">4</span>), <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Primera capa lineal </span></span>
+<span id="cb31-3">  nn.Linear(<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">4</span>, <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>), <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Segunda capa lineal</span></span>
+<span id="cb31-4">  nn.Sigmoid()     <span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Función de activación</span></span>
+<span id="cb31-5">)</span></code></pre></div>
+</div>
+<p>Curiosamente, una red neuronal con solo capas lineales y una activación sigmoidea se comporta como una <strong>Regresión Logística.</strong> Más adelante agregaremos más capas y activaciones para comprender realmente el verdadero potencial del Deep Learning.</p>
+</section>
+<section id="función-softmax" class="level3">
+<h3 class="anchored" data-anchor-id="función-softmax">Función Softmax</h3>
+<p>Usamos softmax, otra función de activación popular, para clasificación multiclase que implica más de dos etiquetas de clase.</p>
+<p>Digamos que tenemos tres clases:</p>
+<ol type="1">
+<li><p>Pajaro o Bird (0)</p></li>
+<li><p>Mamífero o Mammal (1)</p></li>
+<li><p>Reptil o Reptile (2)</p></li>
+</ol>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://j-isaula.github.io/Web_JI/posts/DL_PyTorch/img/fig25.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="400"></p>
+</figure>
+</div>
+<p>En esta red, Softmax toma una dimensión tridimensional, salida de preactivación y genera una salida de la misma forma, una por tres.</p>
+<p>La salida es una distribución de probabilidad:</p>
+<ul>
+<li><p>Por cada elemento está entre cero y uno, y</p></li>
+<li><p>los valores suman uno.</p></li>
+</ul>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://j-isaula.github.io/Web_JI/posts/DL_PyTorch/img/fig26.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="350"></p>
+</figure>
+</div>
+<p>Aquí, la predicción es para la segunda clase, mamíferos, que tiene la probabilidad más alta 0.842.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://j-isaula.github.io/Web_JI/posts/DL_PyTorch/img/fig27.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="350"></p>
+</figure>
+</div>
+<p>En PyTorch, usamos <code>nn.Softmax()</code></p>
+<div id="feae27dc" class="cell" data-execution_count="20">
+<div class="sourceCode cell-code" id="cb32" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">import</span> torch</span>
+<span id="cb32-2"><span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">import</span> torch.nn <span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">as</span> nn</span>
+<span id="cb32-3"></span>
+<span id="cb32-4">input_tensor <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> torch.tensor(</span>
+<span id="cb32-5">  [[<span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">4.3</span>, <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">6.1</span>, <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2.3</span>]]</span>
+<span id="cb32-6">)</span>
+<span id="cb32-7"></span>
+<span id="cb32-8">probabilities <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> nn.Softmax(dim<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=-</span><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>)</span>
+<span id="cb32-9"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># dim = -1 indica que softmax se aplica a la última dimensión de input_tensor</span></span>
+<span id="cb32-10">output_tensor <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> probabilities(input_tensor)</span>
+<span id="cb32-11"><span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">print</span>(output_tensor)</span></code></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>tensor([[0.1392, 0.8420, 0.0188]])</code></pre>
+</div>
+</div>
+<p>Similar a sigmoide, softmax puede ser la última capa en nn.Sequential.<br>
+</p>
+</section>
+</section>
+<section id="paso-hacia-adelante" class="level2">
+<h2 class="anchored" data-anchor-id="paso-hacia-adelante">Paso hacia adelante</h2>
+<p>Hemos explorado tensores, redes pequeñas y funciones de activación. Ahora profundicemos en la generación de predicciones.</p>
+<p>Este proceso se llama <strong>“ejecutar un paso hacia adelante”</strong> a través de una red.</p>
+<section id="qué-es-una-paso-hacia-adelante-forward-pass" class="level3">
+<h3 class="anchored" data-anchor-id="qué-es-una-paso-hacia-adelante-forward-pass">Qué es una paso hacia adelante (Forward Pass)?</h3>
+<p>Es cuando los datos de entrada fluyen a través de una red neuronal en dirección hacia adelante, para producir resultados o predicciones, pasa a través de cada capa de red.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://j-isaula.github.io/Web_JI/posts/DL_PyTorch/img/fig28.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="350"></p>
+</figure>
+</div>
+<p>Los calculos transforman los datos en nuevas representaciones en cada capa, que pasa a la siguiente capa hasta que se produce el resultado final.</p>
+<p>El propósito del paso hacia adelante es pasar datos de entrada a través de la red y producir predicciones o resultados basados en los parámetros aprendidos del modelo, también conocidos como pesos y sesgos.</p>
+<p>Este proceso es esencial tanto para el entrenamiento como para realizar nuevas predicciones.</p>
+<p>El resultado final puede ser clasificaciones binarias, clasificaciones multiclase o predicciones numéricas (regresiones).</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://j-isaula.github.io/Web_JI/posts/DL_PyTorch/img/fig29.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="400"></p>
+</figure>
+</div>
+<p>Veremos un ejemplo de cada uno.</p>
+<p>Digamos que tenemos datos de entrada de cinco animales, con seís características o neuronas por punto de datos.</p>
+<div id="66e9f02b" class="cell" data-execution_count="21">
+<div class="sourceCode cell-code" id="cb34" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb34-1">input_data <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> torch.tensor(</span>
+<span id="cb34-2">  [[<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">-</span><span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.4421</span>, <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1.5207</span>, <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2.0607</span>, <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">-</span><span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.3647</span>, <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.4691</span>, <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.0946</span>],</span>
+<span id="cb34-3">  [<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">-</span><span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.9155</span>, <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">-</span><span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.0475</span>, <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">-</span><span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1.3645</span>, <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">-</span><span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.6336</span>, <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">-</span><span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1.9520</span>, <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">-</span><span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.3398</span>],</span>
+<span id="cb34-4">  [<span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.7406</span>, <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1.6763</span>, <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">-</span><span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.8511</span>, <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.2432</span>, <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.1123</span>, <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">-</span><span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.0633</span>],</span>
+<span id="cb34-5">  [<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">-</span><span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1.6630</span>, <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">-</span><span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.0718</span>, <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">-</span><span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.1285</span>, <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.5396</span>, <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">-</span><span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.0288</span>, <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">-</span><span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.8622</span>],</span>
+<span id="cb34-6">  [<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">-</span><span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.7413</span>, <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1.7920</span>, <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">-</span><span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.0883</span>, <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">-</span><span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.6685</span>, <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.4745</span>, <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">-</span><span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.4245</span>]]</span>
+<span id="cb34-7">)</span></code></pre></div>
+</div>
+<p>Creamos una pequeña red con dos capas lineales y una función de activación sigmoidea en secuencia.</p>
+<div id="24e5268a" class="cell" data-execution_count="22">
+<div class="sourceCode cell-code" id="cb35" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb35-1"><span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">import</span> torch</span>
+<span id="cb35-2"><span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">import</span> torch.nn <span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">as</span> nn</span>
+<span id="cb35-3">model <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> nn.Sequential(</span>
+<span id="cb35-4">  nn.Linear(<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">6</span>, <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">4</span>),</span>
+<span id="cb35-5">  nn.Linear(<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">4</span>, <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>),</span>
+<span id="cb35-6">  nn.Sigmoid()</span>
+<span id="cb35-7">)</span></code></pre></div>
+</div>
+<ul>
+<li><p>La primera capa toma seis características como entrada, genera cuatro.</p></li>
+<li><p>La segunda capa procesa esto para obtener una probailidad final.</p></li>
+</ul>
+<p>El resultado de nuestra clasificación binaria es una única probabilidad entre cero y uno para cada uno de nuestros cinco animales.</p>
+<div id="8d7f52c2" class="cell" data-execution_count="23">
+<div class="sourceCode cell-code" id="cb36" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb36-1">output <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> model(input_data)</span>
+<span id="cb36-2"><span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">print</span>(output)</span></code></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>tensor([[0.5332],
+        [0.4021],
+        [0.4487],
+        [0.4753],
+        [0.4996]], grad_fn=&lt;SigmoidBackward0&gt;)</code></pre>
+</div>
+</div>
+<p>Recuerde que comúnmente utilizamos un umbral de 0.5 para convertirlos en etiquetaas de 0 y 1, es decir:</p>
+<ul>
+<li><p>Class = 1 para <img src="https://latex.codecogs.com/png.latex?output%20%5Cgeq%200.5"></p></li>
+<li><p>Class = 0 para <img src="https://latex.codecogs.com/png.latex?output%20%5Cleq%200.5"></p></li>
+</ul>
+<p>Esta salida no será significativa hasta que usemos retropropagación para actualizar los pesos y sesgos de las capas. Hablaremos más sobre esto más adelante.</p>
+</section>
+<section id="clasificación-multi-class-forward-pass" class="level3">
+<h3 class="anchored" data-anchor-id="clasificación-multi-class-forward-pass">Clasificación Multi-Class: Forward Pass</h3>
+<p>El modelo sería similar si quisiéramos ejecutar una clasificación de múltiples clases.</p>
+<p>Digamos que estamos prediciendo tres clases: <em>mamíferos (Class 1), aves (Class 2) o reptiles (Class 3).</em></p>
+<p>Específicamos que nuestro modelo tiene tres clases, estableciendo este valor como la dimensión de salida de la última capa lineal.</p>
+<div id="7f85fb75" class="cell" data-execution_count="24">
+<div class="sourceCode cell-code" id="cb38" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb38-1">n_classes <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">3</span></span>
+<span id="cb38-2">model <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> nn.Sequential(</span>
+<span id="cb38-3">  nn.Linear(<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">6</span>, <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">4</span>),</span>
+<span id="cb38-4">  nn.Linear(<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">4</span>, n_classes),</span>
+<span id="cb38-5">  nn.Softmax(dim<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=-</span><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>)</span>
+<span id="cb38-6">)</span></code></pre></div>
+</div>
+<p>Usamos Softmax en lugar de Sigmoid, con <img src="https://latex.codecogs.com/png.latex?dim%20=%20-1"> para indicar los 5 animales. Los anímales tiene la misma última dimensión que la salida de la última capa lineal.</p>
+<div id="ebeb5a22" class="cell" data-execution_count="25">
+<div class="sourceCode cell-code" id="cb39" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb39-1">output <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> model(input_data)</span>
+<span id="cb39-2"><span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">print</span>(output.shape)</span></code></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>torch.Size([5, 3])</code></pre>
+</div>
+</div>
+<p>Utilizando la misma entrada que antes, la forma de salida es <img src="https://latex.codecogs.com/png.latex?5%5Ctimes%203">.</p>
+<div id="8820740b" class="cell" data-execution_count="26">
+<div class="sourceCode cell-code" id="cb41" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb41-1"><span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">print</span>(output)</span></code></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>tensor([[0.1850, 0.4169, 0.3981],
+        [0.3528, 0.5321, 0.1151],
+        [0.2644, 0.4431, 0.2925],
+        [0.2599, 0.4821, 0.2580],
+        [0.2463, 0.4823, 0.2714]], grad_fn=&lt;SoftmaxBackward0&gt;)</code></pre>
+</div>
+</div>
+<p>Note que cuando imprimimos la salida, cada fila representa las probabilidades de tres clases, que suman uno. La etiqueta prevista para cada fila se asigna a la clase con la mayor probabilidad.</p>
+<p>En nuestro ejemplo, todas las filas son mamíferos.</p>
+</section>
+<section id="regresión-forward-pass" class="level3">
+<h3 class="anchored" data-anchor-id="regresión-forward-pass">Regresión: Forward Pass</h3>
+<p>El último modelo que analizaremos es la regresión: predecir valores numéricos continuos.</p>
+<p>Ahora usaremos las mismos datos para predecir el peso de los animales en función de sus propiedades.</p>
+<div id="7a13c4dc" class="cell" data-execution_count="27">
+<div class="sourceCode cell-code" id="cb43" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb43-1">model <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> nn.Sequential(</span>
+<span id="cb43-2">  nn.Linear(<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">6</span>, <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">4</span>), </span>
+<span id="cb43-3">  nn.Linear(<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">4</span>, <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>)</span>
+<span id="cb43-4">)</span>
+<span id="cb43-5"></span>
+<span id="cb43-6">output <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> model(input_data)</span>
+<span id="cb43-7"><span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">print</span>(output)</span></code></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>tensor([[ 0.6664],
+        [-0.1888],
+        [-0.5721],
+        [ 0.3729],
+        [ 0.0682]], grad_fn=&lt;AddmmBackward0&gt;)</code></pre>
+</div>
+</div>
+<p>Esta vez no hay función de activación al final, y la última dimensión de la última capa lineal devuelve una salida con una característica.</p>
+<p>Las dimensiones de salida son <img src="https://latex.codecogs.com/png.latex?5%5Ctimes%201">: cinco valores continuos, uno para cada fila.</p>
+</section>
+</section>
+<section id="funciones-de-pérdida-para-evaluar-las-predicciones-del-modelo" class="level2">
+<h2 class="anchored" data-anchor-id="funciones-de-pérdida-para-evaluar-las-predicciones-del-modelo">Funciones de Pérdida para Evaluar las Predicciones del Modelo</h2>
+<p>Hemos generado predicciones ejecutando un paso hacia adelante, el siguiente paso es ver qué tan buenas son nuestras predicciones en comparación con los valores reales.</p>
+<section id="función-de-pérdida" class="level4">
+<h4 class="anchored" data-anchor-id="función-de-pérdida">Función de pérdida</h4>
+<p>La función de pérdida, otro componente de las redes neuronales, nos dicen qué tan bueno es nuestro modelo para hacer predicciones durante el entrenamiento.</p>
+<p>Toma una predicción del modelo <img src="https://latex.codecogs.com/png.latex?(%5Chat%7By%7D)"> y una etiqueta verdadera <img src="https://latex.codecogs.com/png.latex?y">, o dato real, y genera un dato flotante, tal como se puede apreciar en el siguiente esquema</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://j-isaula.github.io/Web_JI/posts/DL_PyTorch/img/fig30.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="800"></p>
+</figure>
+</div>
+<p>Utilicemos nuestra multiclase</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 8%">
+<col style="width: 13%">
+<col style="width: 8%">
+<col style="width: 8%">
+<col style="width: 8%">
+<col style="width: 8%">
+<col style="width: 8%">
+<col style="width: 13%">
+<col style="width: 12%">
+<col style="width: 9%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Hair</th>
+<th>Feathers</th>
+<th>Eggs</th>
+<th>Milk</th>
+<th>Fins</th>
+<th>Legs</th>
+<th>Tail</th>
+<th>Domestic</th>
+<th>Catsize</th>
+<th>Class</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>4</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+</tr>
+</tbody>
+</table>
+<p>modelo de clasificación que predice si un animal es un mamífero (0), ave (1) o reptil (2).</p>
+<ul>
+<li><p>Si nuestro modelo predice que la clase es igual a cero, es correcto y el valor de la pérdida será bajo.</p></li>
+<li><p>Una predicción incorrecta haría que el valor de la pérdida fuera alto.</p></li>
+<li><p>Nuestro objetivo es minimizar las pérdidas.</p></li>
+</ul>
+</section>
+<section id="calculo-de-la-pérdida" class="level4">
+<h4 class="anchored" data-anchor-id="calculo-de-la-pérdida">Calculo de la pérdida</h4>
+<p>La pérdida se calcula utilizando una función de pérdida, <img src="https://latex.codecogs.com/png.latex?F">, que toma el dato real y el predicho, es decir,</p>
+<p><img src="https://latex.codecogs.com/png.latex?%0ALoss%20=%20F(y,%20%5Chat%7By%7D)%0A"></p>
+<ul>
+<li><p>En nuestro ejemplo de los animales, los valores posibles para nuestra verdadera clase de <img src="https://latex.codecogs.com/png.latex?y"> son los n<u>úmeros enteros 0, 1 o 2, es decir,</u> <img src="https://latex.codecogs.com/png.latex?y%20%5Cin%20%5C%7B0,%201%20,%202%5C%7D">.</p></li>
+<li><p><img src="https://latex.codecogs.com/png.latex?%5Chat%7By%7D"> es un tensor con las mismas dimensiones que el número de clases <img src="https://latex.codecogs.com/png.latex?N">, es decir, <img src="https://latex.codecogs.com/png.latex?%5Chat%7By%7D%5Cin%20%5C%7B-5.2,%204.6,%200.8%5C%7D">. Si <img src="https://latex.codecogs.com/png.latex?N=3"> entonces la salidad softmax es un tensor de forma <img src="https://latex.codecogs.com/png.latex?1%5Ctimes%203">.</p></li>
+</ul>
+</section>
+<section id="codificación-one-hot" class="level4">
+<h4 class="anchored" data-anchor-id="codificación-one-hot">Codificación one-hot</h4>
+<p>Usamos codificación one-hot para convertir un entero <img src="https://latex.codecogs.com/png.latex?y"> en un tensor de ceros y unos para que podamos comparar para evaluar el rendimiento del modelo.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://j-isaula.github.io/Web_JI/posts/DL_PyTorch/img/fig31.png" class="img-fluid figure-img" width="300"></p>
+<figcaption>Figura 1</figcaption>
+</figure>
+</div>
+<p>Por ejemplo, si <img src="https://latex.codecogs.com/png.latex?y=0"> con tres clases, la forma codificada es 1, 0, 0 como se aprecia en <strong>Figura 1.</strong></p>
+<p>Podemos importar <code>torch.nn.functional</code> como <code>F</code> para evitar la codificación one-hot manual.</p>
+<div id="c471399d" class="cell" data-execution_count="28">
+<div class="sourceCode cell-code" id="cb45" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb45-1"><span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">import</span> torch.nn.functional <span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">as</span> F</span>
+<span id="cb45-2"></span>
+<span id="cb45-3"><span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">print</span>(F.one_hot(torch.tensor(<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0</span>), num_classes <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">3</span>))</span></code></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>tensor([1, 0, 0])</code></pre>
+</div>
+</div>
+<p>En el primer ejemplo, la verdad fundamental es cero (la primera clase). Tenemos 3 clases, por lo que la función genera un tensor de tres elementos con uno en la primera posición y ceros en el resto.</p>
+<div id="22e449ad" class="cell" data-execution_count="29">
+<div class="sourceCode cell-code" id="cb47" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb47-1"><span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">print</span>(F.one_hot(torch.tensor(<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>), num_classes <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">3</span>))</span></code></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>tensor([0, 1, 0])</code></pre>
+</div>
+</div>
+<p>Notemos ahora que si <img src="https://latex.codecogs.com/png.latex?y=1"> (la segunda clase), el tensor de salida tiene un uno en la segunda posición y ceros en caso contrario.</p>
+<div id="b70d1043" class="cell" data-execution_count="30">
+<div class="sourceCode cell-code" id="cb49" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb49-1"><span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">print</span>(F.one_hot(torch.tensor(<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2</span>), num_classes <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">3</span>))</span></code></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>tensor([0, 0, 1])</code></pre>
+</div>
+</div>
+<p>Por último, si <img src="https://latex.codecogs.com/png.latex?y=2"> (tercera clase), el tensor de salida tiene un uno en la última posición y ceros en el resto de los casos.</p>
+</section>
+<section id="función-de-pérdida-cross-entropy-en-pytorch" class="level3">
+<h3 class="anchored" data-anchor-id="función-de-pérdida-cross-entropy-en-pytorch">Función de Pérdida Cross Entropy en PyTorch</h3>
+<p>Una vez completada la codificación, podemos pasarla junto con nuestras predicciones a una función de pérdida. Lo que almacenaríamos será el tensor de <em>“puntuaciones”</em>.</p>
+<div id="59f17a51" class="cell" data-execution_count="31">
+<div class="sourceCode cell-code" id="cb51" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb51-1"><span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">from</span> torch.nn <span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">import</span> CrossEntropyLoss</span>
+<span id="cb51-2"></span>
+<span id="cb51-3">scores <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> torch.tensor([<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">-</span><span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">5.2</span>, <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">4.6</span>, <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.8</span>])</span>
+<span id="cb51-4">one_hot_target <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> torch.tensor([<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>,<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0</span>,<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0</span>])</span></code></pre></div>
+</div>
+<p>La función de pérdida más comunmente utilizada para la clasificaci´øn es la pérdida de entropía cruzada.</p>
+<p>Comencemos definiendo nuestra función de pérdida como <em>“criterio”.</em> Luego le pasamos el método <code>.double()</code> del tensor de puntuaciones y del tensor <code>one_hot_target.</code></p>
+<div id="55f1dd12" class="cell" data-execution_count="32">
+<div class="sourceCode cell-code" id="cb52" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb52-1">criterion <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> CrossEntropyLoss()</span>
+<span id="cb52-2"><span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">print</span>(criterion(scores.double(), one_hot_target.double()))</span></code></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>tensor(9.8222, dtype=torch.float64)</code></pre>
+</div>
+</div>
+<p>Esto garantiza que los tensores estén en el formato correcto para la función de pérdida. La salida es el valor de pérdida calculado.</p>
+<p>En resumen, la función de pérdida toma como entrada el tensor de puntuaciones, que es el modelo, predice antes de la función softmax final y la etiqueta de verdad codificada one-hot. Emite un único flotante, la pérdida de esa muestra.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://j-isaula.github.io/Web_JI/posts/DL_PyTorch/img/fig32.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="550"></p>
+</figure>
+</div>
+<p>Recordemos que nuestro objetivo es minimizar esa pérdida.</p>
+</section>
+</section>
+<section id="utilizar-derivadas-para-actualizar-los-parámetros-del-modelo" class="level2">
+<h2 class="anchored" data-anchor-id="utilizar-derivadas-para-actualizar-los-parámetros-del-modelo">Utilizar derivadas para Actualizar los Parámetros del Modelo</h2>
+<p>Veamos ahora cómo podemos minímizar la pérdida. Sabemos que un modelo predice mal cuando la pérdida es alta. Podemos utilizar derivadas o gradientes para minimizar esta pérdida.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://j-isaula.github.io/Web_JI/posts/DL_PyTorch/img/fig33.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="300"></p>
+</figure>
+</div>
+<p>Imaginemos la función de pérdida como un valle. La derivada representa la pendiente, es decir qué tan pronunciada sube o baja la curva.</p>
+<ul>
+<li><p>Las pendientes pronunciadas, mostradas con flechas rojas, indican derivadas altas y pesos grandes.</p></li>
+<li><p>Las pendientes más suaves, representadas por flechas verdes, tienen derivadas pequeñas y pesos más pequeños.</p></li>
+<li><p>En el fondo del valle, mostrado por la flecha azul, la pendiente es plana y la derivada es cero. <strong>Este punto es el mínimo de la función de pérdida que pretendemos alcanzar.</strong></p></li>
+</ul>
+<section id="funciones-convexas-y-no-convexas" class="level3">
+<h3 class="anchored" data-anchor-id="funciones-convexas-y-no-convexas">Funciones Convexas y No-Convexas</h3>
+<p>Las funciones convexas tienen un mínimo global.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://j-isaula.github.io/Web_JI/posts/DL_PyTorch/img/fig34.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="1000"></p>
+</figure>
+</div>
+<p>Las funciones no convexas, como las funciones de pérdida, tienen múltiples mínimos locales, donde el valor es inferior al de los puntos cercanos pero no el más bajo en general.</p>
+<p>Al minimizar las funciones de pérdida, nuestro objetivo es localizar el mínimo global cuando <img src="https://latex.codecogs.com/png.latex?x"> es aproximadamente uno.</p>
+</section>
+<section id="conexión-de-derivadas-y-entrenamiento-de-modelos" class="level3">
+<h3 class="anchored" data-anchor-id="conexión-de-derivadas-y-entrenamiento-de-modelos">Conexión de derivadas y entrenamiento de modelos</h3>
+<p>Durante el entrenamiento, ejecutamos un <strong><em>paso hacia adelante</em></strong> en las características y calculamos la pérdida comparando las predicciones con el valor objetivo.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://j-isaula.github.io/Web_JI/posts/DL_PyTorch/img/fig38.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="500"></p>
+</figure>
+</div>
+<p>Recuerde que los <strong><em>pesos</em></strong> y <strong><em>sesgos</em></strong> de las capas se inicializan aleatoriamente cuando se crea un modelo. Los actualizamos durante el entrenamiento mediante un <strong><em>paso hacia atrás</em></strong> o <strong><em>retropropogación.</em></strong></p>
+<p>En el Deep Learning, <strong>las derivadas se conocen como gradientes.</strong></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://j-isaula.github.io/Web_JI/posts/DL_PyTorch/img/fig39.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="600"></p>
+</figure>
+</div>
+<p>Calculamos los gradientes de la función de pérdida y los usamos para actualizar los parámetros del modelo. Incluyendo pesos y sesgos, con retropropagación, repitiendo hasta que las capas esten sintonizadas.</p>
+</section>
+<section id="backpropagation-retropropagación" class="level3">
+<h3 class="anchored" data-anchor-id="backpropagation-retropropagación">Backpropagation (Retropropagación)</h3>
+<p>Durante la retropropagación, si consideramos una red de tres capas lineales:</p>
+<ul>
+<li><p>podemos calcular gradientes de pérdida locales con respecto a <img src="https://latex.codecogs.com/png.latex?L_2"></p></li>
+<li><p>Usamos <img src="https://latex.codecogs.com/png.latex?L_2"> para calcular el gradiente <img src="https://latex.codecogs.com/png.latex?L_1"></p></li>
+<li><p>Y repetimos hasta llegar a la capa inicial <img src="https://latex.codecogs.com/png.latex?L_0">.</p></li>
+</ul>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://j-isaula.github.io/Web_JI/posts/DL_PyTorch/img/fig40.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="300"></p>
+</figure>
+</div>
+<p>Veamos esto con PyTorch:</p>
+<pre class="{bash}"><code>model = nn.Sequential(nn.Linear(16, 8),
+nn.Linear(8, 4),
+nn.Linear(4, 2))
+prediction = model(sample)
+
+criterion = CrossEntropyLoss()
+loss = criterion(prediction, target)
+loss.backward</code></pre>
+<p>Después de ejecutar un paso hacia adelante, definimos una función de pérdida, aquí <code>CrossEntropyLoss()</code> y úselo para comparar predicciones con valores objetivo.</p>
+<p>Usando <code>.backward()</code>, calculamos gradientes basados en esta pérdida, que se almacenan en los atributos <code>.grad</code> de los pesos y <code>.bias</code> de los sesgos de cada capa.</p>
+<pre class="{bash}"><code>model[0].weight.grad
+model[0].bias.grad
+model[1].weight.grad
+model[1].bias.grad
+model[2].weight.grad
+model[2].bias.grad</code></pre>
+<p>Cada capa del modelo se puede indexar comenzando desde cero para acceder a sus pesos, sesgos y gradientes.</p>
+</section>
+<section id="actualizar-manualmente-los-parámetros-del-modelo" class="level3">
+<h3 class="anchored" data-anchor-id="actualizar-manualmente-los-parámetros-del-modelo">Actualizar Manualmente los Parámetros del Modelo</h3>
+<p>Para actualizar manualmente los parámetros del modelo, accedemos al gradiente de cada capa.</p>
+<pre class="{bash}"><code># Tasa de aprendizaje tipicamente pequeña
+lr = 0.001
+
+# updater the pesos
+weight = model[0].weight
+weight_grad = model[0].weight.grad
+
+# update de sesgos 
+bias = model[0].bias
+bias_grad = model[0].bias.grad </code></pre>
+<p>luego multiplicamos por la tasa de aprendizaje y restamos este producto del peso.</p>
+<pre class="{bash}"><code>bias = bias - lr*bias_grad </code></pre>
+<p>La tasa de aprendizaje es otro parámetros ajustable. Discutiremos esto y el ciclo de entranamiento más adelante en este documento.</p>
+</section>
+<section id="gradiente-descendente" class="level3">
+<h3 class="anchored" data-anchor-id="gradiente-descendente">Gradiente Descendente</h3>
+<ul>
+<li><p>Utilizamos un mecanismo llamado <em>“gradiente desendiente”</em> para encontrar el mínimo global de las funciones de pérdida.</p></li>
+<li><p>PyTorch simplifica esto con optimizadores, como el descenso de gradiente estocástico (SGD).</p></li>
+</ul>
+<div id="b172ad5b" class="cell" data-execution_count="33">
+<div class="sourceCode cell-code" id="cb58" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb58-1"><span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">import</span> torch.optim <span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">as</span> optim</span>
+<span id="cb58-2"></span>
+<span id="cb58-3"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Creamos el optimizador</span></span>
+<span id="cb58-4">optimizer <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> optim.SGD(model.parameters(), lr <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.001</span>)</span></code></pre></div>
+</div>
+<ul>
+<li><p>Usamos <code>optim</code> para instanciar <code>SGD.</code></p></li>
+<li><p><code>.parameters()</code> devuelve un iterable de todos los parámetros del modelo, que pasamos al optimizador.</p></li>
+<li><p>Aquí utilizamos una tasa de aprendizaje estándar, “lr”.</p></li>
+</ul>
+<p>El optimizador calcula automáticamente los gradientes y actualiza los parámetros del modelo con <code>.step()</code></p>
+<div id="b732a67b" class="cell" data-execution_count="34">
+<div class="sourceCode cell-code" id="cb59" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb59-1">optimizer.step()</span></code></pre></div>
+</div>
+</section>
+</section>
+</section>
+<section id="entrenar-una-red-neuronal-con-pytorch" class="level1">
+<h1>Entrenar una red neuronal con PyTorch</h1>
+<p>Ahora que hemos visto los componentes clave de una red neuronal, entrenaremos una utilizando un bucle de entrenamiento. Exploraremos posibles problemas, como la fuga de gradiente, y aprenderemos estrategías para resolverlos, como funciones de activación alternativas y el análisis de la tasa de aprendizaje.</p>
+<section id="inmmersión-profunda-en-la-carga-de-datos" class="level3">
+<h3 class="anchored" data-anchor-id="inmmersión-profunda-en-la-carga-de-datos">Inmmersión profunda en la carga de datos</h3>
+<p>El manejo eficiente de datos es clave para entrenar modelos de aprendizaje profundo (Deep Learnig)</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 18%">
+<col style="width: 8%">
+<col style="width: 14%">
+<col style="width: 8%">
+<col style="width: 8%">
+<col style="width: 14%">
+<col style="width: 8%">
+<col style="width: 8%">
+<col style="width: 8%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>animal_name</th>
+<th>hair</th>
+<th>feathers</th>
+<th>eggs</th>
+<th>milk</th>
+<th>predator</th>
+<th>legs</th>
+<th>tail</th>
+<th>type</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>sparrow</td>
+<td>0</td>
+<td>1</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>2</td>
+<td>1</td>
+<td>0</td>
+</tr>
+<tr class="even">
+<td>eagle</td>
+<td>0</td>
+<td>1</td>
+<td>1</td>
+<td>0</td>
+<td>1</td>
+<td>2</td>
+<td>1</td>
+<td>0</td>
+</tr>
+<tr class="odd">
+<td>cat</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>1</td>
+<td>4</td>
+<td>1</td>
+<td>1</td>
+</tr>
+<tr class="even">
+<td>dog</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>4</td>
+<td>1</td>
+<td>1</td>
+</tr>
+<tr class="odd">
+<td>lizard</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td>1</td>
+<td>4</td>
+<td>1</td>
+<td>2</td>
+</tr>
+</tbody>
+</table>
+<p>Nuestros datos de clasificación de animales estan en un archivo csv y se pueden cargar utilizando <code>pd.read_csv()</code>.</p>
+<div id="87049cc1" class="cell" data-execution_count="35">
+<div class="sourceCode cell-code" id="cb60" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb60-1"><span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">import</span> pandas <span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">as</span> pd</span>
+<span id="cb60-2"><span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">import</span> numpy <span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">as</span> np</span>
+<span id="cb60-3">animals <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> pd.read_csv(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'animal_dataset.csv'</span>, sep <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">";"</span>)</span></code></pre></div>
+</div>
+<p>Usaremos pelo, plumas, huevos, leche, depredador, patas y cola como características para predecir todo el tipo de animal.</p>
+<ul>
+<li><p>La columna <strong>animal_name</strong> no es necesaria ya que los nombres no determinan la clasificación.</p></li>
+<li><p>Tenga en cuenta que la columna <strong>type</strong> tiene tres categorías: ave (0), mamífero (1) y reptil (2).</p></li>
+</ul>
+<div id="b6e2d79e" class="cell" data-execution_count="36">
+<div class="sourceCode cell-code" id="cb61" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb61-1">features <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> animals.iloc[:, <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>:<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">-</span><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>]</span>
+<span id="cb61-2">X <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> features.to_numpy()</span>
+<span id="cb61-3"><span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">print</span>(X)</span></code></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[[0 1 1 0 0 2 1]
+ [0 1 1 0 1 2 1]
+ [1 0 0 1 1 4 1]
+ [1 0 0 1 0 4 1]
+ [0 0 1 0 1 4 1]]</code></pre>
+</div>
+</div>
+<ul>
+<li><p>Usaremos <code>.iloc</code> para seleccionar todas las columnas excepto la primera y la (animal_name) última (type), lo que nos dará nuestras características de entrada.</p></li>
+<li><p>Estos se convierten en una matriz NumPy (X), para un manejo más sencillo con PyTorch.</p></li>
+</ul>
+<p>De manera similar, podemos extraer la última columna (type) y almacenarla como una matriz de nuestros valores objetivo, que representan las etiquetas de clase para cada animal, a esto lo llamaremos <strong>y</strong>.</p>
+<div id="928d11fe" class="cell" data-execution_count="37">
+<div class="sourceCode cell-code" id="cb63" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb63-1">target <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> animals.iloc[:, <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">-</span><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>]</span>
+<span id="cb63-2">y <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> target.to_numpy()</span>
+<span id="cb63-3"><span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">print</span>(y)</span></code></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[0 0 1 1 2]</code></pre>
+</div>
+</div>
+</section>
+<section id="tensordataset" class="level3">
+<h3 class="anchored" data-anchor-id="tensordataset">TensorDataset</h3>
+<p>Usaremos TensorDataset para preparar datos para los modelos de PyTorch.</p>
+<div id="7e088643" class="cell" data-execution_count="38">
+<div class="sourceCode cell-code" id="cb65" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb65-1"><span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">import</span> torch </span>
+<span id="cb65-2"><span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">from</span> torch.utils.data <span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">import</span> TensorDataset</span></code></pre></div>
+</div>
+<p>Esto nos permite almacenar nuestras características (X) y etiquetas destino (y) como tensores, lo que hace que sean fáciles de administrar.</p>
+<ol type="1">
+<li><p>Convertimos <img src="https://latex.codecogs.com/png.latex?X"> e <img src="https://latex.codecogs.com/png.latex?y"> en tensores usando el método tensor de PyTorch y los pasamos a TensorDataset</p>
+<div id="881a2fec" class="cell" data-execution_count="39">
+<div class="sourceCode cell-code" id="cb66" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb66-1">dataset <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> TensorDataset(torch.tensor(X), torch.tensor(y))</span></code></pre></div>
+</div></li>
+<li><p>Para acceder a una muestra individual, utilizamos la indexación de corchetes.</p>
+<div id="a59e1988" class="cell" data-execution_count="40">
+<div class="sourceCode cell-code" id="cb67" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb67-1">input_sample, label_sample <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> dataset[<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0</span>]</span>
+<span id="cb67-2"><span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">print</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'input sample:'</span>, input_sample)</span>
+<span id="cb67-3"><span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">print</span>(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'input_sample:'</span>, label_sample)</span></code></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>input sample: tensor([0, 1, 1, 0, 0, 2, 1])
+input_sample: tensor(0)</code></pre>
+</div>
+</div>
+<p><br>
+<br>
+</p></li>
+</ol>
+</section>
+<section id="escribir-nuestro-primer-bucle-de-entrenamiento" class="level2">
+<h2 class="anchored" data-anchor-id="escribir-nuestro-primer-bucle-de-entrenamiento">Escribir nuestro primer bucle de entrenamiento</h2>
+<p>Ahora que ya tenemos los componentes principales para entrenar un modelo de aprendizaje profundo con PyTorch.</p>
+<section id="entrenando-una-red-neuronal" class="level3">
+<h3 class="anchored" data-anchor-id="entrenando-una-red-neuronal">Entrenando una Red Neuronal</h3>
+<p>Una vez que creamos un modelo, elegimos una función de pérdida, definimos un conjunto de datos y configuramos un optimizador, estamos listos para entrenar. Esto implica recorrer el conjunto de datos, calcular la pérdida, calcular gradientes y actualizar los parámetros del modelo. Este proceso, es llamado <strong>bucle de entrenamiento</strong>, se repite varias veces.</p>
+<p>Un bucle de entrenamiento permite una mayor flexibilidad y control, dándonos la opción de personalizar diferentes elementos.</p>
+<p>Trabajaremos con un conjunto de datos de salarios de científicos de datos para ver esto en acción.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 23%">
+<col style="width: 21%">
+<col style="width: 17%">
+<col style="width: 17%">
+<col style="width: 19%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>experience_level</th>
+<th>employment_type</th>
+<th>remote_ratio</th>
+<th>company_size</th>
+<th>salary_in_usd</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>0</td>
+<td>0</td>
+<td>0.5</td>
+<td>1</td>
+<td>0.036</td>
+</tr>
+<tr class="even">
+<td>1</td>
+<td>0</td>
+<td>1.0</td>
+<td>2</td>
+<td>0.133</td>
+</tr>
+<tr class="odd">
+<td>2</td>
+<td>0</td>
+<td>0.0</td>
+<td>1</td>
+<td>0.234</td>
+</tr>
+<tr class="even">
+<td>1</td>
+<td>0</td>
+<td>1.0</td>
+<td>0</td>
+<td>0.076</td>
+</tr>
+<tr class="odd">
+<td>2</td>
+<td>0</td>
+<td>1.0</td>
+<td>1</td>
+<td>0.170</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><p>Las características son categóricas y el objetivo es el salario en dólares (salary_in_usd), ya normalizado. Dado que el objetivo es un valor continuo, este es un problema de regresión.</p></li>
+<li><p>Para la regresión, utilizaremos una capa lineal como salida final en lugar de softmax o sigomoide.</p></li>
+<li><p>Además, aplicaremos una función de pérdida específica de regresión, ya que la entropía cruzada solo se utiliza para tareas de clasificación.</p></li>
+</ul>
+<section id="mean-squared-error-loss" class="level4">
+<h4 class="anchored" data-anchor-id="mean-squared-error-loss">Mean Squared Error Loss</h4>
+<p>Podemos utilizar la pérdida de error cuadrático medio (MSE) para problemas de regresión. La pérdida de MSE es la media de la diferencia al cuadrado entre predicciones y el dato real o verdad fundamental, como se muestra en esta implementación en Python:</p>
+<div id="ae7cc685" class="cell" data-execution_count="41">
+<div class="sourceCode cell-code" id="cb69" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb69-1"><span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">def</span> mean_squared_loss(prediction, target):</span>
+<span id="cb69-2">  <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">return</span> np.mean((prediction <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">-</span> target)<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">**</span><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2</span>)</span></code></pre></div>
+</div>
+<p>En PyTorch, utilizamos la función <code>nn.MSELoss</code> como criterio.</p>
+<pre class="{bash}"><code>criterion = nn.MSELoss()
+loss = criterion(prediction, target)</code></pre>
+<p>Tenga en cuenta que tanto las predicciones como los objetivos deben ser tensores flotantes.</p>
+<p>Pongamos todo junto ahora, tenemos dos matrices NumPy, “características” y “objetivo”, que tienen nuestros datos y etiquetas.</p>
+<div id="12a42a4a" class="cell" data-execution_count="42">
+<div class="sourceCode cell-code" id="cb71" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb71-1">data <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> pd.read_csv(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"salary_datascince.csv"</span>, sep <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">";"</span>)</span>
+<span id="cb71-2">data</span></code></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="42">
+<div>
+
+
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">experience_level</th>
+<th data-quarto-table-cell-role="th">employment_type</th>
+<th data-quarto-table-cell-role="th">remote_ratio</th>
+<th data-quarto-table-cell-role="th">company_size</th>
+<th data-quarto-table-cell-role="th">salary_in_usd</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">0</td>
+<td>0</td>
+<td>0</td>
+<td>0.5</td>
+<td>1</td>
+<td>0.036</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1</td>
+<td>1</td>
+<td>0</td>
+<td>1.0</td>
+<td>2</td>
+<td>0.133</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2</td>
+<td>2</td>
+<td>0</td>
+<td>0.0</td>
+<td>1</td>
+<td>0.234</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">3</td>
+<td>1</td>
+<td>0</td>
+<td>1.0</td>
+<td>0</td>
+<td>0.076</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">4</td>
+<td>2</td>
+<td>0</td>
+<td>1.0</td>
+<td>1</td>
+<td>0.170</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<div id="8b18d633" class="cell" data-execution_count="43">
+<div class="sourceCode cell-code" id="cb72" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb72-1">features <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> data.iloc[:, :<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">-</span><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>]</span>
+<span id="cb72-2">X <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> features.to_numpy()</span>
+<span id="cb72-3"><span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">print</span>(X)</span></code></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[[0.  0.  0.5 1. ]
+ [1.  0.  1.  2. ]
+ [2.  0.  0.  1. ]
+ [1.  0.  1.  0. ]
+ [2.  0.  1.  1. ]]</code></pre>
+</div>
+</div>
+<div id="618e80f3" class="cell" data-execution_count="44">
+<div class="sourceCode cell-code" id="cb74" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb74-1">target <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> data.iloc[:, <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">-</span><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>]</span>
+<span id="cb74-2">y <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> target.to_numpy()</span>
+<span id="cb74-3"><span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">print</span>(y)</span></code></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[0.036 0.133 0.234 0.076 0.17 ]</code></pre>
+</div>
+</div>
+<div id="1f76af84" class="cell" data-execution_count="45">
+<div class="sourceCode cell-code" id="cb76" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb76-1"><span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">from</span> torch.utils.data <span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">import</span> TensorDataset, DataLoader</span>
+<span id="cb76-2"></span>
+<span id="cb76-3">dataset <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> TensorDataset(torch.tensor(X),</span>
+<span id="cb76-4">torch.tensor(y))</span>
+<span id="cb76-5"></span>
+<span id="cb76-6">dataloader <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> DataLoader(dataset, batch_size <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">4</span>, shuffle <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">True</span>)</span></code></pre></div>
+</div>
+<p>Ahora podemos cargar nuestro conjunto de datos en la clase <code>DataLoader()</code> para habilitar el procesamiento por lotes.</p>
+<ul>
+<li>Aquí utilizamos un tamaño de lote pequeño de cuatro, pero la selección del tamaño de lote es personalizable dependiendo del caso de uso.</li>
+</ul>
+<p>A continuación creamos nuestro modelo, este conjunto de datos tiene cuatro características de entrada y un destino (salida).</p>
+<div id="3b4bd8e9" class="cell" data-execution_count="46">
+<div class="sourceCode cell-code" id="cb77" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb77-1">model <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> nn.Sequential(nn.Linear(<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">4</span>, <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2</span>), </span>
+<span id="cb77-2">nn.Linear(<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2</span>, <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>))</span></code></pre></div>
+</div>
+<p>No necesitaremos codificación one-hot ya que se trata de un problema de regresión.</p>
+<p>Finalmente, creamos el criterio de pérdida MSE y el optimizador, con una taza de aprendizaje predeterminada para la mayoría de los problemas de deep learning.</p>
+<div id="f55bd4b5" class="cell" data-execution_count="47">
+<div class="sourceCode cell-code" id="cb78" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb78-1">criterio <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> nn.MSELoss()</span>
+<span id="cb78-2">optimizer <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> optim.SGD(model.parameters(), lr <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.001</span>)</span></code></pre></div>
+</div>
+<p>Ahora podemos recorrer el conjunto de datos varias veces:</p>
+<ul>
+<li>Recorrer todo el conjunto de datos una vez se denomina época y entrenamos en múltiples época, indicadas por num_epochs. Para cada época, recorremos el cargador de datos. Cada iteración del cargador de datos proporciona un lote de muestras, que vimos anteriormente. Antes del pase hacia adelante , establecemos los gradientes a cero usando <code>optimizer.zero_grad()</code>, porque el optimizador almacena gradientes de pasos anteriores de manera predeterminada, obtenemos características y objetivos de cada muestra del cargador de datos. Utilizamos las características para el paso hacia adelante del modelo y utilizamos el objetivo para el cálculo de la pérdida y finalmente, utilizamos el optimizador para actualizar los parámetros del modelo.</li>
+</ul>
+<pre class="{bash}"><code>for epoch in range(num_epochs):
+  for data in dataloader: 
+    optimizer.zero_grad()
+    feature, target = data 
+    pred = model(feature)
+    loss = criterion(pred, target)
+    loss.backward()
+    optimizer.step()
+    </code></pre>
+</section>
+</section>
+</section>
+<section id="funciones-de-activación-relu" class="level2">
+<h2 class="anchored" data-anchor-id="funciones-de-activación-relu">Funciones de Activación ReLU</h2>
+<p>Hemos visto como las funciones de activación introducen no linealidad para ayudar a las redes neuronales a aprender patrones complejos y hemos aprendido sobre los gradientes y su papel dentro del ciclo de entrenamiento.</p>
+<p>A veces, las funciones de activación pueden reducir demasiado los gradientes, lo que hace que el entrenamiento sea ineficiente.</p>
+<p>Hasta ahora hemos trabajado con dos funciones de activación: <strong>sigmoidea</strong> y <strong>softmax,</strong> que normalmente se utilizan en la capa final de un modelo.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://j-isaula.github.io/Web_JI/posts/DL_PyTorch/img/fig41.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="900"></p>
+</figure>
+</div>
+<section id="limitaciones-de-sigmoid-y-softmax" class="level3">
+<h3 class="anchored" data-anchor-id="limitaciones-de-sigmoid-y-softmax">Limitaciones de Sigmoid y Softmax</h3>
+<p>Comenzaremos por comprender algunas de las limitaciones de la función sigmoidea.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://j-isaula.github.io/Web_JI/posts/DL_PyTorch/img/fig42.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="300"></p>
+</figure>
+</div>
+<ul>
+<li><p>Las salidas de sigmoid están limitadas entre 0 y 1, lo que significa que para cualquier entrada, la salida siempre estará dentro de este rango.</p></li>
+<li><p>Sigmoid podría usarse en cualquier punto de una red. Sin embargo, los gradientes de la sigmoide, que se muestran en naranja, son muy pequeños para valores grandes y pequeños de <img src="https://latex.codecogs.com/png.latex?x">. Este fenómeno se llama saturación. Durante la retropropagación, esto se vuelve problemático porque cada gradiente depende del anterior. Cuando los gradientes son extremadamente pequeños, no logran actualizar los pesos de manera efectiva.</p></li>
+<li><p>Este problema se conoce como el problema de los gradientes avanescentes y puede dificultar mucho el entrenamiento de redes profundas.</p></li>
+</ul>
+<p>La <strong>función softmax</strong>, que también produce salidas acotadas entre 0 y 1, sufre saturación de manera similar.</p>
+<p>Por tanto, ambas funciones de activación no son ideales para capas ocultas y es mejor utilizarlas solo en la última capa.</p>
+</section>
+<section id="relu" class="level3">
+<h3 class="anchored" data-anchor-id="relu">ReLU</h3>
+<p>Descubriremos dos funciones de activación ampliamente utilizadas, diseñadas para su uso entre capas lineales o en capas ocultas.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://j-isaula.github.io/Web_JI/posts/DL_PyTorch/img/fig43.png" class="img-fluid figure-img" width="300"></p>
+<figcaption>Función ReLU</figcaption>
+</figure>
+</div>
+<ul>
+<li><p><img src="https://latex.codecogs.com/png.latex?f(x)%20=%20%5Cmax(x,0)"> aquí está la unidad lineal rectificada o ReLU. ReLU genera el valor máximo entre su entrada y cero. Como se muestra en el gráfico.</p></li>
+<li><p>Para <strong>entradas positivas,</strong> la salida es igual a la entrada.</p></li>
+<li><p>Para <strong>entradas negativas,</strong> la salida es cero.</p></li>
+</ul>
+<p>Esta función no tiene límite superior y sus gradientes no se aproximan a cero. Para valores grandes de <img src="https://latex.codecogs.com/png.latex?x">, lo que ayuda a superar el problema de los gradientes que desaparecen.</p>
+<p>En PyTorch, ReLU se puede utilizar a través del módulo torch.nn</p>
+<div id="de57fc8c" class="cell" data-execution_count="48">
+<div class="sourceCode cell-code" id="cb80" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb80-1">relu <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> nn.ReLU()</span></code></pre></div>
+</div>
+</section>
+<section id="leaky-relu-relu-con-fugas" class="level3">
+<h3 class="anchored" data-anchor-id="leaky-relu-relu-con-fugas">Leaky ReLU (ReLU con fugas)</h3>
+<p>La ReLU con fugas es una variación de la función ReLU. Para entradas positivas, se comporta exactamente como ReLU.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://j-isaula.github.io/Web_JI/posts/DL_PyTorch/img/fig44.png" class="img-fluid figure-img" width="300"></p>
+<figcaption>Leaky ReLU</figcaption>
+</figure>
+</div>
+<ul>
+<li><p>Para <strong>entradas positivas</strong>, se comporta exactamente como ReLU.</p></li>
+<li><p>Para <strong>entradas negativas</strong>, multiplica la entrada por un coeficiente pequeño (predeterminado a 0.01 en PyTorch).</p></li>
+</ul>
+<p>Esto garantiza que los gradientes para entradas negativas permanezcan distintos de cero, lo que evita que las neuronas dejen de aprender por completo, lo que puede suceder con ReLU estándar.</p>
+<p>En PyTorch, la función ReLU con fugas se implementa utilizando el módulo torch.nn.</p>
+<div id="afbb6114" class="cell" data-execution_count="49">
+<div class="sourceCode cell-code" id="cb81" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb81-1">leaky_relu <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> nn.LeakyReLU(</span>
+<span id="cb81-2">  negative_slope <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.05</span></span>
+<span id="cb81-3">)</span></code></pre></div>
+</div>
+<p>El parámetro <strong>negative_slope</strong> controla el coeficiente aplicado a las entradas negativas.</p>
+</section>
+</section>
+<section id="tasa-de-aprendizaje" class="level2">
+<h2 class="anchored" data-anchor-id="tasa-de-aprendizaje">Tasa de Aprendizaje</h2>
+<p>Hemos hablado anteriormente sobre la tasa de aprendizaje, pero llego el momento de que profundicemos más.</p>
+<section id="actualización-de-pesos-con-sgd" class="level3">
+<h3 class="anchored" data-anchor-id="actualización-de-pesos-con-sgd">Actualización de Pesos con SGD</h3>
+<ul>
+<li><p>Entrenar una red neuronal significa = resolver una optimización. El problema planteado es minimizar la función de pérdida y ajustando los parámetros del modelo.<br>
+<br>
+</p>
+<ul>
+<li>Para ello utilizamos un algoritmo llamado <strong>descenso de gradiente estocástico, o SGD</strong>, implementado en PyTorch.</li>
+</ul>
+<div id="1687ca77" class="cell" data-execution_count="50">
+<div class="sourceCode cell-code" id="cb82" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb82-1">sgd <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> optim.SGD(model.parameters(), lr <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.01</span>, momentum <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.95</span>)</span></code></pre></div>
+</div>
+<p>Recuerde que este es el optimizador que usamos para encontrar el mínimo global de las funciones de pérdida.</p></li>
+<li><p>El optimizador toma los parámetros del modelo junto con dos argumentos claves:<br>
+<br>
+</p>
+<ul>
+<li><strong>Tasa de aprendizaje:</strong> controla el tamaño del paso de las actualizaciones.<br>
+<br>
+</li>
+<li>momentum: añade inercia para ayudar al optimizador a moverse con suavidad y evitar atascarse.<br>
+</li>
+</ul></li>
+</ul>
+</section>
+<section id="impaco-de-learning-rate-tasa-de-aprendizaje-óptima" class="level3">
+<h3 class="anchored" data-anchor-id="impaco-de-learning-rate-tasa-de-aprendizaje-óptima">Impaco de learning rate: tasa de aprendizaje óptima</h3>
+<p>Comprender su impacto nos ayuda a optimizar la eficiencia.</p>
+<p>Intentemos encontrar el mínimo de una función en forma de U.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://j-isaula.github.io/Web_JI/posts/DL_PyTorch/img/fig45.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="500"></p>
+</figure>
+</div>
+<p>Comenzamos en <img src="https://latex.codecogs.com/png.latex?x%20=%20-2"> y ejecutamos el optimizador SGD durante diez pasos. Luego de estos pasos observamos que el optimizador está cerca del mínimo.</p>
+<p>También podemos observar que a medida que nos acercamos al mínimo, el tamaño del paso disminuye gradualmente. Esto sucede porque el tamaño del paso es el gradiente multiplicado por la tasa de aprendizaje. Como la función es menos pronunciada cerca de cero, el gradiente, y por tanto el tamaño del paso, se hace más pequeño.</p>
+</section>
+<section id="impacto-de-learning-rate-tasa-de-aprendizaje-pequeña" class="level3">
+<h3 class="anchored" data-anchor-id="impacto-de-learning-rate-tasa-de-aprendizaje-pequeña">Impacto de learning rate tasa de aprendizaje pequeña</h3>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://j-isaula.github.io/Web_JI/posts/DL_PyTorch/img/fig46.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="600"></p>
+</figure>
+</div>
+<p>Sin embargo, si utilizamos el mismo algoritmo para un aprendizaje, si reducimos la velocidad diez veces, nos damos cuenta de que todavía estamos lejos del mínimo de la función después de diez pasos. El optimizador tardará mucho más tiempo en encontrar el mínimo de la función.</p>
+</section>
+<section id="impacto-learning-rate-tasa-de-aprendizaje-alto" class="level3">
+<h3 class="anchored" data-anchor-id="impacto-learning-rate-tasa-de-aprendizaje-alto">Impacto learning rate: tasa de aprendizaje alto</h3>
+<p>Si utilizamos un valor alto para la tasa de aprendizaje, observamos que el optimizador no puede encontrar el mínimo y rebota de un lado a otro en ambos lados de la función.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://j-isaula.github.io/Web_JI/posts/DL_PyTorch/img/fig47.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="600"></p>
+</figure>
+</div>
+<p>Recuerde que las funciones de pérdida no son convexas.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://j-isaula.github.io/Web_JI/posts/DL_PyTorch/img/fig48.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="800"></p>
+</figure>
+</div>
+<p>Uno de los desafíos al intentar encontrar el mínimo de una función no convexa es quedarse atrapado en un mínimo local.</p>
+</section>
+<section id="sin-momentum" class="level3">
+<h3 class="anchored" data-anchor-id="sin-momentum">Sin momentum</h3>
+<ul>
+<li><p><img src="https://latex.codecogs.com/png.latex?lr%20=%200.01"> <img src="https://latex.codecogs.com/png.latex?momentum%20=%200">, ejecutemos nuestro optimizador durante 100 pasos con un momento nulo en esta función no convexa para <img src="https://latex.codecogs.com/png.latex?x%20=%20-1.23"> y <img src="https://latex.codecogs.com/png.latex?y%20=%20-0.14">.<br>
+<br>
+<img src="https://j-isaula.github.io/Web_JI/posts/DL_PyTorch/img/fig49.png" class="img-fluid" width="500"></p>
+<ul>
+<li>Vemos que el optimizador se queda atascado en esta primera caída de la función, que no es su mínimo global.</li>
+</ul></li>
+<li><p>Sin embargo, al utilizar lr = 0.01, momentum = 0.9 ejecutando nuestro optimizador durante 100 pasos para <img src="https://latex.codecogs.com/png.latex?x%20=%200.92"> y <img src="https://latex.codecogs.com/png.latex?y%20=%20-2.04">. Podemos encontrar el mínimo de la función.<br>
+<br>
+<img src="https://j-isaula.github.io/Web_JI/posts/DL_PyTorch/img/fig50.png" class="img-fluid" width="500"></p></li>
+</ul>
+<p>Este parámetro proporciona impulso al optimizador permitiendole superar caídas locales, como se muestra en la figura previa.</p>
+<p>El impulso (momentum) mantiene el tamaño del paso grande cuando los pasos anteriores también fueron grandes, incluso si el gradiente actual es pequeño.</p>
+</section>
+<section id="summary" class="level3">
+<h3 class="anchored" data-anchor-id="summary">Summary</h3>
+<p>Enr esumen, dos parámetros optimizadores clave impactan el entrenamiento: la tasa de aprendizaje (learning rate) y el impulso (momentum):</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Learning Rate</th>
+<th>Momentum</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Controla el tamaño del paso</td>
+<td>Controla la inercia</td>
+</tr>
+<tr class="even">
+<td>Valor de tasa alta -&gt; bajo rendimiento</td>
+<td>Ayuda a escapar de mínimos locales</td>
+</tr>
+<tr class="odd">
+<td>Valor de tasa bajo -&gt; entrenamiento lento</td>
+<td>Demasiado pequeño -&gt; el optimizador se queda atascado</td>
+</tr>
+<tr class="even">
+<td>Valores tipicos varían de 0.01 a 0.0001.</td>
+<td>Rango típico: 0.85 a 0.99</td>
+</tr>
+</tbody>
+</table>
+<p><strong>El <code>momentum</code> y <code>learning</code> rate son críticos par el entrenamiento de tu red neuronal. Una buena regla general es comenzar con una learning rate de 0.001 y un momentum de 0.95.</strong></p>
+</section>
+</section>
+</section>
+<section id="evaluación-y-mejora-de-los-modelos" class="level1">
+<h1>Evaluación y Mejora de los Modelos</h1>
+<p>Entrenar un modelo de aprendizaje profundo es un arte, y para asegurarnos de que nuestro modelo se entrene correctamente, necesitamos hacer un seguimiento de ciertos parámetros durante el entrenamiento, como la pérdida o la exactitud. Aprenderemos a calcular estas métricas y a reducir el sobreajuste.</p>
+<section id="inicialización-de-capas-y-aprendizaje-por-transferencia" class="level3">
+<h3 class="anchored" data-anchor-id="inicialización-de-capas-y-aprendizaje-por-transferencia">Inicialización de capas y aprendizaje por transferencia</h3>
+<p>Hemos explorado cómo las redes neuronales aprenden actualizando los pesos durante el entrenamiento. Este capítulo final analizará técnicas para evaluar y mejorar la eficiencia del rendimiento del modelo.</p>
+<p>Antes de comenzar, tenga en cuenta que los temas aquí son más avanzados y los cubriremos aun alto nivel.</p>
+<section id="inicialización-de-capa" class="level4">
+<h4 class="anchored" data-anchor-id="inicialización-de-capa">Inicialización de Capa</h4>
+<p>La normalización de datos escala las características de entrada para lograr estabilidad; de manera similar, los pesos de una capa lineal también se inicializan en valores pequeños. Esto se conoce como inicialización de capa.</p>
+<p>Creemos una pequeña capa lineal y verifiquemos su rango de peso.</p>
+<div id="81a56989" class="cell" data-execution_count="51">
+<div class="sourceCode cell-code" id="cb83" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb83-1"><span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">import</span> torch.nn <span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">as</span> nn </span>
+<span id="cb83-2"></span>
+<span id="cb83-3">layer <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> nn.Linear(<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">64</span>, <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">128</span>)</span>
+<span id="cb83-4"><span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">print</span>(layer.weight.<span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">min</span>(), layer.weight.<span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">max</span>())</span></code></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>tensor(-0.1250, grad_fn=&lt;MinBackward1&gt;) tensor(0.1250, grad_fn=&lt;MaxBackward1&gt;)</code></pre>
+</div>
+</div>
+<p>Observemos que los pesos están entre -0.1250 y <img src="https://latex.codecogs.com/png.latex?%5Cpm"> 0.125</p>
+</section>
+<section id="por-qué-es-esto-importante" class="level4">
+<h4 class="anchored" data-anchor-id="por-qué-es-esto-importante">Por qué es esto importante?</h4>
+<p>La salida de una neurona en una capa lineal es una suma ponderada de las entradas de la capa anterior.</p>
+<p>Mantener pequeños tanto los datos de entrada como los pesos de las capas garantiza salidas estables, evitando valores extremos que podrían ralentizar el entrenamiento.</p>
+<p>Las capas de pueden inicializar de diferentes maneras y sigue siendo un área de investigación activa.</p>
+<p>PyTorch proporciona una forma sencilla de inicializar los pesos de las capas con el módulo <code>nn.init.</code></p>
+<div id="3cf9511e" class="cell" data-execution_count="52">
+<div class="sourceCode cell-code" id="cb85" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb85-1">layer <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> nn.Linear(<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">64</span>, <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">128</span>)</span>
+<span id="cb85-2">nn.init.uniform_(layer.weight)</span>
+<span id="cb85-3"></span>
+<span id="cb85-4"><span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">print</span>(layer.weight.<span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">min</span>(), layer.weight.<span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">max</span>())</span></code></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>tensor(7.0155e-05, grad_fn=&lt;MinBackward1&gt;) tensor(0.9999, grad_fn=&lt;MaxBackward1&gt;)</code></pre>
+</div>
+</div>
+<p>Por ejemplo, aquí inicializamos una capa lineal con una distribución uniforme. Como puedes ver, los valores de los pesos ahora varían de 0 a 1.</p>
+</section>
+</section>
+<section id="aprendizaje-por-transferencia" class="level3">
+<h3 class="anchored" data-anchor-id="aprendizaje-por-transferencia">Aprendizaje por Transferencia</h3>
+<p>En la práctica, los ingenieros rara vez entrenan un modelo a partir de pesos inicializados aleatoriamente. En lugar de ello, se basan en un concepto llamado aprendizaje por transferencia.</p>
+<p>El aprendizaje por transferencia toma un modelo que fue entrenado en una primera tarea y lo reutiliza para una segunda tarea. Por ejemplo, entrenamos un modelo sobre los salarios de los científicos de datos en EE.UU.</p>
+<p>Ahora tenemos nuevos datos de los salarios en Europa. En lugar de entrenar un modelo usando pesos inicializados aleatoriamente, podemos cargar los pesos del primer modelo y usarlos como punto de partida para entrenar en este nuevo conjunto de datos.</p>
+<p>Se pueden guardar y cargar pesos utilizando las funciones <code>torch.save</code> y <code>torch.load</code></p>
+<pre class="{bash}"><code>import torch
+
+layer = nn.Linear(64, 128)
+torch.save(layer, 'layer.pth')
+
+new_layer = torch.load('layer.pth')</code></pre>
+<p>Estas funciones funcionan en cualquier tipo de objetos de PyTorch.</p>
+</section>
+<section id="ajuste-fino" class="level3">
+<h3 class="anchored" data-anchor-id="ajuste-fino">Ajuste Fino</h3>
+<p>A veces, la segunda tarea es similar a la primera tarea: queremos realizar un tipo específico de aprendizaje por transferencia llamado ajuste fino.</p>
+<p>En este caso, cargamos pesos de un modelo previamente entrenado, pero entrenamos el modelo con una tasa de aprendizaje más pequeña.</p>
+<p>Incluso podemos entrenar parte de una red, si decidimos que alguna de las capas de red no necesitan ser entrenadas y elige congelarla.</p>
+<p>Una regla general es congelar las primeras capas de la red y ajustar las capas más cercanas a la capa de salida.</p>
+<p>Esto se puede lograr estableciendo el atributo <code>requires_grad</code> de cada parámetro en Falso.</p>
+<div id="337238a1" class="cell" data-execution_count="53">
+<div class="sourceCode cell-code" id="cb88" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb88-1">model <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> nn.Sequential(nn.Linear(<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">64</span>, <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">128</span>),</span>
+<span id="cb88-2">nn.Linear(<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">128</span>, <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">256</span>))</span>
+<span id="cb88-3"></span>
+<span id="cb88-4"><span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">for</span> name, param <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">in</span> model.named_parameters():</span>
+<span id="cb88-5">  <span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">if</span> name <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">==</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'0.weight'</span>:</span>
+<span id="cb88-6">    param.requires_grad <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="va" style="color: #111111;
+background-color: null;
+font-style: inherit;">False</span></span></code></pre></div>
+</div>
+<p>Aquí, utilizamos el método <code>named_parameters()</code> del modelo, que devuelve el nombe y el parámetro en sí.</p>
+</section>
+<section id="evaluación-del-rendimiento-de-los-modelos" class="level2">
+<h2 class="anchored" data-anchor-id="evaluación-del-rendimiento-de-los-modelos">Evaluación del Rendimiento de los Modelos</h2>
+<p>Hemos realizado mucho entrenamiento. Ahora vamos a evaluar nuestros modelos. En el Machine Learning, los datos se dividen en conjuntos de entrenamiento, validación y prueba.</p>
+<table class="caption-top table">
+<tbody>
+<tr class="odd">
+<td>Training</td>
+<td>80-90%</td>
+<td>Ajusta los parámetros del modelo</td>
+</tr>
+<tr class="even">
+<td>Validación</td>
+<td>10 - 20%</td>
+<td>Ajusta los hiperparámetros del model</td>
+</tr>
+<tr class="odd">
+<td>Test</td>
+<td>5 - 10%</td>
+<td>Evalúa el rendimiento final del modelo</td>
+</tr>
+</tbody>
+</table>
+<p>Los datos de entrenamiento ajustan los parámetros del modelo, como pesos y sesgos, y los datos de validación ajustan hiperparámetros como la tasa de aprendizaje y el impulso, y el conjunto de pruebas evalúa el rendimiento final del modelo.</p>
+<p>Realizaremos un seguimiento de dos métricas clave: pérdida y precisión durante el entrenamiento y la validación.</p>
+<section id="calculando-pérdida-de-entrenamiento" class="level3">
+<h3 class="anchored" data-anchor-id="calculando-pérdida-de-entrenamiento">Calculando Pérdida de Entrenamiento</h3>
+<ul>
+<li><p>La pérdida de entrenamiento se calcula sumando la pérdida de todos los lotes en el cargador de datos de entrenamiento.</p></li>
+<li><p>Al final de cada época (epoch), calculamos la pérdida de entrenamiento media dividiendo la pérdida total por el número de epoch.</p></li>
+</ul>
+<pre class="{bash}"><code>training_loss = 0.0 
+
+for inputs, labels in trainloader: 
+  outputs = model(inputs)
+  loss = criterion(outputs, labels)
+  loss.backward()
+  optimizer.step()
+  optimizer.zero_grad()
+  
+  training_loss += loss.item()
+  
+epoch_loss = training_loss / len(trainloader)</code></pre>
+<p>Iteramos a través del cargador de entranamiento, ejecutamos un pase hacia adelante y calculamos la pérdida. Como es habitual, el modelo calcula gradiente y actualiza pesos mediante retropropagación. Y agregamos cada valor de pérdida al total usando <code>.item()</code>, que extrae el valor numérico de u tensor.</p>
+<p>Dqdo que una epoch es un paso completo a través del cargado de datos de entrenamiento, calculamos la pérdida media dividiendo training_loss por el número de lotes en el cargador de train.</p>
+</section>
+<section id="calculo-de-la-pérdida-de-validación" class="level3">
+<h3 class="anchored" data-anchor-id="calculo-de-la-pérdida-de-validación">Calculo de la pérdida de validación</h3>
+<p>Después de cada epoch de entrenamiento, ejecutamos un ciclo de validación.</p>
+<ul>
+<li><p>Primero, establecemos el modelo en modo evaluación usando <code>.eval(),</code> como algunas capas se comportan de manera diferente durante el entrenamiento y la validación.</p></li>
+<li><p>Para mejorar la eficiencia, utilizamos <code>torch.no_grad()</code> , que deshabilita cálculos de gradiente ya que no actualizamos los pesos durante la validación.</p></li>
+<li><p>Luego, iteramos a través del cargador de datos de validación, ejecutamos un pase hacia adelante y calculamos la pérdida, sumándola en los lotes.</p></li>
+<li><p>Al final de la época, calculamos la pérdida de validación media.</p></li>
+<li><p>Finalmente, volvemos al modo de entrenamiento con .<code>train()</code>, preparándolo para la siguiente epoch de entrenamiento.</p></li>
+</ul>
+<pre class="{bash}"><code>validation_loss = 0.0
+
+model.eval()
+
+with torch.no_grad(): 
+  for inputs, labels in validationloader: 
+    outputs = model(inputs)
+    loss = criterion(outputs, labels)
+    validation_loss += loss.item()
+    
+epoch_loss = validation_loss / len(validationloader) 
+model.train()
+</code></pre>
+</section>
+<section id="sobreajuste-o-overfitting" class="level3">
+<h3 class="anchored" data-anchor-id="sobreajuste-o-overfitting">Sobreajuste o Overfitting</h3>
+<p>Realizar un seguimiento de la pérdida de entrenamiento y validación nos ayuda a detectar el sobreajuste.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://j-isaula.github.io/Web_JI/posts/DL_PyTorch/img/fig51.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="400"></p>
+</figure>
+</div>
+<p><strong>Cuando un modelo se sobreajusta</strong>, la pérdida de entrenamiento continúa disminuyendo, pero la pérdida de validación comienza a aumentar. Esto significa que el <strong>modelo está aprendiendo demasiado bien los datos de entrenamiento</strong> y no funcionará bien con datos nuevos.</p>
+</section>
+<section id="calculando-accuracy-con-torchmetrics" class="level3">
+<h3 class="anchored" data-anchor-id="calculando-accuracy-con-torchmetrics">Calculando accuracy con <code>torchmetrics</code></h3>
+<p>La pérdida nos indica qué tan bien está aprendiendo un modelo, pero no siempre refleja con qué precisión hace predicciones.</p>
+<ol type="1">
+<li><p>Hacemos un seguimiento de la precisión utilizando torchmetrics.</p></li>
+<li><p>Para tareas de clasificación de múltiples clases, creamos una métrica de precisión con <code>torchmetrics.Accuracy()</code></p></li>
+<li><p>A medida que el modelo procesa cada lote, actualizamos esta métrica utilizando sus predicciones y las etiquetas reales.</p></li>
+<li><p>Dado que el modelo genera probabilidades para múltiples clases, podemos utilizar <code>argmax(dim=-1)</code> para seleccionar la clase con mayor probabilidad. Esto convierte las predicciones codificadas one-hot en índices de clase antes de pasarlas a la métrica.</p></li>
+<li><p>Al final de cada epoch, calculamos la precisión general utilizando <code>.compute().</code></p></li>
+<li><p>Finalmente, reiniciamos la métrica con <code>.reset()</code> para borrar su estado antes de la próxima epoch.</p></li>
+</ol>
+<pre class="{bash}"><code>import torchmetrics 
+
+metrics = torchmetrics.Accuracy(task = "multiclass", num_classes = 3)
+
+for features, labels in dataloader: 
+  outputs = model(features)
+  metrics.update(outputs, labels.argmax(dim=-1))
+  
+accuracy = metrics.compute()
+
+metric.reset()
+</code></pre>
+</section>
+</section>
+<section id="lucha-contra-el-sobreajuste" class="level2">
+<h2 class="anchored" data-anchor-id="lucha-contra-el-sobreajuste">Lucha contra el Sobreajuste</h2>
+<p>Anteriormente, aprendimos cómo detectar el sobreajuste observando las pérdidas de entrenamiento y validación. Ahora, descubriremos algunas formas de combatir el sobreajuste.</p>
+<p>Recuerde que el sobreajuste ocurre cuando el modelo no se generaliza a datos no vistos. Si no entrenamos correctamente el modelo, comenzará a memorizar los datos de entrenamiento, lo que conduce a un buen rendimiento en el conjunto de entrenamiento pero a un rendimiento deficiente en el conjunto de validación.</p>
+<p>Posibles causas:</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Problema</th>
+<th>Solución</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Conjunto de datos pequeños</td>
+<td>Más data</td>
+</tr>
+<tr class="even">
+<td>Modelo con demasiada capacidad</td>
+<td>Reducir el tamaño del modelo</td>
+</tr>
+<tr class="odd">
+<td>Valores grandes de los pesos</td>
+<td>Reducir los valores de los pesos</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><p>Para contrarrestar el sobreajuste, podemos reducir el tamaño del modelo o agregar un nuevo tipo de capa llamada <strong>dropout</strong>.</p></li>
+<li><p>También podemos utilizar la descomposición del peso para forzar que los parámetros permanezcan pequeños.</p></li>
+<li><p>Para obtener más datos o utilizar la ampliación de datos</p></li>
+</ul>
+<p>Exploremos estas estrategías.</p>
+<section id="regularización-usando-una-capa-dropout" class="level3">
+<h3 class="anchored" data-anchor-id="regularización-usando-una-capa-dropout">Regularización usando una capa dropout</h3>
+<p>Una forma común de combatir el sobreajuste es agregar capas dropout a nuestra red neuronal.</p>
+<p><code>El dropout</code> es una técnica de <strong>regularización</strong> que desactiva aleatoriamente una fracción de las neuronas durante el entrenamiento, evitando que el modelo se vuelva demasiado dependiente de características específicas.</p>
+<ul>
+<li>Las capas dropout normalmente se agregan después de las funciones de activación.</li>
+</ul>
+<div id="0f327746" class="cell" data-execution_count="54">
+<div class="sourceCode cell-code" id="cb92" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb92-1">model <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> nn.Sequential(nn.Linear(<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">8</span>, <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">4</span>),</span>
+<span id="cb92-2">nn.ReLU(),</span>
+<span id="cb92-3">nn.Dropout(p <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.5</span>))</span>
+<span id="cb92-4"></span>
+<span id="cb92-5">features <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> torch.randn((<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">1</span>, <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">8</span>))</span>
+<span id="cb92-6"><span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">print</span>(model(features))</span></code></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>tensor([[0., 0., 0., 0.]], grad_fn=&lt;MulBackward0&gt;)</code></pre>
+</div>
+</div>
+<p>El argumento <strong>p</strong> determina la probabilidad de que una neurona se establezca en cero. En este ejemplo se descartan el 75% de las neuronas.</p>
+<p>El dropout se comporta de manera diferente durante el entrenamiento y la evaluación, durante el entrenamiento, desactiva neuronas aleatoriamente, mientras que durante la evaluación se deshabilita, lo que garantiza que todas las neuronas estén activas para obtener predicciones estables.</p>
+<p>Para cambiar entre estos modos, utilizamos <code>model.train()</code> y <code>model.eval()</code></p>
+</section>
+<section id="regularización-con-disminución-de-pesos" class="level3">
+<h3 class="anchored" data-anchor-id="regularización-con-disminución-de-pesos">Regularización con disminución de pesos</h3>
+<p>La siguiente estratefia para reducir el sobreajuste que descubriremos es la disminución de pesos, otra forma de regularización.</p>
+<p>En PyTorch, la disminución del peso se agreha al optimizador mediante el parámetro weight_decay, normalmente establecido en un valor pequeño, por ejemplo 0.0001. Este parámetro agrega una penalización a la función de pérdida, formando pesos más pequeños y ayudando al modelo a generalizar mejor.</p>
+<pre class="{bash}"><code>optimizer = optim.SGD(model.parameters(), lr = 0.001, weight_decay = 0.0001)</code></pre>
+<ul>
+<li><p>Durante la retropropagación, esta penalización se resta del gradiente, lo que evita un crecimiento excesivo del peso.</p></li>
+<li><p>Cuanto más alto fijemos la caída del peso, más fuerte será la regularización y hará que el sobreajuste sea menos probable.</p></li>
+</ul>
+</section>
+<section id="aumentación-de-data" class="level3">
+<h3 class="anchored" data-anchor-id="aumentación-de-data">Aumentación de Data</h3>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://j-isaula.github.io/Web_JI/posts/DL_PyTorch/img/fig52.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="700"></p>
+</figure>
+</div>
+<ul>
+<li><p>Recopilar más datos puede ser costoso, pero los investigadores han encontrado una forma de expandir conjuntos de datos artificialmente usando <strong>aumento de datos</strong>.</p></li>
+<li><p>El aumento de datos se aplica comúnmente a los datos de imágenes, que se pueden rotar y escalados, de modo que diferentes vistas de la misma cara estén disponibles como puntos de datos nuevos.</p></li>
+<li><p>Si bien no analizaremos aquí como aumentar los datos, sigue siendo un método valioso para combatir el sobreajuste cuando no hay datos adicionales disponibles.</p></li>
+</ul>
+</section>
+</section>
+<section id="mejorar-el-rendimiento-del-modelo" class="level2">
+<h2 class="anchored" data-anchor-id="mejorar-el-rendimiento-del-modelo">Mejorar el Rendimiento del Modelo</h2>
+<p>En esta sessión final, reuniremos todo y aprenderemos una receta para abordar cualquier problema de Deep Learning.</p>
+<ul>
+<li><p>Primero, creamos un modelo que pueda sobreajustarse al conjunto de entrenamiento. Esto garantizará que el problema tenga solución. También establecemos un línea base de rendimiento a la que aspirar con el conjunto de validación.</p></li>
+<li><p>Luego, necesitamos reducir el sobreajuste para aumentar el rendimiento en el conjunto de validación.</p></li>
+<li><p>Por último, podemos ajustar ligeramente los diferentes hiperparámetros para garantizar que logremos el mejor rendimiento posible.</p></li>
+</ul>
+<p>Es útil comenzar con un solo punto de datos antes de sobreajustar todo el conjunto de entrenamiento.</p>
+<pre class="{bash}"><code>features, labels = next(iter(dataloader))
+
+for i in range(1000): 
+  outputs = model(features)
+  loss = criterion(outputs, labels)
+  optimizer.zero_grad()
+  loss.backward()
+  optimizer.step()</code></pre>
+<ul>
+<li><p>Cuando el modelo está configurado correctamente, debería alcanzar rápidamente una pérdida a cero y una predicción del 100% en ese punto de datos. Una vez que este paso sea exitoso, escalamos al conjunto de entrenamiento completo.</p></li>
+<li><p>En esta etapa, utilizamos una arquitectura de modelo existente lo suficientemente grande como para sobreajustar mientras mantiene los hiperparámetros, como la tasa de aprendizaje, en sus valores predeterminados.</p></li>
+</ul>
+<p>Ahora necesitamos crear un modelo que se generalice bien para maximizar la precisión de la validación.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://j-isaula.github.io/Web_JI/posts/DL_PyTorch/img/fig53.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="400"></p>
+</figure>
+</div>
+<p>Reducir el sobreajuste a menudo tiene un costo, ya que aplicar la regularización puede afectar significativamente el rendimiento del modelo.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://j-isaula.github.io/Web_JI/posts/DL_PyTorch/img/fig54.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="800"></p>
+</figure>
+</div>
+<p>El modelo original se ajusta al conjunto de entrenamiento, logrando una alta precisión pero sin generalizarse bien a datos nuevos. Por el contrario, con demasiada regularización, el modelo actualizado muestra una caída en la precisión del entrenamiento y la validación, lo que limita su capacidad de aprender de manera efectiva. Esto resalta la importancia de equilibrar la reducción del sobreajuste.</p>
+<p>Estrategías mientras monitoreamos de cerca las métricas clave para encontrar el modelo con mejor rendimiento.</p>
+<p>Una vez que estemos satisfechos con el rendimiento, el paso final es ajustar los hiperparámetros. Esto se hace a menudo en configuraciones del optimizador, como la tasa de aprendizaje o el impulso.</p>
+<p>La busqueda de cuadrícula prueba parámetros a intervalos fijos. Por ejemplo, valores de impulso de 0.85 a 0.99 y tasas de aprendizaje de diez elvado a menos seís</p>
+<div id="9140177d" class="cell" data-execution_count="55">
+<div class="sourceCode cell-code" id="cb96" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb96-1"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Grid Search</span></span>
+<span id="cb96-2"><span class="cf" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">for</span> factor <span class="kw" style="color: #003B4F;
+background-color: null;
+font-weight: bold;
+font-style: inherit;">in</span> <span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">range</span>(<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2</span>, <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">6</span>): </span>
+<span id="cb96-3">  lr <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">10</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">**</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">-</span>factor</span></code></pre></div>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://j-isaula.github.io/Web_JI/posts/DL_PyTorch/img/fig55.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="300"></p>
+</figure>
+</div>
+<p>La búsqueda aleatoria adopta un enfoque diferente. En lugar de probar valores establecidos, los seleccionamos aleatoriamente dentro de un rango determinado. La función <code>np.random.uniform(2, 6)</code>, por ejemplo, elige un número entre 2 y 6, lo que nos permite explorar una variedad más amplia de ritmos de aprendizaje.</p>
+<div id="70b6e3c9" class="cell" data-execution_count="56">
+<div class="sourceCode cell-code" id="cb97" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb97-1">factor <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> np.random.uniform(<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2</span>, <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">6</span>)</span>
+<span id="cb97-2">lr <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">10</span><span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">**</span> <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">-</span> factor</span></code></pre></div>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://j-isaula.github.io/Web_JI/posts/DL_PyTorch/img/fig56.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="300"></p>
+</figure>
+</div>
+<p>La búsqueda aleatoria suele ser más eficiente, ya que evita pruebas innecesarias y aumenta la posibilidad de encontrar configuraciones óptimas.</p>
+
+
 </section>
 </section>
 
