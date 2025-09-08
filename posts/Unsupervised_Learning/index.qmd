@@ -261,3 +261,138 @@ plt.ylabel('inertia')
 plt.xticks(ks)
 plt.show()
 ```
+
+## Transformación de Características para mejorar agrupaciones 
+
+Veamos ahora otro conjunto de datos, el conjunto de datos de los vinos del Piamonte.
+
+-   Disponemos de 178 muestras de vino tinto de la región de Piamonte de Italia.
+
+-   Las entradas o features miden la composición química (como el contendio del alcohol) y propiedades visuales como la intensidad del color.
+
+-   Las muestras proceden de 3 variedades distintas de vino.
+
+```{python}
+
+samples = pd.read_csv("wine.csv")
+varieties = samples['class_name']
+samples = samples.drop("class_name", axis = 1)
+samples
+```
+
+### Clustering con Vinos 
+
+Tomaremos la matriz de muestra de los vinos y usaremos KMeans para encontrar 3 grupos
+
+```{python}
+model = KMeans(n_clusters = 3, random_state = 42)
+labels = model.fit_predict(samples)
+```
+
+#### Cluster vs Varieties 
+
+Hay tres variedades de vinom así que usamos pandas para crear la tabla cruzada para comprobar las correspondencia entre la etiqueta del clúster y la variedad de vino.
+
+```{python}
+df = pd.DataFrame({'labels': labels, 'varieties':varieties})
+ct = pd.crosstab(df['labels'], df['varieties'])
+print(ct)
+```
+
+Como podemos ver, esta vez las cosas no han salido tan bien. Los clusters KMeans no se corresponden bien con las variedades de vino.
+
+#### Variación de Características
+
+El problema es que las características del conjunto de datos del vino tiene variaciones muy diferentes.
+
+> La varianza de una característica mide la dispersión de sus valores
+
+![](img/fig4.png){fig-align="center" width="400"}
+
+Por ejemplo, la característica del ácido málico (`malic_acid`) tiene una mayor varianza que la característica `0d280`, y esto también se puede ver en su diagrama de dispersión.
+
+Las diferencias en algunas de las variaciones de características son enormes, por ejmplo, en el diagrama de dispersión de características `od280` y `prolina`.
+
+![](img/fig5.png){fig-align="center" width="300"}
+
+### StandarScaler
+
+En la agrupación en clústeres de KMeans, la varianza de una característica corresponde a su influencia en el algoritmo de agrupación en clústeres. Es decir:
+
+-   <div>
+
+    > Varianza de Carasterística = Influencia de Característica
+
+    </div>
+
+Para darle una oportunidad a cada característica, los datos deben transformarce para que las características tengan la misma varianza. Esto se puede lograr con el `StandarScaler` de scikit-learn. Transforma cada característica para que tenga media 0 y varianza 1.
+
+Las características **estandarizadas** resultantes pueden ser muy informativas.
+
+Si utilizamos, por ejemplo, los valores estandarizados de `od280` y `proline`, las tres variedades de vino son mucho más distintas.
+
+![](img/fig6.png){fig-align="center" width="800"}
+
+Veamos StandarScaler en acción:
+
+```{python}
+from sklearn.preprocessing import StandardScaler
+
+scaler = StandardScaler() # Creamos el objeto StandarScaler 
+scaler.fit(samples)
+StandardScaler(copy = True, with_mean = True, with_std = True)
+samples_scaled = scaler.transform(samples)
+```
+
+El método de transformación ahora se puede utilizar para estandarizar cualquier muestra, ya sean las mismas o completamente nuevas.
+
+#### Métodos similares
+
+> Las API de StandarScaler y KMeans son similares, pero hay una diferencia importante:
+>
+> -   StandardScaler transforma datos y por eso tiene un método de transformación.
+>
+> -   KMeans por el contrario, asigna etiquetas de clúster a las muestras y esto se hace utilizando el método de predicción.
+
+### StandardScaler luego KMeans
+
+Volvamos al problema del agrupamiento de los vinos. Necesitamos realizar dos pasos:
+
+1.  Estandarizar los datos utilizando StandardScaler y
+
+2.  Tomar los datos estandarizados y agruparlos utilizando KMeans
+
+Esto se hace fácilmente combinando los dos pasos mediante un pipeline de scikit-learn, luego, los datos fluyen de un paso al siguiente de forma automática.
+
+#### Pipelines combinando multiples pasos
+
+```{python}
+from sklearn.preprocessing import StandardScaler
+from sklearn.cluster import KMeans
+from sklearn.pipeline import make_pipeline
+
+scaler = StandardScaler()
+kmeans = KMeans(n_clusters = 3, random_state = 42)
+
+# Aplicamos los pasos que queremos combinar
+pipeline = make_pipeline(scaler, kmeans)
+pipeline.fit(samples)
+
+# Utilizamos el método de predicción para obtener las etiquetas del clúster
+
+labels = pipeline.predict(samples)
+
+
+```
+
+Ahora, realicemos la comprobación de la correspondencia entre las etiquetas de los cluster y las variedadesd de vino
+
+```{python}
+df = pd.DataFrame({'labels': labels, 'varieties':varieties})
+ct = pd.crosstab(df['labels'], df['varieties'])
+print(ct)
+```
+
+> Y como podemos observar, esto nos revela que al incorporar estandarización la nueva agrupación es fantástica. Sus tres clúster corresponden casi exactamente a las tres variedades de vino. Por tanto, esto es una gran mejora con respecto a la agrupación sin estandarización.
+
+**StandardScaler** es un ejemplo de un paso de *preprocesamiento*. Existen varios de estos disponibles en Scikit-Learn, por ejemplo, MaxAbsScaler y Normalizer.

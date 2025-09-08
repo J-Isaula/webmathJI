@@ -194,6 +194,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#cross-tabulation-con-pandas" id="toc-cross-tabulation-con-pandas" class="nav-link" data-scroll-target="#cross-tabulation-con-pandas">Cross Tabulation con Pandas</a></li>
   <li><a href="#medición-de-la-calidad-de-la-agrupación" id="toc-medición-de-la-calidad-de-la-agrupación" class="nav-link" data-scroll-target="#medición-de-la-calidad-de-la-agrupación">Medición de la calidad de la agrupación</a></li>
   </ul></li>
+  <li><a href="#transformación-de-características-para-mejorar-agrupaciones" id="toc-transformación-de-características-para-mejorar-agrupaciones" class="nav-link" data-scroll-target="#transformación-de-características-para-mejorar-agrupaciones">Transformación de Características para mejorar agrupaciones</a>
+  <ul class="collapse">
+  <li><a href="#clustering-con-vinos" id="toc-clustering-con-vinos" class="nav-link" data-scroll-target="#clustering-con-vinos">Clustering con Vinos</a></li>
+  <li><a href="#standarscaler" id="toc-standarscaler" class="nav-link" data-scroll-target="#standarscaler">StandarScaler</a></li>
+  <li><a href="#standardscaler-luego-kmeans" id="toc-standardscaler-luego-kmeans" class="nav-link" data-scroll-target="#standardscaler-luego-kmeans">StandardScaler luego KMeans</a></li>
+  </ul></li>
   </ul></li>
   </ul>
 </nav>
@@ -292,7 +298,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h3 class="anchored" data-anchor-id="k-means-clustering">K-Means Clustering</h3>
 <p>Agruparemos estas muestras utilizando la agrupación de k-Means. K-Means encuentra un número específico de grupos en las muestras. Está implementado en la biblioteca de <code>scikit-learn</code> o <code>sklearn</code>.</p>
 <p>Veamos KMeans en acción con el conjunto de datos iris.</p>
-<div id="adadf36e" class="cell" data-execution_count="1">
+<div id="700d0ed5" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd         </span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn <span class="im">import</span> datasets    <span class="co"># Librería utilizada para importar iris dataset</span></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>iris <span class="op">=</span> datasets.load_iris()     <span class="co"># importamos el conjunto de datos iris</span></span>
@@ -306,13 +312,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p>Posteriormente, llamamos el método de ajuste del modelo <code>.fit()</code>, pasando la matriz del iris dataset. Esto ajusta el modelo a los datos, localizando y recordando las regiones donde ocurren los diferentes grupos.</p></li>
 <li><p>Por último, podemos utilizar el método de predicción del modelo en este mismo conjunto de datos.</p></li>
 </ol>
-<div id="1fb4a8de" class="cell" data-execution_count="2">
+<div id="2ea34f69" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.cluster <span class="im">import</span> KMeans</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> KMeans(n_clusters <span class="op">=</span> <span class="dv">3</span>, random_state <span class="op">=</span> <span class="dv">42</span>)</span>
 <span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>model.fit(iris)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="23">
-<style>#sk-container-id-3 {
+<div class="cell-output cell-output-display" data-execution_count="19">
+<style>#sk-container-id-2 {
   /* Definition of color scheme common for light and dark mode */
   --sklearn-color-text: #000;
   --sklearn-color-text-muted: #666;
@@ -343,15 +349,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   }
 }
 
-#sk-container-id-3 {
+#sk-container-id-2 {
   color: var(--sklearn-color-text);
 }
 
-#sk-container-id-3 pre {
+#sk-container-id-2 pre {
   padding: 0;
 }
 
-#sk-container-id-3 input.sk-hidden--visually {
+#sk-container-id-2 input.sk-hidden--visually {
   border: 0;
   clip: rect(1px 1px 1px 1px);
   clip: rect(1px, 1px, 1px, 1px);
@@ -363,7 +369,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   width: 1px;
 }
 
-#sk-container-id-3 div.sk-dashed-wrapped {
+#sk-container-id-2 div.sk-dashed-wrapped {
   border: 1px dashed var(--sklearn-color-line);
   margin: 0 0.4em 0.5em 0.4em;
   box-sizing: border-box;
@@ -371,7 +377,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   background-color: var(--sklearn-color-background);
 }
 
-#sk-container-id-3 div.sk-container {
+#sk-container-id-2 div.sk-container {
   /* jupyter's `normalize.less` sets `[hidden] { display: none; }`
      but bootstrap.min.css set `[hidden] { display: none !important; }`
      so we also need the `!important` here to be able to override the
@@ -381,7 +387,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   position: relative;
 }
 
-#sk-container-id-3 div.sk-text-repr-fallback {
+#sk-container-id-2 div.sk-text-repr-fallback {
   display: none;
 }
 
@@ -397,14 +403,14 @@ div.sk-item {
 
 /* Parallel-specific style estimator block */
 
-#sk-container-id-3 div.sk-parallel-item::after {
+#sk-container-id-2 div.sk-parallel-item::after {
   content: "";
   width: 100%;
   border-bottom: 2px solid var(--sklearn-color-text-on-default-background);
   flex-grow: 1;
 }
 
-#sk-container-id-3 div.sk-parallel {
+#sk-container-id-2 div.sk-parallel {
   display: flex;
   align-items: stretch;
   justify-content: center;
@@ -412,28 +418,28 @@ div.sk-item {
   position: relative;
 }
 
-#sk-container-id-3 div.sk-parallel-item {
+#sk-container-id-2 div.sk-parallel-item {
   display: flex;
   flex-direction: column;
 }
 
-#sk-container-id-3 div.sk-parallel-item:first-child::after {
+#sk-container-id-2 div.sk-parallel-item:first-child::after {
   align-self: flex-end;
   width: 50%;
 }
 
-#sk-container-id-3 div.sk-parallel-item:last-child::after {
+#sk-container-id-2 div.sk-parallel-item:last-child::after {
   align-self: flex-start;
   width: 50%;
 }
 
-#sk-container-id-3 div.sk-parallel-item:only-child::after {
+#sk-container-id-2 div.sk-parallel-item:only-child::after {
   width: 0;
 }
 
 /* Serial-specific style estimator block */
 
-#sk-container-id-3 div.sk-serial {
+#sk-container-id-2 div.sk-serial {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -451,14 +457,14 @@ clickable and can be expanded/collapsed.
 
 /* Pipeline and ColumnTransformer style (default) */
 
-#sk-container-id-3 div.sk-toggleable {
+#sk-container-id-2 div.sk-toggleable {
   /* Default theme specific background. It is overwritten whether we have a
   specific estimator or a Pipeline/ColumnTransformer */
   background-color: var(--sklearn-color-background);
 }
 
 /* Toggleable label */
-#sk-container-id-3 label.sk-toggleable__label {
+#sk-container-id-2 label.sk-toggleable__label {
   cursor: pointer;
   display: flex;
   width: 100%;
@@ -471,13 +477,13 @@ clickable and can be expanded/collapsed.
   gap: 0.5em;
 }
 
-#sk-container-id-3 label.sk-toggleable__label .caption {
+#sk-container-id-2 label.sk-toggleable__label .caption {
   font-size: 0.6rem;
   font-weight: lighter;
   color: var(--sklearn-color-text-muted);
 }
 
-#sk-container-id-3 label.sk-toggleable__label-arrow:before {
+#sk-container-id-2 label.sk-toggleable__label-arrow:before {
   /* Arrow on the left of the label */
   content: "▸";
   float: left;
@@ -485,13 +491,13 @@ clickable and can be expanded/collapsed.
   color: var(--sklearn-color-icon);
 }
 
-#sk-container-id-3 label.sk-toggleable__label-arrow:hover:before {
+#sk-container-id-2 label.sk-toggleable__label-arrow:hover:before {
   color: var(--sklearn-color-text);
 }
 
 /* Toggleable content - dropdown */
 
-#sk-container-id-3 div.sk-toggleable__content {
+#sk-container-id-2 div.sk-toggleable__content {
   max-height: 0;
   max-width: 0;
   overflow: hidden;
@@ -500,12 +506,12 @@ clickable and can be expanded/collapsed.
   background-color: var(--sklearn-color-unfitted-level-0);
 }
 
-#sk-container-id-3 div.sk-toggleable__content.fitted {
+#sk-container-id-2 div.sk-toggleable__content.fitted {
   /* fitted */
   background-color: var(--sklearn-color-fitted-level-0);
 }
 
-#sk-container-id-3 div.sk-toggleable__content pre {
+#sk-container-id-2 div.sk-toggleable__content pre {
   margin: 0.2em;
   border-radius: 0.25em;
   color: var(--sklearn-color-text);
@@ -513,79 +519,79 @@ clickable and can be expanded/collapsed.
   background-color: var(--sklearn-color-unfitted-level-0);
 }
 
-#sk-container-id-3 div.sk-toggleable__content.fitted pre {
+#sk-container-id-2 div.sk-toggleable__content.fitted pre {
   /* unfitted */
   background-color: var(--sklearn-color-fitted-level-0);
 }
 
-#sk-container-id-3 input.sk-toggleable__control:checked~div.sk-toggleable__content {
+#sk-container-id-2 input.sk-toggleable__control:checked~div.sk-toggleable__content {
   /* Expand drop-down */
   max-height: 200px;
   max-width: 100%;
   overflow: auto;
 }
 
-#sk-container-id-3 input.sk-toggleable__control:checked~label.sk-toggleable__label-arrow:before {
+#sk-container-id-2 input.sk-toggleable__control:checked~label.sk-toggleable__label-arrow:before {
   content: "▾";
 }
 
 /* Pipeline/ColumnTransformer-specific style */
 
-#sk-container-id-3 div.sk-label input.sk-toggleable__control:checked~label.sk-toggleable__label {
+#sk-container-id-2 div.sk-label input.sk-toggleable__control:checked~label.sk-toggleable__label {
   color: var(--sklearn-color-text);
   background-color: var(--sklearn-color-unfitted-level-2);
 }
 
-#sk-container-id-3 div.sk-label.fitted input.sk-toggleable__control:checked~label.sk-toggleable__label {
+#sk-container-id-2 div.sk-label.fitted input.sk-toggleable__control:checked~label.sk-toggleable__label {
   background-color: var(--sklearn-color-fitted-level-2);
 }
 
 /* Estimator-specific style */
 
 /* Colorize estimator box */
-#sk-container-id-3 div.sk-estimator input.sk-toggleable__control:checked~label.sk-toggleable__label {
+#sk-container-id-2 div.sk-estimator input.sk-toggleable__control:checked~label.sk-toggleable__label {
   /* unfitted */
   background-color: var(--sklearn-color-unfitted-level-2);
 }
 
-#sk-container-id-3 div.sk-estimator.fitted input.sk-toggleable__control:checked~label.sk-toggleable__label {
+#sk-container-id-2 div.sk-estimator.fitted input.sk-toggleable__control:checked~label.sk-toggleable__label {
   /* fitted */
   background-color: var(--sklearn-color-fitted-level-2);
 }
 
-#sk-container-id-3 div.sk-label label.sk-toggleable__label,
-#sk-container-id-3 div.sk-label label {
+#sk-container-id-2 div.sk-label label.sk-toggleable__label,
+#sk-container-id-2 div.sk-label label {
   /* The background is the default theme color */
   color: var(--sklearn-color-text-on-default-background);
 }
 
 /* On hover, darken the color of the background */
-#sk-container-id-3 div.sk-label:hover label.sk-toggleable__label {
+#sk-container-id-2 div.sk-label:hover label.sk-toggleable__label {
   color: var(--sklearn-color-text);
   background-color: var(--sklearn-color-unfitted-level-2);
 }
 
 /* Label box, darken color on hover, fitted */
-#sk-container-id-3 div.sk-label.fitted:hover label.sk-toggleable__label.fitted {
+#sk-container-id-2 div.sk-label.fitted:hover label.sk-toggleable__label.fitted {
   color: var(--sklearn-color-text);
   background-color: var(--sklearn-color-fitted-level-2);
 }
 
 /* Estimator label */
 
-#sk-container-id-3 div.sk-label label {
+#sk-container-id-2 div.sk-label label {
   font-family: monospace;
   font-weight: bold;
   display: inline-block;
   line-height: 1.2em;
 }
 
-#sk-container-id-3 div.sk-label-container {
+#sk-container-id-2 div.sk-label-container {
   text-align: center;
 }
 
 /* Estimator-specific */
-#sk-container-id-3 div.sk-estimator {
+#sk-container-id-2 div.sk-estimator {
   font-family: monospace;
   border: 1px dotted var(--sklearn-color-border-box);
   border-radius: 0.25em;
@@ -595,18 +601,18 @@ clickable and can be expanded/collapsed.
   background-color: var(--sklearn-color-unfitted-level-0);
 }
 
-#sk-container-id-3 div.sk-estimator.fitted {
+#sk-container-id-2 div.sk-estimator.fitted {
   /* fitted */
   background-color: var(--sklearn-color-fitted-level-0);
 }
 
 /* on hover */
-#sk-container-id-3 div.sk-estimator:hover {
+#sk-container-id-2 div.sk-estimator:hover {
   /* unfitted */
   background-color: var(--sklearn-color-unfitted-level-2);
 }
 
-#sk-container-id-3 div.sk-estimator.fitted:hover {
+#sk-container-id-2 div.sk-estimator.fitted:hover {
   /* fitted */
   background-color: var(--sklearn-color-fitted-level-2);
 }
@@ -694,7 +700,7 @@ div.sk-label-container:hover .sk-estimator-doc-link.fitted:hover,
 
 /* "?"-specific style due to the `<a>` HTML tag */
 
-#sk-container-id-3 a.estimator_doc_link {
+#sk-container-id-2 a.estimator_doc_link {
   float: right;
   font-size: 1rem;
   line-height: 1em;
@@ -709,28 +715,28 @@ div.sk-label-container:hover .sk-estimator-doc-link.fitted:hover,
   border: var(--sklearn-color-unfitted-level-1) 1pt solid;
 }
 
-#sk-container-id-3 a.estimator_doc_link.fitted {
+#sk-container-id-2 a.estimator_doc_link.fitted {
   /* fitted */
   border: var(--sklearn-color-fitted-level-1) 1pt solid;
   color: var(--sklearn-color-fitted-level-1);
 }
 
 /* On hover */
-#sk-container-id-3 a.estimator_doc_link:hover {
+#sk-container-id-2 a.estimator_doc_link:hover {
   /* unfitted */
   background-color: var(--sklearn-color-unfitted-level-3);
   color: var(--sklearn-color-background);
   text-decoration: none;
 }
 
-#sk-container-id-3 a.estimator_doc_link.fitted:hover {
+#sk-container-id-2 a.estimator_doc_link.fitted:hover {
   /* fitted */
   background-color: var(--sklearn-color-fitted-level-3);
 }
-</style><div id="sk-container-id-3" class="sk-top-container"><div class="sk-text-repr-fallback"><pre>KMeans(n_clusters=3, random_state=42)</pre><b>In a Jupyter environment, please rerun this cell to show the HTML representation or trust the notebook. <br>On GitHub, the HTML representation is unable to render, please try loading this page with nbviewer.org.</b></div><div class="sk-container" hidden=""><div class="sk-item"><div class="sk-estimator fitted sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-3" type="checkbox" checked=""><label for="sk-estimator-id-3" class="sk-toggleable__label fitted sk-toggleable__label-arrow"><div><div>KMeans</div></div><div><a class="sk-estimator-doc-link fitted" rel="noreferrer" target="_blank" href="https://scikit-learn.org/1.6/modules/generated/sklearn.cluster.KMeans.html">?<span>Documentation for KMeans</span></a><span class="sk-estimator-doc-link fitted">i<span>Fitted</span></span></div></label><div class="sk-toggleable__content fitted"><pre>KMeans(n_clusters=3, random_state=42)</pre></div> </div></div></div></div>
+</style><div id="sk-container-id-2" class="sk-top-container"><div class="sk-text-repr-fallback"><pre>KMeans(n_clusters=3, random_state=42)</pre><b>In a Jupyter environment, please rerun this cell to show the HTML representation or trust the notebook. <br>On GitHub, the HTML representation is unable to render, please try loading this page with nbviewer.org.</b></div><div class="sk-container" hidden=""><div class="sk-item"><div class="sk-estimator fitted sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-2" type="checkbox" checked=""><label for="sk-estimator-id-2" class="sk-toggleable__label fitted sk-toggleable__label-arrow"><div><div>KMeans</div></div><div><a class="sk-estimator-doc-link fitted" rel="noreferrer" target="_blank" href="https://scikit-learn.org/1.6/modules/generated/sklearn.cluster.KMeans.html">?<span>Documentation for KMeans</span></a><span class="sk-estimator-doc-link fitted">i<span>Fitted</span></span></div></label><div class="sk-toggleable__content fitted"><pre>KMeans(n_clusters=3, random_state=42)</pre></div> </div></div></div></div>
 </div>
 </div>
-<div id="44c7ae9d" class="cell" data-execution_count="3">
+<div id="d3e64662" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>labels <span class="op">=</span> model.predict(iris)</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(labels)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -747,7 +753,7 @@ div.sk-label-container:hover .sk-estimator-doc-link.fitted:hover,
 <p>Si alguien viene con un algún dataset iris nuevo, kMeans puede determinar a qué grupos pertenecen sin tener que empezar de nuevo.</p>
 <p>KMeans hace esto recordando la media (o promedio) de las muestras en cada grupo. Estos se llaman <strong>centroides</strong> se asignan nuevas muestras al grupo cuyo centroide esté más cercano.</p>
 <p>Voy a tomar 3 registros aleatorios del dataset iris y asumiremos que estas son muestras nuevas.</p>
-<div id="203428e7" class="cell" data-execution_count="4">
+<div id="7de74f1d" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>new_samples <span class="op">=</span> iris.sample(n <span class="op">=</span> <span class="dv">3</span>, random_state <span class="op">=</span> <span class="dv">42</span>)</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(new_samples)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -758,7 +764,7 @@ div.sk-label-container:hover .sk-estimator-doc-link.fitted:hover,
 </div>
 </div>
 <p>Para asignar las nuevas muestras a los grupos existentes, pasaremos el conjunto de nueva muestra al método de predicción del modelo kmeans.</p>
-<div id="2797ef73" class="cell" data-execution_count="5">
+<div id="a5e64766" class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>new_labels <span class="op">=</span> model.predict(new_samples)</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(new_labels)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -783,7 +789,7 @@ div.sk-label-container:hover .sk-estimator-doc-link.fitted:hover,
 <li><p>La longitud del sépalo está en la columna 0 de la matriz iris, mientras que la longitud de los pétalos está en la segunda columna.</p></li>
 <li><p>Y labels o etiquetas que encontramos previamente lo usamos para colorear por etiqueta de clúster como un paramétro en <code>.scatter()</code>.</p></li>
 </ul>
-<div id="4bf0303a" class="cell" data-execution_count="6">
+<div id="b7ded8b6" class="cell" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt </span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>xs <span class="op">=</span> iris.iloc[:, <span class="dv">0</span>]   <span class="co"># Longitud de los sépalos </span></span>
@@ -800,7 +806,7 @@ div.sk-label-container:hover .sk-estimator-doc-link.fitted:hover,
 </div>
 </div>
 <p>Ahora, calculemos las coordenadas de los centroides utilizando el atributo <code>.cluster_centers_</code> de <code>model</code>. y asignaremos la columna 0 de <code>centroids</code> a <code>centroids_x</code>, y la columna 2 de <code>centroids</code> a <code>centroids_y</code>. Posterior a ello, realizaremos un diagrama de dispersión de centroids_x y centroids_y, utilizando <code>marker = 'D'</code> (un rombo) como marcador especificando el parámetro marker. El tamaño de los marcadores en 50 utilizando <code>s = 50</code>.</p>
-<div id="06d86e47" class="cell" data-execution_count="7">
+<div id="1d75c8e2" class="cell" data-execution_count="7">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>xs <span class="op">=</span> iris.iloc[:, <span class="dv">0</span>]   <span class="co"># Longitud de los sépalos </span></span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>ys <span class="op">=</span> iris.iloc[:, <span class="dv">2</span>]   <span class="co"># Longitud de los pétalos</span></span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -847,7 +853,7 @@ div.sk-label-container:hover .sk-estimator-doc-link.fitted:hover,
 <section id="cross-tabulation-con-pandas" class="level3">
 <h3 class="anchored" data-anchor-id="cross-tabulation-con-pandas">Cross Tabulation con Pandas</h3>
 <p>Para construir uno, usareos la biblioteca <code>pandas.</code> Como podemos observar en el bloque de código siguiente, creamos un dataframe de dos columnas, donde la primera columna son las etiquetas del grupo y la segunda son las especies de iris, de modo que cada fila proporciona la etiqueta del grupo y la especie de una sola muestra.</p>
-<div id="f157768a" class="cell" data-execution_count="8">
+<div id="30554693" class="cell" data-execution_count="8">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>iris_raw <span class="op">=</span> datasets.load_iris() </span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>iris <span class="op">=</span> pd.DataFrame(iris_raw.data, columns <span class="op">=</span> iris_raw.feature_names)</span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Agregamos columna de especie verdadera al dataframe iiris</span></span>
@@ -875,7 +881,7 @@ div.sk-label-container:hover .sk-estimator-doc-link.fitted:hover,
 </div>
 </div>
 <p>Ahora usamos la función de tabla cruzuda de pandas para crear la tubulación cruzada, pasando las dos columnas del DataFrame.</p>
-<div id="cbf5969d" class="cell" data-execution_count="9">
+<div id="5367534d" class="cell" data-execution_count="9">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>ct <span class="op">=</span> pd.crosstab(df[<span class="st">'labels'</span>], df[<span class="st">'species'</span>])</span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(ct)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -895,7 +901,7 @@ labels
 <p>La <strong>inercia</strong> puede medir la distribución de las muestras dentro de cada grupo. Intuitivamente, la inercia mide qué tan lejos están las muestras de sus centroides. Puede encontrar la definición precisa en la documentación de scikit-learn. Queremos grupos que no estén dispersos, por lo que los valores más bajos de inercia son mejores.</p>
 <p>La inercia de un modelo KMeans se mide automaticamente cuando se llama al metodo de ajuste .fit y luego están disponibles como atributos de <code>inertia_</code>.</p>
 <p>De hecho, KMeans pretende colocar los clusters de forma que se minimice la inercia.</p>
-<div id="be9baf25" class="cell" data-execution_count="10">
+<div id="348c64bd" class="cell" data-execution_count="10">
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> KMeans(n_clusters <span class="op">=</span> <span class="dv">3</span>, random_state <span class="op">=</span> <span class="dv">42</span>)</span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>model.fit(iris)</span>
 <span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(model.inertia_)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -913,7 +919,7 @@ labels
 <p>Una buena agrupación tiene agrupaciones estrechas (lo que significa inercia baja). Pero tampoco tiene demasiados grupos.</p>
 <p>Una buena regla general es elegir un codo en el gráfico de inercia, es decir, un punto donde la inercia comienza a disminuir más lentamente.</p>
 <p>Por ejemplo, según este criterio, 3 es un buen número de grupos para el conjunto de datos del iris.</p>
-<div id="9f3312a5" class="cell" data-execution_count="11">
+<div id="a4caeb8f" class="cell" data-execution_count="11">
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>ks <span class="op">=</span> <span class="bu">range</span>(<span class="dv">1</span>, <span class="dv">11</span>)</span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>inertias <span class="op">=</span> []</span>
 <span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -935,8 +941,369 @@ labels
 </div>
 </div>
 </div>
+</section>
+</section>
+<section id="transformación-de-características-para-mejorar-agrupaciones" class="level2">
+<h2 class="anchored" data-anchor-id="transformación-de-características-para-mejorar-agrupaciones">Transformación de Características para mejorar agrupaciones</h2>
+<p>Veamos ahora otro conjunto de datos, el conjunto de datos de los vinos del Piamonte.</p>
+<ul>
+<li><p>Disponemos de 178 muestras de vino tinto de la región de Piamonte de Italia.</p></li>
+<li><p>Las entradas o features miden la composición química (como el contendio del alcohol) y propiedades visuales como la intensidad del color.</p></li>
+<li><p>Las muestras proceden de 3 variedades distintas de vino.</p></li>
+</ul>
+<div id="90b402f8" class="cell" data-execution_count="12">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>samples <span class="op">=</span> pd.read_csv(<span class="st">"wine.csv"</span>)</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>varieties <span class="op">=</span> samples[<span class="st">'class_name'</span>]</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>samples <span class="op">=</span> samples.drop(<span class="st">"class_name"</span>, axis <span class="op">=</span> <span class="dv">1</span>)</span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>samples</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="29">
+<div>
 
 
+<table class="dataframe caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th"></th>
+<th data-quarto-table-cell-role="th">class_label</th>
+<th data-quarto-table-cell-role="th">alcohol</th>
+<th data-quarto-table-cell-role="th">malic_acid</th>
+<th data-quarto-table-cell-role="th">ash</th>
+<th data-quarto-table-cell-role="th">alcalinity_of_ash</th>
+<th data-quarto-table-cell-role="th">magnesium</th>
+<th data-quarto-table-cell-role="th">total_phenols</th>
+<th data-quarto-table-cell-role="th">flavanoids</th>
+<th data-quarto-table-cell-role="th">nonflavanoid_phenols</th>
+<th data-quarto-table-cell-role="th">proanthocyanins</th>
+<th data-quarto-table-cell-role="th">color_intensity</th>
+<th data-quarto-table-cell-role="th">hue</th>
+<th data-quarto-table-cell-role="th">od280</th>
+<th data-quarto-table-cell-role="th">proline</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">0</td>
+<td>1</td>
+<td>14.23</td>
+<td>1.71</td>
+<td>2.43</td>
+<td>15.6</td>
+<td>127</td>
+<td>2.80</td>
+<td>3.06</td>
+<td>0.28</td>
+<td>2.29</td>
+<td>5.64</td>
+<td>1.04</td>
+<td>3.92</td>
+<td>1065</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">1</td>
+<td>1</td>
+<td>13.20</td>
+<td>1.78</td>
+<td>2.14</td>
+<td>11.2</td>
+<td>100</td>
+<td>2.65</td>
+<td>2.76</td>
+<td>0.26</td>
+<td>1.28</td>
+<td>4.38</td>
+<td>1.05</td>
+<td>3.40</td>
+<td>1050</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">2</td>
+<td>1</td>
+<td>13.16</td>
+<td>2.36</td>
+<td>2.67</td>
+<td>18.6</td>
+<td>101</td>
+<td>2.80</td>
+<td>3.24</td>
+<td>0.30</td>
+<td>2.81</td>
+<td>5.68</td>
+<td>1.03</td>
+<td>3.17</td>
+<td>1185</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">3</td>
+<td>1</td>
+<td>14.37</td>
+<td>1.95</td>
+<td>2.50</td>
+<td>16.8</td>
+<td>113</td>
+<td>3.85</td>
+<td>3.49</td>
+<td>0.24</td>
+<td>2.18</td>
+<td>7.80</td>
+<td>0.86</td>
+<td>3.45</td>
+<td>1480</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">4</td>
+<td>1</td>
+<td>13.24</td>
+<td>2.59</td>
+<td>2.87</td>
+<td>21.0</td>
+<td>118</td>
+<td>2.80</td>
+<td>2.69</td>
+<td>0.39</td>
+<td>1.82</td>
+<td>4.32</td>
+<td>1.04</td>
+<td>2.93</td>
+<td>735</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+<td>...</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">173</td>
+<td>3</td>
+<td>13.71</td>
+<td>5.65</td>
+<td>2.45</td>
+<td>20.5</td>
+<td>95</td>
+<td>1.68</td>
+<td>0.61</td>
+<td>0.52</td>
+<td>1.06</td>
+<td>7.70</td>
+<td>0.64</td>
+<td>1.74</td>
+<td>740</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">174</td>
+<td>3</td>
+<td>13.40</td>
+<td>3.91</td>
+<td>2.48</td>
+<td>23.0</td>
+<td>102</td>
+<td>1.80</td>
+<td>0.75</td>
+<td>0.43</td>
+<td>1.41</td>
+<td>7.30</td>
+<td>0.70</td>
+<td>1.56</td>
+<td>750</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">175</td>
+<td>3</td>
+<td>13.27</td>
+<td>4.28</td>
+<td>2.26</td>
+<td>20.0</td>
+<td>120</td>
+<td>1.59</td>
+<td>0.69</td>
+<td>0.43</td>
+<td>1.35</td>
+<td>10.20</td>
+<td>0.59</td>
+<td>1.56</td>
+<td>835</td>
+</tr>
+<tr class="even">
+<td data-quarto-table-cell-role="th">176</td>
+<td>3</td>
+<td>13.17</td>
+<td>2.59</td>
+<td>2.37</td>
+<td>20.0</td>
+<td>120</td>
+<td>1.65</td>
+<td>0.68</td>
+<td>0.53</td>
+<td>1.46</td>
+<td>9.30</td>
+<td>0.60</td>
+<td>1.62</td>
+<td>840</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">177</td>
+<td>3</td>
+<td>14.13</td>
+<td>4.10</td>
+<td>2.74</td>
+<td>24.5</td>
+<td>96</td>
+<td>2.05</td>
+<td>0.76</td>
+<td>0.56</td>
+<td>1.35</td>
+<td>9.20</td>
+<td>0.61</td>
+<td>1.60</td>
+<td>560</td>
+</tr>
+</tbody>
+</table>
+
+<p>178 rows × 14 columns</p>
+</div>
+</div>
+</div>
+<section id="clustering-con-vinos" class="level3">
+<h3 class="anchored" data-anchor-id="clustering-con-vinos">Clustering con Vinos</h3>
+<p>Tomaremos la matriz de muestra de los vinos y usaremos KMeans para encontrar 3 grupos</p>
+<div id="00066909" class="cell" data-execution_count="13">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> KMeans(n_clusters <span class="op">=</span> <span class="dv">3</span>, random_state <span class="op">=</span> <span class="dv">42</span>)</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>labels <span class="op">=</span> model.fit_predict(samples)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<section id="cluster-vs-varieties" class="level4">
+<h4 class="anchored" data-anchor-id="cluster-vs-varieties">Cluster vs Varieties</h4>
+<p>Hay tres variedades de vinom así que usamos pandas para crear la tabla cruzada para comprobar las correspondencia entre la etiqueta del clúster y la variedad de vino.</p>
+<div id="349515f6" class="cell" data-execution_count="14">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.DataFrame({<span class="st">'labels'</span>: labels, <span class="st">'varieties'</span>:varieties})</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>ct <span class="op">=</span> pd.crosstab(df[<span class="st">'labels'</span>], df[<span class="st">'varieties'</span>])</span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(ct)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>varieties  Barbera  Barolo  Grignolino
+labels                                
+0               37       1          64
+1               11      31           7
+2                0      27           0</code></pre>
+</div>
+</div>
+<p>Como podemos ver, esta vez las cosas no han salido tan bien. Los clusters KMeans no se corresponden bien con las variedades de vino.</p>
+</section>
+<section id="variación-de-características" class="level4">
+<h4 class="anchored" data-anchor-id="variación-de-características">Variación de Características</h4>
+<p>El problema es que las características del conjunto de datos del vino tiene variaciones muy diferentes.</p>
+<blockquote class="blockquote">
+<p>La varianza de una característica mide la dispersión de sus valores</p>
+</blockquote>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="img/fig4.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="400"></p>
+</figure>
+</div>
+<p>Por ejemplo, la característica del ácido málico (<code>malic_acid</code>) tiene una mayor varianza que la característica <code>0d280</code>, y esto también se puede ver en su diagrama de dispersión.</p>
+<p>Las diferencias en algunas de las variaciones de características son enormes, por ejmplo, en el diagrama de dispersión de características <code>od280</code> y <code>prolina</code>.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="img/fig5.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="300"></p>
+</figure>
+</div>
+</section>
+</section>
+<section id="standarscaler" class="level3">
+<h3 class="anchored" data-anchor-id="standarscaler">StandarScaler</h3>
+<p>En la agrupación en clústeres de KMeans, la varianza de una característica corresponde a su influencia en el algoritmo de agrupación en clústeres. Es decir:</p>
+<ul>
+<li><div>
+<blockquote class="blockquote">
+<p>Varianza de Carasterística = Influencia de Característica</p>
+</blockquote>
+</div></li>
+</ul>
+<p>Para darle una oportunidad a cada característica, los datos deben transformarce para que las características tengan la misma varianza. Esto se puede lograr con el <code>StandarScaler</code> de scikit-learn. Transforma cada característica para que tenga media 0 y varianza 1.</p>
+<p>Las características <strong>estandarizadas</strong> resultantes pueden ser muy informativas.</p>
+<p>Si utilizamos, por ejemplo, los valores estandarizados de <code>od280</code> y <code>proline</code>, las tres variedades de vino son mucho más distintas.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="img/fig6.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="800"></p>
+</figure>
+</div>
+<p>Veamos StandarScaler en acción:</p>
+<div id="f87ac349" class="cell" data-execution_count="15">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.preprocessing <span class="im">import</span> StandardScaler</span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>scaler <span class="op">=</span> StandardScaler() <span class="co"># Creamos el objeto StandarScaler </span></span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>scaler.fit(samples)</span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>StandardScaler(copy <span class="op">=</span> <span class="va">True</span>, with_mean <span class="op">=</span> <span class="va">True</span>, with_std <span class="op">=</span> <span class="va">True</span>)</span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a>samples_scaled <span class="op">=</span> scaler.transform(samples)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>El método de transformación ahora se puede utilizar para estandarizar cualquier muestra, ya sean las mismas o completamente nuevas.</p>
+<section id="métodos-similares" class="level4">
+<h4 class="anchored" data-anchor-id="métodos-similares">Métodos similares</h4>
+<blockquote class="blockquote">
+<p>Las API de StandarScaler y KMeans son similares, pero hay una diferencia importante:</p>
+<ul>
+<li><p>StandardScaler transforma datos y por eso tiene un método de transformación.</p></li>
+<li><p>KMeans por el contrario, asigna etiquetas de clúster a las muestras y esto se hace utilizando el método de predicción.</p></li>
+</ul>
+</blockquote>
+</section>
+</section>
+<section id="standardscaler-luego-kmeans" class="level3">
+<h3 class="anchored" data-anchor-id="standardscaler-luego-kmeans">StandardScaler luego KMeans</h3>
+<p>Volvamos al problema del agrupamiento de los vinos. Necesitamos realizar dos pasos:</p>
+<ol type="1">
+<li><p>Estandarizar los datos utilizando StandardScaler y</p></li>
+<li><p>Tomar los datos estandarizados y agruparlos utilizando KMeans</p></li>
+</ol>
+<p>Esto se hace fácilmente combinando los dos pasos mediante un pipeline de scikit-learn, luego, los datos fluyen de un paso al siguiente de forma automática.</p>
+<section id="pipelines-combinando-multiples-pasos" class="level4">
+<h4 class="anchored" data-anchor-id="pipelines-combinando-multiples-pasos">Pipelines combinando multiples pasos</h4>
+<div id="da9b94ae" class="cell" data-execution_count="16">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.preprocessing <span class="im">import</span> StandardScaler</span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.cluster <span class="im">import</span> KMeans</span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.pipeline <span class="im">import</span> make_pipeline</span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>scaler <span class="op">=</span> StandardScaler()</span>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a>kmeans <span class="op">=</span> KMeans(n_clusters <span class="op">=</span> <span class="dv">3</span>, random_state <span class="op">=</span> <span class="dv">42</span>)</span>
+<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Aplicamos los pasos que queremos combinar</span></span>
+<span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a>pipeline <span class="op">=</span> make_pipeline(scaler, kmeans)</span>
+<span id="cb23-10"><a href="#cb23-10" aria-hidden="true" tabindex="-1"></a>pipeline.fit(samples)</span>
+<span id="cb23-11"><a href="#cb23-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-12"><a href="#cb23-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Utilizamos el método de predicción para obtener las etiquetas del clúster</span></span>
+<span id="cb23-13"><a href="#cb23-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-14"><a href="#cb23-14" aria-hidden="true" tabindex="-1"></a>labels <span class="op">=</span> pipeline.predict(samples)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Ahora, realicemos la comprobación de la correspondencia entre las etiquetas de los cluster y las variedadesd de vino</p>
+<div id="cb1ca431" class="cell" data-execution_count="17">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.DataFrame({<span class="st">'labels'</span>: labels, <span class="st">'varieties'</span>:varieties})</span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>ct <span class="op">=</span> pd.crosstab(df[<span class="st">'labels'</span>], df[<span class="st">'varieties'</span>])</span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(ct)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>varieties  Barbera  Barolo  Grignolino
+labels                                
+0                0       0          67
+1               48       0           1
+2                0      59           3</code></pre>
+</div>
+</div>
+<blockquote class="blockquote">
+<p>Y como podemos observar, esto nos revela que al incorporar estandarización la nueva agrupación es fantástica. Sus tres clúster corresponden casi exactamente a las tres variedades de vino. Por tanto, esto es una gran mejora con respecto a la agrupación sin estandarización.</p>
+</blockquote>
+<p><strong>StandardScaler</strong> es un ejemplo de un paso de <em>preprocesamiento</em>. Existen varios de estos disponibles en Scikit-Learn, por ejemplo, MaxAbsScaler y Normalizer.</p>
+
+
+</section>
 </section>
 </section>
 </section>
