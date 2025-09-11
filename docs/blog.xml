@@ -76,7 +76,7 @@
 <h3 class="anchored" data-anchor-id="k-means-clustering">K-Means Clustering</h3>
 <p>Agruparemos estas muestras utilizando la agrupación de k-Means. K-Means encuentra un número específico de grupos en las muestras. Está implementado en la biblioteca de <code>scikit-learn</code> o <code>sklearn</code>.</p>
 <p>Veamos KMeans en acción con el conjunto de datos iris.</p>
-<div id="700d0ed5" class="cell" data-execution_count="1">
+<div id="eb2d8ae0" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><span class="im" style="color: #00769E;
 background-color: null;
 font-style: inherit;">import</span> pandas <span class="im" style="color: #00769E;
@@ -110,7 +110,7 @@ font-style: inherit;"># Convertimos iris a dataframe</span></span></code></pre><
 <li><p>Posteriormente, llamamos el método de ajuste del modelo <code>.fit()</code>, pasando la matriz del iris dataset. Esto ajusta el modelo a los datos, localizando y recordando las regiones donde ocurren los diferentes grupos.</p></li>
 <li><p>Por último, podemos utilizar el método de predicción del modelo en este mismo conjunto de datos.</p></li>
 </ol>
-<div id="2ea34f69" class="cell" data-execution_count="2">
+<div id="20cfb841" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb2" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><span class="im" style="color: #00769E;
 background-color: null;
 font-style: inherit;">from</span> sklearn.cluster <span class="im" style="color: #00769E;
@@ -129,8 +129,8 @@ font-style: inherit;">=</span> <span class="dv" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">42</span>)</span>
 <span id="cb2-4">model.fit(iris)</span></code></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="19">
-<style>#sk-container-id-2 {
+<div class="cell-output cell-output-display" data-execution_count="56">
+<style>#sk-container-id-4 {
   /* Definition of color scheme common for light and dark mode */
   --sklearn-color-text: #000;
   --sklearn-color-text-muted: #666;
@@ -161,15 +161,15 @@ font-style: inherit;">42</span>)</span>
   }
 }
 
-#sk-container-id-2 {
+#sk-container-id-4 {
   color: var(--sklearn-color-text);
 }
 
-#sk-container-id-2 pre {
+#sk-container-id-4 pre {
   padding: 0;
 }
 
-#sk-container-id-2 input.sk-hidden--visually {
+#sk-container-id-4 input.sk-hidden--visually {
   border: 0;
   clip: rect(1px 1px 1px 1px);
   clip: rect(1px, 1px, 1px, 1px);
@@ -181,7 +181,7 @@ font-style: inherit;">42</span>)</span>
   width: 1px;
 }
 
-#sk-container-id-2 div.sk-dashed-wrapped {
+#sk-container-id-4 div.sk-dashed-wrapped {
   border: 1px dashed var(--sklearn-color-line);
   margin: 0 0.4em 0.5em 0.4em;
   box-sizing: border-box;
@@ -189,7 +189,7 @@ font-style: inherit;">42</span>)</span>
   background-color: var(--sklearn-color-background);
 }
 
-#sk-container-id-2 div.sk-container {
+#sk-container-id-4 div.sk-container {
   /* jupyter's `normalize.less` sets `[hidden] { display: none; }`
      but bootstrap.min.css set `[hidden] { display: none !important; }`
      so we also need the `!important` here to be able to override the
@@ -199,7 +199,7 @@ font-style: inherit;">42</span>)</span>
   position: relative;
 }
 
-#sk-container-id-2 div.sk-text-repr-fallback {
+#sk-container-id-4 div.sk-text-repr-fallback {
   display: none;
 }
 
@@ -215,14 +215,14 @@ div.sk-item {
 
 /* Parallel-specific style estimator block */
 
-#sk-container-id-2 div.sk-parallel-item::after {
+#sk-container-id-4 div.sk-parallel-item::after {
   content: "";
   width: 100%;
   border-bottom: 2px solid var(--sklearn-color-text-on-default-background);
   flex-grow: 1;
 }
 
-#sk-container-id-2 div.sk-parallel {
+#sk-container-id-4 div.sk-parallel {
   display: flex;
   align-items: stretch;
   justify-content: center;
@@ -230,28 +230,28 @@ div.sk-item {
   position: relative;
 }
 
-#sk-container-id-2 div.sk-parallel-item {
+#sk-container-id-4 div.sk-parallel-item {
   display: flex;
   flex-direction: column;
 }
 
-#sk-container-id-2 div.sk-parallel-item:first-child::after {
+#sk-container-id-4 div.sk-parallel-item:first-child::after {
   align-self: flex-end;
   width: 50%;
 }
 
-#sk-container-id-2 div.sk-parallel-item:last-child::after {
+#sk-container-id-4 div.sk-parallel-item:last-child::after {
   align-self: flex-start;
   width: 50%;
 }
 
-#sk-container-id-2 div.sk-parallel-item:only-child::after {
+#sk-container-id-4 div.sk-parallel-item:only-child::after {
   width: 0;
 }
 
 /* Serial-specific style estimator block */
 
-#sk-container-id-2 div.sk-serial {
+#sk-container-id-4 div.sk-serial {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -269,14 +269,14 @@ clickable and can be expanded/collapsed.
 
 /* Pipeline and ColumnTransformer style (default) */
 
-#sk-container-id-2 div.sk-toggleable {
+#sk-container-id-4 div.sk-toggleable {
   /* Default theme specific background. It is overwritten whether we have a
   specific estimator or a Pipeline/ColumnTransformer */
   background-color: var(--sklearn-color-background);
 }
 
 /* Toggleable label */
-#sk-container-id-2 label.sk-toggleable__label {
+#sk-container-id-4 label.sk-toggleable__label {
   cursor: pointer;
   display: flex;
   width: 100%;
@@ -289,13 +289,13 @@ clickable and can be expanded/collapsed.
   gap: 0.5em;
 }
 
-#sk-container-id-2 label.sk-toggleable__label .caption {
+#sk-container-id-4 label.sk-toggleable__label .caption {
   font-size: 0.6rem;
   font-weight: lighter;
   color: var(--sklearn-color-text-muted);
 }
 
-#sk-container-id-2 label.sk-toggleable__label-arrow:before {
+#sk-container-id-4 label.sk-toggleable__label-arrow:before {
   /* Arrow on the left of the label */
   content: "▸";
   float: left;
@@ -303,13 +303,13 @@ clickable and can be expanded/collapsed.
   color: var(--sklearn-color-icon);
 }
 
-#sk-container-id-2 label.sk-toggleable__label-arrow:hover:before {
+#sk-container-id-4 label.sk-toggleable__label-arrow:hover:before {
   color: var(--sklearn-color-text);
 }
 
 /* Toggleable content - dropdown */
 
-#sk-container-id-2 div.sk-toggleable__content {
+#sk-container-id-4 div.sk-toggleable__content {
   max-height: 0;
   max-width: 0;
   overflow: hidden;
@@ -318,12 +318,12 @@ clickable and can be expanded/collapsed.
   background-color: var(--sklearn-color-unfitted-level-0);
 }
 
-#sk-container-id-2 div.sk-toggleable__content.fitted {
+#sk-container-id-4 div.sk-toggleable__content.fitted {
   /* fitted */
   background-color: var(--sklearn-color-fitted-level-0);
 }
 
-#sk-container-id-2 div.sk-toggleable__content pre {
+#sk-container-id-4 div.sk-toggleable__content pre {
   margin: 0.2em;
   border-radius: 0.25em;
   color: var(--sklearn-color-text);
@@ -331,79 +331,79 @@ clickable and can be expanded/collapsed.
   background-color: var(--sklearn-color-unfitted-level-0);
 }
 
-#sk-container-id-2 div.sk-toggleable__content.fitted pre {
+#sk-container-id-4 div.sk-toggleable__content.fitted pre {
   /* unfitted */
   background-color: var(--sklearn-color-fitted-level-0);
 }
 
-#sk-container-id-2 input.sk-toggleable__control:checked~div.sk-toggleable__content {
+#sk-container-id-4 input.sk-toggleable__control:checked~div.sk-toggleable__content {
   /* Expand drop-down */
   max-height: 200px;
   max-width: 100%;
   overflow: auto;
 }
 
-#sk-container-id-2 input.sk-toggleable__control:checked~label.sk-toggleable__label-arrow:before {
+#sk-container-id-4 input.sk-toggleable__control:checked~label.sk-toggleable__label-arrow:before {
   content: "▾";
 }
 
 /* Pipeline/ColumnTransformer-specific style */
 
-#sk-container-id-2 div.sk-label input.sk-toggleable__control:checked~label.sk-toggleable__label {
+#sk-container-id-4 div.sk-label input.sk-toggleable__control:checked~label.sk-toggleable__label {
   color: var(--sklearn-color-text);
   background-color: var(--sklearn-color-unfitted-level-2);
 }
 
-#sk-container-id-2 div.sk-label.fitted input.sk-toggleable__control:checked~label.sk-toggleable__label {
+#sk-container-id-4 div.sk-label.fitted input.sk-toggleable__control:checked~label.sk-toggleable__label {
   background-color: var(--sklearn-color-fitted-level-2);
 }
 
 /* Estimator-specific style */
 
 /* Colorize estimator box */
-#sk-container-id-2 div.sk-estimator input.sk-toggleable__control:checked~label.sk-toggleable__label {
+#sk-container-id-4 div.sk-estimator input.sk-toggleable__control:checked~label.sk-toggleable__label {
   /* unfitted */
   background-color: var(--sklearn-color-unfitted-level-2);
 }
 
-#sk-container-id-2 div.sk-estimator.fitted input.sk-toggleable__control:checked~label.sk-toggleable__label {
+#sk-container-id-4 div.sk-estimator.fitted input.sk-toggleable__control:checked~label.sk-toggleable__label {
   /* fitted */
   background-color: var(--sklearn-color-fitted-level-2);
 }
 
-#sk-container-id-2 div.sk-label label.sk-toggleable__label,
-#sk-container-id-2 div.sk-label label {
+#sk-container-id-4 div.sk-label label.sk-toggleable__label,
+#sk-container-id-4 div.sk-label label {
   /* The background is the default theme color */
   color: var(--sklearn-color-text-on-default-background);
 }
 
 /* On hover, darken the color of the background */
-#sk-container-id-2 div.sk-label:hover label.sk-toggleable__label {
+#sk-container-id-4 div.sk-label:hover label.sk-toggleable__label {
   color: var(--sklearn-color-text);
   background-color: var(--sklearn-color-unfitted-level-2);
 }
 
 /* Label box, darken color on hover, fitted */
-#sk-container-id-2 div.sk-label.fitted:hover label.sk-toggleable__label.fitted {
+#sk-container-id-4 div.sk-label.fitted:hover label.sk-toggleable__label.fitted {
   color: var(--sklearn-color-text);
   background-color: var(--sklearn-color-fitted-level-2);
 }
 
 /* Estimator label */
 
-#sk-container-id-2 div.sk-label label {
+#sk-container-id-4 div.sk-label label {
   font-family: monospace;
   font-weight: bold;
   display: inline-block;
   line-height: 1.2em;
 }
 
-#sk-container-id-2 div.sk-label-container {
+#sk-container-id-4 div.sk-label-container {
   text-align: center;
 }
 
 /* Estimator-specific */
-#sk-container-id-2 div.sk-estimator {
+#sk-container-id-4 div.sk-estimator {
   font-family: monospace;
   border: 1px dotted var(--sklearn-color-border-box);
   border-radius: 0.25em;
@@ -413,18 +413,18 @@ clickable and can be expanded/collapsed.
   background-color: var(--sklearn-color-unfitted-level-0);
 }
 
-#sk-container-id-2 div.sk-estimator.fitted {
+#sk-container-id-4 div.sk-estimator.fitted {
   /* fitted */
   background-color: var(--sklearn-color-fitted-level-0);
 }
 
 /* on hover */
-#sk-container-id-2 div.sk-estimator:hover {
+#sk-container-id-4 div.sk-estimator:hover {
   /* unfitted */
   background-color: var(--sklearn-color-unfitted-level-2);
 }
 
-#sk-container-id-2 div.sk-estimator.fitted:hover {
+#sk-container-id-4 div.sk-estimator.fitted:hover {
   /* fitted */
   background-color: var(--sklearn-color-fitted-level-2);
 }
@@ -512,7 +512,7 @@ div.sk-label-container:hover .sk-estimator-doc-link.fitted:hover,
 
 /* "?"-specific style due to the `<a>` HTML tag */
 
-#sk-container-id-2 a.estimator_doc_link {
+#sk-container-id-4 a.estimator_doc_link {
   float: right;
   font-size: 1rem;
   line-height: 1em;
@@ -527,28 +527,28 @@ div.sk-label-container:hover .sk-estimator-doc-link.fitted:hover,
   border: var(--sklearn-color-unfitted-level-1) 1pt solid;
 }
 
-#sk-container-id-2 a.estimator_doc_link.fitted {
+#sk-container-id-4 a.estimator_doc_link.fitted {
   /* fitted */
   border: var(--sklearn-color-fitted-level-1) 1pt solid;
   color: var(--sklearn-color-fitted-level-1);
 }
 
 /* On hover */
-#sk-container-id-2 a.estimator_doc_link:hover {
+#sk-container-id-4 a.estimator_doc_link:hover {
   /* unfitted */
   background-color: var(--sklearn-color-unfitted-level-3);
   color: var(--sklearn-color-background);
   text-decoration: none;
 }
 
-#sk-container-id-2 a.estimator_doc_link.fitted:hover {
+#sk-container-id-4 a.estimator_doc_link.fitted:hover {
   /* fitted */
   background-color: var(--sklearn-color-fitted-level-3);
 }
-</style><div id="sk-container-id-2" class="sk-top-container"><div class="sk-text-repr-fallback"><pre>KMeans(n_clusters=3, random_state=42)</pre><b>In a Jupyter environment, please rerun this cell to show the HTML representation or trust the notebook. <br>On GitHub, the HTML representation is unable to render, please try loading this page with nbviewer.org.</b></div><div class="sk-container" hidden=""><div class="sk-item"><div class="sk-estimator fitted sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-2" type="checkbox" checked=""><label for="sk-estimator-id-2" class="sk-toggleable__label fitted sk-toggleable__label-arrow"><div><div>KMeans</div></div><div><a class="sk-estimator-doc-link fitted" rel="noreferrer" target="_blank" href="https://scikit-learn.org/1.6/modules/generated/sklearn.cluster.KMeans.html">?<span>Documentation for KMeans</span></a><span class="sk-estimator-doc-link fitted">i<span>Fitted</span></span></div></label><div class="sk-toggleable__content fitted"><pre>KMeans(n_clusters=3, random_state=42)</pre></div> </div></div></div></div>
+</style><div id="sk-container-id-4" class="sk-top-container"><div class="sk-text-repr-fallback"><pre>KMeans(n_clusters=3, random_state=42)</pre><b>In a Jupyter environment, please rerun this cell to show the HTML representation or trust the notebook. <br>On GitHub, the HTML representation is unable to render, please try loading this page with nbviewer.org.</b></div><div class="sk-container" hidden=""><div class="sk-item"><div class="sk-estimator fitted sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-4" type="checkbox" checked=""><label for="sk-estimator-id-4" class="sk-toggleable__label fitted sk-toggleable__label-arrow"><div><div>KMeans</div></div><div><a class="sk-estimator-doc-link fitted" rel="noreferrer" target="_blank" href="https://scikit-learn.org/1.6/modules/generated/sklearn.cluster.KMeans.html">?<span>Documentation for KMeans</span></a><span class="sk-estimator-doc-link fitted">i<span>Fitted</span></span></div></label><div class="sk-toggleable__content fitted"><pre>KMeans(n_clusters=3, random_state=42)</pre></div> </div></div></div></div>
 </div>
 </div>
-<div id="d3e64662" class="cell" data-execution_count="3">
+<div id="56887b1b" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb3" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1">labels <span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span> model.predict(iris)</span>
@@ -569,7 +569,7 @@ font-style: inherit;">print</span>(labels)</span></code></pre></div>
 <p>Si alguien viene con un algún dataset iris nuevo, kMeans puede determinar a qué grupos pertenecen sin tener que empezar de nuevo.</p>
 <p>KMeans hace esto recordando la media (o promedio) de las muestras en cada grupo. Estos se llaman <strong>centroides</strong> se asignan nuevas muestras al grupo cuyo centroide esté más cercano.</p>
 <p>Voy a tomar 3 registros aleatorios del dataset iris y asumiremos que estas son muestras nuevas.</p>
-<div id="7de74f1d" class="cell" data-execution_count="4">
+<div id="adafa09d" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb5" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1">new_samples <span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span> iris.sample(n <span class="op" style="color: #5E5E5E;
@@ -592,7 +592,7 @@ font-style: inherit;">print</span>(new_samples)</span></code></pre></div>
 </div>
 </div>
 <p>Para asignar las nuevas muestras a los grupos existentes, pasaremos el conjunto de nueva muestra al método de predicción del modelo kmeans.</p>
-<div id="a5e64766" class="cell" data-execution_count="5">
+<div id="fc945992" class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb7" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1">new_labels <span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span> model.predict(new_samples)</span>
@@ -621,7 +621,7 @@ font-style: inherit;">print</span>(new_labels)</span></code></pre></div>
 <li><p>La longitud del sépalo está en la columna 0 de la matriz iris, mientras que la longitud de los pétalos está en la segunda columna.</p></li>
 <li><p>Y labels o etiquetas que encontramos previamente lo usamos para colorear por etiqueta de clúster como un paramétro en <code>.scatter()</code>.</p></li>
 </ul>
-<div id="b7ded8b6" class="cell" data-execution_count="6">
+<div id="851e65e6" class="cell" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb9" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><span class="im" style="color: #00769E;
 background-color: null;
 font-style: inherit;">import</span> matplotlib.pyplot <span class="im" style="color: #00769E;
@@ -656,7 +656,7 @@ font-style: inherit;">=</span> labels)</span>
 </div>
 </div>
 <p>Ahora, calculemos las coordenadas de los centroides utilizando el atributo <code>.cluster_centers_</code> de <code>model</code>. y asignaremos la columna 0 de <code>centroids</code> a <code>centroids_x</code>, y la columna 2 de <code>centroids</code> a <code>centroids_y</code>. Posterior a ello, realizaremos un diagrama de dispersión de centroids_x y centroids_y, utilizando <code>marker = 'D'</code> (un rombo) como marcador especificando el parámetro marker. El tamaño de los marcadores en 50 utilizando <code>s = 50</code>.</p>
-<div id="1d75c8e2" class="cell" data-execution_count="7">
+<div id="a7002732" class="cell" data-execution_count="7">
 <div class="sourceCode cell-code" id="cb10" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1">xs <span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span> iris.iloc[:, <span class="dv" style="color: #AD0000;
@@ -739,7 +739,7 @@ font-style: inherit;">50</span>)</span>
 <section id="cross-tabulation-con-pandas" class="level3">
 <h3 class="anchored" data-anchor-id="cross-tabulation-con-pandas">Cross Tabulation con Pandas</h3>
 <p>Para construir uno, usareos la biblioteca <code>pandas.</code> Como podemos observar en el bloque de código siguiente, creamos un dataframe de dos columnas, donde la primera columna son las etiquetas del grupo y la segunda son las especies de iris, de modo que cada fila proporciona la etiqueta del grupo y la especie de una sola muestra.</p>
-<div id="30554693" class="cell" data-execution_count="8">
+<div id="8bfc619d" class="cell" data-execution_count="8">
 <div class="sourceCode cell-code" id="cb11" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1">iris_raw <span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span> datasets.load_iris() </span>
@@ -787,7 +787,7 @@ font-style: inherit;">print</span>(df)</span></code></pre></div>
 </div>
 </div>
 <p>Ahora usamos la función de tabla cruzuda de pandas para crear la tubulación cruzada, pasando las dos columnas del DataFrame.</p>
-<div id="5367534d" class="cell" data-execution_count="9">
+<div id="ab1ddcdf" class="cell" data-execution_count="9">
 <div class="sourceCode cell-code" id="cb13" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1">ct <span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span> pd.crosstab(df[<span class="st" style="color: #20794D;
@@ -815,7 +815,7 @@ labels
 <p>La <strong>inercia</strong> puede medir la distribución de las muestras dentro de cada grupo. Intuitivamente, la inercia mide qué tan lejos están las muestras de sus centroides. Puede encontrar la definición precisa en la documentación de scikit-learn. Queremos grupos que no estén dispersos, por lo que los valores más bajos de inercia son mejores.</p>
 <p>La inercia de un modelo KMeans se mide automaticamente cuando se llama al metodo de ajuste .fit y luego están disponibles como atributos de <code>inertia_</code>.</p>
 <p>De hecho, KMeans pretende colocar los clusters de forma que se minimice la inercia.</p>
-<div id="348c64bd" class="cell" data-execution_count="10">
+<div id="c0ad8114" class="cell" data-execution_count="10">
 <div class="sourceCode cell-code" id="cb15" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1">model <span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span> KMeans(n_clusters <span class="op" style="color: #5E5E5E;
@@ -845,7 +845,7 @@ font-style: inherit;">print</span>(model.inertia_)</span></code></pre></div>
 <p>Una buena agrupación tiene agrupaciones estrechas (lo que significa inercia baja). Pero tampoco tiene demasiados grupos.</p>
 <p>Una buena regla general es elegir un codo en el gráfico de inercia, es decir, un punto donde la inercia comienza a disminuir más lentamente.</p>
 <p>Por ejemplo, según este criterio, 3 es un buen número de grupos para el conjunto de datos del iris.</p>
-<div id="a4caeb8f" class="cell" data-execution_count="11">
+<div id="3210a313" class="cell" data-execution_count="11">
 <div class="sourceCode cell-code" id="cb17" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1">ks <span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span> <span class="bu" style="color: null;
@@ -909,7 +909,7 @@ font-style: inherit;">'inertia'</span>)</span>
 <li><p>Las entradas o features miden la composición química (como el contendio del alcohol) y propiedades visuales como la intensidad del color.</p></li>
 <li><p>Las muestras proceden de 3 variedades distintas de vino.</p></li>
 </ul>
-<div id="90b402f8" class="cell" data-execution_count="12">
+<div id="065cf244" class="cell" data-execution_count="12">
 <div class="sourceCode cell-code" id="cb18" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1">samples <span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span> pd.read_csv(<span class="st" style="color: #20794D;
@@ -930,7 +930,7 @@ font-style: inherit;">=</span> <span class="dv" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">1</span>)</span>
 <span id="cb18-4">samples</span></code></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="29">
+<div class="cell-output cell-output-display" data-execution_count="66">
 <div>
 
 
@@ -1152,7 +1152,7 @@ font-style: inherit;">1</span>)</span>
 <section id="clustering-con-vinos" class="level3">
 <h3 class="anchored" data-anchor-id="clustering-con-vinos">Clustering con Vinos</h3>
 <p>Tomaremos la matriz de muestra de los vinos y usaremos KMeans para encontrar 3 grupos</p>
-<div id="00066909" class="cell" data-execution_count="13">
+<div id="7fe5f2b1" class="cell" data-execution_count="13">
 <div class="sourceCode cell-code" id="cb19" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1">model <span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span> KMeans(n_clusters <span class="op" style="color: #5E5E5E;
@@ -1171,7 +1171,7 @@ font-style: inherit;">=</span> model.fit_predict(samples)</span></code></pre></d
 <section id="cluster-vs-varieties" class="level4">
 <h4 class="anchored" data-anchor-id="cluster-vs-varieties">Cluster vs Varieties</h4>
 <p>Hay tres variedades de vinom así que usamos pandas para crear la tabla cruzada para comprobar las correspondencia entre la etiqueta del clúster y la variedad de vino.</p>
-<div id="349515f6" class="cell" data-execution_count="14">
+<div id="894d9149" class="cell" data-execution_count="14">
 <div class="sourceCode cell-code" id="cb20" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1">df <span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span> pd.DataFrame({<span class="st" style="color: #20794D;
@@ -1238,7 +1238,7 @@ labels
 </figure>
 </div>
 <p>Veamos StandarScaler en acción:</p>
-<div id="f87ac349" class="cell" data-execution_count="15">
+<div id="cd81dc4a" class="cell" data-execution_count="15">
 <div class="sourceCode cell-code" id="cb22" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><span class="im" style="color: #00769E;
 background-color: null;
 font-style: inherit;">from</span> sklearn.preprocessing <span class="im" style="color: #00769E;
@@ -1290,7 +1290,7 @@ font-style: inherit;">=</span> scaler.transform(samples)</span></code></pre></di
 <p>Esto se hace fácilmente combinando los dos pasos mediante un pipeline de scikit-learn, luego, los datos fluyen de un paso al siguiente de forma automática.</p>
 <section id="pipelines-combinando-multiples-pasos" class="level4">
 <h4 class="anchored" data-anchor-id="pipelines-combinando-multiples-pasos">Pipelines combinando multiples pasos</h4>
-<div id="da9b94ae" class="cell" data-execution_count="16">
+<div id="ad03f4fa" class="cell" data-execution_count="16">
 <div class="sourceCode cell-code" id="cb23" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><span class="im" style="color: #00769E;
 background-color: null;
 font-style: inherit;">from</span> sklearn.preprocessing <span class="im" style="color: #00769E;
@@ -1339,7 +1339,7 @@ background-color: null;
 font-style: inherit;">=</span> pipeline.predict(samples)</span></code></pre></div>
 </div>
 <p>Ahora, realicemos la comprobación de la correspondencia entre las etiquetas de los cluster y las variedadesd de vino</p>
-<div id="cb1ca431" class="cell" data-execution_count="17">
+<div id="7086816e" class="cell" data-execution_count="17">
 <div class="sourceCode cell-code" id="cb24" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1">df <span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span> pd.DataFrame({<span class="st" style="color: #20794D;
@@ -1369,9 +1369,194 @@ labels
 <p>Y como podemos observar, esto nos revela que al incorporar estandarización la nueva agrupación es fantástica. Sus tres clúster corresponden casi exactamente a las tres variedades de vino. Por tanto, esto es una gran mejora con respecto a la agrupación sin estandarización.</p>
 </blockquote>
 <p><strong>StandardScaler</strong> es un ejemplo de un paso de <em>preprocesamiento</em>. Existen varios de estos disponibles en Scikit-Learn, por ejemplo, MaxAbsScaler y Normalizer.</p>
-
-
 </section>
+</section>
+</section>
+</section>
+<section id="visualización-con-agrupamiento-jerárquico-y-t-sne" class="level1">
+<h1><strong>Visualización con agrupamiento Jerárquico y t-SNE</strong></h1>
+<p>En este capítulo, aprenderás dos técnicas de aprendizaje no suprvisado para la visualización de datos: la <strong>agrupación jerárquica</strong> y <strong>t-SNE</strong>.</p>
+<p><strong>La agrupación jerárquica</strong> fusiona las muestras de datos en grupos cada vez más amplios, lo que da como resultado una visualización en forma de árbol de la jerarquía de grupos resultantes.</p>
+<p><strong>t-SNE</strong> mapea las muestras de datos en un espacio bidimensional para que se pueda visualizar la proximidad antre ellas.</p>
+<section id="visualizar-jerarquías" class="level2">
+<h2 class="anchored" data-anchor-id="visualizar-jerarquías">Visualizar Jerarquías</h2>
+<p>Una gran parte del trabajo de cualquier cientifico de datos es la comunicación de los resultados o conocimiento a otras personas. Las visualizaciones son una excelente manera de compartir sus hallazgos especialmente con una audiencia no técnica. En este nuevo capítulo, aprenderá sobre dos métodos de aprendizaje no supervisado correspondientes a visualización:</p>
+<ul>
+<li><p>t-SNE</p></li>
+<li><p>Agrupamiento Jerárquico</p></li>
+</ul>
+<p><strong>t-SNE</strong>, que lo veremos más adelante, crea un mapa 2D de cualquier conjunto de datos y transmite información útil sobre la proximidad de las muestras entre sí. Pero primero aprendamos sobre la agrupación jerárquica.</p>
+<p>Ya has visto muchas agrupaciones jerárquicas en el mundo real. Por ejemplo, los seres vivos pueden organizarse en grupos pequeños y estrechos como los humanos, los simios, las serpientes y los lagartos, o en grupos más grandes y amplios, como los mamíferos y los reptiles, o incluso grupos más amplios, como los animales y las plantas. Como puede visualizar en la figura de abajo, estos grupos están contenidos unos dentro de otros y forman una jerarquía.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://j-isaula.github.io/Web_JI/posts/Unsupervised_Learning/img/fig7.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="450"></p>
+</figure>
+</div>
+<p>De manera análoga, la agrupación jerárquica organiza las muestras en una jerarquía de grupos.</p>
+<p>La <strong>agrupación jerárquica</strong> puede organizar cualquier tipo de datos en una jerarquía, no sólo muestras de plantas y animales.</p>
+<section id="dataset-de-scoring-eurovision" class="level3">
+<h3 class="anchored" data-anchor-id="dataset-de-scoring-eurovision">Dataset de scoring Eurovision</h3>
+<p>Consideremos un nuevo tipo de conjunto de datos que describe cómo los países calificaron sus actuaciones en el Festival de la Canción de Eurovisión 2016. Los datos se organizan en una matriz rectangular, donde las filas de la matriz muestra cuántos puntos le dio un país a cada canción.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://j-isaula.github.io/Web_JI/posts/Unsupervised_Learning/img/fig8.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="400"></p>
+</figure>
+</div>
+<p>Las <em>muestras</em> en este caso son los países. El resultado de aplicar la agrupación jerárquica al Festival de Eurovisión:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://j-isaula.github.io/Web_JI/posts/Unsupervised_Learning/img/fig9.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="500"></p>
+</figure>
+</div>
+<p>Las puntuaciones se pueden visualizar como u diagrama en forma de árbol llamado <strong><em>dendrograma</em></strong>. Esta única imagen revela mucha información sobre el comportamiento electoral de los países en Eurovisión. El dendrograma agrupa a los países en grupos cada vez más grandes, y muchos de ellos los grupos se reconocen inmediatamente como compuestos por países cercanos entre si geográficamente, o que tienen estrechos vínculos culturales o político, o que pertenecen a un solo grupo linguístico. De esta manera, la agrupación jerárquica puede generar excelentes visualizaciones. <strong>¿Pero cómo funciona?</strong></p>
+<p>La agrupación jerárquica se realiza en pasos:</p>
+<ul>
+<li><p>Al principio cada país es su propio clúster,por lo que hay tantos clústeres como países.</p></li>
+<li><p>En cada paso se fusionan los dos clústeres más cercanos. Esto disminuye el número de clústeres, y</p></li>
+<li><p>Al final, sólo queda un grupo, que contiene todos los países.</p></li>
+</ul>
+<p>Este proceso es en realidad un tipo particular de agrupamiento jerárquico llamdo <strong>agrupamiento aglomerativo,</strong> también existe el <strong>agrupamiento divisivo</strong>, que funciona a la inversa.</p>
+<p>Aún no hemos definido qué significa que dos clústeres estén cerca, pero volveremos a abordar este tema más adelante.</p>
+</section>
+<section id="dendrograma-de-una-clusterización-jerárquica" class="level3">
+<h3 class="anchored" data-anchor-id="dendrograma-de-una-clusterización-jerárquica">Dendrograma de una Clusterización Jerárquica</h3>
+<p>Todo el proceso de agrupamiento jerárquico está codificado en el dendrograma.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://j-isaula.github.io/Web_JI/posts/Unsupervised_Learning/img/fig9.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="500"></p>
+</figure>
+</div>
+<p>En la parte inferior, cada país se encuentra en un grupo propio. Luego el agrupamiento continúa desde abajo hacia arriba.</p>
+<p>Los grupos se representan como líneas verticales y una unión de líneas verticales indica una fusión de grupos.</p>
+<p>Para comprender mejor, hagamos un acercamiento:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://j-isaula.github.io/Web_JI/posts/Unsupervised_Learning/img/fig10.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="500"></p>
+</figure>
+</div>
+<p>Observemos sólo una parte de este dendrograma,</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://j-isaula.github.io/Web_JI/posts/Unsupervised_Learning/img/fig11.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="174"></p>
+</figure>
+</div>
+<p>Al principio hay seis grupos , cada uno de los cuales contiene sólo un país. La primera fusión se produce aquí:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://j-isaula.github.io/Web_JI/posts/Unsupervised_Learning/img/fig12.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="174"></p>
+</figure>
+</div>
+<p>donde los grupos que contienen a Cyprus y Grecia se fusionan en un solo grupo. Posteriormente, este nuevo clúster se fusiona con el clúster que contiene Bulgaria:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://j-isaula.github.io/Web_JI/posts/Unsupervised_Learning/img/fig13.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="174"></p>
+</figure>
+</div>
+<p>Poco después, los grupos que incluyen a Moldova y Rusia son fusionados,</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://j-isaula.github.io/Web_JI/posts/Unsupervised_Learning/img/fig14.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="174"></p>
+</figure>
+</div>
+<p>que más tarde a su vez se fusiona con el grupo que contiene Armenia.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://j-isaula.github.io/Web_JI/posts/Unsupervised_Learning/img/fig15.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="174"></p>
+</figure>
+</div>
+<p>Más tarde aún, los dos grupos compuestos se fusionan, Este proceso continua hasta que sólo quede un grupo, y éste contenga todos los países.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://j-isaula.github.io/Web_JI/posts/Unsupervised_Learning/img/fig16.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="500"></p>
+</figure>
+</div>
+</section>
+<section id="clusterización-jerárquica-con-scipy" class="level3">
+<h3 class="anchored" data-anchor-id="clusterización-jerárquica-con-scipy">Clusterización Jerárquica con SciPy</h3>
+<p>En el capítulo anterior, utilizamos la agrupación KMeans para agrupar empresas según los movimientos de sus cotizaciones bursátiles. Ahora, realizaremos la agrupación jerárquica de las empresas.</p>
+<p>linkage() de SciPy realiza una agrupación jerárquica en una matriz de muestras.</p>
+<div id="2bc52bb2" class="cell" data-execution_count="18">
+<div class="sourceCode cell-code" id="cb26" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">import</span> matplotlib.pyplot <span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">as</span> plt</span>
+<span id="cb26-2"><span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">from</span> scipy.cluster.hierarchy <span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">import</span> linkage, dendrogram</span>
+<span id="cb26-3"><span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">from</span> sklearn.preprocessing <span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">import</span> normalize</span>
+<span id="cb26-4"><span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">import</span> numpy <span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">as</span> np</span>
+<span id="cb26-5"></span>
+<span id="cb26-6">empresas <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> pd.read_csv(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"/Users/juanisaulamejia/Documents/webmathJI/posts/Unsupervised_Learning/empresas.csv"</span>)</span>
+<span id="cb26-7"></span>
+<span id="cb26-8">companies <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> samples.iloc[:, <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0</span>].tolist()</span>
+<span id="cb26-9"></span>
+<span id="cb26-10">empresas <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> samples.select_dtypes(include<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"number"</span>).copy()</span>
+<span id="cb26-11"></span>
+<span id="cb26-12">arr <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> samples.to_numpy()</span>
+<span id="cb26-13">normalized_movements <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> normalize(arr)</span>
+<span id="cb26-14"></span>
+<span id="cb26-15">mergings <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> linkage(normalized_movements, method <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">'complete'</span>) </span>
+<span id="cb26-16"></span>
+<span id="cb26-17">dendrogram(mergings, labels <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> companies,</span>
+<span id="cb26-18">leaf_rotation <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">90</span>,</span>
+<span id="cb26-19">leaf_font_size <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">6</span>)</span>
+<span id="cb26-20">plt.show()</span></code></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="https://j-isaula.github.io/Web_JI/posts/Unsupervised_Learning/index_files/figure-html/cell-19-output-1.png" width="581" height="403" class="figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Como podemos observar, podemos crear visualizaciones geniales como esta con el clustering jerárquico, pero se puede usar ara más que solo visualizaciones.</p>
+
+
 </section>
 </section>
 </section>

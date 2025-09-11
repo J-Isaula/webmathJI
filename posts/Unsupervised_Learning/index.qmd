@@ -396,3 +396,122 @@ print(ct)
 > Y como podemos observar, esto nos revela que al incorporar estandarización la nueva agrupación es fantástica. Sus tres clúster corresponden casi exactamente a las tres variedades de vino. Por tanto, esto es una gran mejora con respecto a la agrupación sin estandarización.
 
 **StandardScaler** es un ejemplo de un paso de *preprocesamiento*. Existen varios de estos disponibles en Scikit-Learn, por ejemplo, MaxAbsScaler y Normalizer.
+
+# **Visualización con agrupamiento Jerárquico y t-SNE**
+
+En este capítulo, aprenderás dos técnicas de aprendizaje no suprvisado para la visualización de datos: la **agrupación jerárquica** y **t-SNE**.
+
+**La agrupación jerárquica** fusiona las muestras de datos en grupos cada vez más amplios, lo que da como resultado una visualización en forma de árbol de la jerarquía de grupos resultantes.
+
+**t-SNE** mapea las muestras de datos en un espacio bidimensional para que se pueda visualizar la proximidad antre ellas.
+
+## Visualizar Jerarquías 
+
+Una gran parte del trabajo de cualquier cientifico de datos es la comunicación de los resultados o conocimiento a otras personas. Las visualizaciones son una excelente manera de compartir sus hallazgos especialmente con una audiencia no técnica. En este nuevo capítulo, aprenderá sobre dos métodos de aprendizaje no supervisado correspondientes a visualización:
+
+-   t-SNE
+
+-   Agrupamiento Jerárquico
+
+**t-SNE**, que lo veremos más adelante, crea un mapa 2D de cualquier conjunto de datos y transmite información útil sobre la proximidad de las muestras entre sí. Pero primero aprendamos sobre la agrupación jerárquica.
+
+Ya has visto muchas agrupaciones jerárquicas en el mundo real. Por ejemplo, los seres vivos pueden organizarse en grupos pequeños y estrechos como los humanos, los simios, las serpientes y los lagartos, o en grupos más grandes y amplios, como los mamíferos y los reptiles, o incluso grupos más amplios, como los animales y las plantas. Como puede visualizar en la figura de abajo, estos grupos están contenidos unos dentro de otros y forman una jerarquía.
+
+![](img/fig7.png){fig-align="center" width="450"}
+
+De manera análoga, la agrupación jerárquica organiza las muestras en una jerarquía de grupos.
+
+La **agrupación jerárquica** puede organizar cualquier tipo de datos en una jerarquía, no sólo muestras de plantas y animales.
+
+### Dataset de scoring Eurovision
+
+Consideremos un nuevo tipo de conjunto de datos que describe cómo los países calificaron sus actuaciones en el Festival de la Canción de Eurovisión 2016. Los datos se organizan en una matriz rectangular, donde las filas de la matriz muestra cuántos puntos le dio un país a cada canción.
+
+![](img/fig8.png){fig-align="center" width="400"}
+
+Las *muestras* en este caso son los países. El resultado de aplicar la agrupación jerárquica al Festival de Eurovisión:
+
+![](img/fig9.png){fig-align="center" width="500"}
+
+Las puntuaciones se pueden visualizar como u diagrama en forma de árbol llamado ***dendrograma***. Esta única imagen revela mucha información sobre el comportamiento electoral de los países en Eurovisión. El dendrograma agrupa a los países en grupos cada vez más grandes, y muchos de ellos los grupos se reconocen inmediatamente como compuestos por países cercanos entre si geográficamente, o que tienen estrechos vínculos culturales o político, o que pertenecen a un solo grupo linguístico. De esta manera, la agrupación jerárquica puede generar excelentes visualizaciones. **¿Pero cómo funciona?**
+
+La agrupación jerárquica se realiza en pasos:
+
+-   Al principio cada país es su propio clúster,por lo que hay tantos clústeres como países.
+
+-   En cada paso se fusionan los dos clústeres más cercanos. Esto disminuye el número de clústeres, y
+
+-   Al final, sólo queda un grupo, que contiene todos los países.
+
+Este proceso es en realidad un tipo particular de agrupamiento jerárquico llamdo **agrupamiento aglomerativo,** también existe el **agrupamiento divisivo**, que funciona a la inversa.
+
+Aún no hemos definido qué significa que dos clústeres estén cerca, pero volveremos a abordar este tema más adelante.
+
+### Dendrograma de una Clusterización Jerárquica 
+
+Todo el proceso de agrupamiento jerárquico está codificado en el dendrograma.
+
+![](img/fig9.png){fig-align="center" width="500"}
+
+En la parte inferior, cada país se encuentra en un grupo propio. Luego el agrupamiento continúa desde abajo hacia arriba.
+
+Los grupos se representan como líneas verticales y una unión de líneas verticales indica una fusión de grupos.
+
+Para comprender mejor, hagamos un acercamiento:
+
+![](img/fig10.png){fig-align="center" width="500"}
+
+Observemos sólo una parte de este dendrograma,
+
+![](img/fig11.png){fig-align="center" width="174"}
+
+Al principio hay seis grupos , cada uno de los cuales contiene sólo un país. La primera fusión se produce aquí:
+
+![](img/fig12.png){fig-align="center" width="174"}
+
+donde los grupos que contienen a Cyprus y Grecia se fusionan en un solo grupo. Posteriormente, este nuevo clúster se fusiona con el clúster que contiene Bulgaria:
+
+![](img/fig13.png){fig-align="center" width="174"}
+
+Poco después, los grupos que incluyen a Moldova y Rusia son fusionados,
+
+![](img/fig14.png){fig-align="center" width="174"}
+
+que más tarde a su vez se fusiona con el grupo que contiene Armenia.
+
+![](img/fig15.png){fig-align="center" width="174"}
+
+Más tarde aún, los dos grupos compuestos se fusionan, Este proceso continua hasta que sólo quede un grupo, y éste contenga todos los países.
+
+![](img/fig16.png){fig-align="center" width="500"}
+
+### Clusterización Jerárquica con SciPy
+
+En el capítulo anterior, utilizamos la agrupación KMeans para agrupar empresas según los movimientos de sus cotizaciones bursátiles. Ahora, realizaremos la agrupación jerárquica de las empresas.
+
+linkage() de SciPy realiza una agrupación jerárquica en una matriz de muestras.
+
+```{python}
+import matplotlib.pyplot as plt
+from scipy.cluster.hierarchy import linkage, dendrogram
+from sklearn.preprocessing import normalize
+import numpy as np
+
+empresas = pd.read_csv("/Users/juanisaulamejia/Documents/webmathJI/posts/Unsupervised_Learning/empresas.csv")
+
+companies = samples.iloc[:, 0].tolist()
+
+empresas = samples.select_dtypes(include="number").copy()
+
+arr = samples.to_numpy()
+normalized_movements = normalize(arr)
+
+mergings = linkage(normalized_movements, method = 'complete') 
+
+dendrogram(mergings, labels = companies,
+leaf_rotation = 90,
+leaf_font_size = 6)
+plt.show()
+```
+
+Como podemos observar, podemos crear visualizaciones geniales como esta con el clustering jerárquico, pero se puede usar ara más que solo visualizaciones.

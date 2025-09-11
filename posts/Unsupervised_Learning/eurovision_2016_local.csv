@@ -1,0 +1,1067 @@
+"From.country","To.country","Jury.A","Jury.B","Jury.C","Jury.D","Jury.E","Jury.Rank","Televote.Rank","Jury.Points","Televote.Points"
+"Albania","Belgium",20,16,24,22,24,25,14,NA,NA
+"Albania","Czech Republic",21,15,25,23,16,22,22,NA,NA
+"Albania","The Netherlands",22,14,23,24,21,24,24,NA,NA
+"Albania","Azerbaijan",19,12,11,21,11,13,19,NA,NA
+"Albania","Hungary",8,13,9,14,9,10,10,1,1
+"Albania","Italy",4,10,3,7,2,3,2,8,10
+"Albania","Israel",10,2,18,4,12,8,17,3,NA
+"Albania","Bulgaria",11,3,6,13,6,7,3,4,8
+"Albania","Sweden",16,8,15,6,15,11,8,NA,3
+"Albania","Germany",18,17,20,11,17,18,15,NA,NA
+"Albania","France",3,9,1,9,1,2,11,10,NA
+"Albania","Poland",14,7,13,20,22,14,6,NA,5
+"Albania","Australia",1,1,2,1,3,1,1,12,12
+"Albania","Cyprus",25,11,21,25,20,23,12,NA,NA
+"Albania","Serbia",15,26,12,15,19,19,26,NA,NA
+"Albania","Lithuania",13,18,22,17,23,20,7,NA,4
+"Albania","Croatia",24,19,16,18,18,21,20,NA,NA
+"Albania","Russia",7,4,7,5,7,4,4,7,7
+"Albania","Spain",9,5,4,12,4,5,23,6,NA
+"Albania","Latvia",23,20,17,8,13,17,21,NA,NA
+"Albania","Ukraine",17,25,8,2,8,12,5,NA,6
+"Albania","Malta",5,21,5,16,5,9,16,2,NA
+"Albania","Georgia",26,22,26,26,26,26,25,NA,NA
+"Albania","Austria",6,23,19,19,14,16,13,NA,NA
+"Albania","United Kingdom",2,6,10,10,10,6,18,5,NA
+"Albania","Armenia",12,24,14,3,25,15,9,NA,2
+"Armenia","Belgium",12,6,9,6,6,7,17,4,NA
+"Armenia","Czech Republic",13,14,12,8,9,10,18,1,NA
+"Armenia","The Netherlands",11,12,14,16,10,11,11,NA,NA
+"Armenia","Azerbaijan",25,25,25,19,25,25,25,NA,NA
+"Armenia","Hungary",23,22,10,22,11,18,8,NA,3
+"Armenia","Italy",14,13,19,25,20,20,14,NA,NA
+"Armenia","Israel",20,24,22,17,24,24,24,NA,NA
+"Armenia","Bulgaria",4,4,5,5,4,4,15,7,NA
+"Armenia","Sweden",21,8,18,21,18,17,9,NA,2
+"Armenia","Germany",22,23,20,18,15,21,19,NA,NA
+"Armenia","France",1,1,1,1,1,1,4,12,7
+"Armenia","Poland",24,10,24,24,22,23,10,NA,1
+"Armenia","Australia",6,9,6,9,8,6,12,5,NA
+"Armenia","Cyprus",10,3,4,3,5,5,5,6,6
+"Armenia","Serbia",9,21,11,11,14,12,23,NA,NA
+"Armenia","Lithuania",16,15,16,10,19,14,21,NA,NA
+"Armenia","Croatia",15,19,17,13,17,15,22,NA,NA
+"Armenia","Russia",5,17,7,7,16,9,1,2,12
+"Armenia","Spain",8,7,8,12,7,8,13,3,NA
+"Armenia","Latvia",17,11,13,15,12,13,16,NA,NA
+"Armenia","Ukraine",7,20,21,14,23,16,2,NA,10
+"Armenia","Malta",3,5,3,4,3,3,6,8,5
+"Armenia","Georgia",2,2,2,2,2,2,3,10,8
+"Armenia","Austria",18,16,23,20,21,22,7,NA,4
+"Armenia","United Kingdom",19,18,15,23,13,19,20,NA,NA
+"Australia","Belgium",1,2,1,1,1,1,1,12,12
+"Australia","Czech Republic",18,23,4,14,22,16,25,NA,NA
+"Australia","The Netherlands",10,14,11,4,10,8,16,3,NA
+"Australia","Azerbaijan",7,20,15,15,11,12,22,NA,NA
+"Australia","Hungary",22,6,10,24,23,19,19,NA,NA
+"Australia","Italy",11,16,24,16,16,17,23,NA,NA
+"Australia","Israel",4,3,3,2,2,2,14,10,NA
+"Australia","Bulgaria",2,1,7,3,3,3,2,8,10
+"Australia","Sweden",16,21,22,17,25,23,20,NA,NA
+"Australia","Germany",19,12,16,12,17,14,21,NA,NA
+"Australia","France",5,7,13,7,5,5,4,6,7
+"Australia","Poland",25,19,14,25,12,22,15,NA,NA
+"Australia","Cyprus",23,18,6,20,21,20,13,NA,NA
+"Australia","Serbia",8,17,21,13,7,11,17,NA,NA
+"Australia","Lithuania",6,4,5,5,4,4,10,7,1
+"Australia","Croatia",17,8,8,19,13,10,18,1,NA
+"Australia","Russia",24,13,17,22,8,18,6,NA,5
+"Australia","Spain",3,5,18,6,6,6,9,5,2
+"Australia","Latvia",14,9,25,8,24,15,11,NA,NA
+"Australia","Ukraine",13,10,9,9,9,9,3,2,8
+"Australia","Malta",15,24,19,18,14,21,5,NA,6
+"Australia","Georgia",21,25,20,21,18,25,24,NA,NA
+"Australia","Austria",20,15,23,23,20,24,8,NA,3
+"Australia","United Kingdom",9,11,2,11,15,7,7,4,4
+"Australia","Armenia",12,22,12,10,19,13,12,NA,NA
+"Austria","Belgium",1,12,10,6,9,6,14,5,NA
+"Austria","Czech Republic",12,7,7,9,7,7,23,4,NA
+"Austria","The Netherlands",9,11,11,7,16,11,5,NA,6
+"Austria","Azerbaijan",23,17,9,8,5,12,24,NA,NA
+"Austria","Hungary",14,16,17,25,19,19,11,NA,NA
+"Austria","Italy",22,18,13,11,22,17,13,NA,NA
+"Austria","Israel",10,14,12,12,15,13,17,NA,NA
+"Austria","Bulgaria",6,10,14,17,20,14,6,NA,5
+"Austria","Sweden",3,5,4,10,4,3,4,8,7
+"Austria","Germany",17,21,24,19,18,23,9,NA,2
+"Austria","France",5,3,3,18,3,4,10,7,1
+"Austria","Poland",20,25,25,23,25,25,1,NA,12
+"Austria","Australia",2,1,1,1,2,1,8,12,3
+"Austria","Cyprus",24,19,21,20,21,24,16,NA,NA
+"Austria","Serbia",13,13,23,24,24,22,7,NA,4
+"Austria","Lithuania",16,6,6,16,10,10,20,1,NA
+"Austria","Croatia",8,9,5,5,8,5,19,6,NA
+"Austria","Russia",21,8,8,4,6,8,3,3,8
+"Austria","Spain",19,20,20,3,11,15,15,NA,NA
+"Austria","Latvia",18,24,19,22,13,21,18,NA,NA
+"Austria","Ukraine",15,15,16,13,23,16,2,NA,10
+"Austria","Malta",11,2,2,2,1,2,25,10,NA
+"Austria","Georgia",25,23,15,14,17,20,21,NA,NA
+"Austria","United Kingdom",7,22,22,21,14,18,22,NA,NA
+"Austria","Armenia",4,4,18,15,12,9,12,2,NA
+"Azerbaijan","Belgium",17,11,23,23,23,22,16,NA,NA
+"Azerbaijan","Czech Republic",10,23,14,18,10,16,20,NA,NA
+"Azerbaijan","The Netherlands",4,14,21,11,16,13,19,NA,NA
+"Azerbaijan","Hungary",3,22,8,6,3,7,4,4,7
+"Azerbaijan","Italy",13,21,19,19,21,21,13,NA,NA
+"Azerbaijan","Israel",6,6,4,7,20,8,5,3,6
+"Azerbaijan","Bulgaria",7,2,6,5,9,3,3,8,8
+"Azerbaijan","Sweden",23,16,18,16,17,20,12,NA,NA
+"Azerbaijan","Germany",20,19,17,24,22,23,22,NA,NA
+"Azerbaijan","France",12,9,5,20,18,12,7,NA,4
+"Azerbaijan","Poland",14,4,11,10,6,9,8,2,3
+"Azerbaijan","Australia",11,7,3,8,5,4,9,7,2
+"Azerbaijan","Cyprus",16,20,22,12,19,19,17,NA,NA
+"Azerbaijan","Serbia",21,15,10,21,15,18,24,NA,NA
+"Azerbaijan","Lithuania",8,12,7,9,4,6,18,5,NA
+"Azerbaijan","Croatia",9,8,20,14,8,11,21,NA,NA
+"Azerbaijan","Russia",1,1,1,1,1,1,1,12,12
+"Azerbaijan","Spain",15,10,12,15,7,10,15,1,NA
+"Azerbaijan","Latvia",22,13,15,17,13,17,14,NA,NA
+"Azerbaijan","Ukraine",2,3,2,2,2,2,2,10,10
+"Azerbaijan","Malta",5,5,9,3,14,5,6,6,5
+"Azerbaijan","Georgia",24,24,24,22,24,24,10,NA,1
+"Azerbaijan","Austria",18,18,13,13,11,15,11,NA,NA
+"Azerbaijan","United Kingdom",19,17,16,4,12,14,23,NA,NA
+"Azerbaijan","Armenia",25,25,25,25,25,25,25,NA,NA
+"Belarus","Belgium",10,7,7,4,9,7,18,4,NA
+"Belarus","Czech Republic",22,24,17,16,19,20,25,NA,NA
+"Belarus","The Netherlands",12,11,6,12,18,11,21,NA,NA
+"Belarus","Azerbaijan",13,12,12,11,8,9,3,2,8
+"Belarus","Hungary",7,25,18,6,10,13,8,NA,3
+"Belarus","Italy",23,10,23,24,17,19,19,NA,NA
+"Belarus","Israel",11,23,22,13,12,16,16,NA,NA
+"Belarus","Bulgaria",8,9,13,17,11,10,7,1,4
+"Belarus","Sweden",3,3,3,5,3,3,9,8,2
+"Belarus","Germany",25,19,24,19,21,23,20,NA,NA
+"Belarus","France",19,20,19,20,14,18,14,NA,NA
+"Belarus","Poland",16,21,5,9,22,14,5,NA,6
+"Belarus","Australia",9,4,8,2,7,5,10,6,1
+"Belarus","Cyprus",14,15,14,22,23,17,11,NA,NA
+"Belarus","Serbia",20,22,21,21,16,22,24,NA,NA
+"Belarus","Lithuania",2,8,1,1,4,2,12,10,NA
+"Belarus","Croatia",17,16,26,14,25,21,23,NA,NA
+"Belarus","Russia",1,1,2,3,2,1,1,12,12
+"Belarus","Spain",15,5,10,18,15,12,17,NA,NA
+"Belarus","Latvia",21,17,25,23,24,24,6,NA,5
+"Belarus","Ukraine",4,6,4,7,1,4,2,7,10
+"Belarus","Malta",6,2,9,8,6,6,22,5,NA
+"Belarus","Georgia",18,18,11,15,13,15,15,NA,NA
+"Belarus","Austria",26,13,20,26,26,26,13,NA,NA
+"Belarus","United Kingdom",24,26,15,25,20,25,26,NA,NA
+"Belarus","Armenia",5,14,16,10,5,8,4,3,7
+"Belgium","Czech Republic",13,14,8,8,9,10,23,1,NA
+"Belgium","The Netherlands",3,4,13,7,10,7,2,4,10
+"Belgium","Azerbaijan",24,18,24,19,20,24,22,NA,NA
+"Belgium","Hungary",22,25,21,14,11,20,19,NA,NA
+"Belgium","Italy",2,6,5,1,3,2,13,10,NA
+"Belgium","Israel",6,8,15,15,7,9,17,2,NA
+"Belgium","Bulgaria",5,7,10,6,8,5,6,6,5
+"Belgium","Sweden",25,16,19,20,24,23,10,NA,1
+"Belgium","Germany",16,17,9,21,12,14,21,NA,NA
+"Belgium","France",4,1,1,12,16,3,3,8,8
+"Belgium","Poland",18,13,25,16,19,19,1,NA,12
+"Belgium","Australia",1,2,2,3,1,1,7,12,4
+"Belgium","Cyprus",17,20,11,22,14,18,14,NA,NA
+"Belgium","Serbia",14,12,20,23,13,16,24,NA,NA
+"Belgium","Lithuania",7,21,16,17,18,15,12,NA,NA
+"Belgium","Croatia",19,22,18,9,15,17,25,NA,NA
+"Belgium","Russia",15,5,7,10,17,11,5,NA,6
+"Belgium","Spain",8,11,6,24,6,12,11,NA,NA
+"Belgium","Latvia",21,19,22,11,25,22,16,NA,NA
+"Belgium","Ukraine",20,10,4,5,2,8,9,3,2
+"Belgium","Malta",10,24,17,25,21,21,15,NA,NA
+"Belgium","Georgia",12,3,14,2,5,4,20,7,NA
+"Belgium","Austria",11,15,3,4,4,6,8,5,3
+"Belgium","United Kingdom",9,9,12,13,22,13,18,NA,NA
+"Belgium","Armenia",23,23,23,18,23,25,4,NA,7
+"Bosnia & Herzegovina","Belgium",14,16,12,6,17,12,15,NA,NA
+"Bosnia & Herzegovina","Czech Republic",3,6,8,4,5,5,20,6,NA
+"Bosnia & Herzegovina","The Netherlands",18,17,22,22,22,22,21,NA,NA
+"Bosnia & Herzegovina","Azerbaijan",19,5,13,10,15,10,3,1,8
+"Bosnia & Herzegovina","Hungary",12,19,14,13,13,13,10,NA,1
+"Bosnia & Herzegovina","Italy",22,23,25,23,18,25,18,NA,NA
+"Bosnia & Herzegovina","Israel",20,15,26,11,16,18,24,NA,NA
+"Bosnia & Herzegovina","Bulgaria",4,12,5,12,11,8,9,3,2
+"Bosnia & Herzegovina","Sweden",24,20,15,14,20,19,11,NA,NA
+"Bosnia & Herzegovina","Germany",25,14,11,15,12,16,16,NA,NA
+"Bosnia & Herzegovina","France",7,4,4,8,3,4,7,7,4
+"Bosnia & Herzegovina","Poland",15,21,16,21,21,20,14,NA,NA
+"Bosnia & Herzegovina","Australia",2,1,2,5,2,2,8,10,3
+"Bosnia & Herzegovina","Cyprus",13,8,17,24,19,17,13,NA,NA
+"Bosnia & Herzegovina","Serbia",6,7,3,1,7,3,1,8,12
+"Bosnia & Herzegovina","Lithuania",26,25,21,9,25,24,23,NA,NA
+"Bosnia & Herzegovina","Croatia",9,9,9,3,8,7,2,4,10
+"Bosnia & Herzegovina","Russia",8,3,10,7,6,6,5,5,6
+"Bosnia & Herzegovina","Spain",16,18,7,25,9,15,17,NA,NA
+"Bosnia & Herzegovina","Latvia",11,22,6,16,10,11,22,NA,NA
+"Bosnia & Herzegovina","Ukraine",1,2,1,2,1,1,4,12,7
+"Bosnia & Herzegovina","Malta",10,11,18,18,14,14,19,NA,NA
+"Bosnia & Herzegovina","Georgia",23,24,19,17,23,23,26,NA,NA
+"Bosnia & Herzegovina","Austria",21,26,23,26,26,26,6,NA,5
+"Bosnia & Herzegovina","United Kingdom",17,13,24,19,24,21,25,NA,NA
+"Bosnia & Herzegovina","Armenia",5,10,20,20,4,9,12,2,NA
+"Bulgaria","Belgium",4,4,1,3,2,2,13,10,NA
+"Bulgaria","Czech Republic",16,22,16,15,12,16,24,NA,NA
+"Bulgaria","The Netherlands",17,11,18,5,8,9,23,2,NA
+"Bulgaria","Azerbaijan",18,12,21,22,13,18,10,NA,1
+"Bulgaria","Hungary",23,9,15,24,25,21,16,NA,NA
+"Bulgaria","Italy",22,24,22,18,17,24,18,NA,NA
+"Bulgaria","Israel",20,8,8,13,15,12,9,NA,2
+"Bulgaria","Sweden",10,17,19,25,22,20,8,NA,3
+"Bulgaria","Germany",24,14,23,21,21,25,22,NA,NA
+"Bulgaria","France",15,21,20,20,20,22,12,NA,NA
+"Bulgaria","Poland",11,23,12,7,10,11,5,NA,6
+"Bulgaria","Australia",5,3,2,4,1,3,6,8,5
+"Bulgaria","Cyprus",21,19,24,19,19,23,4,NA,7
+"Bulgaria","Serbia",2,7,4,11,7,6,11,5,NA
+"Bulgaria","Lithuania",12,6,9,17,18,10,15,1,NA
+"Bulgaria","Croatia",19,18,17,16,6,15,25,NA,NA
+"Bulgaria","Russia",1,10,5,10,4,5,1,6,12
+"Bulgaria","Spain",7,16,10,6,11,7,17,4,NA
+"Bulgaria","Latvia",8,13,11,9,23,14,14,NA,NA
+"Bulgaria","Ukraine",25,5,7,23,24,17,2,NA,10
+"Bulgaria","Malta",9,2,13,1,5,4,19,7,NA
+"Bulgaria","Georgia",6,20,6,8,16,8,20,3,NA
+"Bulgaria","Austria",13,25,25,14,14,19,7,NA,4
+"Bulgaria","United Kingdom",14,15,14,12,9,13,21,NA,NA
+"Bulgaria","Armenia",3,1,3,2,3,1,3,12,8
+"Croatia","Belgium",6,18,18,15,6,12,18,NA,NA
+"Croatia","Czech Republic",18,7,2,1,2,2,20,10,NA
+"Croatia","The Netherlands",1,21,13,21,9,14,15,NA,NA
+"Croatia","Azerbaijan",17,9,20,9,20,19,14,NA,NA
+"Croatia","Hungary",11,15,12,2,3,6,8,5,3
+"Croatia","Italy",5,3,5,17,16,8,11,3,NA
+"Croatia","Israel",3,8,6,8,12,4,22,7,NA
+"Croatia","Bulgaria",25,16,19,16,15,20,10,NA,1
+"Croatia","Sweden",10,19,7,19,17,18,4,NA,7
+"Croatia","Germany",14,23,25,25,25,24,16,NA,NA
+"Croatia","France",2,4,11,10,7,3,9,8,2
+"Croatia","Poland",16,10,21,18,5,17,7,NA,4
+"Croatia","Australia",4,6,8,4,1,1,6,12,5
+"Croatia","Cyprus",9,17,10,11,4,10,13,1,NA
+"Croatia","Serbia",12,11,4,7,14,9,1,2,12
+"Croatia","Lithuania",8,20,14,14,11,15,23,NA,NA
+"Croatia","Russia",19,2,3,6,10,5,3,6,8
+"Croatia","Spain",22,22,22,20,21,22,19,NA,NA
+"Croatia","Latvia",23,5,15,5,8,11,17,NA,NA
+"Croatia","Ukraine",24,12,1,12,19,16,2,NA,10
+"Croatia","Malta",7,14,16,13,13,13,24,NA,NA
+"Croatia","Georgia",21,25,23,24,24,25,21,NA,NA
+"Croatia","Austria",20,13,17,22,22,21,5,NA,6
+"Croatia","United Kingdom",13,24,24,23,23,23,25,NA,NA
+"Croatia","Armenia",15,1,9,3,18,7,12,4,NA
+"Cyprus","Belgium",16,19,22,22,18,23,17,NA,NA
+"Cyprus","Czech Republic",10,13,19,13,8,11,24,NA,NA
+"Cyprus","The Netherlands",23,14,18,23,24,24,20,NA,NA
+"Cyprus","Azerbaijan",6,8,16,6,22,9,11,2,NA
+"Cyprus","Hungary",19,7,5,15,6,7,7,4,4
+"Cyprus","Italy",11,10,12,9,11,8,12,3,NA
+"Cyprus","Israel",7,11,6,4,9,6,15,5,NA
+"Cyprus","Bulgaria",15,12,24,21,12,17,1,NA,12
+"Cyprus","Sweden",13,15,7,16,13,14,10,NA,1
+"Cyprus","Germany",9,21,23,17,20,20,22,NA,NA
+"Cyprus","France",14,6,2,5,5,4,5,7,6
+"Cyprus","Poland",24,24,25,25,25,25,9,NA,2
+"Cyprus","Australia",2,3,3,2,3,2,6,10,5
+"Cyprus","Serbia",5,16,8,24,10,13,16,NA,NA
+"Cyprus","Lithuania",18,17,10,3,17,15,8,NA,3
+"Cyprus","Croatia",3,18,15,11,15,10,25,1,NA
+"Cyprus","Russia",1,1,1,1,1,1,2,12,10
+"Cyprus","Spain",21,23,9,14,14,16,21,NA,NA
+"Cyprus","Latvia",20,5,13,18,7,12,14,NA,NA
+"Cyprus","Ukraine",22,4,20,19,19,18,4,NA,7
+"Cyprus","Malta",8,9,4,7,4,5,18,6,NA
+"Cyprus","Georgia",25,22,14,12,21,22,23,NA,NA
+"Cyprus","Austria",17,25,21,10,16,19,13,NA,NA
+"Cyprus","United Kingdom",12,20,17,20,23,21,19,NA,NA
+"Cyprus","Armenia",4,2,11,8,2,3,3,8,8
+"Czech Republic","Belgium",13,8,6,12,14,9,20,2,NA
+"Czech Republic","The Netherlands",2,6,3,7,6,4,18,7,NA
+"Czech Republic","Azerbaijan",20,12,12,17,16,17,5,NA,6
+"Czech Republic","Hungary",4,2,2,6,2,2,8,10,3
+"Czech Republic","Italy",9,20,19,8,18,16,22,NA,NA
+"Czech Republic","Israel",14,23,17,23,23,21,16,NA,NA
+"Czech Republic","Bulgaria",21,7,18,11,11,14,6,NA,5
+"Czech Republic","Sweden",1,1,1,1,1,1,9,12,2
+"Czech Republic","Germany",24,22,23,16,20,22,19,NA,NA
+"Czech Republic","France",7,13,4,5,4,6,11,5,NA
+"Czech Republic","Poland",23,21,21,22,22,23,4,NA,7
+"Czech Republic","Australia",3,10,10,15,17,11,10,NA,1
+"Czech Republic","Cyprus",22,18,25,18,9,19,12,NA,NA
+"Czech Republic","Serbia",25,19,16,19,21,20,13,NA,NA
+"Czech Republic","Lithuania",8,14,9,10,8,8,15,3,NA
+"Czech Republic","Croatia",5,3,8,2,3,3,25,8,NA
+"Czech Republic","Russia",18,25,24,25,25,25,2,NA,10
+"Czech Republic","Spain",10,17,15,20,10,15,17,NA,NA
+"Czech Republic","Latvia",11,11,11,14,7,10,14,1,NA
+"Czech Republic","Ukraine",19,24,22,24,24,24,1,NA,12
+"Czech Republic","Malta",12,4,7,4,5,5,24,6,NA
+"Czech Republic","Georgia",6,9,20,13,15,13,21,NA,NA
+"Czech Republic","Austria",16,16,5,9,12,12,7,NA,4
+"Czech Republic","United Kingdom",15,5,13,3,13,7,23,4,NA
+"Czech Republic","Armenia",17,15,14,21,19,18,3,NA,8
+"Denmark","Belgium",3,22,8,8,3,3,3,8,8
+"Denmark","Czech Republic",17,10,16,19,19,19,25,NA,NA
+"Denmark","The Netherlands",2,25,12,6,4,4,4,7,7
+"Denmark","Azerbaijan",23,14,25,26,13,26,22,NA,NA
+"Denmark","Hungary",16,12,21,20,22,24,17,NA,NA
+"Denmark","Italy",14,18,13,11,12,12,14,NA,NA
+"Denmark","Israel",11,19,2,16,9,9,16,2,NA
+"Denmark","Bulgaria",7,16,4,17,6,5,11,6,NA
+"Denmark","Sweden",5,20,17,10,2,7,1,4,12
+"Denmark","Germany",20,6,14,24,23,23,19,NA,NA
+"Denmark","France",6,23,18,2,20,14,9,NA,2
+"Denmark","Poland",21,17,15,18,26,25,6,NA,5
+"Denmark","Australia",1,26,1,1,1,2,2,10,10
+"Denmark","Cyprus",26,9,9,21,10,16,18,NA,NA
+"Denmark","Serbia",25,5,22,12,14,18,24,NA,NA
+"Denmark","Lithuania",13,15,7,7,11,6,5,5,6
+"Denmark","Croatia",12,3,23,22,25,22,26,NA,NA
+"Denmark","Russia",9,24,11,9,15,13,7,NA,4
+"Denmark","Spain",22,21,6,3,8,10,12,1,NA
+"Denmark","Latvia",18,13,19,4,16,15,13,NA,NA
+"Denmark","Ukraine",4,2,3,14,5,1,8,12,3
+"Denmark","Malta",19,8,24,13,17,20,23,NA,NA
+"Denmark","Georgia",24,1,10,23,24,21,20,NA,NA
+"Denmark","Austria",10,7,26,15,18,17,10,NA,1
+"Denmark","United Kingdom",8,11,5,25,7,8,15,3,NA
+"Denmark","Armenia",15,4,20,5,21,11,21,NA,NA
+"Estonia","Belgium",13,18,17,4,12,14,19,NA,NA
+"Estonia","Czech Republic",18,23,5,13,19,17,25,NA,NA
+"Estonia","The Netherlands",8,4,4,7,13,5,12,6,NA
+"Estonia","Azerbaijan",14,15,20,21,18,19,18,NA,NA
+"Estonia","Hungary",19,2,19,26,11,16,11,NA,NA
+"Estonia","Italy",10,6,10,24,9,11,13,NA,NA
+"Estonia","Israel",25,21,18,25,14,24,22,NA,NA
+"Estonia","Bulgaria",20,17,24,17,21,22,14,NA,NA
+"Estonia","Sweden",2,3,1,1,1,1,2,12,10
+"Estonia","Germany",21,20,25,16,22,25,23,NA,NA
+"Estonia","France",17,1,9,15,15,10,9,1,2
+"Estonia","Poland",22,9,23,22,23,23,10,NA,1
+"Estonia","Australia",3,11,2,5,7,2,7,10,4
+"Estonia","Cyprus",12,5,13,19,6,7,8,4,3
+"Estonia","Serbia",26,24,26,20,24,26,26,NA,NA
+"Estonia","Lithuania",7,14,8,9,2,6,6,5,5
+"Estonia","Croatia",11,19,16,12,5,13,24,NA,NA
+"Estonia","Russia",16,10,11,18,26,18,1,NA,12
+"Estonia","Spain",24,25,15,14,10,20,17,NA,NA
+"Estonia","Latvia",4,7,7,8,4,3,4,8,7
+"Estonia","Ukraine",1,8,3,3,20,4,3,7,8
+"Estonia","Malta",6,22,6,6,17,9,20,2,NA
+"Estonia","Georgia",23,26,22,2,3,15,15,NA,NA
+"Estonia","Austria",9,16,21,23,25,21,5,NA,6
+"Estonia","United Kingdom",5,13,12,10,16,8,21,3,NA
+"Estonia","Armenia",15,12,14,11,8,12,16,NA,NA
+"F.Y.R. Macedonia","Belgium",19,7,11,4,13,7,7,4,4
+"F.Y.R. Macedonia","Czech Republic",20,15,10,11,18,17,25,NA,NA
+"F.Y.R. Macedonia","The Netherlands",5,8,24,2,24,9,19,2,NA
+"F.Y.R. Macedonia","Azerbaijan",21,16,8,12,10,10,24,1,NA
+"F.Y.R. Macedonia","Hungary",22,24,12,13,8,20,14,NA,NA
+"F.Y.R. Macedonia","Italy",11,17,21,14,21,22,10,NA,1
+"F.Y.R. Macedonia","Israel",14,6,7,15,12,6,16,5,NA
+"F.Y.R. Macedonia","Bulgaria",6,4,4,3,7,2,2,10,10
+"F.Y.R. Macedonia","Sweden",10,13,23,1,22,13,15,NA,NA
+"F.Y.R. Macedonia","Germany",18,25,17,16,23,24,23,NA,NA
+"F.Y.R. Macedonia","France",12,14,19,17,11,16,11,NA,NA
+"F.Y.R. Macedonia","Poland",2,23,9,18,17,12,9,NA,2
+"F.Y.R. Macedonia","Australia",7,3,3,9,3,3,8,8,3
+"F.Y.R. Macedonia","Cyprus",23,18,25,19,25,25,17,NA,NA
+"F.Y.R. Macedonia","Serbia",3,2,2,20,1,4,1,7,12
+"F.Y.R. Macedonia","Lithuania",24,22,5,21,5,19,18,NA,NA
+"F.Y.R. Macedonia","Croatia",9,11,6,7,14,5,6,6,5
+"F.Y.R. Macedonia","Russia",1,9,18,22,19,11,3,NA,8
+"F.Y.R. Macedonia","Spain",13,21,20,6,9,14,20,NA,NA
+"F.Y.R. Macedonia","Latvia",17,5,22,10,6,8,13,3,NA
+"F.Y.R. Macedonia","Ukraine",4,1,1,5,2,1,5,12,6
+"F.Y.R. Macedonia","Malta",25,19,14,23,15,23,21,NA,NA
+"F.Y.R. Macedonia","Georgia",26,20,26,24,26,26,26,NA,NA
+"F.Y.R. Macedonia","Austria",8,10,13,25,20,18,12,NA,NA
+"F.Y.R. Macedonia","United Kingdom",15,26,16,8,16,21,22,NA,NA
+"F.Y.R. Macedonia","Armenia",16,12,15,26,4,15,4,NA,7
+"Finland","Belgium",18,22,14,19,17,22,17,NA,NA
+"Finland","Czech Republic",14,6,7,16,7,8,22,3,NA
+"Finland","The Netherlands",4,2,8,7,8,2,13,10,NA
+"Finland","Azerbaijan",23,25,16,21,19,23,24,NA,NA
+"Finland","Hungary",21,23,21,25,20,25,12,NA,NA
+"Finland","Italy",16,11,10,3,12,9,16,2,NA
+"Finland","Israel",12,7,12,4,1,4,14,7,NA
+"Finland","Bulgaria",9,17,17,9,22,15,7,NA,4
+"Finland","Sweden",2,1,3,1,6,1,2,12,10
+"Finland","Germany",13,19,24,10,14,19,25,NA,NA
+"Finland","France",17,20,4,11,3,10,8,1,3
+"Finland","Poland",10,21,11,22,21,20,6,NA,5
+"Finland","Australia",3,3,15,8,4,3,4,8,7
+"Finland","Cyprus",24,26,25,24,26,26,10,NA,1
+"Finland","Serbia",22,24,13,26,24,24,26,NA,NA
+"Finland","Lithuania",5,14,2,17,2,5,11,6,NA
+"Finland","Croatia",11,15,23,20,10,18,20,NA,NA
+"Finland","Russia",26,10,6,18,11,14,3,NA,8
+"Finland","Spain",19,12,1,12,23,12,15,NA,NA
+"Finland","Latvia",7,16,26,14,5,13,9,NA,2
+"Finland","Ukraine",8,5,22,6,15,11,1,NA,12
+"Finland","Malta",6,8,5,5,18,6,23,5,NA
+"Finland","Georgia",25,18,9,13,25,21,19,NA,NA
+"Finland","Austria",1,4,20,2,16,7,5,4,6
+"Finland","United Kingdom",20,9,19,15,13,16,21,NA,NA
+"Finland","Armenia",15,13,18,23,9,17,18,NA,NA
+"France","Belgium",16,19,10,16,5,12,7,NA,4
+"France","Czech Republic",17,11,12,12,14,11,23,NA,NA
+"France","The Netherlands",2,6,11,8,3,4,15,7,NA
+"France","Azerbaijan",22,14,13,15,4,14,20,NA,NA
+"France","Hungary",21,13,14,21,11,20,14,NA,NA
+"France","Italy",1,9,1,1,13,1,11,12,NA
+"France","Israel",9,23,21,2,22,17,8,NA,3
+"France","Bulgaria",3,3,4,6,10,2,6,10,5
+"France","Sweden",10,1,5,5,12,6,9,5,2
+"France","Germany",24,7,8,14,17,16,18,NA,NA
+"France","Poland",25,22,25,24,20,25,4,NA,7
+"France","Australia",4,4,3,4,15,5,12,6,NA
+"France","Cyprus",14,16,15,17,16,18,13,NA,NA
+"France","Serbia",15,21,22,25,24,22,17,NA,NA
+"France","Lithuania",19,12,20,11,18,21,19,NA,NA
+"France","Croatia",11,18,16,13,9,13,24,NA,NA
+"France","Russia",18,10,9,20,6,10,5,1,6
+"France","Spain",8,5,7,19,2,8,10,3,1
+"France","Latvia",23,24,19,23,23,23,22,NA,NA
+"France","Ukraine",12,2,24,10,21,15,2,NA,10
+"France","Malta",6,17,6,3,8,7,25,4,NA
+"France","Georgia",20,25,23,22,25,24,21,NA,NA
+"France","Austria",7,8,2,9,1,3,3,8,8
+"France","United Kingdom",5,20,18,18,19,19,16,NA,NA
+"France","Armenia",13,15,17,7,7,9,1,2,12
+"Georgia","Belgium",1,3,3,9,4,2,21,10,NA
+"Georgia","Czech Republic",15,10,13,15,14,12,20,NA,NA
+"Georgia","The Netherlands",8,19,24,14,9,15,15,NA,NA
+"Georgia","Azerbaijan",16,20,12,19,20,21,4,NA,7
+"Georgia","Hungary",7,21,20,20,13,19,9,NA,2
+"Georgia","Italy",9,22,23,4,15,14,14,NA,NA
+"Georgia","Israel",18,11,5,11,8,8,19,3,NA
+"Georgia","Bulgaria",24,23,14,22,25,24,8,NA,3
+"Georgia","Sweden",3,13,4,6,2,5,11,6,NA
+"Georgia","Germany",19,14,10,8,12,10,13,1,NA
+"Georgia","France",17,15,8,1,7,7,18,4,NA
+"Georgia","Poland",25,9,11,17,24,20,7,NA,4
+"Georgia","Australia",4,2,2,12,3,3,10,8,1
+"Georgia","Cyprus",10,17,17,16,17,17,12,NA,NA
+"Georgia","Serbia",11,16,16,10,10,11,23,NA,NA
+"Georgia","Lithuania",6,8,6,13,6,6,6,5,5
+"Georgia","Croatia",12,7,21,2,19,9,24,2,NA
+"Georgia","Russia",21,18,19,24,23,23,3,NA,8
+"Georgia","Spain",23,12,22,25,11,22,16,NA,NA
+"Georgia","Latvia",5,5,7,5,5,4,5,7,6
+"Georgia","Ukraine",2,1,1,7,1,1,2,12,10
+"Georgia","Malta",20,4,18,23,16,18,25,NA,NA
+"Georgia","Austria",22,25,25,21,18,25,17,NA,NA
+"Georgia","United Kingdom",14,24,9,3,21,13,22,NA,NA
+"Georgia","Armenia",13,6,15,18,22,16,1,NA,12
+"Germany","Belgium",2,10,7,7,6,6,17,5,NA
+"Germany","Czech Republic",22,21,21,22,22,22,24,NA,NA
+"Germany","The Netherlands",11,6,13,4,4,7,8,4,3
+"Germany","Azerbaijan",25,22,22,21,25,24,23,NA,NA
+"Germany","Hungary",12,13,18,20,17,17,19,NA,NA
+"Germany","Italy",13,7,11,8,11,8,10,3,1
+"Germany","Israel",3,1,1,1,1,1,18,12,NA
+"Germany","Bulgaria",14,11,17,13,19,14,7,NA,4
+"Germany","Sweden",1,4,2,3,2,2,3,10,8
+"Germany","France",8,19,24,18,18,20,13,NA,NA
+"Germany","Poland",18,14,16,19,20,19,2,NA,10
+"Germany","Australia",6,3,5,6,8,5,6,6,5
+"Germany","Cyprus",20,25,25,24,24,25,11,NA,NA
+"Germany","Serbia",16,18,23,25,23,21,21,NA,NA
+"Germany","Lithuania",15,9,6,15,12,10,15,1,NA
+"Germany","Croatia",5,12,15,11,16,12,22,NA,NA
+"Germany","Russia",23,17,10,16,15,18,1,NA,12
+"Germany","Spain",10,16,9,10,14,11,12,NA,NA
+"Germany","Latvia",21,8,8,9,7,9,16,2,NA
+"Germany","Ukraine",4,5,4,5,5,4,5,7,6
+"Germany","Malta",24,24,20,23,21,23,25,NA,NA
+"Germany","Georgia",7,2,3,2,3,3,14,8,NA
+"Germany","Austria",19,20,14,14,10,16,4,NA,7
+"Germany","United Kingdom",17,15,12,17,13,15,20,NA,NA
+"Germany","Armenia",9,23,19,12,9,13,9,NA,2
+"Greece","Belgium",19,26,23,26,10,24,13,NA,NA
+"Greece","Czech Republic",20,6,24,23,19,18,26,NA,NA
+"Greece","The Netherlands",2,20,12,12,18,13,18,NA,NA
+"Greece","Azerbaijan",10,7,7,21,9,10,19,1,NA
+"Greece","Hungary",11,4,14,13,8,8,9,3,2
+"Greece","Italy",12,14,22,24,3,15,11,NA,NA
+"Greece","Israel",15,23,21,20,17,22,23,NA,NA
+"Greece","Bulgaria",13,8,9,14,13,11,4,NA,7
+"Greece","Sweden",18,19,15,11,26,16,15,NA,NA
+"Greece","Germany",22,22,25,25,24,26,24,NA,NA
+"Greece","France",8,11,10,2,7,5,7,6,4
+"Greece","Poland",25,24,26,15,15,25,8,NA,3
+"Greece","Australia",6,5,3,3,14,4,6,7,5
+"Greece","Cyprus",4,2,5,5,1,3,1,8,12
+"Greece","Serbia",14,21,17,22,20,19,17,NA,NA
+"Greece","Lithuania",23,16,16,16,23,20,20,NA,NA
+"Greece","Croatia",24,15,18,18,25,23,25,NA,NA
+"Greece","Russia",1,1,1,1,4,1,2,12,10
+"Greece","Spain",16,17,20,17,21,17,14,NA,NA
+"Greece","Latvia",17,18,19,19,22,21,16,NA,NA
+"Greece","Ukraine",3,13,13,6,16,9,5,2,6
+"Greece","Malta",9,9,8,10,6,7,22,4,NA
+"Greece","Georgia",7,10,4,7,12,6,12,5,NA
+"Greece","Austria",26,12,11,8,5,12,10,NA,1
+"Greece","United Kingdom",21,25,6,9,11,14,21,NA,NA
+"Greece","Armenia",5,3,2,4,2,2,3,10,8
+"Hungary","Belgium",20,12,5,24,4,14,14,NA,NA
+"Hungary","Czech Republic",7,17,6,21,1,9,18,2,NA
+"Hungary","The Netherlands",6,5,7,16,8,5,9,6,2
+"Hungary","Azerbaijan",5,13,1,18,5,4,16,7,NA
+"Hungary","Italy",15,20,17,23,15,21,19,NA,NA
+"Hungary","Israel",25,18,3,11,9,16,17,NA,NA
+"Hungary","Bulgaria",23,14,16,20,20,22,7,NA,4
+"Hungary","Sweden",8,21,4,12,3,7,4,4,7
+"Hungary","Germany",10,24,9,19,10,17,13,NA,NA
+"Hungary","France",14,19,10,22,19,20,10,NA,1
+"Hungary","Poland",24,23,24,25,18,25,3,NA,8
+"Hungary","Australia",4,8,2,1,2,1,8,12,3
+"Hungary","Cyprus",13,11,11,13,17,15,6,NA,5
+"Hungary","Serbia",19,22,23,17,25,24,24,NA,NA
+"Hungary","Lithuania",1,16,8,10,16,8,23,3,NA
+"Hungary","Croatia",17,7,12,14,24,18,21,NA,NA
+"Hungary","Russia",12,10,21,8,14,13,2,NA,10
+"Hungary","Spain",9,1,14,9,13,6,15,5,NA
+"Hungary","Latvia",2,9,13,7,6,3,11,8,NA
+"Hungary","Ukraine",18,4,15,6,21,12,1,NA,12
+"Hungary","Malta",3,2,20,3,7,2,20,10,NA
+"Hungary","Georgia",16,15,18,4,11,11,22,NA,NA
+"Hungary","Austria",22,25,25,2,23,23,5,NA,6
+"Hungary","United Kingdom",21,6,19,15,22,19,25,NA,NA
+"Hungary","Armenia",11,3,22,5,12,10,12,1,NA
+"Iceland","Belgium",12,11,4,12,12,8,8,3,3
+"Iceland","Czech Republic",9,5,9,9,13,6,24,5,NA
+"Iceland","The Netherlands",3,2,2,3,1,1,5,12,6
+"Iceland","Azerbaijan",16,12,17,11,16,13,10,NA,1
+"Iceland","Hungary",18,26,10,23,8,18,14,NA,NA
+"Iceland","Italy",25,10,18,25,7,19,13,NA,NA
+"Iceland","Israel",15,24,6,24,11,16,21,NA,NA
+"Iceland","Bulgaria",22,18,14,7,23,17,12,NA,NA
+"Iceland","Sweden",1,4,19,4,17,5,1,6,12
+"Iceland","Germany",24,6,21,19,18,22,23,NA,NA
+"Iceland","France",7,14,22,6,5,9,6,2,5
+"Iceland","Poland",4,23,20,16,6,12,2,NA,10
+"Iceland","Australia",2,1,5,2,2,2,3,10,8
+"Iceland","Cyprus",19,22,16,22,9,21,16,NA,NA
+"Iceland","Serbia",23,17,23,10,26,25,25,NA,NA
+"Iceland","Lithuania",10,16,15,21,15,14,7,NA,4
+"Iceland","Croatia",6,8,24,1,4,4,26,7,NA
+"Iceland","Russia",5,3,3,8,19,3,4,8,7
+"Iceland","Spain",14,21,1,26,24,20,15,NA,NA
+"Iceland","Latvia",20,25,26,18,20,26,17,NA,NA
+"Iceland","Ukraine",11,20,7,20,21,15,11,NA,NA
+"Iceland","Malta",8,7,12,15,3,7,19,4,NA
+"Iceland","Georgia",26,19,25,13,10,24,22,NA,NA
+"Iceland","Austria",17,9,8,5,22,10,9,1,2
+"Iceland","United Kingdom",13,15,11,14,14,11,20,NA,NA
+"Iceland","Armenia",21,13,13,17,25,23,18,NA,NA
+"Ireland","Belgium",1,1,3,2,5,1,13,12,NA
+"Ireland","Czech Republic",12,15,14,9,11,9,23,2,NA
+"Ireland","The Netherlands",3,3,1,4,16,3,14,8,NA
+"Ireland","Azerbaijan",16,16,13,22,21,19,25,NA,NA
+"Ireland","Hungary",18,17,25,19,23,26,15,NA,NA
+"Ireland","Italy",5,2,20,5,7,5,16,6,NA
+"Ireland","Israel",2,11,9,13,13,7,18,4,NA
+"Ireland","Bulgaria",10,4,4,3,4,2,6,10,5
+"Ireland","Sweden",22,5,12,7,2,6,9,5,2
+"Ireland","Germany",26,14,15,24,10,21,20,NA,NA
+"Ireland","France",4,13,7,17,17,8,12,3,NA
+"Ireland","Poland",24,12,26,16,20,24,2,NA,10
+"Ireland","Australia",23,22,2,8,8,12,5,NA,6
+"Ireland","Cyprus",19,8,18,11,25,17,17,NA,NA
+"Ireland","Serbia",9,9,19,20,18,16,26,NA,NA
+"Ireland","Lithuania",11,26,16,6,14,14,1,NA,12
+"Ireland","Croatia",17,19,10,21,22,20,24,NA,NA
+"Ireland","Russia",8,21,17,12,26,18,3,NA,8
+"Ireland","Spain",13,10,23,18,3,13,11,NA,NA
+"Ireland","Latvia",15,25,8,14,1,10,4,1,7
+"Ireland","Ukraine",25,24,5,15,6,15,7,NA,4
+"Ireland","Malta",7,23,22,23,19,22,19,NA,NA
+"Ireland","Georgia",20,18,6,10,9,11,22,NA,NA
+"Ireland","Austria",21,6,24,26,24,25,10,NA,1
+"Ireland","United Kingdom",6,7,11,1,12,4,8,7,3
+"Ireland","Armenia",14,20,21,25,15,23,21,NA,NA
+"Israel","Belgium",12,6,2,9,1,5,10,6,1
+"Israel","Czech Republic",19,14,13,10,18,15,24,NA,NA
+"Israel","The Netherlands",16,17,22,20,25,24,19,NA,NA
+"Israel","Azerbaijan",11,16,9,25,10,14,9,NA,2
+"Israel","Hungary",21,22,24,12,9,18,15,NA,NA
+"Israel","Italy",10,8,25,6,11,11,13,NA,NA
+"Israel","Bulgaria",7,5,7,5,6,4,4,7,7
+"Israel","Sweden",14,24,21,22,19,23,17,NA,NA
+"Israel","Germany",15,15,19,21,22,19,22,NA,NA
+"Israel","France",4,9,3,3,3,3,1,8,12
+"Israel","Poland",8,23,12,15,21,16,7,NA,4
+"Israel","Australia",3,4,1,1,8,2,6,10,5
+"Israel","Cyprus",25,19,23,23,17,25,12,NA,NA
+"Israel","Serbia",23,18,16,24,12,21,21,NA,NA
+"Israel","Lithuania",18,7,11,4,16,10,11,1,NA
+"Israel","Croatia",2,21,15,8,7,8,23,3,NA
+"Israel","Russia",5,20,17,7,20,13,2,NA,10
+"Israel","Spain",6,12,8,14,13,7,14,4,NA
+"Israel","Latvia",9,3,4,11,4,6,16,5,NA
+"Israel","Ukraine",1,1,5,2,2,1,3,12,8
+"Israel","Malta",20,13,14,13,24,17,25,NA,NA
+"Israel","Georgia",22,10,10,16,5,12,20,NA,NA
+"Israel","Austria",24,11,20,17,23,22,8,NA,3
+"Israel","United Kingdom",17,25,18,18,14,20,18,NA,NA
+"Israel","Armenia",13,2,6,19,15,9,5,2,6
+"Italy","Belgium",15,19,7,11,10,11,18,NA,NA
+"Italy","Czech Republic",23,18,25,22,13,24,24,NA,NA
+"Italy","The Netherlands",14,5,5,10,4,7,19,4,NA
+"Italy","Azerbaijan",22,21,15,21,22,25,23,NA,NA
+"Italy","Hungary",21,22,16,13,23,20,15,NA,NA
+"Italy","Israel",6,9,6,5,1,3,17,8,NA
+"Italy","Bulgaria",9,15,17,18,15,14,4,NA,7
+"Italy","Sweden",24,4,11,6,5,9,16,2,NA
+"Italy","Germany",10,11,12,19,24,15,21,NA,NA
+"Italy","France",1,1,18,2,6,4,6,7,5
+"Italy","Poland",20,14,24,25,11,19,2,NA,10
+"Italy","Australia",3,8,8,9,2,5,11,6,NA
+"Italy","Cyprus",16,23,3,8,8,10,5,1,6
+"Italy","Serbia",13,20,20,23,21,21,7,NA,4
+"Italy","Lithuania",17,24,14,16,7,16,9,NA,2
+"Italy","Croatia",8,13,21,12,25,17,22,NA,NA
+"Italy","Russia",25,3,23,17,12,18,3,NA,8
+"Italy","Spain",5,6,1,1,9,1,13,12,NA
+"Italy","Latvia",11,12,9,20,14,13,14,NA,NA
+"Italy","Ukraine",4,7,4,7,3,2,1,10,12
+"Italy","Malta",2,2,10,3,18,6,20,5,NA
+"Italy","Georgia",7,16,2,4,20,8,8,3,3
+"Italy","Austria",19,25,22,15,17,23,12,NA,NA
+"Italy","United Kingdom",12,10,13,14,16,12,25,NA,NA
+"Italy","Armenia",18,17,19,24,19,22,10,NA,1
+"Latvia","Belgium",25,5,19,17,10,14,15,NA,NA
+"Latvia","Czech Republic",12,15,21,15,17,18,24,NA,NA
+"Latvia","The Netherlands",5,12,16,10,6,8,16,3,NA
+"Latvia","Azerbaijan",10,20,24,19,21,22,8,NA,3
+"Latvia","Hungary",11,19,14,18,25,20,13,NA,NA
+"Latvia","Italy",17,16,17,23,12,19,19,NA,NA
+"Latvia","Israel",8,11,13,11,7,9,20,2,NA
+"Latvia","Bulgaria",22,9,12,6,3,10,10,1,1
+"Latvia","Sweden",3,4,2,3,8,3,4,8,7
+"Latvia","Germany",23,25,23,22,24,25,18,NA,NA
+"Latvia","France",18,14,18,20,19,21,11,NA,NA
+"Latvia","Poland",20,24,25,25,15,24,6,NA,5
+"Latvia","Australia",7,6,10,16,5,6,5,5,6
+"Latvia","Cyprus",13,18,20,12,13,15,12,NA,NA
+"Latvia","Serbia",9,23,11,8,23,13,25,NA,NA
+"Latvia","Lithuania",6,2,3,2,1,2,3,10,8
+"Latvia","Croatia",19,22,9,5,22,16,22,NA,NA
+"Latvia","Russia",4,8,5,14,2,4,1,7,12
+"Latvia","Spain",24,10,4,21,9,12,17,NA,NA
+"Latvia","Ukraine",2,1,1,1,4,1,2,12,10
+"Latvia","Malta",14,7,6,7,14,7,23,4,NA
+"Latvia","Georgia",21,3,7,4,20,11,9,NA,2
+"Latvia","Austria",16,21,22,24,16,23,7,NA,4
+"Latvia","United Kingdom",15,17,15,13,18,17,21,NA,NA
+"Latvia","Armenia",1,13,8,9,11,5,14,6,NA
+"Lithuania","Belgium",7,7,6,7,4,6,13,5,NA
+"Lithuania","Czech Republic",8,15,24,18,15,17,24,NA,NA
+"Lithuania","The Netherlands",22,16,10,17,13,15,17,NA,NA
+"Lithuania","Azerbaijan",11,24,23,19,9,20,18,NA,NA
+"Lithuania","Hungary",23,11,8,20,23,19,9,NA,2
+"Lithuania","Italy",13,8,15,21,6,11,15,NA,NA
+"Lithuania","Israel",5,6,5,6,7,5,19,6,NA
+"Lithuania","Bulgaria",9,12,22,8,8,9,11,2,NA
+"Lithuania","Sweden",20,9,11,22,16,14,4,NA,7
+"Lithuania","Germany",16,13,12,15,11,12,21,NA,NA
+"Lithuania","France",14,20,13,5,10,10,8,1,3
+"Lithuania","Poland",6,19,9,11,14,8,5,3,6
+"Lithuania","Australia",1,2,2,1,1,1,6,12,5
+"Lithuania","Cyprus",24,21,14,23,24,24,14,NA,NA
+"Lithuania","Serbia",17,14,21,16,12,18,25,NA,NA
+"Lithuania","Croatia",18,22,16,12,25,22,23,NA,NA
+"Lithuania","Russia",25,25,25,25,22,25,3,NA,8
+"Lithuania","Spain",15,18,17,9,21,16,16,NA,NA
+"Lithuania","Latvia",4,3,4,3,5,4,1,7,12
+"Lithuania","Ukraine",3,1,3,4,2,3,2,8,10
+"Lithuania","Malta",12,10,18,13,20,13,22,NA,NA
+"Lithuania","Georgia",2,4,1,2,3,2,7,10,4
+"Lithuania","Austria",19,23,19,24,19,23,10,NA,1
+"Lithuania","United Kingdom",21,17,20,14,18,21,20,NA,NA
+"Lithuania","Armenia",10,5,7,10,17,7,12,4,NA
+"Malta","Belgium",16,13,17,24,21,20,17,NA,NA
+"Malta","Czech Republic",18,16,20,10,17,16,24,NA,NA
+"Malta","The Netherlands",13,11,15,25,20,17,8,NA,3
+"Malta","Azerbaijan",20,9,21,19,8,11,5,NA,6
+"Malta","Hungary",19,15,12,16,19,14,6,NA,5
+"Malta","Italy",5,4,4,3,5,3,4,8,7
+"Malta","Israel",10,14,8,12,11,10,18,1,NA
+"Malta","Bulgaria",1,5,6,1,7,2,3,10,8
+"Malta","Sweden",11,12,22,22,18,18,11,NA,NA
+"Malta","Germany",24,17,16,17,25,22,22,NA,NA
+"Malta","France",4,7,1,8,4,5,9,6,2
+"Malta","Poland",25,21,24,18,24,25,13,NA,NA
+"Malta","Australia",6,10,9,7,6,8,1,3,12
+"Malta","Cyprus",12,3,7,2,2,6,12,5,NA
+"Malta","Serbia",15,19,23,15,16,19,21,NA,NA
+"Malta","Lithuania",14,22,14,20,9,13,16,NA,NA
+"Malta","Croatia",21,18,25,21,15,23,25,NA,NA
+"Malta","Russia",3,8,5,5,13,7,2,4,10
+"Malta","Spain",9,6,10,9,10,9,20,2,NA
+"Malta","Latvia",22,20,13,14,12,15,19,NA,NA
+"Malta","Ukraine",23,25,18,23,14,24,7,NA,4
+"Malta","Georgia",17,24,19,11,22,21,23,NA,NA
+"Malta","Austria",7,23,11,13,23,12,15,NA,NA
+"Malta","United Kingdom",2,1,2,4,1,1,10,12,1
+"Malta","Armenia",8,2,3,6,3,4,14,7,NA
+"Moldova","Belgium",22,8,16,16,19,16,15,NA,NA
+"Moldova","Czech Republic",13,26,6,6,12,12,26,NA,NA
+"Moldova","The Netherlands",18,11,19,22,20,19,25,NA,NA
+"Moldova","Azerbaijan",19,25,26,25,24,26,3,NA,8
+"Moldova","Hungary",14,17,24,21,16,21,11,NA,NA
+"Moldova","Italy",8,22,20,20,21,20,13,NA,NA
+"Moldova","Israel",9,18,18,19,15,15,21,NA,NA
+"Moldova","Bulgaria",24,21,23,14,22,23,9,NA,2
+"Moldova","Sweden",4,9,5,5,7,5,12,6,NA
+"Moldova","Germany",20,24,13,23,23,22,18,NA,NA
+"Moldova","France",23,7,14,24,17,17,5,NA,6
+"Moldova","Poland",21,20,22,26,18,24,14,NA,NA
+"Moldova","Australia",1,2,1,3,3,2,6,10,5
+"Moldova","Cyprus",16,12,11,7,5,9,16,2,NA
+"Moldova","Serbia",25,13,4,15,10,13,22,NA,NA
+"Moldova","Lithuania",6,6,12,8,11,7,8,4,3
+"Moldova","Croatia",15,15,15,2,8,10,24,1,NA
+"Moldova","Russia",3,3,10,9,4,4,1,7,12
+"Moldova","Spain",12,4,3,4,6,3,17,8,NA
+"Moldova","Latvia",17,16,21,10,14,14,10,NA,1
+"Moldova","Ukraine",2,1,2,1,1,1,2,12,10
+"Moldova","Malta",7,10,9,13,9,8,19,3,NA
+"Moldova","Georgia",26,23,25,12,26,25,23,NA,NA
+"Moldova","Austria",11,19,17,17,25,18,7,NA,4
+"Moldova","United Kingdom",10,14,7,18,13,11,20,NA,NA
+"Moldova","Armenia",5,5,8,11,2,6,4,5,7
+"Montenegro","Belgium",22,5,11,11,5,8,16,3,NA
+"Montenegro","Czech Republic",16,19,14,14,18,16,26,NA,NA
+"Montenegro","The Netherlands",18,8,26,21,20,22,23,NA,NA
+"Montenegro","Azerbaijan",6,22,13,15,24,15,4,NA,7
+"Montenegro","Hungary",4,7,3,3,14,4,8,7,3
+"Montenegro","Italy",12,18,25,20,15,20,7,NA,4
+"Montenegro","Israel",11,9,24,18,9,12,20,NA,NA
+"Montenegro","Bulgaria",5,11,12,19,11,9,6,2,5
+"Montenegro","Sweden",26,21,23,26,17,25,15,NA,NA
+"Montenegro","Germany",25,25,22,25,25,26,24,NA,NA
+"Montenegro","France",15,4,7,8,6,6,10,5,1
+"Montenegro","Poland",9,20,8,10,12,10,21,1,NA
+"Montenegro","Australia",10,10,6,9,7,7,13,4,NA
+"Montenegro","Cyprus",19,6,21,24,4,13,12,NA,NA
+"Montenegro","Serbia",7,12,5,5,8,5,1,6,12
+"Montenegro","Lithuania",21,17,20,12,16,18,9,NA,2
+"Montenegro","Croatia",13,23,10,6,22,14,5,NA,6
+"Montenegro","Russia",3,3,1,4,2,3,2,8,10
+"Montenegro","Spain",24,16,19,17,10,19,19,NA,NA
+"Montenegro","Latvia",17,24,18,13,23,23,14,NA,NA
+"Montenegro","Ukraine",8,15,17,7,19,11,3,NA,8
+"Montenegro","Malta",2,2,2,2,1,1,18,12,NA
+"Montenegro","Georgia",20,13,16,23,21,21,22,NA,NA
+"Montenegro","Austria",14,26,9,22,26,24,17,NA,NA
+"Montenegro","United Kingdom",23,14,15,16,13,17,25,NA,NA
+"Montenegro","Armenia",1,1,4,1,3,2,11,10,NA
+"Norway","Belgium",8,9,1,8,12,6,9,5,2
+"Norway","Czech Republic",12,11,13,14,5,11,26,NA,NA
+"Norway","The Netherlands",4,7,5,2,10,5,11,6,NA
+"Norway","Azerbaijan",14,8,16,18,20,17,22,NA,NA
+"Norway","Hungary",26,25,26,26,17,25,17,NA,NA
+"Norway","Italy",2,3,2,1,6,1,14,12,NA
+"Norway","Israel",15,5,6,11,15,8,18,3,NA
+"Norway","Bulgaria",1,2,7,15,1,3,6,8,5
+"Norway","Sweden",13,6,11,12,14,12,4,NA,7
+"Norway","Germany",23,20,23,23,22,23,19,NA,NA
+"Norway","France",11,12,21,6,19,14,10,NA,1
+"Norway","Poland",3,13,15,17,7,10,2,1,10
+"Norway","Australia",5,10,3,3,4,2,3,10,8
+"Norway","Cyprus",22,23,24,25,25,24,15,NA,NA
+"Norway","Serbia",24,19,20,24,18,22,23,NA,NA
+"Norway","Lithuania",6,17,4,4,24,9,1,2,12
+"Norway","Croatia",18,18,18,13,8,16,25,NA,NA
+"Norway","Russia",19,1,17,10,11,13,5,NA,6
+"Norway","Spain",7,4,9,5,3,4,13,7,NA
+"Norway","Latvia",17,15,19,19,16,19,8,NA,3
+"Norway","Ukraine",9,21,10,9,2,7,7,4,4
+"Norway","Malta",16,16,14,21,23,21,24,NA,NA
+"Norway","Georgia",20,24,12,22,9,20,20,NA,NA
+"Norway","Austria",21,14,22,7,21,18,12,NA,NA
+"Norway","United Kingdom",10,22,8,16,13,15,16,NA,NA
+"Norway","Armenia",25,26,25,20,26,26,21,NA,NA
+"Poland","Belgium",11,14,17,9,21,16,14,NA,NA
+"Poland","Czech Republic",5,11,21,10,7,7,19,4,NA
+"Poland","The Netherlands",10,22,15,7,22,17,17,NA,NA
+"Poland","Azerbaijan",14,20,24,14,20,22,20,NA,NA
+"Poland","Hungary",22,19,6,20,10,18,5,NA,6
+"Poland","Italy",17,9,13,17,12,15,16,NA,NA
+"Poland","Israel",3,10,8,2,18,4,18,7,NA
+"Poland","Bulgaria",9,18,16,8,6,8,8,3,3
+"Poland","Sweden",18,4,5,22,15,12,2,NA,10
+"Poland","Germany",23,8,23,21,13,21,21,NA,NA
+"Poland","France",13,23,9,12,4,10,15,1,NA
+"Poland","Australia",2,2,4,3,2,2,4,10,7
+"Poland","Cyprus",25,24,12,24,23,25,10,NA,1
+"Poland","Serbia",20,16,14,16,14,19,25,NA,NA
+"Poland","Lithuania",4,7,19,5,24,9,11,2,NA
+"Poland","Croatia",21,17,20,23,16,23,24,NA,NA
+"Poland","Russia",19,3,7,18,17,13,3,NA,8
+"Poland","Spain",12,13,3,19,3,6,12,5,NA
+"Poland","Latvia",7,12,10,4,11,5,6,6,5
+"Poland","Ukraine",1,1,1,1,1,1,1,12,12
+"Poland","Malta",16,21,22,13,9,20,23,NA,NA
+"Poland","Georgia",15,5,2,11,8,3,13,8,NA
+"Poland","Austria",24,6,25,25,25,24,7,NA,4
+"Poland","United Kingdom",6,25,11,6,19,14,22,NA,NA
+"Poland","Armenia",8,15,18,15,5,11,9,NA,2
+"Russia","Belgium",22,23,22,4,13,20,22,NA,NA
+"Russia","Czech Republic",18,22,5,13,14,14,23,NA,NA
+"Russia","The Netherlands",8,5,24,18,15,12,20,NA,NA
+"Russia","Azerbaijan",2,2,3,3,1,2,5,10,6
+"Russia","Hungary",12,15,12,19,2,10,12,1,NA
+"Russia","Italy",20,8,13,8,12,11,14,NA,NA
+"Russia","Israel",23,24,25,24,22,25,17,NA,NA
+"Russia","Bulgaria",13,16,15,21,19,21,11,NA,NA
+"Russia","Sweden",14,17,7,14,20,15,9,NA,2
+"Russia","Germany",15,13,14,15,21,18,21,NA,NA
+"Russia","France",5,9,4,10,6,4,8,7,3
+"Russia","Poland",10,25,23,25,24,23,6,NA,5
+"Russia","Australia",24,6,10,9,8,9,7,2,4
+"Russia","Cyprus",4,7,11,12,10,7,4,4,7
+"Russia","Serbia",19,21,20,20,23,22,16,NA,NA
+"Russia","Lithuania",11,3,19,22,16,13,18,NA,NA
+"Russia","Croatia",17,18,18,11,11,16,24,NA,NA
+"Russia","Spain",16,19,6,17,18,17,15,NA,NA
+"Russia","Latvia",7,20,9,5,5,8,10,3,1
+"Russia","Ukraine",25,14,21,23,25,24,2,NA,10
+"Russia","Malta",1,12,2,2,4,3,19,8,NA
+"Russia","Georgia",9,4,16,7,7,6,13,5,NA
+"Russia","Austria",21,11,17,16,17,19,3,NA,8
+"Russia","United Kingdom",6,10,8,6,9,5,25,6,NA
+"Russia","Armenia",3,1,1,1,3,1,1,12,12
+"San Marino","Belgium",26,12,8,8,21,16,20,NA,NA
+"San Marino","Czech Republic",25,5,2,17,22,14,24,NA,NA
+"San Marino","The Netherlands",18,2,3,2,23,7,17,4,NA
+"San Marino","Azerbaijan",23,20,15,18,20,24,12,NA,NA
+"San Marino","Hungary",10,15,6,16,19,9,10,2,1
+"San Marino","Italy",9,1,7,1,17,2,13,10,NA
+"San Marino","Israel",12,14,17,15,24,21,21,NA,NA
+"San Marino","Bulgaria",16,24,19,3,16,17,8,NA,3
+"San Marino","Sweden",20,22,20,19,15,25,7,NA,4
+"San Marino","Germany",14,19,21,13,25,23,22,NA,NA
+"San Marino","France",8,16,22,5,18,13,14,NA,NA
+"San Marino","Poland",21,9,23,21,26,26,4,NA,7
+"San Marino","Australia",5,13,24,12,14,12,6,NA,5
+"San Marino","Cyprus",4,6,12,11,13,6,15,5,NA
+"San Marino","Serbia",15,17,26,14,12,22,25,NA,NA
+"San Marino","Lithuania",7,26,14,24,11,20,3,NA,8
+"San Marino","Croatia",19,4,18,23,9,15,26,NA,NA
+"San Marino","Russia",2,23,4,4,10,4,2,7,10
+"San Marino","Spain",6,21,9,22,8,11,19,NA,NA
+"San Marino","Latvia",24,25,13,9,7,19,5,NA,6
+"San Marino","Ukraine",3,3,1,6,1,1,1,12,12
+"San Marino","Malta",22,18,10,7,6,8,23,3,NA
+"San Marino","Georgia",1,8,11,20,4,5,18,6,NA
+"San Marino","Austria",13,10,16,25,2,10,11,1,NA
+"San Marino","United Kingdom",11,11,5,10,5,3,16,8,NA
+"San Marino","Armenia",17,7,25,26,3,18,9,NA,2
+"Serbia","Belgium",23,10,10,12,7,13,6,NA,5
+"Serbia","Czech Republic",17,19,17,23,22,21,24,NA,NA
+"Serbia","The Netherlands",10,5,9,13,6,6,18,5,NA
+"Serbia","Azerbaijan",11,16,15,22,21,17,21,NA,NA
+"Serbia","Hungary",20,21,18,21,20,22,2,NA,10
+"Serbia","Italy",14,12,11,4,19,12,15,NA,NA
+"Serbia","Israel",8,2,2,14,5,4,16,7,NA
+"Serbia","Bulgaria",6,14,4,8,14,7,3,4,8
+"Serbia","Sweden",22,22,24,20,24,25,10,NA,1
+"Serbia","Germany",24,23,19,15,23,23,23,NA,NA
+"Serbia","France",19,18,22,16,13,19,12,NA,NA
+"Serbia","Poland",9,15,16,9,10,11,13,NA,NA
+"Serbia","Australia",3,6,8,7,8,5,5,6,6
+"Serbia","Cyprus",12,20,23,19,17,20,8,NA,3
+"Serbia","Lithuania",7,8,7,3,2,3,20,8,NA
+"Serbia","Croatia",15,24,13,24,11,18,7,NA,4
+"Serbia","Russia",13,11,6,11,15,10,1,1,12
+"Serbia","Spain",4,17,20,10,16,15,14,NA,NA
+"Serbia","Latvia",16,13,5,17,12,14,19,NA,NA
+"Serbia","Ukraine",1,1,3,1,1,1,4,12,7
+"Serbia","Malta",2,3,1,2,3,2,22,10,NA
+"Serbia","Georgia",25,9,21,5,18,16,17,NA,NA
+"Serbia","Austria",18,25,25,18,25,24,11,NA,NA
+"Serbia","United Kingdom",5,4,12,25,9,9,25,2,NA
+"Serbia","Armenia",21,7,14,6,4,8,9,3,2
+"Slovenia","Belgium",7,3,2,3,10,3,11,8,NA
+"Slovenia","Czech Republic",26,22,16,18,17,22,26,NA,NA
+"Slovenia","The Netherlands",18,13,7,12,9,10,16,1,NA
+"Slovenia","Azerbaijan",24,24,22,25,19,25,25,NA,NA
+"Slovenia","Hungary",4,4,18,13,11,8,14,3,NA
+"Slovenia","Italy",15,15,26,19,25,23,10,NA,1
+"Slovenia","Israel",19,12,14,5,7,9,20,2,NA
+"Slovenia","Bulgaria",2,2,11,1,6,2,9,10,2
+"Slovenia","Sweden",21,11,10,10,15,15,6,NA,5
+"Slovenia","Germany",25,26,20,26,18,26,23,NA,NA
+"Slovenia","France",5,5,15,17,22,13,12,NA,NA
+"Slovenia","Poland",20,25,25,20,2,19,7,NA,4
+"Slovenia","Australia",10,7,4,2,14,5,8,6,3
+"Slovenia","Cyprus",6,18,23,7,5,11,17,NA,NA
+"Slovenia","Serbia",12,8,6,9,12,6,1,5,12
+"Slovenia","Lithuania",11,21,9,24,4,16,13,NA,NA
+"Slovenia","Croatia",9,14,12,14,13,12,3,NA,8
+"Slovenia","Russia",17,19,24,16,1,17,2,NA,10
+"Slovenia","Spain",23,20,13,11,24,18,18,NA,NA
+"Slovenia","Latvia",1,9,5,4,8,4,15,7,NA
+"Slovenia","Ukraine",3,1,1,6,3,1,4,12,7
+"Slovenia","Malta",14,23,19,21,23,24,24,NA,NA
+"Slovenia","Georgia",8,10,8,15,26,14,21,NA,NA
+"Slovenia","Austria",13,16,21,23,21,20,5,NA,6
+"Slovenia","United Kingdom",22,17,17,22,20,21,22,NA,NA
+"Slovenia","Armenia",16,6,3,8,16,7,19,4,NA
+"Spain","Belgium",6,18,5,22,21,15,11,NA,NA
+"Spain","Czech Republic",17,13,19,11,4,11,23,NA,NA
+"Spain","The Netherlands",2,15,10,2,18,8,13,3,NA
+"Spain","Azerbaijan",22,12,6,13,5,9,22,2,NA
+"Spain","Hungary",10,1,2,4,7,2,16,10,NA
+"Spain","Italy",9,10,7,9,6,6,8,5,3
+"Spain","Israel",18,4,11,10,17,10,19,1,NA
+"Spain","Bulgaria",12,21,16,8,10,12,1,NA,12
+"Spain","Sweden",4,5,17,23,20,14,10,NA,1
+"Spain","Germany",21,20,20,21,22,23,17,NA,NA
+"Spain","France",3,11,3,3,12,4,2,7,10
+"Spain","Poland",23,22,21,19,23,25,6,NA,5
+"Spain","Australia",11,3,4,6,3,3,7,8,4
+"Spain","Cyprus",20,17,24,12,8,19,14,NA,NA
+"Spain","Serbia",16,8,22,20,15,18,25,NA,NA
+"Spain","Lithuania",25,24,15,17,9,21,12,NA,NA
+"Spain","Croatia",19,16,13,18,13,17,24,NA,NA
+"Spain","Russia",14,6,8,14,1,7,3,4,8
+"Spain","Latvia",8,14,12,15,19,13,18,NA,NA
+"Spain","Ukraine",13,19,18,16,16,20,4,NA,7
+"Spain","Malta",5,9,9,5,11,5,21,6,NA
+"Spain","Georgia",7,23,25,25,25,24,20,NA,NA
+"Spain","Austria",24,25,14,24,14,22,9,NA,2
+"Spain","United Kingdom",15,7,23,7,24,16,15,NA,NA
+"Spain","Armenia",1,2,1,1,2,1,5,12,6
+"Sweden","Belgium",9,13,9,10,16,11,13,NA,NA
+"Sweden","Czech Republic",6,8,11,7,18,8,25,3,NA
+"Sweden","The Netherlands",5,10,12,6,3,6,9,5,2
+"Sweden","Azerbaijan",12,1,4,2,6,2,24,10,NA
+"Sweden","Hungary",18,14,17,18,19,18,17,NA,NA
+"Sweden","Italy",17,23,24,13,15,20,16,NA,NA
+"Sweden","Israel",21,16,10,19,5,15,15,NA,NA
+"Sweden","Bulgaria",19,7,14,17,4,13,7,NA,4
+"Sweden","Germany",20,25,23,16,20,23,21,NA,NA
+"Sweden","France",2,9,5,3,10,3,8,8,3
+"Sweden","Poland",25,24,25,20,21,25,2,NA,10
+"Sweden","Australia",1,5,1,1,1,1,1,12,12
+"Sweden","Cyprus",24,22,13,23,12,21,14,NA,NA
+"Sweden","Serbia",16,20,19,22,22,22,18,NA,NA
+"Sweden","Lithuania",13,18,7,12,2,9,5,2,6
+"Sweden","Croatia",8,15,18,11,7,12,22,NA,NA
+"Sweden","Russia",7,6,8,4,8,5,3,6,8
+"Sweden","Spain",15,2,2,14,23,10,10,1,1
+"Sweden","Latvia",14,12,16,25,17,17,11,NA,NA
+"Sweden","Ukraine",3,19,20,21,13,16,4,NA,7
+"Sweden","Malta",4,4,3,8,14,4,23,7,NA
+"Sweden","Georgia",23,17,22,24,24,24,20,NA,NA
+"Sweden","Austria",10,21,21,5,9,14,6,NA,5
+"Sweden","United Kingdom",22,11,15,15,25,19,19,NA,NA
+"Sweden","Armenia",11,3,6,9,11,7,12,4,NA
+"Switzerland","Belgium",7,1,5,3,5,2,14,10,NA
+"Switzerland","Czech Republic",21,12,8,18,21,16,24,NA,NA
+"Switzerland","The Netherlands",5,13,10,6,11,6,12,5,NA
+"Switzerland","Azerbaijan",19,23,9,21,19,20,25,NA,NA
+"Switzerland","Hungary",14,25,11,22,25,22,16,NA,NA
+"Switzerland","Italy",3,3,20,19,9,9,4,2,7
+"Switzerland","Israel",4,10,2,4,6,3,21,8,NA
+"Switzerland","Bulgaria",13,9,1,20,17,10,13,1,NA
+"Switzerland","Sweden",12,18,12,12,7,11,11,NA,NA
+"Switzerland","Germany",15,14,6,23,18,15,3,NA,8
+"Switzerland","France",17,17,16,11,22,18,8,NA,3
+"Switzerland","Poland",24,24,13,24,23,25,6,NA,5
+"Switzerland","Australia",6,2,3,2,1,1,10,12,1
+"Switzerland","Cyprus",25,22,15,25,20,24,19,NA,NA
+"Switzerland","Serbia",18,7,14,10,16,13,1,NA,12
+"Switzerland","Lithuania",2,11,4,9,4,4,18,7,NA
+"Switzerland","Croatia",23,16,22,26,26,26,15,NA,NA
+"Switzerland","Russia",8,26,21,13,12,17,5,NA,6
+"Switzerland","Spain",11,20,17,15,8,14,9,NA,2
+"Switzerland","Latvia",20,4,7,7,10,8,20,3,NA
+"Switzerland","Ukraine",10,5,18,1,3,5,7,6,4
+"Switzerland","Malta",16,21,23,17,15,21,26,NA,NA
+"Switzerland","Georgia",26,6,26,16,24,23,23,NA,NA
+"Switzerland","Austria",1,15,24,5,2,7,2,4,10
+"Switzerland","United Kingdom",9,8,19,14,13,12,22,NA,NA
+"Switzerland","Armenia",22,19,25,8,14,19,17,NA,NA
+"The Netherlands","Belgium",11,13,2,6,17,7,1,4,12
+"The Netherlands","Czech Republic",24,6,12,7,10,11,24,NA,NA
+"The Netherlands","Azerbaijan",12,12,14,15,4,10,23,1,NA
+"The Netherlands","Hungary",23,11,15,10,18,17,13,NA,NA
+"The Netherlands","Italy",7,5,7,14,9,5,20,6,NA
+"The Netherlands","Israel",10,4,5,4,16,4,18,7,NA
+"The Netherlands","Bulgaria",22,7,19,23,7,18,10,NA,1
+"The Netherlands","Sweden",5,2,9,1,1,2,9,10,2
+"The Netherlands","Germany",8,14,20,25,12,19,19,NA,NA
+"The Netherlands","France",17,8,6,11,6,6,7,5,4
+"The Netherlands","Poland",16,25,24,21,25,25,2,NA,10
+"The Netherlands","Australia",1,3,1,2,3,1,6,12,5
+"The Netherlands","Cyprus",13,23,21,5,14,16,15,NA,NA
+"The Netherlands","Serbia",15,16,16,17,24,20,21,NA,NA
+"The Netherlands","Lithuania",21,21,23,8,21,22,12,NA,NA
+"The Netherlands","Croatia",3,24,10,18,5,12,25,NA,NA
+"The Netherlands","Russia",20,15,8,3,19,13,8,NA,3
+"The Netherlands","Spain",9,9,17,20,13,14,11,NA,NA
+"The Netherlands","Latvia",2,17,22,19,15,15,17,NA,NA
+"The Netherlands","Ukraine",4,22,11,12,2,8,4,3,7
+"The Netherlands","Malta",14,20,13,22,20,21,22,NA,NA
+"The Netherlands","Georgia",19,19,25,16,23,23,16,NA,NA
+"The Netherlands","Austria",6,1,3,13,8,3,5,8,6
+"The Netherlands","United Kingdom",25,18,18,24,22,24,14,NA,NA
+"The Netherlands","Armenia",18,10,4,9,11,9,3,2,8
+"Ukraine","Belgium",5,3,1,1,1,2,18,10,NA
+"Ukraine","Czech Republic",15,15,14,12,18,14,21,NA,NA
+"Ukraine","The Netherlands",16,16,13,7,14,12,22,NA,NA
+"Ukraine","Azerbaijan",2,4,3,4,11,4,2,7,10
+"Ukraine","Hungary",9,10,5,17,6,9,13,2,NA
+"Ukraine","Italy",20,23,21,16,21,21,17,NA,NA
+"Ukraine","Israel",3,5,6,3,7,5,16,6,NA
+"Ukraine","Bulgaria",12,9,10,15,5,10,9,1,2
+"Ukraine","Sweden",10,7,9,8,8,7,10,4,1
+"Ukraine","Germany",22,24,23,23,24,24,20,NA,NA
+"Ukraine","France",14,11,22,13,10,13,14,NA,NA
+"Ukraine","Poland",6,12,16,9,9,11,3,NA,8
+"Ukraine","Australia",7,6,8,11,2,6,7,5,4
+"Ukraine","Cyprus",23,25,25,25,25,25,11,NA,NA
+"Ukraine","Serbia",17,13,18,14,20,17,25,NA,NA
+"Ukraine","Lithuania",1,1,2,2,3,1,8,12,3
+"Ukraine","Croatia",25,22,17,18,22,23,24,NA,NA
+"Ukraine","Russia",21,21,24,24,12,22,1,NA,12
+"Ukraine","Spain",11,14,12,20,23,16,15,NA,NA
+"Ukraine","Latvia",4,2,4,6,4,3,6,8,5
+"Ukraine","Malta",18,17,20,22,19,20,19,NA,NA
+"Ukraine","Georgia",8,8,11,5,15,8,5,3,6
+"Ukraine","Austria",19,19,15,19,16,19,12,NA,NA
+"Ukraine","United Kingdom",24,18,19,10,13,18,23,NA,NA
+"Ukraine","Armenia",13,20,7,21,17,15,4,NA,7
+"United Kingdom","Belgium",14,3,20,10,7,11,14,NA,NA
+"United Kingdom","Czech Republic",12,17,17,15,24,19,22,NA,NA
+"United Kingdom","The Netherlands",8,19,15,8,17,14,12,NA,NA
+"United Kingdom","Azerbaijan",25,23,25,21,22,25,23,NA,NA
+"United Kingdom","Hungary",4,14,23,20,15,16,16,NA,NA
+"United Kingdom","Italy",13,20,18,22,25,22,20,NA,NA
+"United Kingdom","Israel",5,5,14,9,19,8,17,3,NA
+"United Kingdom","Bulgaria",10,4,21,3,9,6,3,5,8
+"United Kingdom","Sweden",24,25,9,25,23,24,10,NA,1
+"United Kingdom","Germany",19,24,19,23,14,23,21,NA,NA
+"United Kingdom","France",6,10,5,7,11,5,11,6,NA
+"United Kingdom","Poland",16,21,24,14,8,18,2,NA,10
+"United Kingdom","Australia",3,6,6,4,12,3,5,8,6
+"United Kingdom","Cyprus",1,7,2,11,16,4,9,7,2
+"United Kingdom","Serbia",9,11,16,6,10,9,24,2,NA
+"United Kingdom","Lithuania",7,8,13,19,3,7,1,4,12
+"United Kingdom","Croatia",21,12,10,5,6,10,25,1,NA
+"United Kingdom","Russia",20,16,11,13,2,13,4,NA,7
+"United Kingdom","Spain",17,18,22,16,21,21,7,NA,4
+"United Kingdom","Latvia",22,9,4,12,20,15,8,NA,3
+"United Kingdom","Ukraine",11,1,1,1,5,2,6,10,5
+"United Kingdom","Malta",18,13,8,17,4,12,15,NA,NA
+"United Kingdom","Georgia",2,2,3,2,1,1,19,12,NA
+"United Kingdom","Austria",23,15,12,18,13,17,13,NA,NA
+"United Kingdom","Armenia",15,22,7,24,18,20,18,NA,NA
