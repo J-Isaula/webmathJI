@@ -76,7 +76,7 @@
 <h3 class="anchored" data-anchor-id="k-means-clustering">K-Means Clustering</h3>
 <p>Agruparemos estas muestras utilizando la agrupación de k-Means. K-Means encuentra un número específico de grupos en las muestras. Está implementado en la biblioteca de <code>scikit-learn</code> o <code>sklearn</code>.</p>
 <p>Veamos KMeans en acción con el conjunto de datos iris.</p>
-<div id="eb2d8ae0" class="cell" data-execution_count="1">
+<div id="81e2484e" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><span class="im" style="color: #00769E;
 background-color: null;
 font-style: inherit;">import</span> pandas <span class="im" style="color: #00769E;
@@ -110,7 +110,7 @@ font-style: inherit;"># Convertimos iris a dataframe</span></span></code></pre><
 <li><p>Posteriormente, llamamos el método de ajuste del modelo <code>.fit()</code>, pasando la matriz del iris dataset. Esto ajusta el modelo a los datos, localizando y recordando las regiones donde ocurren los diferentes grupos.</p></li>
 <li><p>Por último, podemos utilizar el método de predicción del modelo en este mismo conjunto de datos.</p></li>
 </ol>
-<div id="20cfb841" class="cell" data-execution_count="2">
+<div id="fff6791a" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb2" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><span class="im" style="color: #00769E;
 background-color: null;
 font-style: inherit;">from</span> sklearn.cluster <span class="im" style="color: #00769E;
@@ -548,7 +548,7 @@ div.sk-label-container:hover .sk-estimator-doc-link.fitted:hover,
 </style><div id="sk-container-id-4" class="sk-top-container"><div class="sk-text-repr-fallback"><pre>KMeans(n_clusters=3, random_state=42)</pre><b>In a Jupyter environment, please rerun this cell to show the HTML representation or trust the notebook. <br>On GitHub, the HTML representation is unable to render, please try loading this page with nbviewer.org.</b></div><div class="sk-container" hidden=""><div class="sk-item"><div class="sk-estimator fitted sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-4" type="checkbox" checked=""><label for="sk-estimator-id-4" class="sk-toggleable__label fitted sk-toggleable__label-arrow"><div><div>KMeans</div></div><div><a class="sk-estimator-doc-link fitted" rel="noreferrer" target="_blank" href="https://scikit-learn.org/1.6/modules/generated/sklearn.cluster.KMeans.html">?<span>Documentation for KMeans</span></a><span class="sk-estimator-doc-link fitted">i<span>Fitted</span></span></div></label><div class="sk-toggleable__content fitted"><pre>KMeans(n_clusters=3, random_state=42)</pre></div> </div></div></div></div>
 </div>
 </div>
-<div id="56887b1b" class="cell" data-execution_count="3">
+<div id="b5a28338" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb3" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1">labels <span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span> model.predict(iris)</span>
@@ -569,7 +569,7 @@ font-style: inherit;">print</span>(labels)</span></code></pre></div>
 <p>Si alguien viene con un algún dataset iris nuevo, kMeans puede determinar a qué grupos pertenecen sin tener que empezar de nuevo.</p>
 <p>KMeans hace esto recordando la media (o promedio) de las muestras en cada grupo. Estos se llaman <strong>centroides</strong> se asignan nuevas muestras al grupo cuyo centroide esté más cercano.</p>
 <p>Voy a tomar 3 registros aleatorios del dataset iris y asumiremos que estas son muestras nuevas.</p>
-<div id="adafa09d" class="cell" data-execution_count="4">
+<div id="cea91353" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb5" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1">new_samples <span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span> iris.sample(n <span class="op" style="color: #5E5E5E;
@@ -592,7 +592,7 @@ font-style: inherit;">print</span>(new_samples)</span></code></pre></div>
 </div>
 </div>
 <p>Para asignar las nuevas muestras a los grupos existentes, pasaremos el conjunto de nueva muestra al método de predicción del modelo kmeans.</p>
-<div id="fc945992" class="cell" data-execution_count="5">
+<div id="dd2a2d48" class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb7" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1">new_labels <span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span> model.predict(new_samples)</span>
@@ -621,7 +621,7 @@ font-style: inherit;">print</span>(new_labels)</span></code></pre></div>
 <li><p>La longitud del sépalo está en la columna 0 de la matriz iris, mientras que la longitud de los pétalos está en la segunda columna.</p></li>
 <li><p>Y labels o etiquetas que encontramos previamente lo usamos para colorear por etiqueta de clúster como un paramétro en <code>.scatter()</code>.</p></li>
 </ul>
-<div id="851e65e6" class="cell" data-execution_count="6">
+<div id="c27c3e5d" class="cell" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb9" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><span class="im" style="color: #00769E;
 background-color: null;
 font-style: inherit;">import</span> matplotlib.pyplot <span class="im" style="color: #00769E;
@@ -656,7 +656,7 @@ font-style: inherit;">=</span> labels)</span>
 </div>
 </div>
 <p>Ahora, calculemos las coordenadas de los centroides utilizando el atributo <code>.cluster_centers_</code> de <code>model</code>. y asignaremos la columna 0 de <code>centroids</code> a <code>centroids_x</code>, y la columna 2 de <code>centroids</code> a <code>centroids_y</code>. Posterior a ello, realizaremos un diagrama de dispersión de centroids_x y centroids_y, utilizando <code>marker = 'D'</code> (un rombo) como marcador especificando el parámetro marker. El tamaño de los marcadores en 50 utilizando <code>s = 50</code>.</p>
-<div id="a7002732" class="cell" data-execution_count="7">
+<div id="3df547d5" class="cell" data-execution_count="7">
 <div class="sourceCode cell-code" id="cb10" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1">xs <span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span> iris.iloc[:, <span class="dv" style="color: #AD0000;
@@ -739,7 +739,7 @@ font-style: inherit;">50</span>)</span>
 <section id="cross-tabulation-con-pandas" class="level3">
 <h3 class="anchored" data-anchor-id="cross-tabulation-con-pandas">Cross Tabulation con Pandas</h3>
 <p>Para construir uno, usareos la biblioteca <code>pandas.</code> Como podemos observar en el bloque de código siguiente, creamos un dataframe de dos columnas, donde la primera columna son las etiquetas del grupo y la segunda son las especies de iris, de modo que cada fila proporciona la etiqueta del grupo y la especie de una sola muestra.</p>
-<div id="8bfc619d" class="cell" data-execution_count="8">
+<div id="59479dcb" class="cell" data-execution_count="8">
 <div class="sourceCode cell-code" id="cb11" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1">iris_raw <span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span> datasets.load_iris() </span>
@@ -787,7 +787,7 @@ font-style: inherit;">print</span>(df)</span></code></pre></div>
 </div>
 </div>
 <p>Ahora usamos la función de tabla cruzuda de pandas para crear la tubulación cruzada, pasando las dos columnas del DataFrame.</p>
-<div id="ab1ddcdf" class="cell" data-execution_count="9">
+<div id="8bac645b" class="cell" data-execution_count="9">
 <div class="sourceCode cell-code" id="cb13" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1">ct <span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span> pd.crosstab(df[<span class="st" style="color: #20794D;
@@ -815,7 +815,7 @@ labels
 <p>La <strong>inercia</strong> puede medir la distribución de las muestras dentro de cada grupo. Intuitivamente, la inercia mide qué tan lejos están las muestras de sus centroides. Puede encontrar la definición precisa en la documentación de scikit-learn. Queremos grupos que no estén dispersos, por lo que los valores más bajos de inercia son mejores.</p>
 <p>La inercia de un modelo KMeans se mide automaticamente cuando se llama al metodo de ajuste .fit y luego están disponibles como atributos de <code>inertia_</code>.</p>
 <p>De hecho, KMeans pretende colocar los clusters de forma que se minimice la inercia.</p>
-<div id="c0ad8114" class="cell" data-execution_count="10">
+<div id="a95d0d50" class="cell" data-execution_count="10">
 <div class="sourceCode cell-code" id="cb15" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1">model <span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span> KMeans(n_clusters <span class="op" style="color: #5E5E5E;
@@ -845,7 +845,7 @@ font-style: inherit;">print</span>(model.inertia_)</span></code></pre></div>
 <p>Una buena agrupación tiene agrupaciones estrechas (lo que significa inercia baja). Pero tampoco tiene demasiados grupos.</p>
 <p>Una buena regla general es elegir un codo en el gráfico de inercia, es decir, un punto donde la inercia comienza a disminuir más lentamente.</p>
 <p>Por ejemplo, según este criterio, 3 es un buen número de grupos para el conjunto de datos del iris.</p>
-<div id="3210a313" class="cell" data-execution_count="11">
+<div id="e8d16808" class="cell" data-execution_count="11">
 <div class="sourceCode cell-code" id="cb17" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1">ks <span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span> <span class="bu" style="color: null;
@@ -909,7 +909,7 @@ font-style: inherit;">'inertia'</span>)</span>
 <li><p>Las entradas o features miden la composición química (como el contendio del alcohol) y propiedades visuales como la intensidad del color.</p></li>
 <li><p>Las muestras proceden de 3 variedades distintas de vino.</p></li>
 </ul>
-<div id="065cf244" class="cell" data-execution_count="12">
+<div id="fb6522d8" class="cell" data-execution_count="12">
 <div class="sourceCode cell-code" id="cb18" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1">samples <span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span> pd.read_csv(<span class="st" style="color: #20794D;
@@ -1152,7 +1152,7 @@ font-style: inherit;">1</span>)</span>
 <section id="clustering-con-vinos" class="level3">
 <h3 class="anchored" data-anchor-id="clustering-con-vinos">Clustering con Vinos</h3>
 <p>Tomaremos la matriz de muestra de los vinos y usaremos KMeans para encontrar 3 grupos</p>
-<div id="7fe5f2b1" class="cell" data-execution_count="13">
+<div id="d6b0c0b2" class="cell" data-execution_count="13">
 <div class="sourceCode cell-code" id="cb19" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1">model <span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span> KMeans(n_clusters <span class="op" style="color: #5E5E5E;
@@ -1171,7 +1171,7 @@ font-style: inherit;">=</span> model.fit_predict(samples)</span></code></pre></d
 <section id="cluster-vs-varieties" class="level4">
 <h4 class="anchored" data-anchor-id="cluster-vs-varieties">Cluster vs Varieties</h4>
 <p>Hay tres variedades de vinom así que usamos pandas para crear la tabla cruzada para comprobar las correspondencia entre la etiqueta del clúster y la variedad de vino.</p>
-<div id="894d9149" class="cell" data-execution_count="14">
+<div id="4e089f9f" class="cell" data-execution_count="14">
 <div class="sourceCode cell-code" id="cb20" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1">df <span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span> pd.DataFrame({<span class="st" style="color: #20794D;
@@ -1238,7 +1238,7 @@ labels
 </figure>
 </div>
 <p>Veamos StandarScaler en acción:</p>
-<div id="cd81dc4a" class="cell" data-execution_count="15">
+<div id="4d9c7d71" class="cell" data-execution_count="15">
 <div class="sourceCode cell-code" id="cb22" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><span class="im" style="color: #00769E;
 background-color: null;
 font-style: inherit;">from</span> sklearn.preprocessing <span class="im" style="color: #00769E;
@@ -1290,7 +1290,7 @@ font-style: inherit;">=</span> scaler.transform(samples)</span></code></pre></di
 <p>Esto se hace fácilmente combinando los dos pasos mediante un pipeline de scikit-learn, luego, los datos fluyen de un paso al siguiente de forma automática.</p>
 <section id="pipelines-combinando-multiples-pasos" class="level4">
 <h4 class="anchored" data-anchor-id="pipelines-combinando-multiples-pasos">Pipelines combinando multiples pasos</h4>
-<div id="ad03f4fa" class="cell" data-execution_count="16">
+<div id="40a52039" class="cell" data-execution_count="16">
 <div class="sourceCode cell-code" id="cb23" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><span class="im" style="color: #00769E;
 background-color: null;
 font-style: inherit;">from</span> sklearn.preprocessing <span class="im" style="color: #00769E;
@@ -1339,7 +1339,7 @@ background-color: null;
 font-style: inherit;">=</span> pipeline.predict(samples)</span></code></pre></div>
 </div>
 <p>Ahora, realicemos la comprobación de la correspondencia entre las etiquetas de los cluster y las variedadesd de vino</p>
-<div id="7086816e" class="cell" data-execution_count="17">
+<div id="2e7592f0" class="cell" data-execution_count="17">
 <div class="sourceCode cell-code" id="cb24" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1">df <span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span> pd.DataFrame({<span class="st" style="color: #20794D;
@@ -1475,7 +1475,7 @@ labels
 <h3 class="anchored" data-anchor-id="clusterización-jerárquica-con-scipy">Clusterización Jerárquica con SciPy</h3>
 <p>En el capítulo anterior, utilizamos la agrupación KMeans para agrupar empresas según los movimientos de sus cotizaciones bursátiles. Ahora, realizaremos la agrupación jerárquica de las empresas.</p>
 <p>linkage() de SciPy realiza una agrupación jerárquica en una matriz de muestras.</p>
-<div id="2bc52bb2" class="cell" data-execution_count="18">
+<div id="6102dfc6" class="cell" data-execution_count="18">
 <div class="sourceCode cell-code" id="cb26" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><span class="im" style="color: #00769E;
 background-color: null;
 font-style: inherit;">import</span> matplotlib.pyplot <span class="im" style="color: #00769E;
@@ -1505,13 +1505,13 @@ font-style: inherit;">"/Users/juanisaulamejia/Documents/webmathJI/posts/Unsuperv
 <span id="cb26-7"></span>
 <span id="cb26-8">companies <span class="op" style="color: #5E5E5E;
 background-color: null;
-font-style: inherit;">=</span> samples.iloc[:, <span class="dv" style="color: #AD0000;
+font-style: inherit;">=</span> empresas.iloc[:, <span class="dv" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">0</span>].tolist()</span>
 <span id="cb26-9"></span>
 <span id="cb26-10">empresas <span class="op" style="color: #5E5E5E;
 background-color: null;
-font-style: inherit;">=</span> samples.select_dtypes(include<span class="op" style="color: #5E5E5E;
+font-style: inherit;">=</span> empresas.select_dtypes(include<span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span><span class="st" style="color: #20794D;
 background-color: null;
@@ -1519,37 +1519,44 @@ font-style: inherit;">"number"</span>).copy()</span>
 <span id="cb26-11"></span>
 <span id="cb26-12">arr <span class="op" style="color: #5E5E5E;
 background-color: null;
-font-style: inherit;">=</span> samples.to_numpy()</span>
+font-style: inherit;">=</span> empresas.to_numpy()</span>
 <span id="cb26-13">normalized_movements <span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span> normalize(arr)</span>
 <span id="cb26-14"></span>
-<span id="cb26-15">mergings <span class="op" style="color: #5E5E5E;
+<span id="cb26-15"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Calculate the linkage: mergings</span></span>
+<span id="cb26-16">mergings <span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span> linkage(normalized_movements, method <span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span> <span class="st" style="color: #20794D;
 background-color: null;
-font-style: inherit;">'complete'</span>) </span>
-<span id="cb26-16"></span>
-<span id="cb26-17">dendrogram(mergings, labels <span class="op" style="color: #5E5E5E;
+font-style: inherit;">'complete'</span>)</span>
+<span id="cb26-17"></span>
+<span id="cb26-18"><span class="co" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;"># Plot the dendrogram</span></span>
+<span id="cb26-19">dendrogram(mergings, labels <span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span> companies,</span>
-<span id="cb26-18">leaf_rotation <span class="op" style="color: #5E5E5E;
+<span id="cb26-20">leaf_rotation <span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span> <span class="dv" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">90</span>,</span>
-<span id="cb26-19">leaf_font_size <span class="op" style="color: #5E5E5E;
+<span id="cb26-21">leaf_font_size <span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span> <span class="dv" style="color: #AD0000;
 background-color: null;
 font-style: inherit;">6</span>)</span>
-<span id="cb26-20">plt.show()</span></code></pre></div>
+<span id="cb26-22">plt.show()</span>
+<span id="cb26-23">plt.show()</span></code></pre></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="https://j-isaula.github.io/Web_JI/posts/Unsupervised_Learning/index_files/figure-html/cell-19-output-1.png" width="581" height="403" class="figure-img"></p>
+<p><img src="https://j-isaula.github.io/Web_JI/posts/Unsupervised_Learning/index_files/figure-html/cell-19-output-1.png" width="571" height="550" class="figure-img"></p>
 </figure>
 </div>
 </div>

@@ -499,18 +499,21 @@ import numpy as np
 
 empresas = pd.read_csv("/Users/juanisaulamejia/Documents/webmathJI/posts/Unsupervised_Learning/empresas.csv")
 
-companies = samples.iloc[:, 0].tolist()
+companies = empresas.iloc[:, 0].tolist()
 
-empresas = samples.select_dtypes(include="number").copy()
+empresas = empresas.select_dtypes(include="number").copy()
 
-arr = samples.to_numpy()
+arr = empresas.to_numpy()
 normalized_movements = normalize(arr)
 
-mergings = linkage(normalized_movements, method = 'complete') 
+# Calculate the linkage: mergings
+mergings = linkage(normalized_movements, method = 'complete')
 
+# Plot the dendrogram
 dendrogram(mergings, labels = companies,
 leaf_rotation = 90,
 leaf_font_size = 6)
+plt.show()
 plt.show()
 ```
 
