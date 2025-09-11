@@ -2,13 +2,17 @@
 title: "Mi Bitacora Profesional"
 ---
 
-En esta sección comparto algunos momentos clave de mi trayectoria académica y profesional. Aquí encontrarás experiencias que me han enriquecido y personas con las que he tenido el privilegio de colaborar
+En esta sección comparto algunos momentos clave de mi trayectoria académica , profesional y personal. Aquí encontrarás experiencias que me han enriquecido y personas con las que he tenido el privilegio de colaborar y compartir.
 
 **Innovation Day ASICA 2025 - Honduras - Hotel Clarion**
 
-Participamos en un evento organizado por Grupo ASICA donde conocimos herramientas de análisis y soluciones avanzadas de SAS. Fue una excelente oportunidad para conectar con profesionales del sector y compartir ideas innovadoras.
+Participación en evento organizado por Grupo ASICA donde conocimos herramientas de análisis y soluciones avanzadas de SAS. Fue una excelente oportunidad para conectar con profesionales del sector y compartir ideas innovadoras.
 
 ![](ASICA.jpeg){width="13.3cm"}
+
+**Compartiendo con amigos en la boda de uno de ellos**
+
+![](boda_elvin.jpeg){width="13.3cm"}
 
 **Compartiendo con compañeros de la Maestría en Economía Matemática, México.**
 
