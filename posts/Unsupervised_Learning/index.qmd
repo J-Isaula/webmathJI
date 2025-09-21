@@ -100,6 +100,7 @@ model.fit(iris)
 
 ```{python}
 labels = model.predict(iris)
+species_ = labels
 print(labels)
 ```
 
@@ -518,3 +519,390 @@ plt.show()
 ```
 
 Como podemos observar, podemos crear visualizaciones geniales como esta con el clustering jerárquico, pero se puede usar ara más que solo visualizaciones.
+
+## Etiquetas de clústeres en la agrupación jerárquica 
+
+En la sección anterior empleamos la agrupación jerárquica. Creamos una gran visualización de las empresas según sus movimientos de sus cotizaciones bursátiles. Pero la **agrupación jerárquica no es sólo una herramienta de visualización**.
+
+En esta sección aprenderá cómo extraer los clústeres de las etapas intermedias de una agrupación jerárquica. Las etiquetas de clúster para estos agrupamientos intermedios se pueden utilizar posteriormente en otros cálculos, como tabulaciones cruzadas, al igual que las etiquetas de clúster de KMeans.
+
+### Agrupaciones intermedias y altura en el dendrograma
+
+Una etapa intermedia en la agrupación jerárquica se especifica eligiendo una altura en el dendrograma.
+
+![](img/fig17.png){fig-align="center" width="200"}
+
+Por ejemplo, elegir una altura de 15 define una agrupación en el que Bulgaria, Cyprus y Grecia están en un grupo, Rusia y Moldavia en otro, y Armenia en un grupo propio.
+
+Pero **¿qué significa la altura?**
+
+El eje `y` del dendrograma codifica la distancia entre los grupos fusionados. Por ejemplo, la distancia entre el grupo que contiene Cyprus y el número de países que contenían Grecia era de aproximadamente 6 cuando se fusionaron en un solo grupo. Cuando este nuevo cúmulo se fusiono con el cúmulo que contenía a Bulgaria, la distancia entre ellos era de 12. Por lo tanto, la altura que especifica una agrupación intermedia corresponde a una distancia. Esto especifica que la agrupación jerárquica debe detenerse a fusionar clústeres cuando todos los clústeres están al menos a esta distancia.
+
+### Distancia entre Clusters
+
+La distancia entre dos grupos se mide utilizando un **método de enlace (método `linkage`).** En nuestro ejemplo, utilizamos un enlace **completo**, donde la distancia entre dos clusteres es el máximo de las distancias entre sus muestras. Esto se especificó a través del parámetro "method" o en python `linkage(samples, method = "complete")`. Existen muchos otros métodos de vinculación y los veremos en algunos ejercicios que realizaremos en Python con Scikit-Learn.
+
+> Los diferentes métodos de vinculación producen diferentes agrupaciones jerárquicas.
+
+### Extracción de etiquetas de clúster mediante `fcluster.` 
+
+La etiquetas de clúster para cualquier etapa intermedia se pueden extraer utilizando la función `fcluster`. Vamos a probarlo, especificando la altura de 15. Despues de realizar la agrupación jerárquica de los datos de empresas, importamos la función `fcluster`. Luego, pasamos el resultado de la función de vinculación a la función fcluster, especificando la altura como segundo argumento.
+
+```{python}
+from scipy.cluster.hierarchy import linkage
+from scipy.cluster.hierarchy import fcluster
+
+mergings = linkage(arr, method = 'complete')
+labels   = fcluster(mergings, 15, criterion = 'distance')
+print(labels)
+```
+
+Esto nos devolvio una matriz numpy que contiene las etiquetas de clúster para todos los países.
+
+### Alineación de las etiquetes de los clústeres con los nombres de las empresas 
+
+Para inspeccionar las etiquetas de los clústeres, usaremos un DataFrame para alinear las etiquetas con los nombres de los países.
+
+```{python}
+import pandas as pd 
+pairs = pd.DataFrame({'labels': labels, 'companies': companies}) 
+print(pairs.sort_values('labels'))
+
+```
+
+Como era de esperar, las etiquetas del clúster agrupan a Intel, Texas instruments en el mismo clúster. Pero tenga en cuenta que las etiquetas de clúster de scipy comienzan en 1, no en 0 como lo hacen en `scikit-learn.`
+
+### t-SNE para mapas bidimensionales 
+
+En esta sección, aprenderá un método de aprendizaje no supervisado para visualización llamado `t-SNE`.
+
+> t-SNE significa "incrustación de vecinos estocásticos distribuidos en t"
+
+Tiene un nombre complicado, pero tiene un propósito muy simple. Mapea muestras de su espacio de alta dimensión a un espacio de 2D o 3D dimensiones para que puedan visualizarse. Si bien es inevitable cierta distorsión, t-SNE hace un gran trabajo de representar aproximadamente las distancias entre las muestras. Por este motivo, t-SNE es una ayuda visual invaluable para comprender un conjunto de datos.
+
+#### t-SNE en el dataset iris 
+
+Para ver qué tipo de conocimientos son posibles con t-SNE, veamos cómo funciona en el conjunto de datos del iris. Las muestras de iris están en un espacio de cuatro dimensiones, donde cada dimensión corresponde a una de las cuatro medidas del iris, como la longitud y el ancho de los pétalos.
+
+Ahora a t-SNE solo se le dieron las medidas de las muestras de iris. En particular, no se proporcionó ninguna información sobre las tres especies de iris. Pero si coloreamos las especies de manera diferente en el diagrama de dispersión vemos que t-SNE ha mantedio las especies separadas.
+
+![](img/fig18.png){fig-align="center" width="500"}
+
+Sin embargo, este diagrama de dispersión nos da una nueva perspectiva. Aprendemos que hay dos especies de iris, versicolor y virginica, cuyas muestras están muy juntas en el espacio. Por lo tanto, podría suceder que el conjunto de datos del iris parezca tener dos grupos en lugar de tres. Esto es compatible con nuestros ejemplos anteriores usando KMeans, donde vimos que la agrupación con 2 grupos también tenía una inercia relativamente baja, lo que significa grupos apretados.
+
+#### t-SNE en Sklearn 
+
+t-SNE está disponible en scikit-learn, pero funciona un poco de manera diferente a los componentes de ajuste/transformación que ya conoce.
+
+Para comenzar, importamos `TSNE` y creamos un objeto TNSE. Aplicamos el método `fit_transform` a las muestras y luego hacemos un diagrama de dispersión del resultado, colerando los puntos según la especie.
+
+```{python}
+from sklearn.manifold import TSNE
+
+model = TSNE(learning_rate = 100)
+transformed = model.fit_transform(iris)
+xs = transformed[:, 0]
+ys = transformed[:, 1]
+plt.scatter(xs, ys, c = species_)
+plt.show()
+```
+
+Hay dos puntos que merecen especial atención:
+
+-   El método `fit_transform` y la
+
+-   tasa de aprendizaje (`learning_rate`)
+
+t-SNE solo tiene un método `fit_transform()`. Como era de esperar, el método fit_transform ajusta el modelo y transforma los datos simultáneamente. Sin embargi, t-SNE no tiene métodos de ajuste o `fit()` y transformación o `transform()` separados. Esto significa que no se puede ampliar un mapa t-SNE para incluir nuevas muestras. En cambio, debes empezar de nuevo cada vez.
+
+La segunda cosa a tener en cuenta es la `tasa de aprendizaje.` Está hace que el uso de t-SNE sea más complicado que otras técnicas. Es posible que deba probar diferentes tasas de aprendizaje para diferentes conjuntos de datos.
+
+Está claro, sin embargo, cuando has hecho una mala elección, porque todas las muestras aparecen agrupadas en el diagrama de dispersión. Normalmente es suficiente probar algunos valores entre 50 y 200.
+
+Una última cosa a tener en cuenta es que los ejes de un gráfico t-SNE no tienen ningún significado interpretable. De hecho son diferentes cada vez que se aplica t-SNE, incluso con los mismos datos. Por ejemplo, aquí hay tres gráficos t-SNE de muestras de vino de Piamonte escaladas, generados con el mismo código.
+
+![](img/fig19.png){fig-align="center" width="800"}
+
+Tenga en cuenta que si bien la orientación de la trama es diferente cada vez, los tres vinos, las variedades, representadas aquí mediante colores, tienen la misma posición entre si.
+
+### Mapa t-SNE del mercado bursátil
+
+t-SNE proporciona excelentes visualizaciones cuando se pueden etiquetar las muestras individuales. En el siguiente bloque de código, se aplica t-SNE a los datos del precio de las acciones de la empresa. Un gráfico de dispersión de las características t-SNE resultantes, etiquetadas con los nombres de las empresas, te ofrece un mapa del mercado de valores. Los movimientos de las cotizaciones bursátiles de cada empresa están disponibles en `normalized_movements` las cuales normalizamos anteriormente.
+
+```{python}
+# Import TSNE
+from sklearn.manifold import TSNE
+
+model = TSNE(learning_rate = 50)
+
+tsne_features = model.fit_transform(normalized_movements)
+
+xs = tsne_features[:, 0]
+
+ys = tsne_features[:,1]
+
+# Scatter plot
+plt.scatter(xs, ys, alpha = 0.5)
+
+for x, y, company in zip(xs, ys, companies):
+    plt.annotate(company, (x, y), fontsize=5, alpha=0.75)
+plt.show()
+
+```
+
+# Descorrelación de Datos y Reducción de Dimensiones 
+
+La reducción de dimensiones resume un conjunto de datos utilizando sus patrones comunes. En esta sección, aprenderás la técnica más fundamental de reducción de dimensiones, el **análisis de componentes principales** (PCA, por sus siglas en inglés). El PCA se utiliza a menudo antes del aprendizaje supervisado para mejorar el rendimiento y la generalización del modelo. También puede ser útil para aprendizaje no supervisado. Por ejemplo, utilizaremos una variante PCA que te permitirá agrupar articulos de wikipedia según su contenido.
+
+## Visualización de la transformación PCA 
+
+La reducción de dimensiones encuentra patrones en los datos y utiliza estos patrones para reexpresarlos en una forma comprimida. Esto hace que el cálculo posterior con los datos sea mucho más sencillo, eficiente y, esto puede ser de gran importancia en un mundo de grandes conjuntos de datos.
+
+Sin embargo, la función más importante de la reducción de dimensión es reducir un conjunto de datos a su ***"esqueleto básico"***, descartando características ruidosas que causan grandes problemas para las tareas de aprendizaje supervisado como regresión y clasificación.
+
+> En muchas aplicaciones del mundo real, es la reducción de dimensiones la que hace posible la predicción.
+
+### Análisis de componentes principales 
+
+Esta es la técnica de reducción de dimensión más fundamental. Se llama *"Análisis de componentes principales"*, o *"PCA"* para abreviar. PCA realiza la reducción de dimensión en dos pasos, y el primero:
+
+1.  Llamada **"descorrelación"**, no cambia la dimensión de los datos en absoluto.
+
+Es justamente en este primer paso en el cual nos centraremos.
+
+En este **primer paso**, PCA gira las muestras para que queden alineadas con los ejes de coordenadas. De hecho, hace más que eso: PCA también desplaza las muestras para que tengan media cero.
+
+![](img/fig20.png){fig-align="center" width="600"}
+
+Estos gráficos de dispersión muestran el efecto del PCA aplicado a dos características del conjunto de datos del vino. Tenga en cuenta que no se pierde información: esto es así sin importar cuántas características tenga su conjunto de datos. Veremos la visualización de esta transformación en ejercicios más adelante.
+
+### PCA en Scikit - Learn
+
+Scikit-learn tiene una implementación de PCA y tiene dos métodos de ajuste y transformación como StandardScaler.
+
+-   `fit()` el método de ajuste aprende cómo desplazar y rotar las muestras, pero en realidad no las cambia.
+
+-   `transform()` el método de transformación, por otro lado, aplica la transformación que se aprendio. En particular, el método de transformación se puede aplicar a muestras nuevas e invisibles.
+
+Veamos PCA en acción en algunas características del conjunto de datos de vino, estas características son: `total_phenols` y `od280`.
+
+```{python}
+samples = pd.read_csv("wine.csv")
+varieties = samples['class_name']
+samples = samples.drop("class_name", axis = 1)
+samples = samples[["total_phenols", "od280"]]
+samples
+```
+
+Veamos:
+
+1.  En primer lugar importamos el objeto PCA
+
+2.  Luego creamos el objeto PCA y los ajustamos a las muestras o samples.
+
+```{python}
+from sklearn.decomposition import PCA
+
+model = PCA()
+model.fit(samples)
+
+```
+
+Ahora utilizamos el objeto PCA ajustado para transformar las muestras. Estos nos devuelve una matriz de muestras transformadas.
+
+```{python}
+transformed = model.transform(samples)
+print(transformed)
+```
+
+Esta nueva matriz tiene el mismo número de filas y columnas que la matriz de muestra original. En particular, hay una fila para cada muestra transformada. Las columnas de la nueva matriz corresponden a *"características de PCA"*, tales como las características originales que correspondían a columnas de la matriz original.
+
+### LAs características de PCA no están correlacionadas
+
+A menudo ocurre que las características de un conjunto de datos están correlacionadas. Lo mismo ocurre con muchas de las características del conjunto de datos del vino, por ejemplo. Sin embargo, del PCA, debido a la rotación que realiza, *"descorrelaciona"* los datos, en el sentido de que las columnas de la matriz transformada no están correlacionadas linealmente.
+
+Como sabemos la correlación lineal se puede medir con la `correlación de Pearson.` Toma valores entre -1 y 1, donde los valores mayores indican una correlación más fuerte y 0 indica que no hay correlación lineal. A continuación se muestran algunos ejemplos de características con distintos grados de correlación.
+
+![](img/fig21.png){fig-align="center" width="600"}
+
+### Componentes Principales
+
+Finalmente, al PCA se le denomina *"análisis de componentes principales"* porque aprende los *"componentes principales"* de los datos. Estas son las direcciones en las que las muestran varían más, representadas aquí en rojo.
+
+![](img/fig22.png){fig-align="center" width="300"}
+
+Son los componentes principales que PCA alinea con los ejes de coordenadas. Una vez ajustado un modelo PCA, los componentes proncipales están disponibles como atributos de componentes.
+
+```{python}
+print(model.components_)
+```
+
+Esta es una matriz numpy con una fila para cada componente principal. \
+
+## Dimensión Intrínseca
+
+Consideremos un conjunto de datos con 2 características: **latitud** y **longitud**.
+
+![](img/fig23.png){fig-align="center" width="300"}
+
+Estas dos características podrían rastrear el vuelo de un avión, por ejemplo. Este conjunto de datos es bidimensional, pero resulta que se puede analizar observando el desplazamiento a lo largo de la trayectoria de vuelo.
+
+![](img/fig24.png){fig-align="center" width="300"}
+
+Este conjunto de datos es intrínsicamente unidimensional.
+
+### Dimensión Intrínsica
+
+La dimensión intrínsica de un conjunto de datos es el número de características necesarias para aproximarlo. La dimensión intrínsica informa la reducción de la dimensión, porque nos dice cuánto se puede comprimir un conjunto de datos.
+
+Obtendremos una comprensión sólida de la dimensión intrínsica y seremos capaz de utilizar PCA para aidentificarlo en conjuntos de datos del mundo real que tienen miles de características.
+
+Para ilustrar mejor la dimensión intrínseca, consideremos un conjunto de datos de ejemplo que contiene solo algunas de las muestras del conjunto de datos iris. En concreto, tomaremos tres medidas del iris.
+
+-   sepal length (largo del sépalo)
+
+-   sepal width (ancho del sépalo)
+
+-   petal width (ancho del pétalo)
+
+```{python}
+iris_sample = iris[['sepal length (cm)', 'sepal width (cm)','petal width (cm)']]
+iris_sample
+```
+
+Cada muestra se representa como un punto en el espacio tridimensional. Sin embargo, si hacemos un gráfico de dispersión 3D de las muestras, vemos que todas están muy cerca de una lámila plana bidimensional.
+
+![](img/fig25.png){fig-align="center" width="300"}
+
+Esto significa que los datos se pueden aproximar utilizando sólo dos coordenadas, sin perder mucha información. Entonces, este conjunto de datos tiene una dimensión intrínseca de 2. PEro los gráficos de dispersión solo son posibles si hay 3 características o menos.
+
+### PCA identifica la dimensión intrínseca 
+
+**Cómo se puede identificar la dimensión intrínseca, si hay muchas características?**
+
+Aquí es donde el PCA resulta muy útil. La dimensión intrínseca se puede identificar contando las características de PCA que tienen alta varianza. Para ver cómo, veamos qué sucece cuando se aplica PCA al conjunto de datos de muestra versicolor.
+
+![](img/fig26.png){fig-align="center" width="400"}
+
+PCA gira y desplaza las muestras para alinearlas con los ejes de coordenadas. Esto expresa las muestras utilizando tres características PCA.
+
+### Las carasterísticas de PCA se ordenan por varianza descendente
+
+Las características de PCA están en un orden especial.
+
+![](img/fig27.png){fig-align="center" width="500"}
+
+Aquí se muestra un gráfico de barras que muestra la varianza de cada una de las características de PCA. Como se puede ver, cada característica de PCA tiene menos variación que la primera. Esto concuerda con el diagrama de dispersión de las características de PCA, donde las muestras no varían mucho en la dirección vertical. En las otras dos direcciones, sin embargo, la variación es evidente.
+
+### Varianza y Dimensión Intrínseca 
+
+-   La dimensión intrínseca es el número de características de PCA que tiene una varianza significativa.
+
+    ![](img/fig28.png){width="200"}
+
+En nuestro ejemplo, solo las dos primeras características de PCA tienen una varianza significativa. Por lo tanto, este conjunto de datos tiene una dimensión intrínseca de 2, lo que concuerda con lo que observamos al inspeccionar el diagrama de dispersión.
+
+### Plotting de varianza de PCA 
+
+Veamos como gráficar las varianzas de las características del PCA en la práctica.
+
+```{python}
+pca = PCA()
+pca.fit(iris_sample)
+
+```
+
+Ahora creeamos un rango que enumere las características de PCA
+
+```{python}
+features = range(pca.n_components_)
+```
+
+Hacemos un diagrama de barras de la varianza; las varianzas están disponibles como el atributo `explained_variance` del modelo PCA.
+
+```{python}
+plt.bar(features, pca.explained_variance_)
+plt.xticks(features)
+plt.ylabel('variance')
+plt.xlabel('PCA feature')
+plt.show()
+```
+
+La dimensión intrínseca es una idea útil que ayuda a orientar la reducción de dimensión. Sin embargo, no siempre es inequívoco. Aquí se muestra u gráfico de las variaciones de las características de PCA para el conjunto de datos del vino.
+
+![](img/fig29.png){fig-align="center" width="400"}
+
+Podriamos argumentar a favor de una dimensión intrínseca de 2, de 3 o incluso más, dependiendo del umbral que elijamos.
+
+En la siguiente sección, aprenderá a utilizar la dimensión intrínseca para la reducción de dimensión.
+
+## Reducción de dimensiones con PCA
+
+La reducción de dimensión representa los mismos datos utilizando menos funciones y es vital para construir pipeline de aprendizaje automático utilizando datos del mundo real. Finalmente aquí, aprenderá cómo realizar la reducción de dimensión utilizando PCA. Ya hemos visto que las características del PCA están en orden decreciente de varianza.
+
+![](img/fig30.png){fig-align="center" width="200"}
+
+PCA realiza un reducción de dimensión descartando las características de PCA con menor varianza, lo que asume que es ruido y conserva las características PCA de mayor varianza, que supone que son informativas.
+
+> Para utilizar PCA para la reducción de dimensión, debe especificar cuántas características de PCA desea conservar.
+
+Por ejemplo, especificar `PCA(n_components=2)` al crear un modelo PCA le indica que conserve solo las primeras dos características PCA. Una buena opción es la dimensión intrínseca del conjunto de datos, si la conoce. Consideremos inmediatamente un ejemplo:
+
+El conjunto de datos del iris tiene 4 características que representan las 4 mediciones
+
+```{python}
+iris
+```
+
+Utilicemos un PCA para reducir la dimensión del conjunto de datos del iris a solo 2.
+
+```{python}
+pca = PCA(n_components=2)
+pca.fit(iris)
+transformed = pca.transform(iris)
+print(transformed.shape)
+```
+
+Al imprimir la forma de las muestras transformadas, vemos que solo hay dos características, como se esperaba.
+
+Aquí se muestra un diagrama de dispersión de las características de PCA, donde los colores representan las tres especies de iris.
+
+```{python}
+xs = transformed[:,0]
+ys = transformed[:,1]
+plt.scatter(xs, ys,c = species_)
+plt.show()
+```
+
+Notablemente, a pesar de haberse reducido la dimensión de 4 a 2, aún es posible distinguir las especies. Recuerde que PCA ni siquiera sabía que existían especies distintas. PCA simplemente tomó las 2 características de PCA con mayor variación.
+
+Como podemos ver estas dos características son muy informativas.
+
+> El PCA descarta las características de baja varianza y supone que las características de mayor varianza son informativas.
+
+Como sucede con todos los supuestos, existen casos donde esto no se cumple. Sin embargo, como vimos con el conjunto de datos del iris, en la práctica suele suceder esto. En algunos casos, es necesario utilizar una implementación alternativa de PCA.
+
+### Matrices de frecuencia de palabras
+
+Las matrices de frecuencia de palabras son un gran ejemplo de una implementación alternativa de PCA.
+
+![](img/fig31.png){fig-align="center" width="400"}
+
+En una matriz de frecuencia de palabras, cada fila corresponde a un documento y cada columna corresponde a una palabra de un vocabulario fijo. Las entradas de la matriz miden la frecuencia con la que aparece cada palabra en cada documento. Sólo algunas de las palabras del vocabulario aparecen en cualquier documento, por lo que la mayoría de las entradas de la matriz de frecuencia de palabras son cero.
+
+Se dice que las matrices de palabras como esta son *"dispersas"* y, a menudo, representado utilizando un tipo especial de matriz llamada `"csr_matrix".`
+
+-   `csr_matrix` ahorra espacio al recordar solo las entradas distintas de cero de la matriz.
+
+### TruncatedSVD & csr_matrix
+
+El PCA de Scikit-Learn no admite csr_matrix y necesitará utilizar TruncatedSVD en su lugar.
+
+TruncatedSVD realiza la misma transformación que PCA, pero acepta matrices csr_matrix como entrada.
+
+``` Python
+from sklearn.decomposition import TruncatedSVD
+model = TruncatedSVD(n_components = 3)
+model.fit(documents)
+transformed = model.transform(documents)
+```
