@@ -39,7 +39,7 @@
         "\n",
         "Ahora comencemos con la tarea de segmentación y calificación crediticia importando las bibliotecas de Python necesarias y el conjunto de datos"
       ],
-      "id": "2e243580"
+      "id": "16696a73"
     },
     {
       "cell_type": "code",
@@ -54,7 +54,7 @@
         "data = pd.read_csv(\"credit_scoring.csv\")\n",
         "data.head()"
       ],
-      "id": "779b5c77",
+      "id": "18e6a71b",
       "execution_count": null,
       "outputs": []
     },
@@ -90,7 +90,7 @@
         "\n",
         "Ahora echemos un vistazo a las estadísticas de las columnas antes de seguir adelante:"
       ],
-      "id": "00a610b1"
+      "id": "a44585f9"
     },
     {
       "cell_type": "code",
@@ -98,7 +98,7 @@
       "source": [
         "data.info()"
       ],
-      "id": "1e58f707",
+      "id": "c4df6564",
       "execution_count": null,
       "outputs": []
     },
@@ -108,7 +108,7 @@
       "source": [
         "Ahora echemos un vistazo a las estadísticas descriptivas de los datos:"
       ],
-      "id": "f5172dd6"
+      "id": "b5a42a43"
     },
     {
       "cell_type": "code",
@@ -116,7 +116,7 @@
       "source": [
         "data.describe()"
       ],
-      "id": "61b43eed",
+      "id": "62553c0c",
       "execution_count": null,
       "outputs": []
     },
@@ -126,7 +126,7 @@
       "source": [
         "Ahora echemos un vistazo a la distribución del índice de utilización del crédito en los datos:"
       ],
-      "id": "abcdea51"
+      "id": "ef33b832"
     },
     {
       "cell_type": "code",
@@ -136,7 +136,7 @@
         "                                title='Distribución del índice de utilización del crédito')\n",
         "credit_utilization_fig.show()"
       ],
-      "id": "549db8da",
+      "id": "1c4f9f6e",
       "execution_count": null,
       "outputs": []
     },
@@ -146,7 +146,7 @@
       "source": [
         "Ahora echemos un vistazo a la distribución del monto del préstamo en los datos:"
       ],
-      "id": "29c09e18"
+      "id": "15410c1c"
     },
     {
       "cell_type": "code",
@@ -157,7 +157,7 @@
         "                               title='Distribución del monto del préstamo')\n",
         "loan_amount_fig.show()"
       ],
-      "id": "a4a5fe26",
+      "id": "fa3253d4",
       "execution_count": null,
       "outputs": []
     },
@@ -167,7 +167,7 @@
       "source": [
         "Luego, echemos un vistazo a la correlación en los datos:"
       ],
-      "id": "e0410067"
+      "id": "7e7cce2d"
     },
     {
       "cell_type": "code",
@@ -182,7 +182,7 @@
         "                            title='Mapa de calor de correlación')\n",
         "correlation_fig.show()"
       ],
-      "id": "cfd38f47",
+      "id": "b0819687",
       "execution_count": null,
       "outputs": []
     },
@@ -196,7 +196,7 @@
         "\n",
         "A continuación se muestra cómo podemos implementar el método de puntuación ***FICO*** para calcular las puntuaciones de crédito."
       ],
-      "id": "3cce50e6"
+      "id": "f56f73f8"
     },
     {
       "cell_type": "code",
@@ -229,7 +229,7 @@
         "\n",
         "data.head()"
       ],
-      "id": "13d8557a",
+      "id": "70d8efbd",
       "execution_count": null,
       "outputs": []
     },
@@ -259,7 +259,7 @@
         "\n",
         "Ahora, usemos el algoritmo de agrupamiento KMeans para segmentar a los clientes según sus puntajes crediticios."
       ],
-      "id": "db330ef5"
+      "id": "288bd6d7"
     },
     {
       "cell_type": "code",
@@ -276,7 +276,7 @@
         "kmeans.fit(X)\n",
         "data['Segment'] = kmeans.labels_"
       ],
-      "id": "e04c4c2d",
+      "id": "10403c09",
       "execution_count": null,
       "outputs": []
     },
@@ -286,7 +286,7 @@
       "source": [
         "Ahora echemos un vistazo a los segmentos:"
       ],
-      "id": "af9950f9"
+      "id": "98659c33"
     },
     {
       "cell_type": "code",
@@ -294,7 +294,7 @@
       "source": [
         "data.head()"
       ],
-      "id": "06f4889d",
+      "id": "ac878732",
       "execution_count": null,
       "outputs": []
     },
@@ -315,7 +315,7 @@
         ")\n",
         "fig.show()"
       ],
-      "id": "8f0c5786",
+      "id": "1acd9d6a",
       "execution_count": null,
       "outputs": []
     },
@@ -325,7 +325,7 @@
       "source": [
         "Ahora nombremos los segmentos según los grupos anteriores y echemos un vistazo a los segmentos nuevamente:"
       ],
-      "id": "c4de5165"
+      "id": "33576b90"
     },
     {
       "cell_type": "code",
@@ -349,7 +349,7 @@
         ")\n",
         "fig.show()"
       ],
-      "id": "f40f8ca6",
+      "id": "f4cd6cc1",
       "execution_count": null,
       "outputs": []
     },
@@ -365,7 +365,7 @@
         "\n",
         "Espero que te haya gustado este artículo sobre segmentación y calificación crediticia usando Python. No dude en hacer preguntas valiosas en la sección de comentarios a continuación."
       ],
-      "id": "6db3d1cf"
+      "id": "65a1e293"
     }
   ],
   "metadata": {

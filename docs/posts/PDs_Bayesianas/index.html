@@ -177,6 +177,23 @@ window.Quarto = {
   <li><a href="#fundamentos-del-teorema-de-bayes" id="toc-fundamentos-del-teorema-de-bayes" class="nav-link active" data-scroll-target="#fundamentos-del-teorema-de-bayes">Fundamentos del Teorema de Bayes</a>
   <ul class="collapse">
   <li><a href="#interpretación-financiera-del-teorema-de-bayes" id="toc-interpretación-financiera-del-teorema-de-bayes" class="nav-link" data-scroll-target="#interpretación-financiera-del-teorema-de-bayes">Interpretación Financiera del Teorema de Bayes</a></li>
+  <li><a href="#componentes-matemáticos-en-el-scoring-crediticio" id="toc-componentes-matemáticos-en-el-scoring-crediticio" class="nav-link" data-scroll-target="#componentes-matemáticos-en-el-scoring-crediticio">Componentes Matemáticos en el Scoring Crediticio</a>
+  <ul class="collapse">
+  <li><a href="#definición-de-eventos" id="toc-definición-de-eventos" class="nav-link" data-scroll-target="#definición-de-eventos">Definición de eventos</a></li>
+  <li><a href="#probabilidad-a-priori" id="toc-probabilidad-a-priori" class="nav-link" data-scroll-target="#probabilidad-a-priori">Probabilidad a priori</a></li>
+  <li><a href="#actualización-bayesiana" id="toc-actualización-bayesiana" class="nav-link" data-scroll-target="#actualización-bayesiana">Actualización bayesiana</a></li>
+  <li><a href="#análisis-de-verosimilitud" id="toc-análisis-de-verosimilitud" class="nav-link" data-scroll-target="#análisis-de-verosimilitud">Análisis de verosimilitud</a></li>
+  </ul></li>
+  <li><a href="#ventajas-del-enfoque-bayesiano-en-análisis-crediticio" id="toc-ventajas-del-enfoque-bayesiano-en-análisis-crediticio" class="nav-link" data-scroll-target="#ventajas-del-enfoque-bayesiano-en-análisis-crediticio">Ventajas del Enfoque Bayesiano en Análisis Crediticio</a>
+  <ul class="collapse">
+  <li><a href="#evaluación-dinámica-del-riesgo" id="toc-evaluación-dinámica-del-riesgo" class="nav-link" data-scroll-target="#evaluación-dinámica-del-riesgo">Evaluación dinámica del riesgo</a></li>
+  <li><a href="#incorporación-de-conocimiento-experto" id="toc-incorporación-de-conocimiento-experto" class="nav-link" data-scroll-target="#incorporación-de-conocimiento-experto">Incorporación de conocimiento experto</a></li>
+  <li><a href="#transparencia-en-la-toma-de-decisiones" id="toc-transparencia-en-la-toma-de-decisiones" class="nav-link" data-scroll-target="#transparencia-en-la-toma-de-decisiones">Transparencia en la toma de decisiones</a></li>
+  <li><a href="#gestión-eficiente-de-la-incertidumbre" id="toc-gestión-eficiente-de-la-incertidumbre" class="nav-link" data-scroll-target="#gestión-eficiente-de-la-incertidumbre">Gestión eficiente de la incertidumbre</a></li>
+  <li><a href="#personalización-granular" id="toc-personalización-granular" class="nav-link" data-scroll-target="#personalización-granular">Personalización granular</a></li>
+  <li><a href="#adaptabilidad-a-condiciones-cambiantes" id="toc-adaptabilidad-a-condiciones-cambiantes" class="nav-link" data-scroll-target="#adaptabilidad-a-condiciones-cambiantes">Adaptabilidad a condiciones cambiantes</a></li>
+  </ul></li>
+  <li><a href="#desarrollo-matemático-del-teorema-de-bayes" id="toc-desarrollo-matemático-del-teorema-de-bayes" class="nav-link" data-scroll-target="#desarrollo-matemático-del-teorema-de-bayes">Desarrollo Matemático del Teorema de Bayes</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -258,6 +275,96 @@ P(B|A)
 <li><p>La <strong>probabilidad a posteriori:</strong> es la estimación actualizada del riesgo de incumplimiento después de considerar las características específicas del cliente.</p></li>
 </ul>
 <p>Este enfoque permite a las instituciones financieras actualizar continuamente sus evaluaciones de riesgo a medida que recopilan más información sobre sus clientes, ya sea durante el proceso de solicitud inicial o a lo largo de la relación comercial. La ventaja principal es que cada nueva pieza de información se incorpora de manera matemáticamente coherente, lo que resulta en estimaciones de riesgo cada vez más precisas y personalizadas.</p>
+</section>
+<section id="componentes-matemáticos-en-el-scoring-crediticio" class="level2">
+<h2 class="anchored" data-anchor-id="componentes-matemáticos-en-el-scoring-crediticio">Componentes Matemáticos en el Scoring Crediticio</h2>
+<section id="definición-de-eventos" class="level3">
+<h3 class="anchored" data-anchor-id="definición-de-eventos">Definición de eventos</h3>
+<p>Identificamos los eventos clave en nuestro análisis:</p>
+<ol type="1">
+<li><p><strong>A =</strong> <em>“cliente es buen pagador”</em></p></li>
+<li><p><strong>no-A =</strong> <em>“cliente es mal pagador (default)”</em></p></li>
+<li><p>También definimos B como la nueva evidencia o característica observada.</p></li>
+</ol>
+</section>
+<section id="probabilidad-a-priori" class="level3">
+<h3 class="anchored" data-anchor-id="probabilidad-a-priori">Probabilidad a priori</h3>
+<p>Establecemos <span class="math inline">\(P(A)\)</span> y <span class="math inline">\(P(no-A)\)</span> basándonos en datos históricos de nuestra cartera. Por ejemplo, si históricamente el 95% de los clientes pagan a tiempo, entonces <span class="math inline">\(P(A) = 0.95\)</span> y <span class="math inline">\(P(no-A) = 0.05\)</span>.</p>
+</section>
+<section id="actualización-bayesiana" class="level3">
+<h3 class="anchored" data-anchor-id="actualización-bayesiana">Actualización bayesiana</h3>
+<p>Aplicamos el Teorema de Bayes para calcular <span class="math inline">\(P(A|B)\)</span> y <span class="math inline">\(P(no-A|B)\)</span>, actualizando nuestra estimación del riesgo de incumplimiento a la luz de la nueva evidencia.</p>
+</section>
+<section id="análisis-de-verosimilitud" class="level3">
+<h3 class="anchored" data-anchor-id="análisis-de-verosimilitud">Análisis de verosimilitud</h3>
+<p>Calculamos <span class="math inline">\(P(B|A)\)</span> y <span class="math inline">\(P(B|no-A)\)</span> analizando cómo la característica B se distribuye entre buenos y malos pagadores en nuestros datos históricos.</p>
+<p>El cálculo de la probabilidad marginal <span class="math inline">\(P(B)\)</span> se realiza mediante la ley de probabilidad total:</p>
+<p><span class="math display">\[
+P(B) = P(B|A)\cdot P(A) + P(B|no-A)\cdot P(no-A)
+\]</span></p>
+<p>Esta fórmula nos permite determinar la probabilidad total de observar la característica B en toda nuestra cartera de clientes, independientemente de si son buenos o malos pagadores. Este valor actúa como un factor de normalización en el Teorema de Bayes.</p>
+<p>La aplicación rigurosa de estos componentes matemáticos permite a los analistas de crédito desarrollar modelos de scoring sofisticados que van más allá de las reglas fijas y heurísticas, incorporando un enfoque probabilístico fundamentado en principios estadísticos sólidos. Esto resulta en una evaluación de riesgo más precisa y matizada que se adapta continuamente a medida que se dispone de nueva información.</p>
+</section>
+</section>
+<section id="ventajas-del-enfoque-bayesiano-en-análisis-crediticio" class="level2">
+<h2 class="anchored" data-anchor-id="ventajas-del-enfoque-bayesiano-en-análisis-crediticio">Ventajas del Enfoque Bayesiano en Análisis Crediticio</h2>
+<p>El enfoque bayesiano ofrece numerosas ventajas significativas para las instituciones financieras en comparación con los métodos tradicionales de evaluación crediticia. Estas ventajas se traducen directamente en mejores resultados financieros y operativos.</p>
+<section id="evaluación-dinámica-del-riesgo" class="level3">
+<h3 class="anchored" data-anchor-id="evaluación-dinámica-del-riesgo">Evaluación dinámica del riesgo</h3>
+<p>Permite actualizar las estimaciones de riesgo de manera continua a medida que se dispone de nueva información, en lugar de depender exclusivamente de evaluaciones estáticas realizadas en el momento de la solicitud.</p>
+</section>
+<section id="incorporación-de-conocimiento-experto" class="level3">
+<h3 class="anchored" data-anchor-id="incorporación-de-conocimiento-experto">Incorporación de conocimiento experto</h3>
+<p>Facilita la integración formal del juicio experto a través de las probabilidades a priori, combinando la experiencia humana con el análisis de datos de manera matemáticamente coherente.</p>
+</section>
+<section id="transparencia-en-la-toma-de-decisiones" class="level3">
+<h3 class="anchored" data-anchor-id="transparencia-en-la-toma-de-decisiones">Transparencia en la toma de decisiones</h3>
+<p>Proporciona un marco explícito para la actualización de creencias, lo que aumenta la transparencia y facilita la explicación de las decisiones crediticiasa reguladores y clientes.</p>
+</section>
+<section id="gestión-eficiente-de-la-incertidumbre" class="level3">
+<h3 class="anchored" data-anchor-id="gestión-eficiente-de-la-incertidumbre">Gestión eficiente de la incertidumbre</h3>
+<p>Aborda directamente la incertidumbre inherente a la evaluación crediticia, cuantificándola y gestionándola de manera sistemática.</p>
+</section>
+<section id="personalización-granular" class="level3">
+<h3 class="anchored" data-anchor-id="personalización-granular">Personalización granular</h3>
+<p>Permite una segmentación más refinada de los clientes según su perfil de riesgo específico, superandolas limitaciones de las categorías predefinidas.</p>
+</section>
+<section id="adaptabilidad-a-condiciones-cambiantes" class="level3">
+<h3 class="anchored" data-anchor-id="adaptabilidad-a-condiciones-cambiantes">Adaptabilidad a condiciones cambiantes</h3>
+<p>Facilita la adaptación a entornos económicos cambiantes mediantes la actualización sistemática de las estimaciones de riesgo basadas en nuevas condiciones de mercado.</p>
+<blockquote class="blockquote">
+<p>Estas ventajas hacen que el enfoque bayesiano sea particularmente valioso en contextos financieros caracterizados por altos niveles de incertidumbre, información asimétrica y la necesidad de tomar decisiones rápidas pero fundamentadas sobre el riesgo crediticio.</p>
+</blockquote>
+</section>
+</section>
+<section id="desarrollo-matemático-del-teorema-de-bayes" class="level2">
+<h2 class="anchored" data-anchor-id="desarrollo-matemático-del-teorema-de-bayes">Desarrollo Matemático del Teorema de Bayes</h2>
+<p>El desarrollo matemático completo del Teorema de Bayes se fundamenta en los axiomas básicos de la teoría de la probabilidad. A continuación, presentamos una derivación rigurosa que muestra cómo surge naturalmente de la definición de probabilidad condicional.</p>
+<p>Comenzamos con la definición de probabilidad condicional para dos eventos A y B:</p>
+<p><span class="math display">\[
+P(A|B) = \frac{P(A\cap B)}{P(B)}
+\]</span></p>
+<p>De manera similar, podemos expresar:</p>
+<p><span class="math display">\[
+P(B|A) = \frac{P(A\cap B)}{P(A)}
+\]</span></p>
+<p>Despejando <span class="math inline">\(P(A\cap B)\)</span> de la segunda ecuación:</p>
+<p><span class="math display">\[
+P(A\cap B) = P(B|A)\cdot P(A)
+\]</span></p>
+<p>Sustituyendo esta expresión en la primera ecuación:</p>
+<p><span class="math display">\[
+P(A|B) = \frac{P(B|A)\cdot P(A)}{P(B)}
+\]</span></p>
+<p>Para calcular <span class="math inline">\(P(B)\)</span>, podemos utilizar la ley de probabilidad total, que establece que para una participación completa del espacio muestral (A y no-A):</p>
+<p><span class="math display">\[
+P(B) = P(B|A)\cdot P(A) + P(B|no-A)\cdot P(no-A)
+\]</span></p>
+<p>Donde <span class="math inline">\(P(no-A) = 1 - P(A)\)</span>. Sustituyendo esta expresión en la fórmula anterior, obtenemos la forma completa del Teorema de Bayes:</p>
+<p><span class="math display">\[
+P(A|B) = \frac{P(B|A)\cdot P(A)}{P(B|A)\cdot P(A) + P(B|no-A)\cdot P(no-A)}
+\]</span></p>
+<p>Esta formulación matemática rigurosa proporciona la base para todas las aplicaciones del Teorema de Bayes en el análisis crediticioy otros campos, permitiendo actualizar sistemáticamente nuestras estimaciones de probabilidad a medida que obtenemos nueva información.</p>
 
 
 </section>
