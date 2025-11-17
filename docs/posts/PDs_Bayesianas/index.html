@@ -194,6 +194,19 @@ window.Quarto = {
   <li><a href="#adaptabilidad-a-condiciones-cambiantes" id="toc-adaptabilidad-a-condiciones-cambiantes" class="nav-link" data-scroll-target="#adaptabilidad-a-condiciones-cambiantes">Adaptabilidad a condiciones cambiantes</a></li>
   </ul></li>
   <li><a href="#desarrollo-matemático-del-teorema-de-bayes" id="toc-desarrollo-matemático-del-teorema-de-bayes" class="nav-link" data-scroll-target="#desarrollo-matemático-del-teorema-de-bayes">Desarrollo Matemático del Teorema de Bayes</a></li>
+  <li><a href="#aplicación-al-scoring-crediticio-marco-conceptual" id="toc-aplicación-al-scoring-crediticio-marco-conceptual" class="nav-link" data-scroll-target="#aplicación-al-scoring-crediticio-marco-conceptual">Aplicación al Scoring Crediticio: Marco Conceptual</a>
+  <ul class="collapse">
+  <li><a href="#establecimiento-de-probabilidades-a-priori" id="toc-establecimiento-de-probabilidades-a-priori" class="nav-link" data-scroll-target="#establecimiento-de-probabilidades-a-priori">Establecimiento de probabilidades a priori</a></li>
+  <li><a href="#identificación-de-características-predictivas" id="toc-identificación-de-características-predictivas" class="nav-link" data-scroll-target="#identificación-de-características-predictivas">Identificación de características predictivas</a></li>
+  <li><a href="#actualización-bayesiana-1" id="toc-actualización-bayesiana-1" class="nav-link" data-scroll-target="#actualización-bayesiana-1">Actualización bayesiana</a></li>
+  <li><a href="#toma-de-decisiones-basada-en-umbrales" id="toc-toma-de-decisiones-basada-en-umbrales" class="nav-link" data-scroll-target="#toma-de-decisiones-basada-en-umbrales">Toma de decisiones basada en umbrales</a></li>
+  </ul></li>
+  <li><a href="#variables-clave-en-el-análisis-bayesiano-de-crédito" id="toc-variables-clave-en-el-análisis-bayesiano-de-crédito" class="nav-link" data-scroll-target="#variables-clave-en-el-análisis-bayesiano-de-crédito">Variables Clave en el Análisis Bayesiano de Crédito</a>
+  <ul class="collapse">
+  <li><a href="#historial-de-pagos" id="toc-historial-de-pagos" class="nav-link" data-scroll-target="#historial-de-pagos">Historial de pagos</a></li>
+  <li><a href="#capacidad-financiera" id="toc-capacidad-financiera" class="nav-link" data-scroll-target="#capacidad-financiera">Capacidad financiera</a></li>
+  <li><a href="#variables-conductuales" id="toc-variables-conductuales" class="nav-link" data-scroll-target="#variables-conductuales">Variables conductuales</a></li>
+  </ul></li>
   </ul></li>
   </ul>
 </nav>
@@ -365,8 +378,49 @@ P(B) = P(B|A)\cdot P(A) + P(B|no-A)\cdot P(no-A)
 P(A|B) = \frac{P(B|A)\cdot P(A)}{P(B|A)\cdot P(A) + P(B|no-A)\cdot P(no-A)}
 \]</span></p>
 <p>Esta formulación matemática rigurosa proporciona la base para todas las aplicaciones del Teorema de Bayes en el análisis crediticioy otros campos, permitiendo actualizar sistemáticamente nuestras estimaciones de probabilidad a medida que obtenemos nueva información.</p>
+</section>
+<section id="aplicación-al-scoring-crediticio-marco-conceptual" class="level2">
+<h2 class="anchored" data-anchor-id="aplicación-al-scoring-crediticio-marco-conceptual">Aplicación al Scoring Crediticio: Marco Conceptual</h2>
+<p>El scoring crediticio es un proceso mediante el cual las instituciones financieras evalúan la probabilidad de que un solicitante de crédito incumpla con sus obligaciones de pago. El enfoque bayesiano proporciona un marco conceptual sólido para este proceso, permitiendo incorporar tanto información general del mercado como características específicas del solicitante.</p>
+<section id="establecimiento-de-probabilidades-a-priori" class="level3">
+<h3 class="anchored" data-anchor-id="establecimiento-de-probabilidades-a-priori">Establecimiento de probabilidades a priori</h3>
+<p>Se determinan las tasas generales de incumplimiento en la cartera o segmento relevante, estableciendo P(Default) y P(No Default) basadas en datos históricos agregados.</p>
+</section>
+<section id="identificación-de-características-predictivas" class="level3">
+<h3 class="anchored" data-anchor-id="identificación-de-características-predictivas">Identificación de características predictivas</h3>
+<p>Se identifican variables con capacidad predictiva (ingresos, historial crediticio, establecimiento laboral, etc.) y se cuentifica su relación con el comportamiento de pago mediante P(Característica|Default) y P(Característica|No Default).</p>
+</section>
+<section id="actualización-bayesiana-1" class="level3">
+<h3 class="anchored" data-anchor-id="actualización-bayesiana-1">Actualización bayesiana</h3>
+<p>Se aplica el Teorema de Bayes para actualizar la probabilidad de incumplimiento considerando las características del solicitante, calculando P(Default|Características).</p>
+</section>
+<section id="toma-de-decisiones-basada-en-umbrales" class="level3">
+<h3 class="anchored" data-anchor-id="toma-de-decisiones-basada-en-umbrales">Toma de decisiones basada en umbrales</h3>
+<p>Se compara la probabilidad actualizada con umbrales predefinidos para tomar decisiones de aprobación, rechazo o revisión adicional, optimizando el balance entre riesgo y rentabilidad.</p>
+<blockquote class="blockquote">
+<p>Este marco conceptual permite a las instituciones financieras evolucionar desde decisiones basadas en reglas rígidas hacia un enfoque probabilístico más flexible y adaptativo, que reconoce explícitamente la incertidumbre inherente a la evaluación crediticia y proporciona mecanismos formales para reducirla a medida que se dispone de más información.</p>
+</blockquote>
+</section>
+</section>
+<section id="variables-clave-en-el-análisis-bayesiano-de-crédito" class="level2">
+<h2 class="anchored" data-anchor-id="variables-clave-en-el-análisis-bayesiano-de-crédito">Variables Clave en el Análisis Bayesiano de Crédito</h2>
+<p>La efectividad del enfoque bayesiano en el scoring crediticiodepende fundamentalmente de la selección e incorporación adecuada de variables predictivas. Estas variables actúan como la “evidencia” en el teorema de Bayes, permitiendo actulizar las estimaciones de riesgo basadas en características específicas de cada solicitante.</p>
+<section id="historial-de-pagos" class="level3">
+<h3 class="anchored" data-anchor-id="historial-de-pagos">Historial de pagos</h3>
+<p>El comportamiento histórico de pagos es uno de los predictores más potentes del comportamiento futuro. Variables como días de atraso, incumplimientos previos y patrones de pago proporcionan información valiosa para la actualización bayesiana.</p>
+</section>
+<section id="capacidad-financiera" class="level3">
+<h3 class="anchored" data-anchor-id="capacidad-financiera">Capacidad financiera</h3>
+<p>Indicadores como nivel de ingresos, estabilidad laboral, ratio de endeudamiento y patrimonio neto ayudan a evaluar la capacidad del solicitante para cumplir con sus obligaciones financieras.</p>
+</section>
+<section id="variables-conductuales" class="level3">
+<h3 class="anchored" data-anchor-id="variables-conductuales">Variables conductuales</h3>
+<p>Patrones de comportamiento como frecuencia de transacciones, uso de productos financieros y hábitos de consumo pueden revelar información importante sobre la probabilidad de incumplimiento.</p>
+<p>Para cada variable, es crucial determinar empíricamente las probabilidades condicionales P(Variable|Default) y P(Variable|No Default) mediante análisis estadístico de datos históricos. Estas probabilidades condicionales cuantifican la relación entre cada variable y el comportamiento de pago, permitiendo una actualización bayesiana precisa.</p>
+<p>La incorporación de múltiples variables plantea desafíos matemáticos adicionales , ya que requiere considerar las dependencias entre variables y evitar el doble conteo de información. Técnicas como las redes bayesianas y los modelos jerárquicos bayesianos proporcionan marcos formales para abordar estos desafíos y realizar actualizaciones bayesianas multivariadas de manera matemáticamente coherente.</p>
 
 
+</section>
 </section>
 </section>
 
