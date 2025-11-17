@@ -1,0 +1,52 @@
+---
+title: "Teorema de Bayes Aplicado al Credit Scoring"
+subtitle: "Bad/Good"
+author: "Juan Isaula"
+date: "2025-11-07"
+categories: [Python]
+image: "fondo.png"
+---
+
+Este artículo explora en profundidad el Teorema de Bayes y su aplicación práctica en el Scoring Crediticio moderno. A través de un análisis matemático riguroso y ejemplos financieros concretos, examinaremos cómo esta potente herramienta estadística permite a los analistas de crédito actualizar sus evaluaciones de riesgo cuando disponen de nueva información sobre los clientes. El contenido abarca desde los fundamentos teóricos del teorema hasta su implementación en modelos de decisión crediticia, incluyendo casos prácticos y desarrollos matemáticos detallados.
+
+# Fundamentos del Teorema de Bayes
+
+El Teorema de Bayes constituye uno de los pilares fundamentales en la teoría de la probabilidad y la estadística bayesiana. Desarrollado por el matemático inglés Thomas Bayes (1702-1761), este teorema proporciona un marco matemático para actualizar nuestras creencias o estimaciones de probabilidad cuando obtenemos nueva información o evidencia.
+
+$$
+P(A|B) = \frac{P(B|A)\cdot P(A)}{P(B)}
+$$
+
+Donde cada término representa:
+
+> $$
+> P(A|B) 
+> $$ **Probabilidad a posteriori:** Es la probabilidad actualizada del evento A después de haber observado la ocurrencia del evento B. Representa nuestra creencia revisada sobre A a la luz de la nueva evidencia B.
+
+> $$
+> P(A)
+> $$
+>
+> **Probabilidad a priori:** Es nuestra estimación inicial de la probabilidad del evento A antes de considerar cualquier evidencia nueva. Refleja nuestro conocimiento o creencia previa sobre A.
+
+> $$
+> P(B|A) 
+> $$ **Verosimilitud:** Es la probabilidad de observar la evidencia B cuando el evento A es verdadero. Mide cuán probable es observar B dado que A ha ocurrido.
+
+> $$P(B)$$ **Probabilidad marginal:** Es la probabilidad total de observar la evidencia de B bajo cualquier circunstancia. Funciona como un factor de normalización en la fórmula.
+
+`El Teorema de Bayes` es particularmente valioso en situaciones donde necesitamos revisar nuestras estimaciones iniciales a medida que obtenemos nueva información, como ocurre constantemente en el análisis crediticio. La fortaleza de este enfoque radica en su capacidad para incorporar tanto conocimiento previo como nuevos datos de manera sistemática y matemáticamente rigurosa.
+
+## Interpretación Financiera del Teorema de Bayes 
+
+En el contexto del anáisis crediticio, el Teorema de Bayes proporciona un marco matemático riguroso para actualizar nuesra evaluación del riesgo asociado a un cliente a medida que obtenemos nueva información sobre él. Esta metodología permite pasar de estimaciones generales basadas en datos históricos agregados a evaluaciones personalizadas que reflejan las características específicas de cada solicitante.
+
+La interpretación financiera de los componentes del teorema en el contexto del scoring crediticio es la siguiente: \
+
+-   La **probabilidad a priori:** representa nuestra estimación inicial del riesgo de incumplimiento de un cliente basado en datos históricos generales antes de considerar sus características específicas.
+
+-   La **verosimilitud** cuantifica la relación entre una características específica del cliente y su comportamiento de pago histórico.
+
+-   La **probabilidad a posteriori:** es la estimación actualizada del riesgo de incumplimiento después de considerar las características específicas del cliente.
+
+Este enfoque permite a las instituciones financieras actualizar continuamente sus evaluaciones de riesgo a medida que recopilan más información sobre sus clientes, ya sea durante el proceso de solicitud inicial o a lo largo de la relación comercial. La ventaja principal es que cada nueva pieza de información se incorpora de manera matemáticamente coherente, lo que resulta en estimaciones de riesgo cada vez más precisas y personalizadas.

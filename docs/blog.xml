@@ -9,8 +9,59 @@
 <link>https://j-isaula.github.io/Web_JI/blog.html</link>
 <atom:link href="https://j-isaula.github.io/Web_JI/blog.xml" rel="self" type="application/rss+xml"/>
 <description>Technology and the Environment</description>
-<generator>quarto-1.6.42</generator>
-<lastBuildDate>Sun, 07 Sep 2025 06:00:00 GMT</lastBuildDate>
+<generator>quarto-1.7.32</generator>
+<lastBuildDate>Fri, 07 Nov 2025 06:00:00 GMT</lastBuildDate>
+<item>
+  <title>Teorema de Bayes Aplicado al Credit Scoring</title>
+  <dc:creator>Juan Isaula</dc:creator>
+  <link>https://j-isaula.github.io/Web_JI/posts/PDs_Bayesianas/</link>
+  <description><![CDATA[ 
+
+
+
+
+<p>Este artículo explora en profundidad el Teorema de Bayes y su aplicación práctica en el Scoring Crediticio moderno. A través de un análisis matemático riguroso y ejemplos financieros concretos, examinaremos cómo esta potente herramienta estadística permite a los analistas de crédito actualizar sus evaluaciones de riesgo cuando disponen de nueva información sobre los clientes. El contenido abarca desde los fundamentos teóricos del teorema hasta su implementación en modelos de decisión crediticia, incluyendo casos prácticos y desarrollos matemáticos detallados.</p>
+<section id="fundamentos-del-teorema-de-bayes" class="level1">
+<h1>Fundamentos del Teorema de Bayes</h1>
+<p>El Teorema de Bayes constituye uno de los pilares fundamentales en la teoría de la probabilidad y la estadística bayesiana. Desarrollado por el matemático inglés Thomas Bayes (1702-1761), este teorema proporciona un marco matemático para actualizar nuestras creencias o estimaciones de probabilidad cuando obtenemos nueva información o evidencia.</p>
+<p><img src="https://latex.codecogs.com/png.latex?%0AP(A%7CB)%20=%20%5Cfrac%7BP(B%7CA)%5Ccdot%20P(A)%7D%7BP(B)%7D%0A"></p>
+<p>Donde cada término representa:</p>
+<blockquote class="blockquote">
+<p><img src="https://latex.codecogs.com/png.latex?%0AP(A%7CB)%0A"> <strong>Probabilidad a posteriori:</strong> Es la probabilidad actualizada del evento A después de haber observado la ocurrencia del evento B. Representa nuestra creencia revisada sobre A a la luz de la nueva evidencia B.</p>
+</blockquote>
+<blockquote class="blockquote">
+<p><img src="https://latex.codecogs.com/png.latex?%0AP(A)%0A"></p>
+<p><strong>Probabilidad a priori:</strong> Es nuestra estimación inicial de la probabilidad del evento A antes de considerar cualquier evidencia nueva. Refleja nuestro conocimiento o creencia previa sobre A.</p>
+</blockquote>
+<blockquote class="blockquote">
+<p><img src="https://latex.codecogs.com/png.latex?%0AP(B%7CA)%0A"> <strong>Verosimilitud:</strong> Es la probabilidad de observar la evidencia B cuando el evento A es verdadero. Mide cuán probable es observar B dado que A ha ocurrido.</p>
+</blockquote>
+<blockquote class="blockquote">
+<p><img src="https://latex.codecogs.com/png.latex?P(B)"> <strong>Probabilidad marginal:</strong> Es la probabilidad total de observar la evidencia de B bajo cualquier circunstancia. Funciona como un factor de normalización en la fórmula.</p>
+</blockquote>
+<p><code>El Teorema de Bayes</code> es particularmente valioso en situaciones donde necesitamos revisar nuestras estimaciones iniciales a medida que obtenemos nueva información, como ocurre constantemente en el análisis crediticio. La fortaleza de este enfoque radica en su capacidad para incorporar tanto conocimiento previo como nuevos datos de manera sistemática y matemáticamente rigurosa.</p>
+<section id="interpretación-financiera-del-teorema-de-bayes" class="level2">
+<h2 class="anchored" data-anchor-id="interpretación-financiera-del-teorema-de-bayes">Interpretación Financiera del Teorema de Bayes</h2>
+<p>En el contexto del anáisis crediticio, el Teorema de Bayes proporciona un marco matemático riguroso para actualizar nuesra evaluación del riesgo asociado a un cliente a medida que obtenemos nueva información sobre él. Esta metodología permite pasar de estimaciones generales basadas en datos históricos agregados a evaluaciones personalizadas que reflejan las características específicas de cada solicitante.</p>
+<p>La interpretación financiera de los componentes del teorema en el contexto del scoring crediticio es la siguiente:<br>
+</p>
+<ul>
+<li><p>La <strong>probabilidad a priori:</strong> representa nuestra estimación inicial del riesgo de incumplimiento de un cliente basado en datos históricos generales antes de considerar sus características específicas.</p></li>
+<li><p>La <strong>verosimilitud</strong> cuantifica la relación entre una características específica del cliente y su comportamiento de pago histórico.</p></li>
+<li><p>La <strong>probabilidad a posteriori:</strong> es la estimación actualizada del riesgo de incumplimiento después de considerar las características específicas del cliente.</p></li>
+</ul>
+<p>Este enfoque permite a las instituciones financieras actualizar continuamente sus evaluaciones de riesgo a medida que recopilan más información sobre sus clientes, ya sea durante el proceso de solicitud inicial o a lo largo de la relación comercial. La ventaja principal es que cada nueva pieza de información se incorpora de manera matemáticamente coherente, lo que resulta en estimaciones de riesgo cada vez más precisas y personalizadas.</p>
+
+
+</section>
+</section>
+
+ ]]></description>
+  <category>Python</category>
+  <guid>https://j-isaula.github.io/Web_JI/posts/PDs_Bayesianas/</guid>
+  <pubDate>Fri, 07 Nov 2025 06:00:00 GMT</pubDate>
+  <media:content url="https://j-isaula.github.io/Web_JI/posts/PDs_Bayesianas/fondo.png" medium="image" type="image/png" height="144" width="144"/>
+</item>
 <item>
   <title>Aprendizaje No Supervisado</title>
   <dc:creator>Juan Isaula</dc:creator>
@@ -76,7 +127,7 @@
 <h3 class="anchored" data-anchor-id="k-means-clustering">K-Means Clustering</h3>
 <p>Agruparemos estas muestras utilizando la agrupación de k-Means. K-Means encuentra un número específico de grupos en las muestras. Está implementado en la biblioteca de <code>scikit-learn</code> o <code>sklearn</code>.</p>
 <p>Veamos KMeans en acción con el conjunto de datos iris.</p>
-<div id="15964fad" class="cell" data-execution_count="1">
+<div id="18144bc5" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><span class="im" style="color: #00769E;
 background-color: null;
 font-style: inherit;">import</span> pandas <span class="im" style="color: #00769E;
@@ -110,7 +161,7 @@ font-style: inherit;"># Convertimos iris a dataframe</span></span></code></pre><
 <li><p>Posteriormente, llamamos el método de ajuste del modelo <code>.fit()</code>, pasando la matriz del iris dataset. Esto ajusta el modelo a los datos, localizando y recordando las regiones donde ocurren los diferentes grupos.</p></li>
 <li><p>Por último, podemos utilizar el método de predicción del modelo en este mismo conjunto de datos.</p></li>
 </ol>
-<div id="7b938af7" class="cell" data-execution_count="2">
+<div id="6727d857" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb2" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><span class="im" style="color: #00769E;
 background-color: null;
 font-style: inherit;">from</span> sklearn.cluster <span class="im" style="color: #00769E;
@@ -548,7 +599,7 @@ div.sk-label-container:hover .sk-estimator-doc-link.fitted:hover,
 </style><div id="sk-container-id-1" class="sk-top-container"><div class="sk-text-repr-fallback"><pre>KMeans(n_clusters=3, random_state=42)</pre><b>In a Jupyter environment, please rerun this cell to show the HTML representation or trust the notebook. <br>On GitHub, the HTML representation is unable to render, please try loading this page with nbviewer.org.</b></div><div class="sk-container" hidden=""><div class="sk-item"><div class="sk-estimator fitted sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-1" type="checkbox" checked=""><label for="sk-estimator-id-1" class="sk-toggleable__label fitted sk-toggleable__label-arrow"><div><div>KMeans</div></div><div><a class="sk-estimator-doc-link fitted" rel="noreferrer" target="_blank" href="https://scikit-learn.org/1.6/modules/generated/sklearn.cluster.KMeans.html">?<span>Documentation for KMeans</span></a><span class="sk-estimator-doc-link fitted">i<span>Fitted</span></span></div></label><div class="sk-toggleable__content fitted"><pre>KMeans(n_clusters=3, random_state=42)</pre></div> </div></div></div></div>
 </div>
 </div>
-<div id="35544bf7" class="cell" data-execution_count="3">
+<div id="69b94517" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb3" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1">labels <span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span> model.predict(iris)</span>
@@ -572,7 +623,7 @@ font-style: inherit;">print</span>(labels)</span></code></pre></div>
 <p>Si alguien viene con un algún dataset iris nuevo, kMeans puede determinar a qué grupos pertenecen sin tener que empezar de nuevo.</p>
 <p>KMeans hace esto recordando la media (o promedio) de las muestras en cada grupo. Estos se llaman <strong>centroides</strong> se asignan nuevas muestras al grupo cuyo centroide esté más cercano.</p>
 <p>Voy a tomar 3 registros aleatorios del dataset iris y asumiremos que estas son muestras nuevas.</p>
-<div id="4540d628" class="cell" data-execution_count="4">
+<div id="bda26636" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb5" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1">new_samples <span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span> iris.sample(n <span class="op" style="color: #5E5E5E;
@@ -595,7 +646,7 @@ font-style: inherit;">print</span>(new_samples)</span></code></pre></div>
 </div>
 </div>
 <p>Para asignar las nuevas muestras a los grupos existentes, pasaremos el conjunto de nueva muestra al método de predicción del modelo kmeans.</p>
-<div id="b3da6edf" class="cell" data-execution_count="5">
+<div id="7df81ac2" class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb7" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1">new_labels <span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span> model.predict(new_samples)</span>
@@ -624,7 +675,7 @@ font-style: inherit;">print</span>(new_labels)</span></code></pre></div>
 <li><p>La longitud del sépalo está en la columna 0 de la matriz iris, mientras que la longitud de los pétalos está en la segunda columna.</p></li>
 <li><p>Y labels o etiquetas que encontramos previamente lo usamos para colorear por etiqueta de clúster como un paramétro en <code>.scatter()</code>.</p></li>
 </ul>
-<div id="392c0adb" class="cell" data-execution_count="6">
+<div id="3a9806c8" class="cell" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb9" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><span class="im" style="color: #00769E;
 background-color: null;
 font-style: inherit;">import</span> matplotlib.pyplot <span class="im" style="color: #00769E;
@@ -659,7 +710,7 @@ font-style: inherit;">=</span> labels)</span>
 </div>
 </div>
 <p>Ahora, calculemos las coordenadas de los centroides utilizando el atributo <code>.cluster_centers_</code> de <code>model</code>. y asignaremos la columna 0 de <code>centroids</code> a <code>centroids_x</code>, y la columna 2 de <code>centroids</code> a <code>centroids_y</code>. Posterior a ello, realizaremos un diagrama de dispersión de centroids_x y centroids_y, utilizando <code>marker = 'D'</code> (un rombo) como marcador especificando el parámetro marker. El tamaño de los marcadores en 50 utilizando <code>s = 50</code>.</p>
-<div id="83601dd7" class="cell" data-execution_count="7">
+<div id="bbcc2a1a" class="cell" data-execution_count="7">
 <div class="sourceCode cell-code" id="cb10" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1">xs <span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span> iris.iloc[:, <span class="dv" style="color: #AD0000;
@@ -742,7 +793,7 @@ font-style: inherit;">50</span>)</span>
 <section id="cross-tabulation-con-pandas" class="level3">
 <h3 class="anchored" data-anchor-id="cross-tabulation-con-pandas">Cross Tabulation con Pandas</h3>
 <p>Para construir uno, usareos la biblioteca <code>pandas.</code> Como podemos observar en el bloque de código siguiente, creamos un dataframe de dos columnas, donde la primera columna son las etiquetas del grupo y la segunda son las especies de iris, de modo que cada fila proporciona la etiqueta del grupo y la especie de una sola muestra.</p>
-<div id="1f7fc404" class="cell" data-execution_count="8">
+<div id="dae26a77" class="cell" data-execution_count="8">
 <div class="sourceCode cell-code" id="cb11" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1">iris_raw <span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span> datasets.load_iris() </span>
@@ -790,7 +841,7 @@ font-style: inherit;">print</span>(df)</span></code></pre></div>
 </div>
 </div>
 <p>Ahora usamos la función de tabla cruzuda de pandas para crear la tubulación cruzada, pasando las dos columnas del DataFrame.</p>
-<div id="04c0d743" class="cell" data-execution_count="9">
+<div id="bf9566a7" class="cell" data-execution_count="9">
 <div class="sourceCode cell-code" id="cb13" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1">ct <span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span> pd.crosstab(df[<span class="st" style="color: #20794D;
@@ -818,7 +869,7 @@ labels
 <p>La <strong>inercia</strong> puede medir la distribución de las muestras dentro de cada grupo. Intuitivamente, la inercia mide qué tan lejos están las muestras de sus centroides. Puede encontrar la definición precisa en la documentación de scikit-learn. Queremos grupos que no estén dispersos, por lo que los valores más bajos de inercia son mejores.</p>
 <p>La inercia de un modelo KMeans se mide automaticamente cuando se llama al metodo de ajuste .fit y luego están disponibles como atributos de <code>inertia_</code>.</p>
 <p>De hecho, KMeans pretende colocar los clusters de forma que se minimice la inercia.</p>
-<div id="f4998667" class="cell" data-execution_count="10">
+<div id="4275ef9b" class="cell" data-execution_count="10">
 <div class="sourceCode cell-code" id="cb15" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1">model <span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span> KMeans(n_clusters <span class="op" style="color: #5E5E5E;
@@ -848,7 +899,7 @@ font-style: inherit;">print</span>(model.inertia_)</span></code></pre></div>
 <p>Una buena agrupación tiene agrupaciones estrechas (lo que significa inercia baja). Pero tampoco tiene demasiados grupos.</p>
 <p>Una buena regla general es elegir un codo en el gráfico de inercia, es decir, un punto donde la inercia comienza a disminuir más lentamente.</p>
 <p>Por ejemplo, según este criterio, 3 es un buen número de grupos para el conjunto de datos del iris.</p>
-<div id="70a89445" class="cell" data-execution_count="11">
+<div id="ee1f817c" class="cell" data-execution_count="11">
 <div class="sourceCode cell-code" id="cb17" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1">ks <span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span> <span class="bu" style="color: null;
@@ -912,7 +963,7 @@ font-style: inherit;">'inertia'</span>)</span>
 <li><p>Las entradas o features miden la composición química (como el contendio del alcohol) y propiedades visuales como la intensidad del color.</p></li>
 <li><p>Las muestras proceden de 3 variedades distintas de vino.</p></li>
 </ul>
-<div id="43801fe5" class="cell" data-execution_count="12">
+<div id="377ff594" class="cell" data-execution_count="12">
 <div class="sourceCode cell-code" id="cb18" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1">samples <span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span> pd.read_csv(<span class="st" style="color: #20794D;
@@ -1155,7 +1206,7 @@ font-style: inherit;">1</span>)</span>
 <section id="clustering-con-vinos" class="level3">
 <h3 class="anchored" data-anchor-id="clustering-con-vinos">Clustering con Vinos</h3>
 <p>Tomaremos la matriz de muestra de los vinos y usaremos KMeans para encontrar 3 grupos</p>
-<div id="743ff047" class="cell" data-execution_count="13">
+<div id="e9696e96" class="cell" data-execution_count="13">
 <div class="sourceCode cell-code" id="cb19" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1">model <span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span> KMeans(n_clusters <span class="op" style="color: #5E5E5E;
@@ -1174,7 +1225,7 @@ font-style: inherit;">=</span> model.fit_predict(samples)</span></code></pre></d
 <section id="cluster-vs-varieties" class="level4">
 <h4 class="anchored" data-anchor-id="cluster-vs-varieties">Cluster vs Varieties</h4>
 <p>Hay tres variedades de vinom así que usamos pandas para crear la tabla cruzada para comprobar las correspondencia entre la etiqueta del clúster y la variedad de vino.</p>
-<div id="baaa1ef4" class="cell" data-execution_count="14">
+<div id="cd848886" class="cell" data-execution_count="14">
 <div class="sourceCode cell-code" id="cb20" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1">df <span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span> pd.DataFrame({<span class="st" style="color: #20794D;
@@ -1241,7 +1292,7 @@ labels
 </figure>
 </div>
 <p>Veamos StandarScaler en acción:</p>
-<div id="a2b49f8c" class="cell" data-execution_count="15">
+<div id="62a99c39" class="cell" data-execution_count="15">
 <div class="sourceCode cell-code" id="cb22" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><span class="im" style="color: #00769E;
 background-color: null;
 font-style: inherit;">from</span> sklearn.preprocessing <span class="im" style="color: #00769E;
@@ -1293,7 +1344,7 @@ font-style: inherit;">=</span> scaler.transform(samples)</span></code></pre></di
 <p>Esto se hace fácilmente combinando los dos pasos mediante un pipeline de scikit-learn, luego, los datos fluyen de un paso al siguiente de forma automática.</p>
 <section id="pipelines-combinando-multiples-pasos" class="level4">
 <h4 class="anchored" data-anchor-id="pipelines-combinando-multiples-pasos">Pipelines combinando multiples pasos</h4>
-<div id="44f5f950" class="cell" data-execution_count="16">
+<div id="20206e12" class="cell" data-execution_count="16">
 <div class="sourceCode cell-code" id="cb23" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><span class="im" style="color: #00769E;
 background-color: null;
 font-style: inherit;">from</span> sklearn.preprocessing <span class="im" style="color: #00769E;
@@ -1342,7 +1393,7 @@ background-color: null;
 font-style: inherit;">=</span> pipeline.predict(samples)</span></code></pre></div>
 </div>
 <p>Ahora, realicemos la comprobación de la correspondencia entre las etiquetas de los cluster y las variedadesd de vino</p>
-<div id="70d5a1e2" class="cell" data-execution_count="17">
+<div id="f9aff166" class="cell" data-execution_count="17">
 <div class="sourceCode cell-code" id="cb24" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1">df <span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span> pd.DataFrame({<span class="st" style="color: #20794D;
@@ -1478,7 +1529,7 @@ labels
 <h3 class="anchored" data-anchor-id="clusterización-jerárquica-con-scipy">Clusterización Jerárquica con SciPy</h3>
 <p>En el capítulo anterior, utilizamos la agrupación KMeans para agrupar empresas según los movimientos de sus cotizaciones bursátiles. Ahora, realizaremos la agrupación jerárquica de las empresas.</p>
 <p>linkage() de SciPy realiza una agrupación jerárquica en una matriz de muestras.</p>
-<div id="6a24a38d" class="cell" data-execution_count="18">
+<div id="3c585f28" class="cell" data-execution_count="18">
 <div class="sourceCode cell-code" id="cb26" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><span class="im" style="color: #00769E;
 background-color: null;
 font-style: inherit;">import</span> matplotlib.pyplot <span class="im" style="color: #00769E;
@@ -1593,7 +1644,7 @@ font-style: inherit;">6</span>)</span>
 <section id="extracción-de-etiquetas-de-clúster-mediante-fcluster." class="level3">
 <h3 class="anchored" data-anchor-id="extracción-de-etiquetas-de-clúster-mediante-fcluster.">Extracción de etiquetas de clúster mediante <code>fcluster.</code></h3>
 <p>La etiquetas de clúster para cualquier etapa intermedia se pueden extraer utilizando la función <code>fcluster</code>. Vamos a probarlo, especificando la altura de 15. Despues de realizar la agrupación jerárquica de los datos de empresas, importamos la función <code>fcluster</code>. Luego, pasamos el resultado de la función de vinculación a la función fcluster, especificando la altura como segundo argumento.</p>
-<div id="19bcf8e5" class="cell" data-execution_count="19">
+<div id="d978ddd9" class="cell" data-execution_count="19">
 <div class="sourceCode cell-code" id="cb27" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><span class="im" style="color: #00769E;
 background-color: null;
 font-style: inherit;">from</span> scipy.cluster.hierarchy <span class="im" style="color: #00769E;
@@ -1635,7 +1686,7 @@ font-style: inherit;">print</span>(labels)</span></code></pre></div>
 <section id="alineación-de-las-etiquetes-de-los-clústeres-con-los-nombres-de-las-empresas" class="level3">
 <h3 class="anchored" data-anchor-id="alineación-de-las-etiquetes-de-los-clústeres-con-los-nombres-de-las-empresas">Alineación de las etiquetes de los clústeres con los nombres de las empresas</h3>
 <p>Para inspeccionar las etiquetas de los clústeres, usaremos un DataFrame para alinear las etiquetas con los nombres de los países.</p>
-<div id="fc0f2f68" class="cell" data-execution_count="20">
+<div id="e25f6e8f" class="cell" data-execution_count="20">
 <div class="sourceCode cell-code" id="cb29" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><span class="im" style="color: #00769E;
 background-color: null;
 font-style: inherit;">import</span> pandas <span class="im" style="color: #00769E;
@@ -1741,7 +1792,7 @@ font-style: inherit;">'labels'</span>))</span></code></pre></div>
 <h4 class="anchored" data-anchor-id="t-sne-en-sklearn">t-SNE en Sklearn</h4>
 <p>t-SNE está disponible en scikit-learn, pero funciona un poco de manera diferente a los componentes de ajuste/transformación que ya conoce.</p>
 <p>Para comenzar, importamos <code>TSNE</code> y creamos un objeto TNSE. Aplicamos el método <code>fit_transform</code> a las muestras y luego hacemos un diagrama de dispersión del resultado, colerando los puntos según la especie.</p>
-<div id="7c05868d" class="cell" data-execution_count="21">
+<div id="c1ccd137" class="cell" data-execution_count="21">
 <div class="sourceCode cell-code" id="cb31" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><span class="im" style="color: #00769E;
 background-color: null;
 font-style: inherit;">from</span> sklearn.manifold <span class="im" style="color: #00769E;
@@ -1800,7 +1851,7 @@ font-style: inherit;">=</span> species_)</span>
 <section id="mapa-t-sne-del-mercado-bursátil" class="level3">
 <h3 class="anchored" data-anchor-id="mapa-t-sne-del-mercado-bursátil">Mapa t-SNE del mercado bursátil</h3>
 <p>t-SNE proporciona excelentes visualizaciones cuando se pueden etiquetar las muestras individuales. En el siguiente bloque de código, se aplica t-SNE a los datos del precio de las acciones de la empresa. Un gráfico de dispersión de las características t-SNE resultantes, etiquetadas con los nombres de las empresas, te ofrece un mapa del mercado de valores. Los movimientos de las cotizaciones bursátiles de cada empresa están disponibles en <code>normalized_movements</code> las cuales normalizamos anteriormente.</p>
-<div id="41dde582" class="cell" data-execution_count="22">
+<div id="9355803d" class="cell" data-execution_count="22">
 <div class="sourceCode cell-code" id="cb32" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><span class="co" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;"># Import TSNE</span></span>
@@ -1865,7 +1916,7 @@ font-style: inherit;">0.75</span>)</span>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="https://j-isaula.github.io/Web_JI/posts/Unsupervised_Learning/index_files/figure-html/cell-23-output-1.png" width="569" height="411" class="figure-img"></p>
+<p><img src="https://j-isaula.github.io/Web_JI/posts/Unsupervised_Learning/index_files/figure-html/cell-23-output-1.png" width="671" height="411" class="figure-img"></p>
 </figure>
 </div>
 </div>
@@ -1906,7 +1957,7 @@ font-style: inherit;">0.75</span>)</span>
 <li><p><code>transform()</code> el método de transformación, por otro lado, aplica la transformación que se aprendio. En particular, el método de transformación se puede aplicar a muestras nuevas e invisibles.</p></li>
 </ul>
 <p>Veamos PCA en acción en algunas características del conjunto de datos de vino, estas características son: <code>total_phenols</code> y <code>od280</code>.</p>
-<div id="c3a88851" class="cell" data-execution_count="23">
+<div id="51609022" class="cell" data-execution_count="23">
 <div class="sourceCode cell-code" id="cb33" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1">samples <span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span> pd.read_csv(<span class="st" style="color: #20794D;
@@ -2014,7 +2065,7 @@ font-style: inherit;">"od280"</span>]]</span>
 <li><p>En primer lugar importamos el objeto PCA</p></li>
 <li><p>Luego creamos el objeto PCA y los ajustamos a las muestras o samples.</p></li>
 </ol>
-<div id="df64aa9a" class="cell" data-execution_count="24">
+<div id="715ad8b1" class="cell" data-execution_count="24">
 <div class="sourceCode cell-code" id="cb34" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb34-1"><span class="im" style="color: #00769E;
 background-color: null;
 font-style: inherit;">from</span> sklearn.decomposition <span class="im" style="color: #00769E;
@@ -2445,7 +2496,7 @@ div.sk-label-container:hover .sk-estimator-doc-link.fitted:hover,
 </div>
 </div>
 <p>Ahora utilizamos el objeto PCA ajustado para transformar las muestras. Estos nos devuelve una matriz de muestras transformadas.</p>
-<div id="1490c771" class="cell" data-execution_count="25">
+<div id="c082052a" class="cell" data-execution_count="25">
 <div class="sourceCode cell-code" id="cb35" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb35-1">transformed <span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span> model.transform(samples)</span>
@@ -2654,7 +2705,7 @@ font-style: inherit;">print</span>(transformed)</span></code></pre></div>
 </figure>
 </div>
 <p>Son los componentes principales que PCA alinea con los ejes de coordenadas. Una vez ajustado un modelo PCA, los componentes proncipales están disponibles como atributos de componentes.</p>
-<div id="e9e81aab" class="cell" data-execution_count="26">
+<div id="7d80f582" class="cell" data-execution_count="26">
 <div class="sourceCode cell-code" id="cb37" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb37-1"><span class="bu" style="color: null;
 background-color: null;
 font-style: inherit;">print</span>(model.components_)</span></code></pre></div>
@@ -2692,7 +2743,7 @@ font-style: inherit;">print</span>(model.components_)</span></code></pre></div>
 <li><p>sepal width (ancho del sépalo)</p></li>
 <li><p>petal width (ancho del pétalo)</p></li>
 </ul>
-<div id="ca6b8cda" class="cell" data-execution_count="27">
+<div id="bd92ba31" class="cell" data-execution_count="27">
 <div class="sourceCode cell-code" id="cb39" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb39-1">iris_sample <span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span> iris[[<span class="st" style="color: #20794D;
@@ -2830,7 +2881,7 @@ font-style: inherit;">'petal width (cm)'</span>]]</span>
 <section id="plotting-de-varianza-de-pca" class="level3">
 <h3 class="anchored" data-anchor-id="plotting-de-varianza-de-pca">Plotting de varianza de PCA</h3>
 <p>Veamos como gráficar las varianzas de las características del PCA en la práctica.</p>
-<div id="be22fc96" class="cell" data-execution_count="28">
+<div id="69efc953" class="cell" data-execution_count="28">
 <div class="sourceCode cell-code" id="cb40" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb40-1">pca <span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span> PCA()</span>
@@ -3255,7 +3306,7 @@ div.sk-label-container:hover .sk-estimator-doc-link.fitted:hover,
 </div>
 </div>
 <p>Ahora creeamos un rango que enumere las características de PCA</p>
-<div id="1f366798" class="cell" data-execution_count="29">
+<div id="993f88d5" class="cell" data-execution_count="29">
 <div class="sourceCode cell-code" id="cb41" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb41-1">features <span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span> <span class="bu" style="color: null;
@@ -3263,7 +3314,7 @@ background-color: null;
 font-style: inherit;">range</span>(pca.n_components_)</span></code></pre></div>
 </div>
 <p>Hacemos un diagrama de barras de la varianza; las varianzas están disponibles como el atributo <code>explained_variance</code> del modelo PCA.</p>
-<div id="77c9b011" class="cell" data-execution_count="30">
+<div id="b77c59d8" class="cell" data-execution_count="30">
 <div class="sourceCode cell-code" id="cb42" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb42-1">plt.bar(features, pca.explained_variance_)</span>
 <span id="cb42-2">plt.xticks(features)</span>
 <span id="cb42-3">plt.ylabel(<span class="st" style="color: #20794D;
@@ -3305,7 +3356,7 @@ font-style: inherit;">'PCA feature'</span>)</span>
 </blockquote>
 <p>Por ejemplo, especificar <code>PCA(n_components=2)</code> al crear un modelo PCA le indica que conserve solo las primeras dos características PCA. Una buena opción es la dimensión intrínseca del conjunto de datos, si la conoce. Consideremos inmediatamente un ejemplo:</p>
 <p>El conjunto de datos del iris tiene 4 características que representan las 4 mediciones</p>
-<div id="8eb6c55c" class="cell" data-execution_count="31">
+<div id="2da634a6" class="cell" data-execution_count="31">
 <div class="sourceCode cell-code" id="cb43" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb43-1">iris</span></code></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="31">
 <div>
@@ -3407,7 +3458,7 @@ font-style: inherit;">'PCA feature'</span>)</span>
 </div>
 </div>
 <p>Utilicemos un PCA para reducir la dimensión del conjunto de datos del iris a solo 2.</p>
-<div id="51e4f71a" class="cell" data-execution_count="32">
+<div id="4709e252" class="cell" data-execution_count="32">
 <div class="sourceCode cell-code" id="cb44" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb44-1">pca <span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span> PCA(n_components<span class="op" style="color: #5E5E5E;
@@ -3428,7 +3479,7 @@ font-style: inherit;">print</span>(transformed.shape)</span></code></pre></div>
 </div>
 <p>Al imprimir la forma de las muestras transformadas, vemos que solo hay dos características, como se esperaba.</p>
 <p>Aquí se muestra un diagrama de dispersión de las características de PCA, donde los colores representan las tres especies de iris.</p>
-<div id="0218132c" class="cell" data-execution_count="33">
+<div id="7e90e4dd" class="cell" data-execution_count="33">
 <div class="sourceCode cell-code" id="cb46" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb46-1">xs <span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span> transformed[:,<span class="dv" style="color: #AD0000;
@@ -3491,6 +3542,216 @@ font-style: inherit;">3</span>)</span>
 <span id="cb47-4">transformed <span class="op" style="color: #5E5E5E;
 background-color: null;
 font-style: inherit;">=</span> model.transform(documents)</span></code></pre></div>
+</section>
+</section>
+</section>
+<section id="descubrir-rasgos-interpretables" class="level1">
+<h1>Descubrir rasgos interpretables</h1>
+<p>En este último capítulo, aprenderás una técnica de reducción de dimensiones denominada <code>"factorización de matrices no negativas"</code> (NMF, por sus siglas en inglés), que expresa las muestras como combinaciones de partes interpretables. Por ejemplo, expresa los documentos como combinaciones de temas y las imágines en términos de patrones visuales habituales.</p>
+<p>También aprenderá a utilizar NMF para crear sistemas de recomendación que te permitan encontrar articulos similares para leer o artistas musicales que se ajusten a tu historial de reproducción.</p>
+<section id="factorización-de-matrices-no-negativas-nmf" class="level2">
+<h2 class="anchored" data-anchor-id="factorización-de-matrices-no-negativas-nmf">Factorización de matrices no negativas (NMF)</h2>
+<p><strong>NMF</strong> significa <em>“factorización matricial no negativa”</em> . NMF, como PCA, es una técnica de reducción de dimensión. Sin embargo, a diferencia del PCA, los modelos NMF son interpretables. Esto significa que los modelos NMF son más fáciles de entender por uno mismo y mucho más fáciles de explicar a los demás. Sin embargo, el NMF no se puede aplicar a todos los conjuntos de datos. Se requiere que las características de la muestra sean <strong>“no negativas”,</strong> es decir mayor o iguales a 0.</p>
+<p>NMF logra su interpretabilidad al descomponer las muestras como sumas de sus partes. Por ejemplo, NMF descompone los documentos como combinaciones de temas comunes e e imagenes como combinaciones de patrones comunes.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://j-isaula.github.io/Web_JI/posts/Unsupervised_Learning/img/fig32.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
+</figure>
+</div>
+<p>Aprenderemos más sobre este ejemplo en detalle más adelante.</p>
+<section id="nmf-en-scikit---learn" class="level3">
+<h3 class="anchored" data-anchor-id="nmf-en-scikit---learn">NMF en Scikit - Learn</h3>
+<p>NMF esta disponible en <code>scikit learn</code> y sigue el mismo patrón de ajuste <code>fit()</code>/transformación <code>transform()</code> que PCA. Sin embargo, a diferencia del PCA, siempre se debe especificar el número deseado de componentes <code>NMF(n_components=2)</code>.</p>
+<p>NMF funciona tanto con matrices numpy con matrices dispersas en el formato <code>csr_matrix</code>.</p>
+<p>Veamos una aplicación de NMF a un ejemplo de juguete de una matriz de frecuencia de palabras.</p>
+<p>En este conjunto de datos de juguetes, solo hay 4 palabras en el vocabulario, y estos corresponden a las cuatro columnas de la matriz de frecuencia de palabras.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://j-isaula.github.io/Web_JI/posts/Unsupervised_Learning/img/fig33.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
+</figure>
+</div>
+<p>Cada fila representa un documento y las entradas de la matriz miden la frecuencia de cada palabra en el documento utilizando lo que se conoce como <strong>“tf-idf”</strong>.</p>
+<ul>
+<li><p><strong>“tf”</strong> es la frecuencia de la palabra en el documento. Entonces, si el 10% de las palabras del documento son “datacamp”, entonces el tf de “datacamp” para ese documento es el punto 1.</p></li>
+<li><p><strong>“idf”</strong> es un esquema de ponderación que reduce la influencia de palabras frecuentes como “the”.</p></li>
+</ul>
+<div class="sourceCode" id="cb48" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb48-1"><span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">from</span> sklearn.decomposition <span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">import</span> NMF</span>
+<span id="cb48-2">model <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> NMF(n_components <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">2</span>)</span>
+<span id="cb48-3">model.fit()</span>
+<span id="cb48-4"></span>
+<span id="cb48-5">nmf_features <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> model.transform(samples)</span>
+<span id="cb48-6"></span>
+<span id="cb48-7"><span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">print</span>(model.components_)</span></code></pre></div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://j-isaula.github.io/Web_JI/posts/Unsupervised_Learning/img/fig34.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
+</figure>
+</div>
+<p>Así como el PCA tiene componentes principales, el NMF tiene componentes que aprenden de las muestras, y al igual que con PCA, la dimensión de los componentes es la misma que la dimensión de las muestras. En nuestros ejemplo, hay 2 componentes y viven en un espacio de 4 dimensiones, correspondientes a las 4 palabras del vocabulario.</p>
+<p>Las entradas de los componentes NMF son siempre no negativas.</p>
+<div class="sourceCode" id="cb49" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb49-1"><span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">print</span>(nmf_features)</span></code></pre></div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://j-isaula.github.io/Web_JI/posts/Unsupervised_Learning/img/fig35.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="500"></p>
+</figure>
+</div>
+<p>Los valores de las características NMF también son no negativos. Como vimo con PCA, nuestros datos transformados en este ejemplo tendrán dos columnas, correspondientes a nuestras dos nuevas características.</p>
+<p>Las características y los componentes de un modelo NMF se pueden combinar para reconstruir aproximadamente las muestras de datos originales.</p>
+</section>
+<section id="reconstrucción-de-una-muestra" class="level3">
+<h3 class="anchored" data-anchor-id="reconstrucción-de-una-muestra">Reconstrucción de una muestra</h3>
+<p>Veamos cómo funciona esto con una única muestra de datos. Aquí hay una muestra que representa un documento de nuestro conjunto de datos de juguetes:</p>
+<div class="sourceCode" id="cb50" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb50-1"><span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">print</span>(samples[i,:])</span></code></pre></div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://j-isaula.github.io/Web_JI/posts/Unsupervised_Learning/img/fig36.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="500"></p>
+</figure>
+</div>
+<p>y podemos visualizar sus valores de características NMF:</p>
+<div class="sourceCode" id="cb51" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb51-1"><span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">print</span>(nmf_features[i,:])</span></code></pre></div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://j-isaula.github.io/Web_JI/posts/Unsupervised_Learning/img/fig37.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="500"></p>
+</figure>
+</div>
+<p>Ahora, si multiplicamos cada componente NMF por la característica NMF correspondiente y sumamos cada columna, obtenemos algo muy cercano a la muestra original.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://j-isaula.github.io/Web_JI/posts/Unsupervised_Learning/img/fig38.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="500"></p>
+</figure>
+</div>
+<p>De esta manera, una muestra se puede reconstruir multiplicando el componenten NMF por los valores característicos NMF de la muestra y sumando. Este cálculo también se puede expresar como lo que se conoce como un producto de matrices. No utilizaremos ese punto de vista, pero de ahí proviene la <strong>“factorización matricial”</strong>, o <strong>“MF”</strong>, en NMF.</p>
+<blockquote class="blockquote">
+<p>Por último, recuerde que NMF solo se puede aplicar a matrices de datos no negativos, como matrices de frecuencia de palabras.</p>
+</blockquote>
+<p>En la siguiente sección, construiremos otro ejemplo codificando colecciones de imagenes como matrices no negativas. También hay muchos otros grandes ejemplos, como las matrices que codifican audio, espectrogramas y matrices que representan los historiales de compras en sitios de comercio electrónico. Por los momentos, en esta sección aprendimos los conceptos básicos de NMF.</p>
+</section>
+</section>
+<section id="nmf-aprende-partes-interpretables" class="level2">
+<h2 class="anchored" data-anchor-id="nmf-aprende-partes-interpretables">NMF Aprende partes interpretables</h2>
+<p>Aprendamos ahora que los componentes de NMF representan patrones que ocurren con frecuencia en las muestras.</p>
+<p>Consideremos un ejemplo concreto, donde los artículops científicos están representados por sus frecuencias de palabras.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://j-isaula.github.io/Web_JI/posts/Unsupervised_Learning/img/fig39.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="500"></p>
+</figure>
+</div>
+<p>Hay 20,000 artículos y 800 palabras. Entonces la matriz tiene 800 columnas.</p>
+<p>Ajustemos un modelo NMF con 10 componentes a los artículos.</p>
+<div class="sourceCode" id="cb52" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb52-1"><span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">print</span>(articles.shape)</span></code></pre></div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://j-isaula.github.io/Web_JI/posts/Unsupervised_Learning/img/fig40.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="500"></p>
+</figure>
+</div>
+<div class="sourceCode" id="cb53" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb53-1">nmf <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> NMF(n_components<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">10</span>)</span>
+<span id="cb53-2">nmf.fit(articles)</span></code></pre></div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://j-isaula.github.io/Web_JI/posts/Unsupervised_Learning/img/fig41.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="500"></p>
+</figure>
+</div>
+<div class="sourceCode" id="cb54" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb54-1"><span class="bu" style="color: null;
+background-color: null;
+font-style: inherit;">print</span>(nmf.components<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">10</span>)</span></code></pre></div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://j-isaula.github.io/Web_JI/posts/Unsupervised_Learning/img/fig42.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="500"></p>
+</figure>
+</div>
+<p>Los 10 componentes se almancenan como las 10 filas de una matriz numpy bidimensional.</p>
+<p>Las filas, o componentes, viven en un espacio de 800 dimensiones: hay una dimensión para cada una de las palabras.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://j-isaula.github.io/Web_JI/posts/Unsupervised_Learning/img/fig43.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="300"></p>
+</figure>
+</div>
+<p>Alinear las palabras de nuestro vocabulario con las columnas de los componentes del NMF permite interpretarlas.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://j-isaula.github.io/Web_JI/posts/Unsupervised_Learning/img/fig44.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="500"></p>
+</figure>
+</div>
+<p>Al elejir un componente, como este, y observar qué palabras tienen los valores más altos, que se ajustan a un tema: las palabras son <em>“species”, “plant”, “genetic”, “evolution”, “life”</em></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://j-isaula.github.io/Web_JI/posts/Unsupervised_Learning/img/fig45.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="500"></p>
+</figure>
+</div>
+<p>Lo mismo ocurre si se considera cualquier otro componente:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://j-isaula.github.io/Web_JI/posts/Unsupervised_Learning/img/fig46.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="500"></p>
+</figure>
+</div>
+<section id="componentes-nmf" class="level3">
+<h3 class="anchored" data-anchor-id="componentes-nmf">Componentes NMF</h3>
+<p>Si se aplica NMF a los documentos, los componentes corresponden a temas, y las funciones de NMF reconstruyen los documentos a partir de los temas.</p>
+<p>Por otro lado, si se aplica NMF a una colección de imágenes, entonces</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://j-isaula.github.io/Web_JI/posts/Unsupervised_Learning/img/fig47.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="500"></p>
+</figure>
+</div>
+<p>Los componentes NMF representan patrones que ocurren con frecuencia en las imágenes. En este ejemplo, por ejemplo, NMF descompone las imagénes de una pantalla LCD en las celdas individuales de la pantalla.</p>
+<p>Necesitaremos saber cómo representar una coleccíon de imágenes como una matriz no negativas.</p>
+<p>Una imagen en la que todos los píxeles son tonos de gris que van del negro al blanco se denomina <em>“imagen en escala de grises”</em> . Como solo hay tonos de gris, una imagen en escala de grises se puede codificar por el brilo de cada píxel. Representando el brillo como un número entre 0 y 1, donde 0 es totalmente negro y 1 es totalmente blanco, la imagen se puede representar como una matriz bidimensional de números.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://j-isaula.github.io/Web_JI/posts/Unsupervised_Learning/img/fig48.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="500"></p>
+</figure>
+</div>
+<p>Aquí, por ejemplo, hay una fotografía en escala de grises de la luna!</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://j-isaula.github.io/Web_JI/posts/Unsupervised_Learning/img/fig49.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="500"></p>
+</figure>
+</div>
+<p>Estas matrices bidimensionales de números se pueden aplanar luego enumerando las entradas. Por ejemplo, podríamos leer los valores por fila, de izquierda a derecha y de arriba a abajo. La imagen en escala de grises ahora está representada por una matriz plana de números no negativos.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://j-isaula.github.io/Web_JI/posts/Unsupervised_Learning/img/fig50.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="500"></p>
+</figure>
+</div>
+<p>De este modo, se puede crear una colección de imágenes en escala de grises del mismo tamaño, codificado como una matriz bidimensional, en la que cada fila representa una imagen como una matriz aplanada y cada columna representa un píxel.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://j-isaula.github.io/Web_JI/posts/Unsupervised_Learning/img/fig51.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="400"></p>
+</figure>
+</div>
+<p>Al observar las imágenes como muestras y los píxeles como características, podemos observar que los datos están organizados de manera similar a la matriz de frecuencia de palabras. De hecho, las entradas de esta matriz no son negativas, por lo que NMF se puede utilizar para aprender las partes de las imágenes.</p>
 
 
 </section>

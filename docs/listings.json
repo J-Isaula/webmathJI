@@ -2,6 +2,7 @@
   {
     "listing": "/blog.html",
     "items": [
+      "/posts/PDs_Bayesianas/index.html",
       "/posts/Unsupervised_Learning/index.html",
       "/posts/DL_PyTorch/index.html",
       "/posts/Neural Network/index.html",

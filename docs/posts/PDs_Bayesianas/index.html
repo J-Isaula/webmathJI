@@ -6,8 +6,10 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="author" content="Juan Isaula">
+<meta name="dcterms.date" content="2025-11-07">
 
-<title>Juan Isaula</title>
+<title>Teorema de Bayes Aplicado al Credit Scoring – Juan Isaula</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -23,22 +25,23 @@ ul.task-list li input[type="checkbox"] {
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<script src="site_libs/quarto-html/quarto.js" type="module"></script>
-<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-2c5830ec49f57230e2e6790abeeeb6eb.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-2c5830ec49f57230e2e6790abeeeb6eb.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -67,21 +70,50 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
-<link rel="stylesheet" href="styles.css">
-<meta property="og:title" content="Juan Isaula">
-<meta property="og:description" content="Assistant Manager - Data Science">
-<meta property="og:image" content="https://j-isaula.github.io/Web_JI/perfil_ovalado.png">
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="../../styles.css">
+<meta property="og:title" content="Teorema de Bayes Aplicado al Credit Scoring – Juan Isaula">
+<meta property="og:description" content="Bad/Good">
+<meta property="og:image" content="https://j-isaula.github.io/Web_JI/posts/PDs_Bayesianas/fondo.png">
 <meta property="og:site_name" content="Juan Isaula">
 <meta property="og:locale" content="en_US">
-<meta property="og:image:height" content="1027">
-<meta property="og:image:width" content="822">
-<meta name="twitter:title" content="Juan Isaula">
-<meta name="twitter:description" content="Assistant Manager - Data Science">
-<meta name="twitter:image" content="https://j-isaula.github.io/Web_JI/perfil_ovalado.png">
+<meta property="og:image:height" content="1024">
+<meta property="og:image:width" content="1024">
+<meta name="twitter:title" content="Teorema de Bayes Aplicado al Credit Scoring – Juan Isaula">
+<meta name="twitter:description" content="Bad/Good">
+<meta name="twitter:image" content="https://j-isaula.github.io/Web_JI/posts/PDs_Bayesianas/fondo.png">
 <meta name="twitter:creator" content="@isaula_im">
-<meta name="twitter:image-height" content="1027">
-<meta name="twitter:image-width" content="822">
+<meta name="twitter:image-height" content="1024">
+<meta name="twitter:image-width" content="1024">
 <meta name="twitter:card" content="summary_large_image">
 </head>
 
@@ -92,7 +124,7 @@ ul.task-list li input[type="checkbox"] {
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
-    <a class="navbar-brand" href="./index.html">
+    <a class="navbar-brand" href="../../index.html">
     <span class="navbar-title">Juan Isaula</span>
     </a>
   </div>
@@ -103,27 +135,27 @@ ul.task-list li input[type="checkbox"] {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item">
-    <a class="nav-link active" href="./index.html" aria-current="page"> 
+    <a class="nav-link" href="../../index.html"> 
 <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./papers"> 
+    <a class="nav-link" href="../../papers"> 
 <span class="menu-text">Articles</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./cursos_impartidos"> 
+    <a class="nav-link" href="../../cursos_impartidos"> 
 <span class="menu-text">UNAH Courses</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./blog.html"> 
+    <a class="nav-link" href="../../blog.html"> 
 <span class="menu-text">Blog</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./Dasboard"> 
+    <a class="nav-link" href="../../Dasboard"> 
 <span class="menu-text">Dashboards</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./Sobre_mi"> 
+    <a class="nav-link" href="../../Sobre_mi"> 
 <span class="menu-text">Historias</span></a>
   </li>  
 </ul>
@@ -134,54 +166,113 @@ ul.task-list li input[type="checkbox"] {
     </nav>
 </header>
 <!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#fundamentos-del-teorema-de-bayes" id="toc-fundamentos-del-teorema-de-bayes" class="nav-link active" data-scroll-target="#fundamentos-del-teorema-de-bayes">Fundamentos del Teorema de Bayes</a>
+  <ul class="collapse">
+  <li><a href="#interpretación-financiera-del-teorema-de-bayes" id="toc-interpretación-financiera-del-teorema-de-bayes" class="nav-link" data-scroll-target="#interpretación-financiera-del-teorema-de-bayes">Interpretación Financiera del Teorema de Bayes</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
 <!-- main -->
-<div class="quarto-about-trestles column-page">
-  <div class="about-entity">
-    <img src="perfil_ovalado.png" class="about-image
-  rounded " style="width: 20em;">
+<main class="content" id="quarto-document-content">
+
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Juan Isaula</h1>
-<p class="subtitle lead">Assistant Manager - Data Science</p>
-</div>
-<div class="quarto-title-meta column-page">
+<h1 class="title">Teorema de Bayes Aplicado al Credit Scoring</h1>
+<p class="subtitle lead">Bad/Good</p>
+  <div class="quarto-categories">
+    <div class="quarto-category">Python</div>
   </div>
+  </div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Juan Isaula </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">November 7, 2025</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+
 </header>
-    <div class="about-links">
-  <a href="https://www.linkedin.com/in/juan-isaula-817531239/?originalSubdomain=hn" class="about-link" rel="" target="">
-     <span class="about-link-text">LinkedIn</span>
-  </a>
-  <a href="https://twitter.com/isaula_juan" class="about-link" rel="" target="">
-    <i class="bi bi-twitter"></i>
-     <span class="about-link-text">Twitter</span>
-  </a>
-  <a href="https://github.com/J-Isaula" class="about-link" rel="" target="">
-    <i class="bi bi-github"></i>
-     <span class="about-link-text">GitHub</span>
-  </a>
-  <a href="https://j-isaula.github.io/Web_JI/blog.html" class="about-link" rel="" target="">
-     <span class="about-link-text">Blog</span>
-  </a>
-</div>
-  </div>
-  <div class="about-contents"><main class="content column-page" id="quarto-document-content">
-<section id="hola" class="level1">
-<h1>Hola!</h1>
-<p>Soy un profesional apasionado por transformar datos en soluciones estratégicas que impulsen el crecimiento y la innovación en el sector financiero. Actualmente, como <strong><em>Subgerente de Ciencia de Datos en Grupo Financiero Ficohsa</em></strong>, lidero proyectos de analitica avanzada y modelado predictivo, la gestión del riesgo y la toma de decisiones basadas en evidencia.</p>
-<p>Mi sólida formación en <strong><em>Matemáticas y Estadística</em></strong> me permite abordar los desafíos complejos del entorno financiero con rigor técnico y visión analítica. Trabajo continuamente en el desarrollo de metodologías y herramientas innovadoras que integren el análisis de datos al corazón de la estrategia corporativa.</p>
-<p>Estoy comprometido con la excelencia, la innovación y la mejora continua, buscando siempre generar un impacto positivo en las organizaciones con la que colaboro.</p>
+
+
+<p>Este artículo explora en profundidad el Teorema de Bayes y su aplicación práctica en el Scoring Crediticio moderno. A través de un análisis matemático riguroso y ejemplos financieros concretos, examinaremos cómo esta potente herramienta estadística permite a los analistas de crédito actualizar sus evaluaciones de riesgo cuando disponen de nueva información sobre los clientes. El contenido abarca desde los fundamentos teóricos del teorema hasta su implementación en modelos de decisión crediticia, incluyendo casos prácticos y desarrollos matemáticos detallados.</p>
+<section id="fundamentos-del-teorema-de-bayes" class="level1">
+<h1>Fundamentos del Teorema de Bayes</h1>
+<p>El Teorema de Bayes constituye uno de los pilares fundamentales en la teoría de la probabilidad y la estadística bayesiana. Desarrollado por el matemático inglés Thomas Bayes (1702-1761), este teorema proporciona un marco matemático para actualizar nuestras creencias o estimaciones de probabilidad cuando obtenemos nueva información o evidencia.</p>
+<p><span class="math display">\[
+P(A|B) = \frac{P(B|A)\cdot P(A)}{P(B)}
+\]</span></p>
+<p>Donde cada término representa:</p>
+<blockquote class="blockquote">
+<p><span class="math display">\[
+P(A|B)
+\]</span> <strong>Probabilidad a posteriori:</strong> Es la probabilidad actualizada del evento A después de haber observado la ocurrencia del evento B. Representa nuestra creencia revisada sobre A a la luz de la nueva evidencia B.</p>
+</blockquote>
+<blockquote class="blockquote">
+<p><span class="math display">\[
+P(A)
+\]</span></p>
+<p><strong>Probabilidad a priori:</strong> Es nuestra estimación inicial de la probabilidad del evento A antes de considerar cualquier evidencia nueva. Refleja nuestro conocimiento o creencia previa sobre A.</p>
+</blockquote>
+<blockquote class="blockquote">
+<p><span class="math display">\[
+P(B|A)
+\]</span> <strong>Verosimilitud:</strong> Es la probabilidad de observar la evidencia B cuando el evento A es verdadero. Mide cuán probable es observar B dado que A ha ocurrido.</p>
+</blockquote>
+<blockquote class="blockquote">
+<p><span class="math display">\[P(B)\]</span> <strong>Probabilidad marginal:</strong> Es la probabilidad total de observar la evidencia de B bajo cualquier circunstancia. Funciona como un factor de normalización en la fórmula.</p>
+</blockquote>
+<p><code>El Teorema de Bayes</code> es particularmente valioso en situaciones donde necesitamos revisar nuestras estimaciones iniciales a medida que obtenemos nueva información, como ocurre constantemente en el análisis crediticio. La fortaleza de este enfoque radica en su capacidad para incorporar tanto conocimiento previo como nuevos datos de manera sistemática y matemáticamente rigurosa.</p>
+<section id="interpretación-financiera-del-teorema-de-bayes" class="level2">
+<h2 class="anchored" data-anchor-id="interpretación-financiera-del-teorema-de-bayes">Interpretación Financiera del Teorema de Bayes</h2>
+<p>En el contexto del anáisis crediticio, el Teorema de Bayes proporciona un marco matemático riguroso para actualizar nuesra evaluación del riesgo asociado a un cliente a medida que obtenemos nueva información sobre él. Esta metodología permite pasar de estimaciones generales basadas en datos históricos agregados a evaluaciones personalizadas que reflejan las características específicas de cada solicitante.</p>
+<p>La interpretación financiera de los componentes del teorema en el contexto del scoring crediticio es la siguiente:<br>
+</p>
+<ul>
+<li><p>La <strong>probabilidad a priori:</strong> representa nuestra estimación inicial del riesgo de incumplimiento de un cliente basado en datos históricos generales antes de considerar sus características específicas.</p></li>
+<li><p>La <strong>verosimilitud</strong> cuantifica la relación entre una características específica del cliente y su comportamiento de pago histórico.</p></li>
+<li><p>La <strong>probabilidad a posteriori:</strong> es la estimación actualizada del riesgo de incumplimiento después de considerar las características específicas del cliente.</p></li>
+</ul>
+<p>Este enfoque permite a las instituciones financieras actualizar continuamente sus evaluaciones de riesgo a medida que recopilan más información sobre sus clientes, ya sea durante el proceso de solicitud inicial o a lo largo de la relación comercial. La ventaja principal es que cada nueva pieza de información se incorpora de manera matemáticamente coherente, lo que resulta en estimaciones de riesgo cada vez más precisas y personalizadas.</p>
 
 
 </section>
-</main></div>
-</div>
- <!-- /main -->
+</section>
+
+</main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
     const isCodeAnnotation = (el) => {
       for (const clz of el.classList) {
         if (clz.startsWith('code-annotation-')) {                     
@@ -572,6 +663,8 @@ ul.task-list li input[type="checkbox"] {
     }
   });
   </script>
+<script src="https://utteranc.es/client.js" repo="Isaula/blogComments" issue-term="pathname" theme="github-light" crossorigin="anonymous" async="">
+</script>
 </div> <!-- /content -->
 <footer class="footer">
   <div class="nav-footer">

@@ -1,0 +1,2089 @@
+{
+  "cells": [
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "---\n",
+        "title: \"Deep Learning\"\n",
+        "subtitle: \"PyTorch\"\n",
+        "author: \"Juan Isaula\"\n",
+        "date: \"2025-07-01\"\n",
+        "categories: [Python, PyTorch]\n",
+        "image: \"fondo.webp\"\n",
+        "---\n",
+        "\n",
+        "El Deep Learning está en todas partes, desde las cámaras de los smartphones hasta los asistentes de vos o los vehículos autónomos. En este curso, descubriras esta potente tecnología y aprenderás a aprovecharla con `PyTorch`, una de las bibliotecas de aprendizaje profundo más populares. Al finalizar tu recorrido por este documento, serás capaz de aprovechar PyTorch para resolver problemas de clasificación y regresión utilizando el aprendizaje profundo.\n",
+        "\n",
+        "# Introducción a PyTorch (biblioteca de Deep Learning)\n",
+        "\n",
+        "Antes de comenzar a crear modelos complejos, te haré conocer PyTorch, un librería de aprendizaje profundo. Aprenderás a manipular tensores, crear estructuras de datos de PyTorch y construir tu primera red neuronal en PyTorch con capas lineales.\n",
+        "\n",
+        "El Deep Learning impulsa muchas innovaciones recientes y emocionantes, tales como la *traducción de idiomas*, *coches autónomos*, *diagnósticos médicos y chatbots.*\n",
+        "\n",
+        "![](img/fig1.png){fig-align=\"center\" width=\"600\"}\n",
+        "\n",
+        "## Qué es Deep Learning?\n",
+        "\n",
+        "![](img/fig2.png){fig-align=\"center\" width=\"200\"}\n",
+        "\n",
+        "Deep Learning (aprendizaje profundo) es un subconjunto del aprendizaje automático (machine learning). La estructura del modelo es una red de entradas (input), capas ocultas (hidden layers) y salidas (output), como se muestra en la siguiente imagen:\n",
+        "\n",
+        "![](img/fig3.png){fig-align=\"center\" width=\"200\"}\n",
+        "\n",
+        "Como apreciamos en la figura, una red puede tener una o muchas capas ocultas\n",
+        "\n",
+        "![](img/fig4.png){fig-align=\"center\" width=\"250\"}\n",
+        "\n",
+        "La intuición original detrás del aprendizaje profundo era crear modelos inspirados en el cerebro humano, sobre todo por cómo aprende el cerebro humano: a través de células interconectadas llamadas neuronas. Es por esto que llamamos a los modelos de aprendizaje profundo **`Redes Neuronales`**.\n",
+        "\n",
+        "![](img/fig5.png){fig-align=\"center\" width=\"150\"}\n",
+        "\n",
+        "Estas estructuras de modelos en capas requieren muchos más datos en comparación con otros modelos de aprendizaje automático para derivar patrones. Generalmente hablamos de al menos cientos de miles de puntos de datos.\n",
+        "\n",
+        "## PyTorch: un framework del deep learning\n",
+        "\n",
+        "![](img/fig6.png){fig-align=\"center\" width=\"180\"}\n",
+        "\n",
+        "Si bien existen varios framework y paquetes para implementar el aprendizaje profundo en cuanto a algoritmos, nos centraremos en PyTorch, uno de los frameworks más populares y mejor mantenidos. *PyTorch fue desarrollado originalmente por Meta IA como parte del laboratorio de investigación de inteligencia artificial de Facebook antes de que pasara a depender de la fundación Linux.*\n",
+        "\n",
+        "Está diseñado para ser intuitivo y fácil de usar, compartiendo muchas similitudes con la biblioteca de Python NumPy.\n",
+        "\n",
+        "#### PyTorch Tensors\n",
+        "\n",
+        "Podemos importar el módulo PyTorch llamando a"
+      ],
+      "id": "cf498b18"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "import torch"
+      ],
+      "id": "f7c34d2b",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "-   La estructura de datos fundamental en PyTorch es un tensor, que es similar a una matriz.\n",
+        "\n",
+        "-   Puede soportar muchas operaciones matemáticas y constituye un componente básico para nuestras redes neuronales.\n",
+        "\n",
+        "-   Se pueden crear tensores a partir de listas de Python o matrices NumPy utilizando la clase `torch.tensor()` esta clase convierte los datos a un formato compatible para el aprendizaje profundo."
+      ],
+      "id": "ef3e938a"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "mi_lista = [[1,2,3], [4,5,6]]\n",
+        "tensor = torch.tensor(mi_lista)\n",
+        "print(tensor)"
+      ],
+      "id": "33008eb6",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "### Atributos de los Tensores\n",
+        "\n",
+        "Podemos llamar a `tensor.shape` para mostrar la forma de nuestro objeto recién creado."
+      ],
+      "id": "e6dd47db"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "print(tensor.shape)"
+      ],
+      "id": "d8387dc1",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "Y `tensor.dtype()` para mostrar su tipo de datos, aquí un entero de 64 bits."
+      ],
+      "id": "660dbbc7"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "print(tensor.dtype)"
+      ],
+      "id": "7eddc53f",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "Verificar la forma y el tipo de datos garantiza que los tensores se alineen correctamente con nuestro modelo y tarea, y puede ayudarnos en caso de depuración.\n",
+        "\n",
+        "#### Operaciones con Tensores\n",
+        "\n",
+        "Se pueden sumar o restar tensores de PyTorch, siempre que sus formas sean compatibles."
+      ],
+      "id": "0621239b"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "a = torch.tensor([[1,1], [2,2]])\n",
+        "b = torch.tensor([[2,2],[3,3]])\n",
+        "c = torch.tensor([[2,2,2], [3,3,5]])"
+      ],
+      "id": "89c53409",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "print(a + b)"
+      ],
+      "id": "01547f71",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "Cuando las dimensiones no son compatibles, obtendremos un error.\n",
+        "\n",
+        "También podemos realizar la multiplicación por elemento, lo que implica multiplicar cada elemento correspondiente."
+      ],
+      "id": "7bb4b338"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "print(a*b)"
+      ],
+      "id": "ba563f4d",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "También esta incluida la multiplicación de matrices, que no es más que uno forma de combinar dos matrices para crear una nueva."
+      ],
+      "id": "cb8af4de"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "print(a @ b)"
+      ],
+      "id": "adac98c3",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "Detras de escena, los modelos de aprendizaje profundo realizan innumerables operaciones como la suma y multiplicación para procesar datos y aprender patrones.\n",
+        "\n",
+        "## Redes Neuronales y Capas\n",
+        "\n",
+        "Vamos a contruir nuestra primer red neuronal usando tensores de PyTorch.\n",
+        "\n",
+        "Una red neuronal consta de capas de entrada, ocultas y de salida.\n",
+        "\n",
+        "![](img/fig7.png){fig-align=\"center\" width=\"200\"}\n",
+        "\n",
+        "La **capa de entrada** contiene las características del conjunto de datos,\n",
+        "\n",
+        "![](img/fig8.png){fig-align=\"center\" width=\"200\"}\n",
+        "\n",
+        "La **capa de salida** contiene las predicciones,\n",
+        "\n",
+        "![](img/fig9.png){fig-align=\"center\" width=\"200\"}\n",
+        "\n",
+        "Y hay **capas ocultas (hidden layers)** en el medio\n",
+        "\n",
+        "![](img/fig10.png){fig-align=\"center\" width=\"200\"}\n",
+        "\n",
+        "Si bien una red puede tener cualquier cantidad de capas ocultas, comenzaremos construyendo una red sin capas ocultas donde la capa de salida es una capa lineal.\n",
+        "\n",
+        "![](img/fig11.png){fig-align=\"center\" width=\"200\"}\n",
+        "\n",
+        "-   Aquí, cada neurona de entrada se conecta a cada neurona de salida, lo que se denomina una red \"totalmente conectada\".\n",
+        "\n",
+        "-   Esta red es equivalente a un modelo lineal y nos ayuda a comprender los fundamentos antes de agregar complejidad.\n",
+        "\n",
+        "Usaremos el módulo `torch.nn` para construir nuestras redes. Esto hace que el código de la red sea más conciso y flexible y se importa convencionalmente como `nn`."
+      ],
+      "id": "40656d02"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "import torch.nn as nn"
+      ],
+      "id": "64c4b356",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "Al diseñar una red neuronal, las dimensiones de las capas de entrada y salida están predefinidas.\n",
+        "\n",
+        "-   La cantidad de neuronas en la capa de entrada es la cantidad de características en nuestro conjunto de datos.\n",
+        "\n",
+        "-   Y el número de neuronas en la capa de salida es el número de clases que queremos predecir.\n",
+        "\n",
+        "Digamos que creamos un input_tensor con forma de $1\\times 3$."
+      ],
+      "id": "87fec32f"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "import torch\n",
+        "import torch.nn as nn\n",
+        "input_tensor = torch.tensor(\n",
+        "  [[0.3471, 0.4547, -0.2356]]\n",
+        ")"
+      ],
+      "id": "b8afcf18",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "Podemos pensar en esto como una fila con tres *\"carectísticas\"* o *\"neuronas\"* .\n",
+        "\n",
+        "A continuación, pasamos este input_tensor a una capa lineal, que aplica una función lineal para realizar predicciones.\n",
+        "\n",
+        "![](img/fig12.png){fig-align=\"center\" width=\"100\"}\n",
+        "\n",
+        "Para ello usaremos `nn.Linear()` toma dos argumentos: `int_features` es el número de características en nuestra entrada ( en este caso, tres) y `out_features` es el tamaño del tensor de salida (en este caso, dos).\n",
+        "\n",
+        "![](img/fig13.png){fig-align=\"center\" width=\"100\"}"
+      ],
+      "id": "96747668"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "linear_layer = nn.Linear(\n",
+        "  in_features = 3,\n",
+        "  out_features = 2\n",
+        ")"
+      ],
+      "id": "ee0f55ee",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "Especificar correctamente `in_features` garantiza que nuestra capa lineal pueda recibir el input_tensor.\n",
+        "\n",
+        "Por último, pasamos input_tensor a linear_layer para generar una salida."
+      ],
+      "id": "d25d939b"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "output = linear_layer(input_tensor)\n",
+        "print(output)"
+      ],
+      "id": "7ea45523",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "Tenga en cuenta que esta salida tiene dos características o neuronas debido a las `out_features` especificadas en nuestra capa lineal.\n",
+        "\n",
+        "Cuando input_tensor se pasa a linear_layer, se realiza una operación lineal para incluir pesos y sesgos.\n",
+        "\n",
+        "![](img/fig14.png){fig-align=\"center\" width=\"500\"}\n",
+        "\n",
+        "## Pesos (weights) y Sesgos (biases) \n",
+        "\n",
+        "Cada capa lineal tiene un conjunto de pesos y sesgos asociados. Estas son las cantidades clave que definen una neurona."
+      ],
+      "id": "f6903cff"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "print(linear_layer.weight)"
+      ],
+      "id": "24e8c46b",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "print(linear_layer.bias)"
+      ],
+      "id": "c22ca722",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "-   Los pesos reflejan la importancia de diferentes características.\n",
+        "\n",
+        "-   El sesgos es un término adicional que es independiente de los pesos, y proporciona a las neurona una salida de referencia.\n",
+        "\n",
+        "Al principio, la capa lineal asigna pesos y sesgos aleatorios; estos se ajustan posteriormente.\n",
+        "\n",
+        "Imaginemos nuestra red totalmente conectada en acción.\n",
+        "\n",
+        "Digamos que tenemos un conjunto de datos meteorológicos con tres características: *temperatura (temperature), humedad (humidity) y viento (wind).* Y queremos predecir si *lloverá (rain) o estará nublado (cloudy).*\n",
+        "\n",
+        "1.  La característica humeda tendrá un peso más significativo en comparación a las demás características, ya que es un fuerte predictor de lluvia y nubes.\n",
+        "\n",
+        "2.  Los datos meteorológicos corresponden a una región tropical con alta probabilidad de lluvia, por lo que agrega un sesgo para tener en cuenta esta información de referencia.\n",
+        "\n",
+        "Con esta información, nuestro modelo hace una predicción.\n",
+        "\n",
+        "## Capaz y Parámetros Ocultos\n",
+        "\n",
+        "Hasta ahora, hemos utilizado una capa de entrada y una capa de lineal. Ahora, agregaremos más capas para ayudar a la red a aprender patrones complejos.\n",
+        "\n",
+        "### Apilamiento de capaz con nn.Sequential()\n",
+        "\n",
+        "Apilaremos tres capas lineales usando `nn.Sequential()`, un contenedor de PyTorch para apilar capas en secuencia. Esta red toma la entrada, la pasa a cada capa lineal en secuencia y devuelve la salida.\n",
+        "\n",
+        "```{bash}\n",
+        "model = nn.Sequential(\n",
+        "  nn.Linear(n_features, 8),\n",
+        "  nn.Linear(8, 4),\n",
+        "  nn.Linear(4, n_classes)\n",
+        ")\n",
+        "```\n",
+        "\n",
+        "-   En este caso, las capas dentro de `nn.Sequential()` son capas ocultas.\n",
+        "\n",
+        "-   `n_features` representa el número de características de entrada y `n_classes` representa el número de clases de salida, ambas definidas por el conjunto de datos.\n",
+        "\n",
+        "### Adición de capas \n",
+        "\n",
+        "Podemos añadir tantas capas ocultas como queramos.\n",
+        "\n",
+        "![](img/fig17.png){width=\"450\"}\n",
+        "\n",
+        "La dimensión de cada capa coincide con la dimensión de salida de la anterior."
+      ],
+      "id": "5cf5cfd4"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "model = nn.Sequential(\n",
+        "  nn.Linear(10, 18),\n",
+        "  nn.Linear(18, 20),\n",
+        "  nn.Linear(20, 5)\n",
+        ")"
+      ],
+      "id": "8a996bea",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "En nuestro ejemplo de tres capas, la primera capa toma 10 características y genera 18. La segunda toda 18 y genera 20. Finalmente, la tercera toma 20 y genera 5.\n",
+        "\n",
+        "### Las capas están hechas de neuronas\n",
+        "\n",
+        "![](img/fig18.png){fig-align=\"center\" width=\"200\"}\n",
+        "\n",
+        "Una capa está completamente conectada cuando cada neurona se vincula a todas las neuronas de la capa anterior, como se muestra en rojo en la figura.\n",
+        "\n",
+        "Cada neurona es una capa lineal:\n",
+        "\n",
+        "-   realiza una operación lineal utilizando todas las neuonras de la capa anterior.\n",
+        "\n",
+        "-   Por tanto, una sola neurona tiene $N+1$ parámetros que se puede aprender, siendo la dimensión de salida la capa anterior, más 1 para el sesgo.\n",
+        "\n",
+        "### Parámetros y Capacidad del Modelo\n",
+        "\n",
+        "Aumetar el número de capas ocultas aumenta el número total de parámetros en el modelo, también conocido como capacidad del modelo. Los modelos de mayor capacidad pueden manejar conjuntos de datos más complejos, pero su entrenamiento puede llevar más tiempo.\n",
+        "\n",
+        "Una forma eficaz de evaluar la capacidad de un modelo es calcular su número total de parámetros.\n",
+        "\n",
+        "Vamos a desglosarlo con una red de dos capas,"
+      ],
+      "id": "2697a375"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "model = nn.Sequential(\n",
+        "  nn.Linear(8, 4),\n",
+        "  nn.Linear(4, 2)\n",
+        ")"
+      ],
+      "id": "80627d02",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "-   **La primera capa** tiene 4 neuronas, cada neurona tiene 8 pesos y un sesgo, lo que da como resultado 36 parámetros.\n",
+        "\n",
+        "-   La segunda capa tiene 2 neuronas, cada neurona tiene 4 pesos y un sesgo, para un total de 10 parámetros.\n",
+        "\n",
+        "-   Sumándolos todos, este modelo tiene 46 parámetros que se pueden aprender en total\n",
+        "\n",
+        "También podemos calcular esto en PyTorch usando el método `.numel()`. Este método devuelve el número de elementos de un tensor."
+      ],
+      "id": "7cb1dd90"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "total = 0\n",
+        "for parameter in model.parameters():\n",
+        "  total += parameter.numel()\n",
+        "  \n",
+        "print(total)"
+      ],
+      "id": "aa4a8111",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "### Balance entre complejidad y eficiencia\n",
+        "\n",
+        "![](img/fig19.png){fig-align=\"center\" width=\"400\"}\n",
+        "\n",
+        "Comprender el recuento de parámetros nos ayuda a equilibrar la complejidad y la eficiencia del modelo. Demasiados parámetros pueden dar lugar a tiempos de entrenamiento largos o sobreajuste, mientras que muy pocos pueden limitar la capacidad de aprendizaje.\n",
+        "\n",
+        "# Hiperparámetros y arquitectura de redes neuronales \n",
+        "\n",
+        "Para entrenar una red neuronal en PyTorch, primero tendremos que entender componentes adicionales, como las funciones de activación y pérdida. Entonces nos daremos cuenta de que entrenar una red requiere reducir mínimo esa función de pérdida, lo que se hace calculando gradientes. Aprenderemos a utilizar estos gradientes para actualizar los parámetros de tu modelo.\n",
+        "\n",
+        "## Funciones de Activación \n",
+        "\n",
+        "Hasta ahora hemos visto redes neuronales formadas únicamente por capas lineales.\n",
+        "\n",
+        "![](img/fig20.png){fig-align=\"center\" width=\"250\"}\n",
+        "\n",
+        "Podemos agregar **no linealidad** a nuestros modelos usando funciones de activación. Discutiremos dos funciones de activación:\n",
+        "\n",
+        "-   **Sigmoid** para clasificación binaria y,\n",
+        "\n",
+        "-   **Softmax** para clasificación multiclase.\n",
+        "\n",
+        "Esta no linealidad permite que las redes aprendan cosas más complejas, interacciones entre entradas y objetivos que son relaciones **no linealeales.**\n",
+        "\n",
+        "Llamaremos a la salida de la última capa lineal la **\"pre-activación\".** Salida, que pasaremos a funciones de activación para obtener la salida transformada.\n",
+        "\n",
+        "### Función Sigmoid\n",
+        "\n",
+        "La función de activación sigmoidea se utiliza ampliamente para problemas de clasificación binaria. Digamos que estamos tratando de clasificar un animal como mamífero o no?. Tenemos tres datos: el número de extremidades, si pone huevos y si tiene pelo. Las dos últimas son variables binarias: 1 si es si, 0 si no.\n",
+        "\n",
+        "![](img/fig21.png){width=\"700\"}\n",
+        "\n",
+        "Pasar la entrada a un modelo con dos capas lineales devuelve una única salida: el número 6, tal como apreciamos en la siguiente figura:\n",
+        "\n",
+        "![](img/fig22.png){fig-align=\"center\" width=\"700\"}\n",
+        "\n",
+        "Este número aún no es interpretable. **Tenemos que pasar el número 6 por la función sigmoide**, transformandolo en un rango que represente la probabilidad entre cero y uno.\n",
+        "\n",
+        "![](img/fig23.png){fig-align=\"center\" width=\"700\"}\n",
+        "\n",
+        "Si el resultado está más cerca de uno (mayor que 0.5), lo etiquetamos como clase uno (mamífero). Si fuese menor que 0.5 la predección sería cero (no un mamifero).\n",
+        "\n",
+        "![](img/fig24.png){fig-align=\"center\" width=\"700\"}\n",
+        "\n",
+        "Ahora, implementemos sigmoide en PyTorch."
+      ],
+      "id": "6fda5f1c"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "import torch\n",
+        "import torch.nn as nn\n",
+        "\n",
+        "input_tensor = torch.tensor([[6]])\n",
+        "sigmoid = nn.Sigmoid()\n",
+        "output = sigmoid(input_tensor)\n",
+        "print(output)"
+      ],
+      "id": "99af4012",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "Normalmente, `nn.Sigmoid()` se agrega como el último paso en `nn.Sequential()`, transformando automáticamente la salida de la capa lineal final."
+      ],
+      "id": "7517538e"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "model = nn.Sequential(\n",
+        "  nn.Linear(6, 4), # Primera capa lineal \n",
+        "  nn.Linear(4, 1), # Segunda capa lineal\n",
+        "  nn.Sigmoid()     # Función de activación\n",
+        ")"
+      ],
+      "id": "5a8130ed",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "Curiosamente, una red neuronal con solo capas lineales y una activación sigmoidea se comporta como una **Regresión Logística.** Más adelante agregaremos más capas y activaciones para comprender realmente el verdadero potencial del Deep Learning.\n",
+        "\n",
+        "### Función Softmax\n",
+        "\n",
+        "Usamos softmax, otra función de activación popular, para clasificación multiclase que implica más de dos etiquetas de clase.\n",
+        "\n",
+        "Digamos que tenemos tres clases:\n",
+        "\n",
+        "1.  Pajaro o Bird (0)\n",
+        "\n",
+        "2.  Mamífero o Mammal (1)\n",
+        "\n",
+        "3.  Reptil o Reptile (2)\n",
+        "\n",
+        "![](img/fig25.png){fig-align=\"center\" width=\"400\"}\n",
+        "\n",
+        "En esta red, Softmax toma una dimensión tridimensional, salida de preactivación y genera una salida de la misma forma, una por tres.\n",
+        "\n",
+        "La salida es una distribución de probabilidad:\n",
+        "\n",
+        "-   Por cada elemento está entre cero y uno, y\n",
+        "\n",
+        "-   los valores suman uno.\n",
+        "\n",
+        "![](img/fig26.png){fig-align=\"center\" width=\"350\"}\n",
+        "\n",
+        "Aquí, la predicción es para la segunda clase, mamíferos, que tiene la probabilidad más alta 0.842.\n",
+        "\n",
+        "![](img/fig27.png){fig-align=\"center\" width=\"350\"}\n",
+        "\n",
+        "En PyTorch, usamos `nn.Softmax()`"
+      ],
+      "id": "40fbbae9"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "import torch\n",
+        "import torch.nn as nn\n",
+        "\n",
+        "input_tensor = torch.tensor(\n",
+        "  [[4.3, 6.1, 2.3]]\n",
+        ")\n",
+        "\n",
+        "probabilities = nn.Softmax(dim=-1)\n",
+        "# dim = -1 indica que softmax se aplica a la última dimensión de input_tensor\n",
+        "output_tensor = probabilities(input_tensor)\n",
+        "print(output_tensor)"
+      ],
+      "id": "10ed0867",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "Similar a sigmoide, softmax puede ser la última capa en nn.Sequential. \\\n",
+        "\n",
+        "## Paso hacia adelante\n",
+        "\n",
+        "Hemos explorado tensores, redes pequeñas y funciones de activación. Ahora profundicemos en la generación de predicciones.\n",
+        "\n",
+        "Este proceso se llama **\"ejecutar un paso hacia adelante\"** a través de una red.\n",
+        "\n",
+        "### Qué es una paso hacia adelante (Forward Pass)?\n",
+        "\n",
+        "Es cuando los datos de entrada fluyen a través de una red neuronal en dirección hacia adelante, para producir resultados o predicciones, pasa a través de cada capa de red.\n",
+        "\n",
+        "![](img/fig28.png){fig-align=\"center\" width=\"350\"}\n",
+        "\n",
+        "Los calculos transforman los datos en nuevas representaciones en cada capa, que pasa a la siguiente capa hasta que se produce el resultado final.\n",
+        "\n",
+        "El propósito del paso hacia adelante es pasar datos de entrada a través de la red y producir predicciones o resultados basados en los parámetros aprendidos del modelo, también conocidos como pesos y sesgos.\n",
+        "\n",
+        "Este proceso es esencial tanto para el entrenamiento como para realizar nuevas predicciones.\n",
+        "\n",
+        "El resultado final puede ser clasificaciones binarias, clasificaciones multiclase o predicciones numéricas (regresiones).\n",
+        "\n",
+        "![](img/fig29.png){fig-align=\"center\" width=\"400\"}\n",
+        "\n",
+        "Veremos un ejemplo de cada uno.\n",
+        "\n",
+        "Digamos que tenemos datos de entrada de cinco animales, con seís características o neuronas por punto de datos."
+      ],
+      "id": "f9115bd9"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "input_data = torch.tensor(\n",
+        "  [[-0.4421, 1.5207, 2.0607, -0.3647, 0.4691, 0.0946],\n",
+        "  [-0.9155, -0.0475, -1.3645, -0.6336, -1.9520, -0.3398],\n",
+        "  [0.7406, 1.6763, -0.8511, 0.2432, 0.1123, -0.0633],\n",
+        "  [-1.6630, -0.0718, -0.1285, 0.5396, -0.0288, -0.8622],\n",
+        "  [-0.7413, 1.7920, -0.0883, -0.6685, 0.4745, -0.4245]]\n",
+        ")"
+      ],
+      "id": "5c7fd8b0",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "Creamos una pequeña red con dos capas lineales y una función de activación sigmoidea en secuencia."
+      ],
+      "id": "7b370a5a"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "import torch\n",
+        "import torch.nn as nn\n",
+        "model = nn.Sequential(\n",
+        "  nn.Linear(6, 4),\n",
+        "  nn.Linear(4, 1),\n",
+        "  nn.Sigmoid()\n",
+        ")"
+      ],
+      "id": "b7c0b1cd",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "-   La primera capa toma seis características como entrada, genera cuatro.\n",
+        "\n",
+        "-   La segunda capa procesa esto para obtener una probailidad final.\n",
+        "\n",
+        "El resultado de nuestra clasificación binaria es una única probabilidad entre cero y uno para cada uno de nuestros cinco animales."
+      ],
+      "id": "cdd7ec84"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "output = model(input_data)\n",
+        "print(output)"
+      ],
+      "id": "55f83a0d",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "Recuerde que comúnmente utilizamos un umbral de 0.5 para convertirlos en etiquetaas de 0 y 1, es decir:\n",
+        "\n",
+        "-   Class = 1 para $output \\geq 0.5$\n",
+        "\n",
+        "-   Class = 0 para $output \\leq 0.5$\n",
+        "\n",
+        "Esta salida no será significativa hasta que usemos retropropagación para actualizar los pesos y sesgos de las capas. Hablaremos más sobre esto más adelante.\n",
+        "\n",
+        "### Clasificación Multi-Class: Forward Pass\n",
+        "\n",
+        "El modelo sería similar si quisiéramos ejecutar una clasificación de múltiples clases.\n",
+        "\n",
+        "Digamos que estamos prediciendo tres clases: *mamíferos (Class 1), aves (Class 2) o reptiles (Class 3).*\n",
+        "\n",
+        "Específicamos que nuestro modelo tiene tres clases, estableciendo este valor como la dimensión de salida de la última capa lineal."
+      ],
+      "id": "448e4045"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "n_classes = 3\n",
+        "model = nn.Sequential(\n",
+        "  nn.Linear(6, 4),\n",
+        "  nn.Linear(4, n_classes),\n",
+        "  nn.Softmax(dim=-1)\n",
+        ")"
+      ],
+      "id": "f5c99139",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "Usamos Softmax en lugar de Sigmoid, con $dim = -1$ para indicar los 5 animales. Los anímales tiene la misma última dimensión que la salida de la última capa lineal."
+      ],
+      "id": "1ebcb790"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "output = model(input_data)\n",
+        "print(output.shape)"
+      ],
+      "id": "580d08f7",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "Utilizando la misma entrada que antes, la forma de salida es $5\\times 3$."
+      ],
+      "id": "25b79ea8"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "print(output)"
+      ],
+      "id": "99676205",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "Note que cuando imprimimos la salida, cada fila representa las probabilidades de tres clases, que suman uno. La etiqueta prevista para cada fila se asigna a la clase con la mayor probabilidad.\n",
+        "\n",
+        "En nuestro ejemplo, todas las filas son mamíferos.\n",
+        "\n",
+        "### Regresión: Forward Pass\n",
+        "\n",
+        "El último modelo que analizaremos es la regresión: predecir valores numéricos continuos.\n",
+        "\n",
+        "Ahora usaremos las mismos datos para predecir el peso de los animales en función de sus propiedades."
+      ],
+      "id": "f2032e77"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "model = nn.Sequential(\n",
+        "  nn.Linear(6, 4), \n",
+        "  nn.Linear(4, 1)\n",
+        ")\n",
+        "\n",
+        "output = model(input_data)\n",
+        "print(output)"
+      ],
+      "id": "f0494dc0",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "Esta vez no hay función de activación al final, y la última dimensión de la última capa lineal devuelve una salida con una característica.\n",
+        "\n",
+        "Las dimensiones de salida son $5\\times 1$: cinco valores continuos, uno para cada fila.\n",
+        "\n",
+        "## Funciones de Pérdida para Evaluar las Predicciones del Modelo \n",
+        "\n",
+        "Hemos generado predicciones ejecutando un paso hacia adelante, el siguiente paso es ver qué tan buenas son nuestras predicciones en comparación con los valores reales.\n",
+        "\n",
+        "#### Función de pérdida\n",
+        "\n",
+        "La función de pérdida, otro componente de las redes neuronales, nos dicen qué tan bueno es nuestro modelo para hacer predicciones durante el entrenamiento.\n",
+        "\n",
+        "Toma una predicción del modelo $(\\hat{y})$ y una etiqueta verdadera $y$, o dato real, y genera un dato flotante, tal como se puede apreciar en el siguiente esquema\n",
+        "\n",
+        "![](img/fig30.png){fig-align=\"center\" width=\"800\"}\n",
+        "\n",
+        "Utilicemos nuestra multiclase\n",
+        "\n",
+        "| Hair | Feathers | Eggs | Milk | Fins | Legs | Tail | Domestic | Catsize | Class |\n",
+        "|------|----------|------|------|------|------|------|----------|---------|-------|\n",
+        "| 1    | 0        | 0    | 1    | 0    | 4    | 0    | 0        | 1       | 0     |\n",
+        "\n",
+        "modelo de clasificación que predice si un animal es un mamífero (0), ave (1) o reptil (2).\n",
+        "\n",
+        "-   Si nuestro modelo predice que la clase es igual a cero, es correcto y el valor de la pérdida será bajo.\n",
+        "\n",
+        "-   Una predicción incorrecta haría que el valor de la pérdida fuera alto.\n",
+        "\n",
+        "-   Nuestro objetivo es minimizar las pérdidas.\n",
+        "\n",
+        "#### Calculo de la pérdida \n",
+        "\n",
+        "La pérdida se calcula utilizando una función de pérdida, $F$, que toma el dato real y el predicho, es decir,\n",
+        "\n",
+        "$$\n",
+        "Loss = F(y, \\hat{y})\n",
+        "$$\n",
+        "\n",
+        "-   En nuestro ejemplo de los animales, los valores posibles para nuestra verdadera clase de $y$ son los n[úmeros enteros 0, 1 o 2, es decir,]{.underline} $y \\in \\{0, 1 , 2\\}$.\n",
+        "\n",
+        "-   $\\hat{y}$ es un tensor con las mismas dimensiones que el número de clases $N$, es decir, $\\hat{y}\\in \\{-5.2, 4.6, 0.8\\}$. Si $N=3$ entonces la salidad softmax es un tensor de forma $1\\times 3$.\n",
+        "\n",
+        "#### Codificación one-hot\n",
+        "\n",
+        "Usamos codificación one-hot para convertir un entero $y$ en un tensor de ceros y unos para que podamos comparar para evaluar el rendimiento del modelo.\n",
+        "\n",
+        "![Figura 1](img/fig31.png){fig-align=\"center\" width=\"300\"}\n",
+        "\n",
+        "Por ejemplo, si $y=0$ con tres clases, la forma codificada es 1, 0, 0 como se aprecia en **Figura 1.**\n",
+        "\n",
+        "Podemos importar `torch.nn.functional` como `F` para evitar la codificación one-hot manual."
+      ],
+      "id": "fe3c3567"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "import torch.nn.functional as F\n",
+        "\n",
+        "print(F.one_hot(torch.tensor(0), num_classes = 3))"
+      ],
+      "id": "de8d94a8",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "En el primer ejemplo, la verdad fundamental es cero (la primera clase). Tenemos 3 clases, por lo que la función genera un tensor de tres elementos con uno en la primera posición y ceros en el resto."
+      ],
+      "id": "d0cd8d36"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "print(F.one_hot(torch.tensor(1), num_classes = 3))"
+      ],
+      "id": "7836cc25",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "Notemos ahora que si $y=1$ (la segunda clase), el tensor de salida tiene un uno en la segunda posición y ceros en caso contrario."
+      ],
+      "id": "a8548614"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "print(F.one_hot(torch.tensor(2), num_classes = 3))"
+      ],
+      "id": "438f43a6",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "Por último, si $y=2$ (tercera clase), el tensor de salida tiene un uno en la última posición y ceros en el resto de los casos.\n",
+        "\n",
+        "### Función de Pérdida Cross Entropy en PyTorch\n",
+        "\n",
+        "Una vez completada la codificación, podemos pasarla junto con nuestras predicciones a una función de pérdida. Lo que almacenaríamos será el tensor de *\"puntuaciones\"*."
+      ],
+      "id": "ac8d4181"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "from torch.nn import CrossEntropyLoss\n",
+        "\n",
+        "scores = torch.tensor([-5.2, 4.6, 0.8])\n",
+        "one_hot_target = torch.tensor([1,0,0])"
+      ],
+      "id": "7a1f9aca",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "La función de pérdida más comunmente utilizada para la clasificaci´øn es la pérdida de entropía cruzada.\n",
+        "\n",
+        "Comencemos definiendo nuestra función de pérdida como *\"criterio\".* Luego le pasamos el método `.double()` del tensor de puntuaciones y del tensor `one_hot_target.`"
+      ],
+      "id": "9b36ec57"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "criterion = CrossEntropyLoss()\n",
+        "print(criterion(scores.double(), one_hot_target.double()))"
+      ],
+      "id": "a5baac80",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "Esto garantiza que los tensores estén en el formato correcto para la función de pérdida. La salida es el valor de pérdida calculado.\n",
+        "\n",
+        "En resumen, la función de pérdida toma como entrada el tensor de puntuaciones, que es el modelo, predice antes de la función softmax final y la etiqueta de verdad codificada one-hot. Emite un único flotante, la pérdida de esa muestra.\n",
+        "\n",
+        "![](img/fig32.png){fig-align=\"center\" width=\"550\"}\n",
+        "\n",
+        "Recordemos que nuestro objetivo es minimizar esa pérdida.\n",
+        "\n",
+        "## Utilizar derivadas para Actualizar los Parámetros del Modelo \n",
+        "\n",
+        "Veamos ahora cómo podemos minímizar la pérdida. Sabemos que un modelo predice mal cuando la pérdida es alta. Podemos utilizar derivadas o gradientes para minimizar esta pérdida.\n",
+        "\n",
+        "![](img/fig33.png){fig-align=\"center\" width=\"300\"}\n",
+        "\n",
+        "Imaginemos la función de pérdida como un valle. La derivada representa la pendiente, es decir qué tan pronunciada sube o baja la curva.\n",
+        "\n",
+        "-   Las pendientes pronunciadas, mostradas con flechas rojas, indican derivadas altas y pesos grandes.\n",
+        "\n",
+        "-   Las pendientes más suaves, representadas por flechas verdes, tienen derivadas pequeñas y pesos más pequeños.\n",
+        "\n",
+        "-   En el fondo del valle, mostrado por la flecha azul, la pendiente es plana y la derivada es cero. **Este punto es el mínimo de la función de pérdida que pretendemos alcanzar.**\n",
+        "\n",
+        "### Funciones Convexas y No-Convexas \n",
+        "\n",
+        "Las funciones convexas tienen un mínimo global.\n",
+        "\n",
+        "![](img/fig34.png){fig-align=\"center\" width=\"1000\"}\n",
+        "\n",
+        "Las funciones no convexas, como las funciones de pérdida, tienen múltiples mínimos locales, donde el valor es inferior al de los puntos cercanos pero no el más bajo en general.\n",
+        "\n",
+        "Al minimizar las funciones de pérdida, nuestro objetivo es localizar el mínimo global cuando $x$ es aproximadamente uno.\n",
+        "\n",
+        "### Conexión de derivadas y entrenamiento de modelos \n",
+        "\n",
+        "Durante el entrenamiento, ejecutamos un ***paso hacia adelante*** en las características y calculamos la pérdida comparando las predicciones con el valor objetivo.\n",
+        "\n",
+        "![](img/fig38.png){fig-align=\"center\" width=\"500\"}\n",
+        "\n",
+        "Recuerde que los ***pesos*** y ***sesgos*** de las capas se inicializan aleatoriamente cuando se crea un modelo. Los actualizamos durante el entrenamiento mediante un ***paso hacia atrás*** o ***retropropogación.***\n",
+        "\n",
+        "En el Deep Learning, **las derivadas se conocen como gradientes.**\n",
+        "\n",
+        "![](img/fig39.png){fig-align=\"center\" width=\"600\"}\n",
+        "\n",
+        "Calculamos los gradientes de la función de pérdida y los usamos para actualizar los parámetros del modelo. Incluyendo pesos y sesgos, con retropropagación, repitiendo hasta que las capas esten sintonizadas.\n",
+        "\n",
+        "### Backpropagation (Retropropagación)\n",
+        "\n",
+        "Durante la retropropagación, si consideramos una red de tres capas lineales:\n",
+        "\n",
+        "-   podemos calcular gradientes de pérdida locales con respecto a $L_2$\n",
+        "\n",
+        "-   Usamos $L_2$ para calcular el gradiente $L_1$\n",
+        "\n",
+        "-   Y repetimos hasta llegar a la capa inicial $L_0$.\n",
+        "\n",
+        "![](img/fig40.png){fig-align=\"center\" width=\"300\"}\n",
+        "\n",
+        "Veamos esto con PyTorch:\n",
+        "\n",
+        "```{bash}\n",
+        "model = nn.Sequential(nn.Linear(16, 8),\n",
+        "nn.Linear(8, 4),\n",
+        "nn.Linear(4, 2))\n",
+        "prediction = model(sample)\n",
+        "\n",
+        "criterion = CrossEntropyLoss()\n",
+        "loss = criterion(prediction, target)\n",
+        "loss.backward\n",
+        "```\n",
+        "\n",
+        "Después de ejecutar un paso hacia adelante, definimos una función de pérdida, aquí `CrossEntropyLoss()` y úselo para comparar predicciones con valores objetivo.\n",
+        "\n",
+        "Usando `.backward()`, calculamos gradientes basados en esta pérdida, que se almacenan en los atributos `.grad` de los pesos y `.bias` de los sesgos de cada capa.\n",
+        "\n",
+        "```{bash}\n",
+        "model[0].weight.grad\n",
+        "model[0].bias.grad\n",
+        "model[1].weight.grad\n",
+        "model[1].bias.grad\n",
+        "model[2].weight.grad\n",
+        "model[2].bias.grad\n",
+        "```\n",
+        "\n",
+        "Cada capa del modelo se puede indexar comenzando desde cero para acceder a sus pesos, sesgos y gradientes.\n",
+        "\n",
+        "### Actualizar Manualmente los Parámetros del Modelo \n",
+        "\n",
+        "Para actualizar manualmente los parámetros del modelo, accedemos al gradiente de cada capa.\n",
+        "\n",
+        "```{bash}\n",
+        "# Tasa de aprendizaje tipicamente pequeña\n",
+        "lr = 0.001\n",
+        "\n",
+        "# updater the pesos\n",
+        "weight = model[0].weight\n",
+        "weight_grad = model[0].weight.grad\n",
+        "\n",
+        "# update de sesgos \n",
+        "bias = model[0].bias\n",
+        "bias_grad = model[0].bias.grad \n",
+        "```\n",
+        "\n",
+        "luego multiplicamos por la tasa de aprendizaje y restamos este producto del peso.\n",
+        "\n",
+        "```{bash}\n",
+        "bias = bias - lr*bias_grad \n",
+        "```\n",
+        "\n",
+        "La tasa de aprendizaje es otro parámetros ajustable. Discutiremos esto y el ciclo de entranamiento más adelante en este documento.\n",
+        "\n",
+        "### Gradiente Descendente \n",
+        "\n",
+        "-   Utilizamos un mecanismo llamado *\"gradiente desendiente\"* para encontrar el mínimo global de las funciones de pérdida.\n",
+        "\n",
+        "-   PyTorch simplifica esto con optimizadores, como el descenso de gradiente estocástico (SGD)."
+      ],
+      "id": "12fe8e85"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "import torch.optim as optim\n",
+        "\n",
+        "# Creamos el optimizador\n",
+        "optimizer = optim.SGD(model.parameters(), lr = 0.001)"
+      ],
+      "id": "fd0f5a5a",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "-   Usamos `optim` para instanciar `SGD.`\n",
+        "\n",
+        "-   `.parameters()` devuelve un iterable de todos los parámetros del modelo, que pasamos al optimizador.\n",
+        "\n",
+        "-   Aquí utilizamos una tasa de aprendizaje estándar, \"lr\".\n",
+        "\n",
+        "El optimizador calcula automáticamente los gradientes y actualiza los parámetros del modelo con `.step()`"
+      ],
+      "id": "93116d61"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "optimizer.step()"
+      ],
+      "id": "a1bf1c66",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "# Entrenar una red neuronal con PyTorch\n",
+        "\n",
+        "Ahora que hemos visto los componentes clave de una red neuronal, entrenaremos una utilizando un bucle de entrenamiento. Exploraremos posibles problemas, como la fuga de gradiente, y aprenderemos estrategías para resolverlos, como funciones de activación alternativas y el análisis de la tasa de aprendizaje.\n",
+        "\n",
+        "### Inmmersión profunda en la carga de datos \n",
+        "\n",
+        "El manejo eficiente de datos es clave para entrenar modelos de aprendizaje profundo (Deep Learnig)\n",
+        "\n",
+        "| animal_name | hair | feathers | eggs | milk | predator | legs | tail | type |\n",
+        "|-------------|------|----------|------|------|----------|------|------|------|\n",
+        "| sparrow     | 0    | 1        | 1    | 0    | 0        | 2    | 1    | 0    |\n",
+        "| eagle       | 0    | 1        | 1    | 0    | 1        | 2    | 1    | 0    |\n",
+        "| cat         | 1    | 0        | 0    | 1    | 1        | 4    | 1    | 1    |\n",
+        "| dog         | 1    | 0        | 0    | 1    | 0        | 4    | 1    | 1    |\n",
+        "| lizard      | 0    | 0        | 1    | 0    | 1        | 4    | 1    | 2    |\n",
+        "\n",
+        "Nuestros datos de clasificación de animales estan en un archivo csv y se pueden cargar utilizando `pd.read_csv()`."
+      ],
+      "id": "b49544ad"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "import pandas as pd\n",
+        "import numpy as np\n",
+        "animals = pd.read_csv('animal_dataset.csv', sep = \";\")"
+      ],
+      "id": "1b82f979",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "Usaremos pelo, plumas, huevos, leche, depredador, patas y cola como características para predecir todo el tipo de animal.\n",
+        "\n",
+        "-   La columna **animal_name** no es necesaria ya que los nombres no determinan la clasificación.\n",
+        "\n",
+        "-   Tenga en cuenta que la columna **type** tiene tres categorías: ave (0), mamífero (1) y reptil (2)."
+      ],
+      "id": "25c831ba"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "features = animals.iloc[:, 1:-1]\n",
+        "X = features.to_numpy()\n",
+        "print(X)"
+      ],
+      "id": "907cde7c",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "-   Usaremos `.iloc` para seleccionar todas las columnas excepto la primera y la (animal_name) última (type), lo que nos dará nuestras características de entrada.\n",
+        "\n",
+        "-   Estos se convierten en una matriz NumPy (X), para un manejo más sencillo con PyTorch.\n",
+        "\n",
+        "De manera similar, podemos extraer la última columna (type) y almacenarla como una matriz de nuestros valores objetivo, que representan las etiquetas de clase para cada animal, a esto lo llamaremos **y**."
+      ],
+      "id": "6cdfeb39"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "target = animals.iloc[:, -1]\n",
+        "y = target.to_numpy()\n",
+        "print(y)"
+      ],
+      "id": "f10fbd9c",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "### TensorDataset\n",
+        "\n",
+        "Usaremos TensorDataset para preparar datos para los modelos de PyTorch."
+      ],
+      "id": "7897aa74"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "import torch \n",
+        "from torch.utils.data import TensorDataset"
+      ],
+      "id": "e629b1d4",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "Esto nos permite almacenar nuestras características (X) y etiquetas destino (y) como tensores, lo que hace que sean fáciles de administrar.\n",
+        "\n",
+        "1.  Convertimos $X$ e $y$ en tensores usando el método tensor de PyTorch y los pasamos a TensorDataset"
+      ],
+      "id": "6541f38d"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {
+        "md-indent": "    "
+      },
+      "source": [
+        "dataset = TensorDataset(torch.tensor(X), torch.tensor(y))"
+      ],
+      "id": "0acd13f5",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "2.  Para acceder a una muestra individual, utilizamos la indexación de corchetes."
+      ],
+      "id": "0dcd0a40"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {
+        "md-indent": "    "
+      },
+      "source": [
+        "input_sample, label_sample = dataset[0]\n",
+        "print('input sample:', input_sample)\n",
+        "print('input_sample:', label_sample)"
+      ],
+      "id": "154f1f61",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "    \\\n",
+        "    \\\n",
+        "\n",
+        "## Escribir nuestro primer bucle de entrenamiento\n",
+        "\n",
+        "Ahora que ya tenemos los componentes principales para entrenar un modelo de aprendizaje profundo con PyTorch.\n",
+        "\n",
+        "### Entrenando una Red Neuronal \n",
+        "\n",
+        "Una vez que creamos un modelo, elegimos una función de pérdida, definimos un conjunto de datos y configuramos un optimizador, estamos listos para entrenar. Esto implica recorrer el conjunto de datos, calcular la pérdida, calcular gradientes y actualizar los parámetros del modelo. Este proceso, es llamado **bucle de entrenamiento**, se repite varias veces.\n",
+        "\n",
+        "Un bucle de entrenamiento permite una mayor flexibilidad y control, dándonos la opción de personalizar diferentes elementos.\n",
+        "\n",
+        "Trabajaremos con un conjunto de datos de salarios de científicos de datos para ver esto en acción.\n",
+        "\n",
+        "| experience_level | employment_type | remote_ratio | company_size | salary_in_usd |\n",
+        "|------------------|-----------------|--------------|--------------|---------------|\n",
+        "| 0                | 0               | 0.5          | 1            | 0.036         |\n",
+        "| 1                | 0               | 1.0          | 2            | 0.133         |\n",
+        "| 2                | 0               | 0.0          | 1            | 0.234         |\n",
+        "| 1                | 0               | 1.0          | 0            | 0.076         |\n",
+        "| 2                | 0               | 1.0          | 1            | 0.170         |\n",
+        "\n",
+        "-   Las características son categóricas y el objetivo es el salario en dólares (salary_in_usd), ya normalizado. Dado que el objetivo es un valor continuo, este es un problema de regresión.\n",
+        "\n",
+        "-   Para la regresión, utilizaremos una capa lineal como salida final en lugar de softmax o sigomoide.\n",
+        "\n",
+        "-   Además, aplicaremos una función de pérdida específica de regresión, ya que la entropía cruzada solo se utiliza para tareas de clasificación.\n",
+        "\n",
+        "#### Mean Squared Error Loss\n",
+        "\n",
+        "Podemos utilizar la pérdida de error cuadrático medio (MSE) para problemas de regresión. La pérdida de MSE es la media de la diferencia al cuadrado entre predicciones y el dato real o verdad fundamental, como se muestra en esta implementación en Python:"
+      ],
+      "id": "63cd4fc6"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "def mean_squared_loss(prediction, target):\n",
+        "  return np.mean((prediction - target)**2)"
+      ],
+      "id": "0d6b20f8",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "En PyTorch, utilizamos la función `nn.MSELoss` como criterio.\n",
+        "\n",
+        "```{bash}\n",
+        "criterion = nn.MSELoss()\n",
+        "loss = criterion(prediction, target)\n",
+        "```\n",
+        "\n",
+        "Tenga en cuenta que tanto las predicciones como los objetivos deben ser tensores flotantes.\n",
+        "\n",
+        "Pongamos todo junto ahora, tenemos dos matrices NumPy, \"características\" y \"objetivo\", que tienen nuestros datos y etiquetas."
+      ],
+      "id": "62f10f79"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "data = pd.read_csv(\"salary_datascince.csv\", sep = \";\")\n",
+        "data"
+      ],
+      "id": "a67a86c8",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "features = data.iloc[:, :-1]\n",
+        "X = features.to_numpy()\n",
+        "print(X)"
+      ],
+      "id": "f4f19f12",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "target = data.iloc[:, -1]\n",
+        "y = target.to_numpy()\n",
+        "print(y)"
+      ],
+      "id": "2ee373cb",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "from torch.utils.data import TensorDataset, DataLoader\n",
+        "\n",
+        "dataset = TensorDataset(torch.tensor(X),\n",
+        "torch.tensor(y))\n",
+        "\n",
+        "dataloader = DataLoader(dataset, batch_size = 4, shuffle = True)"
+      ],
+      "id": "650fc743",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "Ahora podemos cargar nuestro conjunto de datos en la clase `DataLoader()` para habilitar el procesamiento por lotes.\n",
+        "\n",
+        "-   Aquí utilizamos un tamaño de lote pequeño de cuatro, pero la selección del tamaño de lote es personalizable dependiendo del caso de uso.\n",
+        "\n",
+        "A continuación creamos nuestro modelo, este conjunto de datos tiene cuatro características de entrada y un destino (salida)."
+      ],
+      "id": "5c0e4c32"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "model = nn.Sequential(nn.Linear(4, 2), \n",
+        "nn.Linear(2, 1))"
+      ],
+      "id": "f1f5b8f6",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "No necesitaremos codificación one-hot ya que se trata de un problema de regresión.\n",
+        "\n",
+        "Finalmente, creamos el criterio de pérdida MSE y el optimizador, con una taza de aprendizaje predeterminada para la mayoría de los problemas de deep learning."
+      ],
+      "id": "72975720"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "criterio = nn.MSELoss()\n",
+        "optimizer = optim.SGD(model.parameters(), lr = 0.001)"
+      ],
+      "id": "8b6ba27e",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "Ahora podemos recorrer el conjunto de datos varias veces:\n",
+        "\n",
+        "-   Recorrer todo el conjunto de datos una vez se denomina época y entrenamos en múltiples época, indicadas por num_epochs. Para cada época, recorremos el cargador de datos. Cada iteración del cargador de datos proporciona un lote de muestras, que vimos anteriormente. Antes del pase hacia adelante , establecemos los gradientes a cero usando `optimizer.zero_grad()`, porque el optimizador almacena gradientes de pasos anteriores de manera predeterminada, obtenemos características y objetivos de cada muestra del cargador de datos. Utilizamos las características para el paso hacia adelante del modelo y utilizamos el objetivo para el cálculo de la pérdida y finalmente, utilizamos el optimizador para actualizar los parámetros del modelo.\n",
+        "\n",
+        "```{bash}\n",
+        "for epoch in range(num_epochs):\n",
+        "  for data in dataloader: \n",
+        "    optimizer.zero_grad()\n",
+        "    feature, target = data \n",
+        "    pred = model(feature)\n",
+        "    loss = criterion(pred, target)\n",
+        "    loss.backward()\n",
+        "    optimizer.step()\n",
+        "    \n",
+        "```\n",
+        "\n",
+        "## Funciones de Activación ReLU\n",
+        "\n",
+        "Hemos visto como las funciones de activación introducen no linealidad para ayudar a las redes neuronales a aprender patrones complejos y hemos aprendido sobre los gradientes y su papel dentro del ciclo de entrenamiento.\n",
+        "\n",
+        "A veces, las funciones de activación pueden reducir demasiado los gradientes, lo que hace que el entrenamiento sea ineficiente.\n",
+        "\n",
+        "Hasta ahora hemos trabajado con dos funciones de activación: **sigmoidea** y **softmax,** que normalmente se utilizan en la capa final de un modelo.\n",
+        "\n",
+        "![](img/fig41.png){fig-align=\"center\" width=\"900\"}\n",
+        "\n",
+        "### Limitaciones de Sigmoid y Softmax\n",
+        "\n",
+        "Comenzaremos por comprender algunas de las limitaciones de la función sigmoidea.\n",
+        "\n",
+        "![](img/fig42.png){fig-align=\"center\" width=\"300\"}\n",
+        "\n",
+        "-   Las salidas de sigmoid están limitadas entre 0 y 1, lo que significa que para cualquier entrada, la salida siempre estará dentro de este rango.\n",
+        "\n",
+        "-   Sigmoid podría usarse en cualquier punto de una red. Sin embargo, los gradientes de la sigmoide, que se muestran en naranja, son muy pequeños para valores grandes y pequeños de $x$. Este fenómeno se llama saturación. Durante la retropropagación, esto se vuelve problemático porque cada gradiente depende del anterior. Cuando los gradientes son extremadamente pequeños, no logran actualizar los pesos de manera efectiva.\n",
+        "\n",
+        "-   Este problema se conoce como el problema de los gradientes avanescentes y puede dificultar mucho el entrenamiento de redes profundas.\n",
+        "\n",
+        "La **función softmax**, que también produce salidas acotadas entre 0 y 1, sufre saturación de manera similar.\n",
+        "\n",
+        "Por tanto, ambas funciones de activación no son ideales para capas ocultas y es mejor utilizarlas solo en la última capa.\n",
+        "\n",
+        "### ReLU\n",
+        "\n",
+        "Descubriremos dos funciones de activación ampliamente utilizadas, diseñadas para su uso entre capas lineales o en capas ocultas.\n",
+        "\n",
+        "![Función ReLU](img/fig43.png){fig-align=\"center\" width=\"300\"}\n",
+        "\n",
+        "-   $f(x) = \\max(x,0)$ aquí está la unidad lineal rectificada o ReLU. ReLU genera el valor máximo entre su entrada y cero. Como se muestra en el gráfico.\n",
+        "\n",
+        "-   Para **entradas positivas,** la salida es igual a la entrada.\n",
+        "\n",
+        "-   Para **entradas negativas,** la salida es cero.\n",
+        "\n",
+        "Esta función no tiene límite superior y sus gradientes no se aproximan a cero. Para valores grandes de $x$, lo que ayuda a superar el problema de los gradientes que desaparecen.\n",
+        "\n",
+        "En PyTorch, ReLU se puede utilizar a través del módulo torch.nn"
+      ],
+      "id": "1a4cd257"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "relu = nn.ReLU()"
+      ],
+      "id": "af57ae0b",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "### Leaky ReLU (ReLU con fugas) \n",
+        "\n",
+        "La ReLU con fugas es una variación de la función ReLU. Para entradas positivas, se comporta exactamente como ReLU.\n",
+        "\n",
+        "![Leaky ReLU](img/fig44.png){fig-align=\"center\" width=\"300\"}\n",
+        "\n",
+        "-   Para **entradas positivas**, se comporta exactamente como ReLU.\n",
+        "\n",
+        "-   Para **entradas negativas**, multiplica la entrada por un coeficiente pequeño (predeterminado a 0.01 en PyTorch).\n",
+        "\n",
+        "Esto garantiza que los gradientes para entradas negativas permanezcan distintos de cero, lo que evita que las neuronas dejen de aprender por completo, lo que puede suceder con ReLU estándar.\n",
+        "\n",
+        "En PyTorch, la función ReLU con fugas se implementa utilizando el módulo torch.nn."
+      ],
+      "id": "835b0b02"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "leaky_relu = nn.LeakyReLU(\n",
+        "  negative_slope = 0.05\n",
+        ")"
+      ],
+      "id": "224a26c1",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "El parámetro **negative_slope** controla el coeficiente aplicado a las entradas negativas.\n",
+        "\n",
+        "## Tasa de Aprendizaje \n",
+        "\n",
+        "Hemos hablado anteriormente sobre la tasa de aprendizaje, pero llego el momento de que profundicemos más.\n",
+        "\n",
+        "### Actualización de Pesos con SGD\n",
+        "\n",
+        "-   Entrenar una red neuronal significa = resolver una optimización. El problema planteado es minimizar la función de pérdida y ajustando los parámetros del modelo. \\\n",
+        "    \\\n",
+        "    - Para ello utilizamos un algoritmo llamado **descenso de gradiente estocástico, o SGD**, implementado en PyTorch."
+      ],
+      "id": "460aa4bc"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {
+        "md-indent": "    "
+      },
+      "source": [
+        "sgd = optim.SGD(model.parameters(), lr = 0.01, momentum = 0.95)"
+      ],
+      "id": "7685a799",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "    Recuerde que este es el optimizador que usamos para encontrar el mínimo global de las funciones de pérdida.\n",
+        "\n",
+        "-   El optimizador toma los parámetros del modelo junto con dos argumentos claves: \\\n",
+        "    \\\n",
+        "    - **Tasa de aprendizaje:** controla el tamaño del paso de las actualizaciones. \\\n",
+        "    \\\n",
+        "    - momentum: añade inercia para ayudar al optimizador a moverse con suavidad y evitar atascarse. \\\n",
+        "\n",
+        "### Impaco de learning rate: tasa de aprendizaje óptima\n",
+        "\n",
+        "Comprender su impacto nos ayuda a optimizar la eficiencia.\n",
+        "\n",
+        "Intentemos encontrar el mínimo de una función en forma de U.\n",
+        "\n",
+        "![](img/fig45.png){fig-align=\"center\" width=\"500\"}\n",
+        "\n",
+        "Comenzamos en $x = -2$ y ejecutamos el optimizador SGD durante diez pasos. Luego de estos pasos observamos que el optimizador está cerca del mínimo.\n",
+        "\n",
+        "También podemos observar que a medida que nos acercamos al mínimo, el tamaño del paso disminuye gradualmente. Esto sucede porque el tamaño del paso es el gradiente multiplicado por la tasa de aprendizaje. Como la función es menos pronunciada cerca de cero, el gradiente, y por tanto el tamaño del paso, se hace más pequeño.\n",
+        "\n",
+        "### Impacto de learning rate tasa de aprendizaje pequeña\n",
+        "\n",
+        "![](img/fig46.png){fig-align=\"center\" width=\"600\"}\n",
+        "\n",
+        "Sin embargo, si utilizamos el mismo algoritmo para un aprendizaje, si reducimos la velocidad diez veces, nos damos cuenta de que todavía estamos lejos del mínimo de la función después de diez pasos. El optimizador tardará mucho más tiempo en encontrar el mínimo de la función.\n",
+        "\n",
+        "### Impacto learning rate: tasa de aprendizaje alto \n",
+        "\n",
+        "Si utilizamos un valor alto para la tasa de aprendizaje, observamos que el optimizador no puede encontrar el mínimo y rebota de un lado a otro en ambos lados de la función.\n",
+        "\n",
+        "![](img/fig47.png){fig-align=\"center\" width=\"600\"}\n",
+        "\n",
+        "Recuerde que las funciones de pérdida no son convexas.\n",
+        "\n",
+        "![](img/fig48.png){fig-align=\"center\" width=\"800\"}\n",
+        "\n",
+        "Uno de los desafíos al intentar encontrar el mínimo de una función no convexa es quedarse atrapado en un mínimo local.\n",
+        "\n",
+        "### Sin momentum \n",
+        "\n",
+        "-   $lr = 0.01$ $momentum = 0$, ejecutemos nuestro optimizador durante 100 pasos con un momento nulo en esta función no convexa para $x = -1.23$ y $y = -0.14$. \\\n",
+        "    \\\n",
+        "    ![](img/fig49.png){width=\"500\"}\n",
+        "\n",
+        "    -   Vemos que el optimizador se queda atascado en esta primera caída de la función, que no es su mínimo global.\n",
+        "\n",
+        "-   Sin embargo, al utilizar lr = 0.01, momentum = 0.9 ejecutando nuestro optimizador durante 100 pasos para $x = 0.92$ y $y = -2.04$. Podemos encontrar el mínimo de la función. \\\n",
+        "    \\\n",
+        "    ![](img/fig50.png){width=\"500\"}\n",
+        "\n",
+        "Este parámetro proporciona impulso al optimizador permitiendole superar caídas locales, como se muestra en la figura previa.\n",
+        "\n",
+        "El impulso (momentum) mantiene el tamaño del paso grande cuando los pasos anteriores también fueron grandes, incluso si el gradiente actual es pequeño.\n",
+        "\n",
+        "### Summary\n",
+        "\n",
+        "Enr esumen, dos parámetros optimizadores clave impactan el entrenamiento: la tasa de aprendizaje (learning rate) y el impulso (momentum):\n",
+        "\n",
+        "| Learning Rate | Momentum |\n",
+        "|----|----|\n",
+        "| Controla el tamaño del paso | Controla la inercia |\n",
+        "| Valor de tasa alta -\\> bajo rendimiento | Ayuda a escapar de mínimos locales |\n",
+        "| Valor de tasa bajo -\\> entrenamiento lento | Demasiado pequeño -\\> el optimizador se queda atascado |\n",
+        "| Valores tipicos varían de 0.01 a 0.0001. | Rango típico: 0.85 a 0.99 |\n",
+        "\n",
+        "**El `momentum` y `learning` rate son críticos par el entrenamiento de tu red neuronal. Una buena regla general es comenzar con una learning rate de 0.001 y un momentum de 0.95.**\n",
+        "\n",
+        "# Evaluación y Mejora de los Modelos\n",
+        "\n",
+        "Entrenar un modelo de aprendizaje profundo es un arte, y para asegurarnos de que nuestro modelo se entrene correctamente, necesitamos hacer un seguimiento de ciertos parámetros durante el entrenamiento, como la pérdida o la exactitud. Aprenderemos a calcular estas métricas y a reducir el sobreajuste.\n",
+        "\n",
+        "### Inicialización de capas y aprendizaje por transferencia \n",
+        "\n",
+        "Hemos explorado cómo las redes neuronales aprenden actualizando los pesos durante el entrenamiento. Este capítulo final analizará técnicas para evaluar y mejorar la eficiencia del rendimiento del modelo.\n",
+        "\n",
+        "Antes de comenzar, tenga en cuenta que los temas aquí son más avanzados y los cubriremos aun alto nivel.\n",
+        "\n",
+        "#### Inicialización de Capa \n",
+        "\n",
+        "La normalización de datos escala las características de entrada para lograr estabilidad; de manera similar, los pesos de una capa lineal también se inicializan en valores pequeños. Esto se conoce como inicialización de capa.\n",
+        "\n",
+        "Creemos una pequeña capa lineal y verifiquemos su rango de peso."
+      ],
+      "id": "3faa0f09"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "import torch.nn as nn \n",
+        "\n",
+        "layer = nn.Linear(64, 128)\n",
+        "print(layer.weight.min(), layer.weight.max())"
+      ],
+      "id": "520cf015",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "Observemos que los pesos están entre -0.1250 y $\\pm$ 0.125\n",
+        "\n",
+        "#### Por qué es esto importante?\n",
+        "\n",
+        "La salida de una neurona en una capa lineal es una suma ponderada de las entradas de la capa anterior.\n",
+        "\n",
+        "Mantener pequeños tanto los datos de entrada como los pesos de las capas garantiza salidas estables, evitando valores extremos que podrían ralentizar el entrenamiento.\n",
+        "\n",
+        "Las capas de pueden inicializar de diferentes maneras y sigue siendo un área de investigación activa.\n",
+        "\n",
+        "PyTorch proporciona una forma sencilla de inicializar los pesos de las capas con el módulo `nn.init.`"
+      ],
+      "id": "aa8f43d4"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "layer = nn.Linear(64, 128)\n",
+        "nn.init.uniform_(layer.weight)\n",
+        "\n",
+        "print(layer.weight.min(), layer.weight.max())"
+      ],
+      "id": "98ed9c7e",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "Por ejemplo, aquí inicializamos una capa lineal con una distribución uniforme. Como puedes ver, los valores de los pesos ahora varían de 0 a 1.\n",
+        "\n",
+        "### Aprendizaje por Transferencia  \n",
+        "\n",
+        "En la práctica, los ingenieros rara vez entrenan un modelo a partir de pesos inicializados aleatoriamente. En lugar de ello, se basan en un concepto llamado aprendizaje por transferencia.\n",
+        "\n",
+        "El aprendizaje por transferencia toma un modelo que fue entrenado en una primera tarea y lo reutiliza para una segunda tarea. Por ejemplo, entrenamos un modelo sobre los salarios de los científicos de datos en EE.UU.\n",
+        "\n",
+        "Ahora tenemos nuevos datos de los salarios en Europa. En lugar de entrenar un modelo usando pesos inicializados aleatoriamente, podemos cargar los pesos del primer modelo y usarlos como punto de partida para entrenar en este nuevo conjunto de datos.\n",
+        "\n",
+        "Se pueden guardar y cargar pesos utilizando las funciones `torch.save` y `torch.load`\n",
+        "\n",
+        "```{bash}\n",
+        "import torch\n",
+        "\n",
+        "layer = nn.Linear(64, 128)\n",
+        "torch.save(layer, 'layer.pth')\n",
+        "\n",
+        "new_layer = torch.load('layer.pth')\n",
+        "```\n",
+        "\n",
+        "Estas funciones funcionan en cualquier tipo de objetos de PyTorch.\n",
+        "\n",
+        "### Ajuste Fino\n",
+        "\n",
+        "A veces, la segunda tarea es similar a la primera tarea: queremos realizar un tipo específico de aprendizaje por transferencia llamado ajuste fino.\n",
+        "\n",
+        "En este caso, cargamos pesos de un modelo previamente entrenado, pero entrenamos el modelo con una tasa de aprendizaje más pequeña.\n",
+        "\n",
+        "Incluso podemos entrenar parte de una red, si decidimos que alguna de las capas de red no necesitan ser entrenadas y elige congelarla.\n",
+        "\n",
+        "Una regla general es congelar las primeras capas de la red y ajustar las capas más cercanas a la capa de salida.\n",
+        "\n",
+        "Esto se puede lograr estableciendo el atributo `requires_grad` de cada parámetro en Falso."
+      ],
+      "id": "4d3c240f"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "model = nn.Sequential(nn.Linear(64, 128),\n",
+        "nn.Linear(128, 256))\n",
+        "\n",
+        "for name, param in model.named_parameters():\n",
+        "  if name == '0.weight':\n",
+        "    param.requires_grad = False"
+      ],
+      "id": "0230a843",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "Aquí, utilizamos el método `named_parameters()` del modelo, que devuelve el nombe y el parámetro en sí.\n",
+        "\n",
+        "## Evaluación del Rendimiento de los Modelos \n",
+        "\n",
+        "Hemos realizado mucho entrenamiento. Ahora vamos a evaluar nuestros modelos. En el Machine Learning, los datos se dividen en conjuntos de entrenamiento, validación y prueba.\n",
+        "\n",
+        "|             |          |                                        |\n",
+        "|-------------|----------|----------------------------------------|\n",
+        "| Training    | 80-90%   | Ajusta los parámetros del modelo       |\n",
+        "| Validación  | 10 - 20% | Ajusta los hiperparámetros del model   |\n",
+        "| Test        | 5 - 10%  | Evalúa el rendimiento final del modelo |\n",
+        "\n",
+        "Los datos de entrenamiento ajustan los parámetros del modelo, como pesos y sesgos, y los datos de validación ajustan hiperparámetros como la tasa de aprendizaje y el impulso, y el conjunto de pruebas evalúa el rendimiento final del modelo.\n",
+        "\n",
+        "Realizaremos un seguimiento de dos métricas clave: pérdida y precisión durante el entrenamiento y la validación.\n",
+        "\n",
+        "### Calculando Pérdida de Entrenamiento\n",
+        "\n",
+        "-   La pérdida de entrenamiento se calcula sumando la pérdida de todos los lotes en el cargador de datos de entrenamiento.\n",
+        "\n",
+        "-   Al final de cada época (epoch), calculamos la pérdida de entrenamiento media dividiendo la pérdida total por el número de epoch.\n",
+        "\n",
+        "```{bash}\n",
+        "training_loss = 0.0 \n",
+        "\n",
+        "for inputs, labels in trainloader: \n",
+        "  outputs = model(inputs)\n",
+        "  loss = criterion(outputs, labels)\n",
+        "  loss.backward()\n",
+        "  optimizer.step()\n",
+        "  optimizer.zero_grad()\n",
+        "  \n",
+        "  training_loss += loss.item()\n",
+        "  \n",
+        "epoch_loss = training_loss / len(trainloader)\n",
+        "```\n",
+        "\n",
+        "Iteramos a través del cargador de entranamiento, ejecutamos un pase hacia adelante y calculamos la pérdida. Como es habitual, el modelo calcula gradiente y actualiza pesos mediante retropropagación. Y agregamos cada valor de pérdida al total usando `.item()`, que extrae el valor numérico de u tensor.\n",
+        "\n",
+        "Dqdo que una epoch es un paso completo a través del cargado de datos de entrenamiento, calculamos la pérdida media dividiendo training_loss por el número de lotes en el cargador de train.\n",
+        "\n",
+        "### Calculo de la pérdida de validación \n",
+        "\n",
+        "Después de cada epoch de entrenamiento, ejecutamos un ciclo de validación.\n",
+        "\n",
+        "-   Primero, establecemos el modelo en modo evaluación usando `.eval(),` como algunas capas se comportan de manera diferente durante el entrenamiento y la validación.\n",
+        "\n",
+        "-   Para mejorar la eficiencia, utilizamos `torch.no_grad()` , que deshabilita cálculos de gradiente ya que no actualizamos los pesos durante la validación.\n",
+        "\n",
+        "-   Luego, iteramos a través del cargador de datos de validación, ejecutamos un pase hacia adelante y calculamos la pérdida, sumándola en los lotes.\n",
+        "\n",
+        "-   Al final de la época, calculamos la pérdida de validación media.\n",
+        "\n",
+        "-   Finalmente, volvemos al modo de entrenamiento con .`train()`, preparándolo para la siguiente epoch de entrenamiento.\n",
+        "\n",
+        "```{bash}\n",
+        "validation_loss = 0.0\n",
+        "\n",
+        "model.eval()\n",
+        "\n",
+        "with torch.no_grad(): \n",
+        "  for inputs, labels in validationloader: \n",
+        "    outputs = model(inputs)\n",
+        "    loss = criterion(outputs, labels)\n",
+        "    validation_loss += loss.item()\n",
+        "    \n",
+        "epoch_loss = validation_loss / len(validationloader) \n",
+        "model.train()\n",
+        "\n",
+        "```\n",
+        "\n",
+        "### Sobreajuste o Overfitting \n",
+        "\n",
+        "Realizar un seguimiento de la pérdida de entrenamiento y validación nos ayuda a detectar el sobreajuste.\n",
+        "\n",
+        "![](img/fig51.png){fig-align=\"center\" width=\"400\"}\n",
+        "\n",
+        "**Cuando un modelo se sobreajusta**, la pérdida de entrenamiento continúa disminuyendo, pero la pérdida de validación comienza a aumentar. Esto significa que el **modelo está aprendiendo demasiado bien los datos de entrenamiento** y no funcionará bien con datos nuevos.\n",
+        "\n",
+        "### Calculando accuracy con `torchmetrics`\n",
+        "\n",
+        "La pérdida nos indica qué tan bien está aprendiendo un modelo, pero no siempre refleja con qué precisión hace predicciones.\n",
+        "\n",
+        "1.  Hacemos un seguimiento de la precisión utilizando torchmetrics.\n",
+        "\n",
+        "2.  Para tareas de clasificación de múltiples clases, creamos una métrica de precisión con `torchmetrics.Accuracy()`\n",
+        "\n",
+        "3.  A medida que el modelo procesa cada lote, actualizamos esta métrica utilizando sus predicciones y las etiquetas reales.\n",
+        "\n",
+        "4.  Dado que el modelo genera probabilidades para múltiples clases, podemos utilizar `argmax(dim=-1)` para seleccionar la clase con mayor probabilidad. Esto convierte las predicciones codificadas one-hot en índices de clase antes de pasarlas a la métrica.\n",
+        "\n",
+        "5.  Al final de cada epoch, calculamos la precisión general utilizando `.compute().`\n",
+        "\n",
+        "6.  Finalmente, reiniciamos la métrica con `.reset()` para borrar su estado antes de la próxima epoch.\n",
+        "\n",
+        "```{bash}\n",
+        "import torchmetrics \n",
+        "\n",
+        "metrics = torchmetrics.Accuracy(task = \"multiclass\", num_classes = 3)\n",
+        "\n",
+        "for features, labels in dataloader: \n",
+        "  outputs = model(features)\n",
+        "  metrics.update(outputs, labels.argmax(dim=-1))\n",
+        "  \n",
+        "accuracy = metrics.compute()\n",
+        "\n",
+        "metric.reset()\n",
+        "\n",
+        "```\n",
+        "\n",
+        "## Lucha contra el Sobreajuste \n",
+        "\n",
+        "Anteriormente, aprendimos cómo detectar el sobreajuste observando las pérdidas de entrenamiento y validación. Ahora, descubriremos algunas formas de combatir el sobreajuste.\n",
+        "\n",
+        "Recuerde que el sobreajuste ocurre cuando el modelo no se generaliza a datos no vistos. Si no entrenamos correctamente el modelo, comenzará a memorizar los datos de entrenamiento, lo que conduce a un buen rendimiento en el conjunto de entrenamiento pero a un rendimiento deficiente en el conjunto de validación.\n",
+        "\n",
+        "Posibles causas:\n",
+        "\n",
+        "| Problema                       | Solución                         |\n",
+        "|--------------------------------|----------------------------------|\n",
+        "| Conjunto de datos pequeños     | Más data                         |\n",
+        "| Modelo con demasiada capacidad | Reducir el tamaño del modelo     |\n",
+        "| Valores grandes de los pesos   | Reducir los valores de los pesos |\n",
+        "\n",
+        "-   Para contrarrestar el sobreajuste, podemos reducir el tamaño del modelo o agregar un nuevo tipo de capa llamada **dropout**.\n",
+        "\n",
+        "-   También podemos utilizar la descomposición del peso para forzar que los parámetros permanezcan pequeños.\n",
+        "\n",
+        "-   Para obtener más datos o utilizar la ampliación de datos\n",
+        "\n",
+        "Exploremos estas estrategías.\n",
+        "\n",
+        "### Regularización usando una capa dropout\n",
+        "\n",
+        "Una forma común de combatir el sobreajuste es agregar capas dropout a nuestra red neuronal.\n",
+        "\n",
+        "`El dropout` es una técnica de **regularización** que desactiva aleatoriamente una fracción de las neuronas durante el entrenamiento, evitando que el modelo se vuelva demasiado dependiente de características específicas.\n",
+        "\n",
+        "-   Las capas dropout normalmente se agregan después de las funciones de activación."
+      ],
+      "id": "816ac595"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "model = nn.Sequential(nn.Linear(8, 4),\n",
+        "nn.ReLU(),\n",
+        "nn.Dropout(p = 0.5))\n",
+        "\n",
+        "features = torch.randn((1, 8))\n",
+        "print(model(features))"
+      ],
+      "id": "e016af74",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "El argumento **p** determina la probabilidad de que una neurona se establezca en cero. En este ejemplo se descartan el 75% de las neuronas.\n",
+        "\n",
+        "El dropout se comporta de manera diferente durante el entrenamiento y la evaluación, durante el entrenamiento, desactiva neuronas aleatoriamente, mientras que durante la evaluación se deshabilita, lo que garantiza que todas las neuronas estén activas para obtener predicciones estables.\n",
+        "\n",
+        "Para cambiar entre estos modos, utilizamos `model.train()` y `model.eval()`\n",
+        "\n",
+        "### Regularización con disminución de pesos \n",
+        "\n",
+        "La siguiente estratefia para reducir el sobreajuste que descubriremos es la disminución de pesos, otra forma de regularización.\n",
+        "\n",
+        "En PyTorch, la disminución del peso se agreha al optimizador mediante el parámetro weight_decay, normalmente establecido en un valor pequeño, por ejemplo 0.0001. Este parámetro agrega una penalización a la función de pérdida, formando pesos más pequeños y ayudando al modelo a generalizar mejor.\n",
+        "\n",
+        "```{bash}\n",
+        "optimizer = optim.SGD(model.parameters(), lr = 0.001, weight_decay = 0.0001)\n",
+        "```\n",
+        "\n",
+        "-   Durante la retropropagación, esta penalización se resta del gradiente, lo que evita un crecimiento excesivo del peso.\n",
+        "\n",
+        "-   Cuanto más alto fijemos la caída del peso, más fuerte será la regularización y hará que el sobreajuste sea menos probable.\n",
+        "\n",
+        "### Aumentación de Data\n",
+        "\n",
+        "![](img/fig52.png){fig-align=\"center\" width=\"700\"}\n",
+        "\n",
+        "-   Recopilar más datos puede ser costoso, pero los investigadores han encontrado una forma de expandir conjuntos de datos artificialmente usando **aumento de datos**.\n",
+        "\n",
+        "-   El aumento de datos se aplica comúnmente a los datos de imágenes, que se pueden rotar y escalados, de modo que diferentes vistas de la misma cara estén disponibles como puntos de datos nuevos.\n",
+        "\n",
+        "-   Si bien no analizaremos aquí como aumentar los datos, sigue siendo un método valioso para combatir el sobreajuste cuando no hay datos adicionales disponibles.\n",
+        "\n",
+        "## Mejorar el Rendimiento del Modelo \n",
+        "\n",
+        "En esta sessión final, reuniremos todo y aprenderemos una receta para abordar cualquier problema de Deep Learning.\n",
+        "\n",
+        "-   Primero, creamos un modelo que pueda sobreajustarse al conjunto de entrenamiento. Esto garantizará que el problema tenga solución. También establecemos un línea base de rendimiento a la que aspirar con el conjunto de validación.\n",
+        "\n",
+        "-   Luego, necesitamos reducir el sobreajuste para aumentar el rendimiento en el conjunto de validación.\n",
+        "\n",
+        "-   Por último, podemos ajustar ligeramente los diferentes hiperparámetros para garantizar que logremos el mejor rendimiento posible.\n",
+        "\n",
+        "Es útil comenzar con un solo punto de datos antes de sobreajustar todo el conjunto de entrenamiento.\n",
+        "\n",
+        "```{bash}\n",
+        "features, labels = next(iter(dataloader))\n",
+        "\n",
+        "for i in range(1000): \n",
+        "  outputs = model(features)\n",
+        "  loss = criterion(outputs, labels)\n",
+        "  optimizer.zero_grad()\n",
+        "  loss.backward()\n",
+        "  optimizer.step()\n",
+        "```\n",
+        "\n",
+        "-   Cuando el modelo está configurado correctamente, debería alcanzar rápidamente una pérdida a cero y una predicción del 100% en ese punto de datos. Una vez que este paso sea exitoso, escalamos al conjunto de entrenamiento completo.\n",
+        "\n",
+        "-   En esta etapa, utilizamos una arquitectura de modelo existente lo suficientemente grande como para sobreajustar mientras mantiene los hiperparámetros, como la tasa de aprendizaje, en sus valores predeterminados.\n",
+        "\n",
+        "Ahora necesitamos crear un modelo que se generalice bien para maximizar la precisión de la validación.\n",
+        "\n",
+        "![](img/fig53.png){fig-align=\"center\" width=\"400\"}\n",
+        "\n",
+        "Reducir el sobreajuste a menudo tiene un costo, ya que aplicar la regularización puede afectar significativamente el rendimiento del modelo.\n",
+        "\n",
+        "![](img/fig54.png){fig-align=\"center\" width=\"800\"}\n",
+        "\n",
+        "El modelo original se ajusta al conjunto de entrenamiento, logrando una alta precisión pero sin generalizarse bien a datos nuevos. Por el contrario, con demasiada regularización, el modelo actualizado muestra una caída en la precisión del entrenamiento y la validación, lo que limita su capacidad de aprender de manera efectiva. Esto resalta la importancia de equilibrar la reducción del sobreajuste.\n",
+        "\n",
+        "Estrategías mientras monitoreamos de cerca las métricas clave para encontrar el modelo con mejor rendimiento.\n",
+        "\n",
+        "Una vez que estemos satisfechos con el rendimiento, el paso final es ajustar los hiperparámetros. Esto se hace a menudo en configuraciones del optimizador, como la tasa de aprendizaje o el impulso.\n",
+        "\n",
+        "La busqueda de cuadrícula prueba parámetros a intervalos fijos. Por ejemplo, valores de impulso de 0.85 a 0.99 y tasas de aprendizaje de diez elvado a menos seís"
+      ],
+      "id": "1e45c1d1"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "# Grid Search\n",
+        "for factor in range(2, 6): \n",
+        "  lr = 10 ** -factor"
+      ],
+      "id": "29636d0d",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "![](img/fig55.png){fig-align=\"center\" width=\"300\"}\n",
+        "\n",
+        "La búsqueda aleatoria adopta un enfoque diferente. En lugar de probar valores establecidos, los seleccionamos aleatoriamente dentro de un rango determinado. La función `np.random.uniform(2, 6)`, por ejemplo, elige un número entre 2 y 6, lo que nos permite explorar una variedad más amplia de ritmos de aprendizaje."
+      ],
+      "id": "4be1327a"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "factor = np.random.uniform(2, 6)\n",
+        "lr = 10** - factor"
+      ],
+      "id": "36a2d511",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "![](img/fig56.png){fig-align=\"center\" width=\"300\"}\n",
+        "\n",
+        "La búsqueda aleatoria suele ser más eficiente, ya que evita pruebas innecesarias y aumenta la posibilidad de encontrar configuraciones óptimas."
+      ],
+      "id": "aa5be176"
+    }
+  ],
+  "metadata": {
+    "kernelspec": {
+      "name": "python3",
+      "language": "python",
+      "display_name": "Python 3 (ipykernel)",
+      "path": "/Users/juanisaulamejia/opt/anaconda3/share/jupyter/kernels/python3"
+    }
+  },
+  "nbformat": 4,
+  "nbformat_minor": 5
+}

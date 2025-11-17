@@ -13,7 +13,7 @@ Supongamos que tiene una colección de clientes con diversas características, c
 
 El objetivo de esta sección es aprender a descubrir los grupos subyacentes (o clústeres) en un conjunto de datos. En esta sección aprendera a agrupar empresas utilizando sus cotizaciones bursátiles,y distinguir diferentes especies agrupando sus medidas.
 
-## Aprendizaje no supervizado 
+## Aprendizaje no supervizado
 
 El aprendizaje no supervizado es una clase de técnica de aprendizaje automático para descrubrir patrones en los datos. Por ejemplo:
 
@@ -29,7 +29,7 @@ Estos son ejemplos de técnicas de aprendizaje no supervizadas llamadas *agrupac
 
 -   El ***aprendizaje no supervisado***, por el contrario, es un aprendizaje sin etiquetas. Es puro descubrimiento de patrones, sin la guía de una tarea de predicción.
 
-### Iris dataset 
+### Iris dataset
 
 El conjunto de datos iris consta de mediciones de muchas plantas iris de tres especies diferentes:
 
@@ -51,7 +51,7 @@ Hay cuatro medidas:
 
 Estas son las características del conjunto de datos.
 
-#### Matrices, características y muestras 
+#### Matrices, características y muestras
 
 Conjuntos de datos como este (iris) se escribiran como matrices numerosas bidimensionales.
 
@@ -59,7 +59,7 @@ Conjuntos de datos como este (iris) se escribiran como matrices numerosas bidime
 
 -   Las medidas de plantas individuales son las muestras del conjunto de datos, estas corresponden a filas de la matriz.
 
-#### Iris datases es 4-dimensional 
+#### Iris datases es 4-dimensional
 
 Las muestras del conjunto de datos iris tienen cuatro medidas y, por lo tanto, corresponden a puntos en un espacio de cuatro dimensiones. Es decir:
 
@@ -67,7 +67,7 @@ Las muestras del conjunto de datos iris tienen cuatro medidas y, por lo tanto, c
 
 No podemos visualizar cuatro dimensiones directamente, pero utilizando técnicas de aprendizaje no supervizado aún podemos obtener información.
 
-### K-Means Clustering 
+### K-Means Clustering
 
 Agruparemos estas muestras utilizando la agrupación de k-Means. K-Means encuentra un número específico de grupos en las muestras. Está implementado en la biblioteca de `scikit-learn` o `sklearn`.
 
@@ -83,7 +83,7 @@ iris = pd.DataFrame(iris.data, columns = iris.feature_names) # Convertimos iris 
 
 Para comenzar:
 
-1.   Importamos KMeans de scikit-learn.
+1.  Importamos KMeans de scikit-learn.
 
 2.  Luego creamos un modelo KMeans, especificando la cantidad de clústeres que deseamos encontrar con `n_clusters` especificamos n_cluster = 3, ya que hay tres especies de iris.
 
@@ -106,7 +106,7 @@ print(labels)
 
 Esto nos devuelve una etiqueta de grupo para cada muestra, que indica a qué grupo pertenece una muestra.
 
-#### Etiquetas de clúster para nuevas muestras 
+#### Etiquetas de clúster para nuevas muestras
 
 Si alguien viene con un algún dataset iris nuevo, kMeans puede determinar a qué grupos pertenecen sin tener que empezar de nuevo.
 
@@ -168,7 +168,7 @@ plt.scatter(centroids_x, centroids_y, marker = 'D', s = 50)
 plt.show()
 ```
 
-## Evaluar una agrupación 
+## Evaluar una agrupación
 
 En la sección anterior, utilizamos KMeans para agrupar el dataset de iris en tres grupos. Pero **¿cómo podemos evaluar la calidad de esta agrupación?**
 
@@ -219,7 +219,7 @@ Tabulaciones cruzadas como estás proporcionan información valiosa sobre qué t
 
 **¿Cómo se puede evaluar la calidad de un clustering en estos casos?**
 
-### Medición de la calidad de la agrupación 
+### Medición de la calidad de la agrupación
 
 Una buena agrupación tiene grupos compactos, lo que significa que las muestras de cada grupo están agrupadas, no dispersas.
 
@@ -263,7 +263,7 @@ plt.xticks(ks)
 plt.show()
 ```
 
-## Transformación de Características para mejorar agrupaciones 
+## Transformación de Características para mejorar agrupaciones
 
 Veamos ahora otro conjunto de datos, el conjunto de datos de los vinos del Piamonte.
 
@@ -281,7 +281,7 @@ samples = samples.drop("class_name", axis = 1)
 samples
 ```
 
-### Clustering con Vinos 
+### Clustering con Vinos
 
 Tomaremos la matriz de muestra de los vinos y usaremos KMeans para encontrar 3 grupos
 
@@ -290,7 +290,7 @@ model = KMeans(n_clusters = 3, random_state = 42)
 labels = model.fit_predict(samples)
 ```
 
-#### Cluster vs Varieties 
+#### Cluster vs Varieties
 
 Hay tres variedades de vinom así que usamos pandas para crear la tabla cruzada para comprobar las correspondencia entre la etiqueta del clúster y la variedad de vino.
 
@@ -406,7 +406,7 @@ En este capítulo, aprenderás dos técnicas de aprendizaje no suprvisado para l
 
 **t-SNE** mapea las muestras de datos en un espacio bidimensional para que se pueda visualizar la proximidad antre ellas.
 
-## Visualizar Jerarquías 
+## Visualizar Jerarquías
 
 Una gran parte del trabajo de cualquier cientifico de datos es la comunicación de los resultados o conocimiento a otras personas. Las visualizaciones son una excelente manera de compartir sus hallazgos especialmente con una audiencia no técnica. En este nuevo capítulo, aprenderá sobre dos métodos de aprendizaje no supervisado correspondientes a visualización:
 
@@ -448,7 +448,7 @@ Este proceso es en realidad un tipo particular de agrupamiento jerárquico llamd
 
 Aún no hemos definido qué significa que dos clústeres estén cerca, pero volveremos a abordar este tema más adelante.
 
-### Dendrograma de una Clusterización Jerárquica 
+### Dendrograma de una Clusterización Jerárquica
 
 Todo el proceso de agrupamiento jerárquico está codificado en el dendrograma.
 
@@ -520,7 +520,7 @@ plt.show()
 
 Como podemos observar, podemos crear visualizaciones geniales como esta con el clustering jerárquico, pero se puede usar ara más que solo visualizaciones.
 
-## Etiquetas de clústeres en la agrupación jerárquica 
+## Etiquetas de clústeres en la agrupación jerárquica
 
 En la sección anterior empleamos la agrupación jerárquica. Creamos una gran visualización de las empresas según sus movimientos de sus cotizaciones bursátiles. Pero la **agrupación jerárquica no es sólo una herramienta de visualización**.
 
@@ -544,7 +544,7 @@ La distancia entre dos grupos se mide utilizando un **método de enlace (método
 
 > Los diferentes métodos de vinculación producen diferentes agrupaciones jerárquicas.
 
-### Extracción de etiquetas de clúster mediante `fcluster.` 
+### Extracción de etiquetas de clúster mediante `fcluster.`
 
 La etiquetas de clúster para cualquier etapa intermedia se pueden extraer utilizando la función `fcluster`. Vamos a probarlo, especificando la altura de 15. Despues de realizar la agrupación jerárquica de los datos de empresas, importamos la función `fcluster`. Luego, pasamos el resultado de la función de vinculación a la función fcluster, especificando la altura como segundo argumento.
 
@@ -559,7 +559,7 @@ print(labels)
 
 Esto nos devolvio una matriz numpy que contiene las etiquetas de clúster para todos los países.
 
-### Alineación de las etiquetes de los clústeres con los nombres de las empresas 
+### Alineación de las etiquetes de los clústeres con los nombres de las empresas
 
 Para inspeccionar las etiquetas de los clústeres, usaremos un DataFrame para alinear las etiquetas con los nombres de los países.
 
@@ -572,7 +572,7 @@ print(pairs.sort_values('labels'))
 
 Como era de esperar, las etiquetas del clúster agrupan a Intel, Texas instruments en el mismo clúster. Pero tenga en cuenta que las etiquetas de clúster de scipy comienzan en 1, no en 0 como lo hacen en `scikit-learn.`
 
-### t-SNE para mapas bidimensionales 
+### t-SNE para mapas bidimensionales
 
 En esta sección, aprenderá un método de aprendizaje no supervisado para visualización llamado `t-SNE`.
 
@@ -580,7 +580,7 @@ En esta sección, aprenderá un método de aprendizaje no supervisado para visua
 
 Tiene un nombre complicado, pero tiene un propósito muy simple. Mapea muestras de su espacio de alta dimensión a un espacio de 2D o 3D dimensiones para que puedan visualizarse. Si bien es inevitable cierta distorsión, t-SNE hace un gran trabajo de representar aproximadamente las distancias entre las muestras. Por este motivo, t-SNE es una ayuda visual invaluable para comprender un conjunto de datos.
 
-#### t-SNE en el dataset iris 
+#### t-SNE en el dataset iris
 
 Para ver qué tipo de conocimientos son posibles con t-SNE, veamos cómo funciona en el conjunto de datos del iris. Las muestras de iris están en un espacio de cuatro dimensiones, donde cada dimensión corresponde a una de las cuatro medidas del iris, como la longitud y el ancho de los pétalos.
 
@@ -590,7 +590,7 @@ Ahora a t-SNE solo se le dieron las medidas de las muestras de iris. En particul
 
 Sin embargo, este diagrama de dispersión nos da una nueva perspectiva. Aprendemos que hay dos especies de iris, versicolor y virginica, cuyas muestras están muy juntas en el espacio. Por lo tanto, podría suceder que el conjunto de datos del iris parezca tener dos grupos en lugar de tres. Esto es compatible con nuestros ejemplos anteriores usando KMeans, donde vimos que la agrupación con 2 grupos también tenía una inercia relativamente baja, lo que significa grupos apretados.
 
-#### t-SNE en Sklearn 
+#### t-SNE en Sklearn
 
 t-SNE está disponible en scikit-learn, pero funciona un poco de manera diferente a los componentes de ajuste/transformación que ya conoce.
 
@@ -650,11 +650,11 @@ plt.show()
 
 ```
 
-# Descorrelación de Datos y Reducción de Dimensiones 
+# Descorrelación de Datos y Reducción de Dimensiones
 
 La reducción de dimensiones resume un conjunto de datos utilizando sus patrones comunes. En esta sección, aprenderás la técnica más fundamental de reducción de dimensiones, el **análisis de componentes principales** (PCA, por sus siglas en inglés). El PCA se utiliza a menudo antes del aprendizaje supervisado para mejorar el rendimiento y la generalización del modelo. También puede ser útil para aprendizaje no supervisado. Por ejemplo, utilizaremos una variante PCA que te permitirá agrupar articulos de wikipedia según su contenido.
 
-## Visualización de la transformación PCA 
+## Visualización de la transformación PCA
 
 La reducción de dimensiones encuentra patrones en los datos y utiliza estos patrones para reexpresarlos en una forma comprimida. Esto hace que el cálculo posterior con los datos sea mucho más sencillo, eficiente y, esto puede ser de gran importancia en un mundo de grandes conjuntos de datos.
 
@@ -662,7 +662,7 @@ Sin embargo, la función más importante de la reducción de dimensión es reduc
 
 > En muchas aplicaciones del mundo real, es la reducción de dimensiones la que hace posible la predicción.
 
-### Análisis de componentes principales 
+### Análisis de componentes principales
 
 Esta es la técnica de reducción de dimensión más fundamental. Se llama *"Análisis de componentes principales"*, o *"PCA"* para abreviar. PCA realiza la reducción de dimensión en dos pasos, y el primero:
 
@@ -737,7 +737,7 @@ Son los componentes principales que PCA alinea con los ejes de coordenadas. Una 
 print(model.components_)
 ```
 
-Esta es una matriz numpy con una fila para cada componente principal. \
+Esta es una matriz numpy con una fila para cada componente principal.\
 
 ## Dimensión Intrínseca
 
@@ -776,7 +776,7 @@ Cada muestra se representa como un punto en el espacio tridimensional. Sin embar
 
 Esto significa que los datos se pueden aproximar utilizando sólo dos coordenadas, sin perder mucha información. Entonces, este conjunto de datos tiene una dimensión intrínseca de 2. PEro los gráficos de dispersión solo son posibles si hay 3 características o menos.
 
-### PCA identifica la dimensión intrínseca 
+### PCA identifica la dimensión intrínseca
 
 **Cómo se puede identificar la dimensión intrínseca, si hay muchas características?**
 
@@ -794,7 +794,7 @@ Las características de PCA están en un orden especial.
 
 Aquí se muestra un gráfico de barras que muestra la varianza de cada una de las características de PCA. Como se puede ver, cada característica de PCA tiene menos variación que la primera. Esto concuerda con el diagrama de dispersión de las características de PCA, donde las muestras no varían mucho en la dirección vertical. En las otras dos direcciones, sin embargo, la variación es evidente.
 
-### Varianza y Dimensión Intrínseca 
+### Varianza y Dimensión Intrínseca
 
 -   La dimensión intrínseca es el número de características de PCA que tiene una varianza significativa.
 
@@ -802,7 +802,7 @@ Aquí se muestra un gráfico de barras que muestra la varianza de cada una de la
 
 En nuestro ejemplo, solo las dos primeras características de PCA tienen una varianza significativa. Por lo tanto, este conjunto de datos tiene una dimensión intrínseca de 2, lo que concuerda con lo que observamos al inspeccionar el diagrama de dispersión.
 
-### Plotting de varianza de PCA 
+### Plotting de varianza de PCA
 
 Veamos como gráficar las varianzas de las características del PCA en la práctica.
 
@@ -900,9 +900,176 @@ El PCA de Scikit-Learn no admite csr_matrix y necesitará utilizar TruncatedSVD 
 
 TruncatedSVD realiza la misma transformación que PCA, pero acepta matrices csr_matrix como entrada.
 
-``` Python
+``` python
 from sklearn.decomposition import TruncatedSVD
 model = TruncatedSVD(n_components = 3)
 model.fit(documents)
 transformed = model.transform(documents)
 ```
+
+# Descubrir rasgos interpretables
+
+En este último capítulo, aprenderás una técnica de reducción de dimensiones denominada `"factorización de matrices no negativas"` (NMF, por sus siglas en inglés), que expresa las muestras como combinaciones de partes interpretables. Por ejemplo, expresa los documentos como combinaciones de temas y las imágines en términos de patrones visuales habituales.
+
+También aprenderá a utilizar NMF para crear sistemas de recomendación que te permitan encontrar articulos similares para leer o artistas musicales que se ajusten a tu historial de reproducción.
+
+## Factorización de matrices no negativas (NMF)
+
+**NMF** significa *"factorización matricial no negativa"* . NMF, como PCA, es una técnica de reducción de dimensión. Sin embargo, a diferencia del PCA, los modelos NMF son interpretables. Esto significa que los modelos NMF son más fáciles de entender por uno mismo y mucho más fáciles de explicar a los demás. Sin embargo, el NMF no se puede aplicar a todos los conjuntos de datos. Se requiere que las características de la muestra sean **"no negativas",** es decir mayor o iguales a 0.
+
+NMF logra su interpretabilidad al descomponer las muestras como sumas de sus partes. Por ejemplo, NMF descompone los documentos como combinaciones de temas comunes e e imagenes como combinaciones de patrones comunes.
+
+![](img/fig32.png){fig-align="center"}
+
+Aprenderemos más sobre este ejemplo en detalle más adelante.
+
+### NMF en Scikit - Learn
+
+NMF esta disponible en `scikit learn` y sigue el mismo patrón de ajuste `fit()`/transformación `transform()` que PCA. Sin embargo, a diferencia del PCA, siempre se debe especificar el número deseado de componentes `NMF(n_components=2)`.
+
+NMF funciona tanto con matrices numpy con matrices dispersas en el formato `csr_matrix`.
+
+Veamos una aplicación de NMF a un ejemplo de juguete de una matriz de frecuencia de palabras.
+
+En este conjunto de datos de juguetes, solo hay 4 palabras en el vocabulario, y estos corresponden a las cuatro columnas de la matriz de frecuencia de palabras.
+
+![](img/fig33.png){fig-align="center"}
+
+Cada fila representa un documento y las entradas de la matriz miden la frecuencia de cada palabra en el documento utilizando lo que se conoce como **"tf-idf"**.
+
+-   **"tf"** es la frecuencia de la palabra en el documento. Entonces, si el 10% de las palabras del documento son "datacamp", entonces el tf de "datacamp" para ese documento es el punto 1.
+
+-   **"idf"** es un esquema de ponderación que reduce la influencia de palabras frecuentes como "the".
+
+``` python
+from sklearn.decomposition import NMF
+model = NMF(n_components = 2)
+model.fit()
+
+nmf_features = model.transform(samples)
+
+print(model.components_)
+```
+
+![](img/fig34.png){fig-align="center"}
+
+Así como el PCA tiene componentes principales, el NMF tiene componentes que aprenden de las muestras, y al igual que con PCA, la dimensión de los componentes es la misma que la dimensión de las muestras. En nuestros ejemplo, hay 2 componentes y viven en un espacio de 4 dimensiones, correspondientes a las 4 palabras del vocabulario.
+
+Las entradas de los componentes NMF son siempre no negativas.
+
+``` python
+print(nmf_features)
+```
+
+![](img/fig35.png){fig-align="center" width="500"}
+
+Los valores de las características NMF también son no negativos. Como vimo con PCA, nuestros datos transformados en este ejemplo tendrán dos columnas, correspondientes a nuestras dos nuevas características.
+
+Las características y los componentes de un modelo NMF se pueden combinar para reconstruir aproximadamente las muestras de datos originales.
+
+### Reconstrucción de una muestra
+
+Veamos cómo funciona esto con una única muestra de datos. Aquí hay una muestra que representa un documento de nuestro conjunto de datos de juguetes:
+
+``` python
+print(samples[i,:])
+```
+
+![](img/fig36.png){fig-align="center" width="500"}
+
+y podemos visualizar sus valores de características NMF:
+
+``` python
+print(nmf_features[i,:])
+```
+
+![](img/fig37.png){fig-align="center" width="500"}
+
+Ahora, si multiplicamos cada componente NMF por la característica NMF correspondiente y sumamos cada columna, obtenemos algo muy cercano a la muestra original.
+
+![](img/fig38.png){fig-align="center" width="500"}
+
+De esta manera, una muestra se puede reconstruir multiplicando el componenten NMF por los valores característicos NMF de la muestra y sumando. Este cálculo también se puede expresar como lo que se conoce como un producto de matrices. No utilizaremos ese punto de vista, pero de ahí proviene la **"factorización matricial"**, o **"MF"**, en NMF.
+
+> Por último, recuerde que NMF solo se puede aplicar a matrices de datos no negativos, como matrices de frecuencia de palabras.
+
+En la siguiente sección, construiremos otro ejemplo codificando colecciones de imagenes como matrices no negativas. También hay muchos otros grandes ejemplos, como las matrices que codifican audio, espectrogramas y matrices que representan los historiales de compras en sitios de comercio electrónico. Por los momentos, en esta sección aprendimos los conceptos básicos de NMF.
+
+## NMF Aprende partes interpretables
+
+Aprendamos ahora que los componentes de NMF representan patrones que ocurren con frecuencia en las muestras.
+
+Consideremos un ejemplo concreto, donde los artículops científicos están representados por sus frecuencias de palabras.
+
+![](img/fig39.png){fig-align="center" width="500"}
+
+Hay 20,000 artículos y 800 palabras. Entonces la matriz tiene 800 columnas.
+
+Ajustemos un modelo NMF con 10 componentes a los artículos.
+
+``` python
+print(articles.shape)
+```
+
+![](img/fig40.png){fig-align="center" width="500"}
+
+``` python
+nmf = NMF(n_components=10)
+nmf.fit(articles)
+```
+
+![](img/fig41.png){fig-align="center" width="500"}
+
+``` python
+print(nmf.components=10)
+```
+
+![](img/fig42.png){fig-align="center" width="500"}
+
+Los 10 componentes se almancenan como las 10 filas de una matriz numpy bidimensional.
+
+Las filas, o componentes, viven en un espacio de 800 dimensiones: hay una dimensión para cada una de las palabras.
+
+![](img/fig43.png){fig-align="center" width="300"}
+
+Alinear las palabras de nuestro vocabulario con las columnas de los componentes del NMF permite interpretarlas.
+
+![](img/fig44.png){fig-align="center" width="500"}
+
+Al elejir un componente, como este, y observar qué palabras tienen los valores más altos, que se ajustan a un tema: las palabras son *"species", "plant", "genetic", "evolution", "life"*
+
+![](img/fig45.png){fig-align="center" width="500"}
+
+Lo mismo ocurre si se considera cualquier otro componente:
+
+![](img/fig46.png){fig-align="center" width="500"}
+
+### Componentes NMF
+
+Si se aplica NMF a los documentos, los componentes corresponden a temas, y las funciones de NMF reconstruyen los documentos a partir de los temas.
+
+Por otro lado, si se aplica NMF a una colección de imágenes, entonces
+
+![](img/fig47.png){fig-align="center" width="500"}
+
+Los componentes NMF representan patrones que ocurren con frecuencia en las imágenes. En este ejemplo, por ejemplo, NMF descompone las imagénes de una pantalla LCD en las celdas individuales de la pantalla.
+
+Necesitaremos saber cómo representar una coleccíon de imágenes como una matriz no negativas.
+
+Una imagen en la que todos los píxeles son tonos de gris que van del negro al blanco se denomina *"imagen en escala de grises"* . Como solo hay tonos de gris, una imagen en escala de grises se puede codificar por el brilo de cada píxel. Representando el brillo como un número entre 0 y 1, donde 0 es totalmente negro y 1 es totalmente blanco, la imagen se puede representar como una matriz bidimensional de números.
+
+![](img/fig48.png){fig-align="center" width="500"}
+
+Aquí, por ejemplo, hay una fotografía en escala de grises de la luna!
+
+![](img/fig49.png){fig-align="center" width="500"}
+
+Estas matrices bidimensionales de números se pueden aplanar luego enumerando las entradas. Por ejemplo, podríamos leer los valores por fila, de izquierda a derecha y de arriba a abajo. La imagen en escala de grises ahora está representada por una matriz plana de números no negativos.
+
+![](img/fig50.png){fig-align="center" width="500"}
+
+De este modo, se puede crear una colección de imágenes en escala de grises del mismo tamaño, codificado como una matriz bidimensional, en la que cada fila representa una imagen como una matriz aplanada y cada columna representa un píxel.
+
+![](img/fig51.png){fig-align="center" width="400"}
+
+Al observar las imágenes como muestras y los píxeles como características, podemos observar que los datos están organizados de manera similar a la matriz de frecuencia de palabras. De hecho, las entradas de esta matriz no son negativas, por lo que NMF se puede utilizar para aprender las partes de las imágenes.
