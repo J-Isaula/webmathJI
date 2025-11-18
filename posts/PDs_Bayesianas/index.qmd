@@ -198,3 +198,109 @@ Patrones de comportamiento como frecuencia de transacciones, uso de productos fi
 Para cada variable, es crucial determinar empíricamente las probabilidades condicionales P(Variable\|Default) y P(Variable\|No Default) mediante análisis estadístico de datos históricos. Estas probabilidades condicionales cuantifican la relación entre cada variable y el comportamiento de pago, permitiendo una actualización bayesiana precisa.
 
 La incorporación de múltiples variables plantea desafíos matemáticos adicionales , ya que requiere considerar las dependencias entre variables y evitar el doble conteo de información. Técnicas como las redes bayesianas y los modelos jerárquicos bayesianos proporcionan marcos formales para abordar estos desafíos y realizar actualizaciones bayesianas multivariadas de manera matemáticamente coherente.
+
+## El proceso de Actualización Bayesiana en Crédito
+
+El proceso de actualización bayesiana en el contexto de análisis crediticio consiste en refinar progresivamente nuestra estimación del riesgo de incumplimiento a medida que obtenemos información adicional sobre el solicitante. Este proceso puede visualizarse como una serie de actualizaciones secuenciales donde cada nueva característica observada modifica nuestra evaluación previa.
+
+### Probabilidad base de la población 
+
+Comenzamos con la tasa general de incumplimiento en nuestra cartera o segmento, por ejemplo, P(Default) = 0.05.
+
+### Primera actualización: Historial crediticio
+
+Observamos el historial crediticio del solicitane y actualizamos la probabilidad de incumplimiento utilizando el Teorema de Bayes: P(Default\|Historial).
+
+### Segunda actualización: Nivel de ingresos
+
+Incorporamos información sobre el nivel de ingresos, utilizando la probabilidad actualizada anterior como nueva probabilidad a priori: P(Default\|Historial, Ingresos).
+
+### Probabilidad final actualizada
+
+Continuamos este proceso para cada característica relevante, obteniendo una estimación final refinada del riesgo de incumplimiento.
+
+Matemáticamente, cada actualización sigue la misma estructura del Teorema de Bayes:
+
+$$
+P(Default|E_n) = \frac{P(E_n|Default)\cdot P(Default|E_{n-1})}{P(E_n |Default)\cdot P(Default|E_{n-1}) + P(E_n|NoDefault)\cdot P(NoDefault|E_{n-1})}
+$$
+
+Donde $E_n$ representa la n-ésima característica observada y $P(Default|E_{n-1})$ es la probabilidad de incumplimiento actualizada después de considerar las $n-1$ características anteriores. Este enfoque secuencial permite incorporar nueva información de manera eficiente, actualizando continuamente nuestra evaluación del riesgo crediticio.
+
+## Caso Práctico: Actualización por Cuotas Atrasadas 
+
+Presentamos un caso práctico detallado que ilustra la aplicación del Teorema de Bayes para actualizar la evaluación de riesgo de un cliente basándose en información sobre cuotas atrasadas. Este ejemplo demuestra el proceso completo de actualización bayesiana en un contexto crediticio real.
+
+### Escenario inicial
+
+Un banco desea actualizar la probabilidad de que un solicitante incumpla con su préstamo (sea un "mal pagador") después de observar que tiene un historial de 3 o más cuotas atrasadas en otros créditos.
+
+#### Definición de eventos
+
+-   **M:** El cliente es un `mal pagador` (incumplirá el préstamo).
+
+-   **B:** El cliente es un `buen pagador` (no incumplirá el préstamo).
+
+-   **E:** El cliente tiene un historial de `3 o más cuotras atrasadas.`
+
+#### Probabilidades a priori 
+
+Basados en la experiencia histórica general del banco:
+
+-   $P(M) = 0.05$ (5% de incumplimiento histórico)
+
+-   $P(B) = 0.95$ (95% de pago a tiempo histórico)
+
+#### Probabilidades condicionales
+
+Determinadas mediante análisis de datos históricos:
+
+-   $P(E|M) = 0.70$ (70% de los malos pagadores tuvieron 3+ cuotas atrasadas)
+
+-   $P(E|B) = 0.10$ (10% de los buenos pagadores tuvieron 3+ cuotas atrasadas)
+
+#### Cálculo de la probabilidad total 
+
+$$
+P(E) = P(E|M)\cdot P(M) + P(E|B)\cdot P(B) = (0.70\cdot 0.05) + (0.10\cdot 0.95) = \fbox{0.13}
+$$
+
+#### Aplicación del Teorema de Bayes 
+
+$$
+P(M|E) = \frac{P(E|M)\cdot P(M)}{P(E)} = \frac{0.70\cdot 0.05}{0.13} = \fbox{0.2692}
+$$
+
+Entonces, notemos que:
+
+> -   **Riesgo Inicial (5%):** Probabilidad a priori de incumplimiento antes de considerar el historial de cuotas atrasadas.
+>
+> -   **Riesgo Actualizado (26.92%):** Probabilidad a posteriori de incumplimiento después de considerar el historial de cuotas atrasadas.
+>
+> -   **Factor de incremento (5.38x):** Aumento relativo en la estimación de riesgo debido a la nueva información.
+
+Este ejemplo demuestra cómo una sola pieza de información (historial de cuotas atrasadas) puede cambiar significativamente nuestra evaluación del riesgo crediticio, pasando de un 5% a casi un 27%. Esta actualización bayesiana proporciona una base cuantitativa sólida para ajustar las decisiones crediticias, posiblemente resultando en tasas de interés más altas, limites de crédito reducidos o requisitos adicionales de garantía para este solicitante.
+
+## Implicaciones de la Actualización Bayesiana en Decisiones Crediticias
+
+La actualización bayesiana de la probabilidad de incumplimiento tiene profundas implicaciones para la toma de decisiones crediticias. Permite a las instituciones financieras ir más allá de reglas fijas y categorías predefinidas, adoptando un enfoque más matizado y personalizado para la gestión del riesgo crediticio.
+
+### Decisiones de aprobación/rechazo
+
+Las probabilidades de incumplimiento actualizadas pueden compararse con umbrales predefinidos para tomar decisiones automáticas de aprobación o rechazo. Por ejemplo, si $P(Default|Caracteristicas)>20\%$, la solicitud podría ser rechazada automáticamente.
+
+### Fijación de tasas de interés 
+
+Las tasas de interés pueden ajustarse en función del riesgo actualizado, siguiendo el principio de que mayor riesgo justifica un mayor retorno. Esto puede implementarse mediante fórmulas que relacionan directamente la probabilidad de incumplimiento con la prima de riesgo.
+
+### Determinación de límites de crédito 
+
+Los límites de crédito pueden calibrarse inversamente proporcionales a la probabilidad de incumplimiento actualizada, garantizando que la exposición al riesgo sea coherente con la capacidad de pago estimada.
+
+### Requisitos de garantía 
+
+Para solicitantes con probabilidad de incumplimiento elevadas pero no prohibitivas, pueden solicitarse garantías adicionales para mitigar el riesgo, equilibrando la inclusión financiera con la gestión prudente del riesgo.
+
+El enfoque bayesiano también facilita el desarrollo de estrategias de decisión adaptativas que pueden ajustarse dinámicamente a medida que cambian las condiciones del mercado o se dispone de nueva información. Esto permite una gestión más proactiva y ágil del riesgo crediticio, especialmente valiosa en entornos económicos volátiles.
+
+Además, la transparencia matemática del proceso bayesiano facilita la explicación de las decisiones crediticias tanto a reguladores como a clientes, contribuyendo a prácticas de préstamo más justas y comprensibles que pueden fortalecer la confianza en el sistema financiero.
