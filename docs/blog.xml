@@ -387,8 +387,34 @@
 <p>A pesar de sus sólidos fundamentos teóricos y ventajas prácticas, la aplicación del Teorema de Bayes en el scoring crediticio enfrente varios desafíos significativos que deben ser abordados para una implementación efectiva.</p>
 <p><img src="https://j-isaula.github.io/Web_JI/posts/PDs_Bayesianas/fig2.png" class="img-fluid"></p>
 <p>Abordar estos desafíos requiere una combinación de rigor matemático, conocimiento del dominio financiero y pragmatismo en la implementación. Los avances en estadística computacional y el creciente poder de procesamiento están facilitando superar muchas de estas limitaciones, ampliando el alcance práctico de los modelos bayesianos en el scoring crediticio.</p>
+</section>
+<section id="innovación-y-tendencias-futuras" class="level2">
+<h2 class="anchored" data-anchor-id="innovación-y-tendencias-futuras">Innovación y Tendencias Futuras</h2>
+<p>El campo del scoring crediticio basado en modelos bayesianos está experimentando una rápida evolución, impulsada por avances metodológicos, tecnológicos y cambios en el panorama financiero. Estas innovaciones están expandiendo las capacidades de los enfoques bayesianos en la evaluación del riesgo crediticio.</p>
+<section id="bayesiano-profundo" class="level3">
+<h3 class="anchored" data-anchor-id="bayesiano-profundo">Bayesiano profundo</h3>
+<p>La integración de métodos bayesianos con redes neuronales profundas está creando modelos híbridos que combinan el poder predictivo del aprendizaje profundo con la cuantificación de incertidumbre del enfoque bayesiano. Técnicas como dropout bayesiano y redes bayesianas variacional autocodificadoras permiten aplicar principios bayesianos a arquitecturas neuronales complejas.</p>
+</section>
+<section id="modelos-dinámicos" class="level3">
+<h3 class="anchored" data-anchor-id="modelos-dinámicos">Modelos Dinámicos</h3>
+<p>Los modelos bayesianos dinámicos capturan la evolución temporal del riesgo crediticio, permitiendo actualizar las estimaciones no solo con nueva información transversal sino también considerando la trayectoria temporal. Filtros de partículas y métodos de MCMC secuenciales facilitan la inferencia en estos modelos para seguimiento en tiempo real del riesgo.</p>
+</section>
+<section id="equidad-algorítmica" class="level3">
+<h3 class="anchored" data-anchor-id="equidad-algorítmica">Equidad Algorítmica</h3>
+<p>Los enfoques bayesianos están siendo adaptodas para abordar preocupaciones sobre equidad y sesgo en las decisiones crediticias. Técnicas como modelado causal bayesiano y restricciones de equidad en la inferencia permiten desarrollar modelos que balancean precisión predictiva con consideraciones éticas y regulatorias.</p>
+</section>
+<section id="datos-alternativos" class="level3">
+<h3 class="anchored" data-anchor-id="datos-alternativos">Datos alternativos</h3>
+<p>La incorporación de fuentes de datos no tradicionales (redes sociales, patrones de uso de dispositivos móviles, datos de geolocalización) está expandiendo el conjunto de información disponible para modelos bayesianos. Estos datos requieren nuevos enfoques para modelar su relación con el comportamiento crediticio y gestionar problemas de privacidad.</p>
+</section>
+<section id="automatización-bayesiana" class="level3">
+<h3 class="anchored" data-anchor-id="automatización-bayesiana">Automatización Bayesiana</h3>
+<p>Plataformas de modelado probabilístico programático como Stan, PyMC3 y Edward están democratizando el acceso a métodos bayesianos avanzados. Estas herramientas permiten especificar modelos complejos en código de alto nivel y delegan la inferencia a algoritmos optimizados, reduciendo las barreras técnicas para la implementación.</p>
+<p>Estas tendencias apuntan hacia un futuro donde los modelos bayesianos serán más accesibles, potentes y versátiles, facilitando evaluaciones de riesgo más precisas y personalizadas. La creciente disponibilidad de datos granulares y el avance en técnicas de inferencia están ampliando el alcance de aplicación de los principios bayesianos, desde microcréditos hasta financiamiento corporativo complejo.</p>
+<p>Sin embargo, estos avances también plantean nuevos desafíos relacionados co la interpretabilidad, la privacidad de datos y la gobernanza algorítmicas que deberán abordarse para una adopción responsable y efectiva en la industria financiera.</p>
 
 
+</section>
 </section>
 </section>
 
