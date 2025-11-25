@@ -53,7 +53,7 @@
         "\n",
         "Podemos importar el módulo PyTorch llamando a"
       ],
-      "id": "f2a0bd40"
+      "id": "0ab1f9a2"
     },
     {
       "cell_type": "code",
@@ -61,7 +61,7 @@
       "source": [
         "import torch"
       ],
-      "id": "4e37cf19",
+      "id": "f8f4a934",
       "execution_count": null,
       "outputs": []
     },
@@ -75,7 +75,7 @@
         "\n",
         "-   Se pueden crear tensores a partir de listas de Python o matrices NumPy utilizando la clase `torch.tensor()` esta clase convierte los datos a un formato compatible para el aprendizaje profundo."
       ],
-      "id": "98df3a91"
+      "id": "f3068b7b"
     },
     {
       "cell_type": "code",
@@ -85,7 +85,7 @@
         "tensor = torch.tensor(mi_lista)\n",
         "print(tensor)"
       ],
-      "id": "b0372ec8",
+      "id": "fc63641c",
       "execution_count": null,
       "outputs": []
     },
@@ -97,7 +97,7 @@
         "\n",
         "Podemos llamar a `tensor.shape` para mostrar la forma de nuestro objeto recién creado."
       ],
-      "id": "d2325e2c"
+      "id": "25b884cb"
     },
     {
       "cell_type": "code",
@@ -105,7 +105,7 @@
       "source": [
         "print(tensor.shape)"
       ],
-      "id": "07ab7eee",
+      "id": "cb52b708",
       "execution_count": null,
       "outputs": []
     },
@@ -115,7 +115,7 @@
       "source": [
         "Y `tensor.dtype()` para mostrar su tipo de datos, aquí un entero de 64 bits."
       ],
-      "id": "64ce99e3"
+      "id": "de3365fe"
     },
     {
       "cell_type": "code",
@@ -123,7 +123,7 @@
       "source": [
         "print(tensor.dtype)"
       ],
-      "id": "d83fa917",
+      "id": "a72e4e90",
       "execution_count": null,
       "outputs": []
     },
@@ -137,7 +137,7 @@
         "\n",
         "Se pueden sumar o restar tensores de PyTorch, siempre que sus formas sean compatibles."
       ],
-      "id": "1236c64d"
+      "id": "a19761d0"
     },
     {
       "cell_type": "code",
@@ -147,7 +147,7 @@
         "b = torch.tensor([[2,2],[3,3]])\n",
         "c = torch.tensor([[2,2,2], [3,3,5]])"
       ],
-      "id": "c0775ddf",
+      "id": "95850b5e",
       "execution_count": null,
       "outputs": []
     },
@@ -157,7 +157,7 @@
       "source": [
         "print(a + b)"
       ],
-      "id": "721c475e",
+      "id": "babe252c",
       "execution_count": null,
       "outputs": []
     },
@@ -169,7 +169,7 @@
         "\n",
         "También podemos realizar la multiplicación por elemento, lo que implica multiplicar cada elemento correspondiente."
       ],
-      "id": "40c36414"
+      "id": "29628388"
     },
     {
       "cell_type": "code",
@@ -177,7 +177,7 @@
       "source": [
         "print(a*b)"
       ],
-      "id": "d0a62e63",
+      "id": "20cb6fc5",
       "execution_count": null,
       "outputs": []
     },
@@ -187,7 +187,7 @@
       "source": [
         "También esta incluida la multiplicación de matrices, que no es más que uno forma de combinar dos matrices para crear una nueva."
       ],
-      "id": "6c03da7b"
+      "id": "0e01414b"
     },
     {
       "cell_type": "code",
@@ -195,7 +195,7 @@
       "source": [
         "print(a @ b)"
       ],
-      "id": "24c8bb61",
+      "id": "c1e7c6dd",
       "execution_count": null,
       "outputs": []
     },
@@ -235,7 +235,7 @@
         "\n",
         "Usaremos el módulo `torch.nn` para construir nuestras redes. Esto hace que el código de la red sea más conciso y flexible y se importa convencionalmente como `nn`."
       ],
-      "id": "98b5e9ab"
+      "id": "4ba3ac91"
     },
     {
       "cell_type": "code",
@@ -243,7 +243,7 @@
       "source": [
         "import torch.nn as nn"
       ],
-      "id": "f7803e5b",
+      "id": "5939bc85",
       "execution_count": null,
       "outputs": []
     },
@@ -259,7 +259,7 @@
         "\n",
         "Digamos que creamos un input_tensor con forma de $1\\times 3$."
       ],
-      "id": "6c171ba7"
+      "id": "ee8af7e5"
     },
     {
       "cell_type": "code",
@@ -271,7 +271,7 @@
         "  [[0.3471, 0.4547, -0.2356]]\n",
         ")"
       ],
-      "id": "8c99ed4d",
+      "id": "b9698579",
       "execution_count": null,
       "outputs": []
     },
@@ -289,7 +289,7 @@
         "\n",
         "![](img/fig13.png){fig-align=\"center\" width=\"100\"}"
       ],
-      "id": "211b7809"
+      "id": "a7da2894"
     },
     {
       "cell_type": "code",
@@ -300,7 +300,7 @@
         "  out_features = 2\n",
         ")"
       ],
-      "id": "0ca2878f",
+      "id": "3858dec6",
       "execution_count": null,
       "outputs": []
     },
@@ -312,7 +312,7 @@
         "\n",
         "Por último, pasamos input_tensor a linear_layer para generar una salida."
       ],
-      "id": "37baf223"
+      "id": "b8ae55e7"
     },
     {
       "cell_type": "code",
@@ -321,7 +321,7 @@
         "output = linear_layer(input_tensor)\n",
         "print(output)"
       ],
-      "id": "7e6c95f1",
+      "id": "95dbe623",
       "execution_count": null,
       "outputs": []
     },
@@ -339,7 +339,7 @@
         "\n",
         "Cada capa lineal tiene un conjunto de pesos y sesgos asociados. Estas son las cantidades clave que definen una neurona."
       ],
-      "id": "311941dc"
+      "id": "4c91a22e"
     },
     {
       "cell_type": "code",
@@ -347,7 +347,7 @@
       "source": [
         "print(linear_layer.weight)"
       ],
-      "id": "1c55f57b",
+      "id": "05dfb065",
       "execution_count": null,
       "outputs": []
     },
@@ -357,7 +357,7 @@
       "source": [
         "print(linear_layer.bias)"
       ],
-      "id": "a7bbe0fb",
+      "id": "5425f4fd",
       "execution_count": null,
       "outputs": []
     },
@@ -409,7 +409,7 @@
         "\n",
         "La dimensión de cada capa coincide con la dimensión de salida de la anterior."
       ],
-      "id": "5cb9f478"
+      "id": "d72481af"
     },
     {
       "cell_type": "code",
@@ -421,7 +421,7 @@
         "  nn.Linear(20, 5)\n",
         ")"
       ],
-      "id": "34273fa1",
+      "id": "976ddcf2",
       "execution_count": null,
       "outputs": []
     },
@@ -451,7 +451,7 @@
         "\n",
         "Vamos a desglosarlo con una red de dos capas,"
       ],
-      "id": "bfa7b14c"
+      "id": "fb2277f8"
     },
     {
       "cell_type": "code",
@@ -462,7 +462,7 @@
         "  nn.Linear(4, 2)\n",
         ")"
       ],
-      "id": "4eee7d86",
+      "id": "0e212b60",
       "execution_count": null,
       "outputs": []
     },
@@ -478,7 +478,7 @@
         "\n",
         "También podemos calcular esto en PyTorch usando el método `.numel()`. Este método devuelve el número de elementos de un tensor."
       ],
-      "id": "bb61c11b"
+      "id": "366ac9f4"
     },
     {
       "cell_type": "code",
@@ -490,7 +490,7 @@
         "  \n",
         "print(total)"
       ],
-      "id": "bd440b6d",
+      "id": "2186c22a",
       "execution_count": null,
       "outputs": []
     },
@@ -544,7 +544,7 @@
         "\n",
         "Ahora, implementemos sigmoide en PyTorch."
       ],
-      "id": "a167d10e"
+      "id": "31679d2d"
     },
     {
       "cell_type": "code",
@@ -558,7 +558,7 @@
         "output = sigmoid(input_tensor)\n",
         "print(output)"
       ],
-      "id": "09b14b86",
+      "id": "6a8b81a8",
       "execution_count": null,
       "outputs": []
     },
@@ -568,7 +568,7 @@
       "source": [
         "Normalmente, `nn.Sigmoid()` se agrega como el último paso en `nn.Sequential()`, transformando automáticamente la salida de la capa lineal final."
       ],
-      "id": "b19d5a11"
+      "id": "c84e77bf"
     },
     {
       "cell_type": "code",
@@ -580,7 +580,7 @@
         "  nn.Sigmoid()     # Función de activación\n",
         ")"
       ],
-      "id": "3652a65f",
+      "id": "ddade9f8",
       "execution_count": null,
       "outputs": []
     },
@@ -620,7 +620,7 @@
         "\n",
         "En PyTorch, usamos `nn.Softmax()`"
       ],
-      "id": "3a5ef5b5"
+      "id": "6b3a2032"
     },
     {
       "cell_type": "code",
@@ -638,7 +638,7 @@
         "output_tensor = probabilities(input_tensor)\n",
         "print(output_tensor)"
       ],
-      "id": "74138603",
+      "id": "93855434",
       "execution_count": null,
       "outputs": []
     },
@@ -674,7 +674,7 @@
         "\n",
         "Digamos que tenemos datos de entrada de cinco animales, con seís características o neuronas por punto de datos."
       ],
-      "id": "2c6d5604"
+      "id": "3821aaf7"
     },
     {
       "cell_type": "code",
@@ -688,7 +688,7 @@
         "  [-0.7413, 1.7920, -0.0883, -0.6685, 0.4745, -0.4245]]\n",
         ")"
       ],
-      "id": "a4286aed",
+      "id": "cf0fef38",
       "execution_count": null,
       "outputs": []
     },
@@ -698,7 +698,7 @@
       "source": [
         "Creamos una pequeña red con dos capas lineales y una función de activación sigmoidea en secuencia."
       ],
-      "id": "98d4f0e8"
+      "id": "270ec506"
     },
     {
       "cell_type": "code",
@@ -712,7 +712,7 @@
         "  nn.Sigmoid()\n",
         ")"
       ],
-      "id": "030b396a",
+      "id": "ddedb5e9",
       "execution_count": null,
       "outputs": []
     },
@@ -726,7 +726,7 @@
         "\n",
         "El resultado de nuestra clasificación binaria es una única probabilidad entre cero y uno para cada uno de nuestros cinco animales."
       ],
-      "id": "f73f0a4f"
+      "id": "eebcb002"
     },
     {
       "cell_type": "code",
@@ -735,7 +735,7 @@
         "output = model(input_data)\n",
         "print(output)"
       ],
-      "id": "574dd0ba",
+      "id": "9089d1dd",
       "execution_count": null,
       "outputs": []
     },
@@ -759,7 +759,7 @@
         "\n",
         "Específicamos que nuestro modelo tiene tres clases, estableciendo este valor como la dimensión de salida de la última capa lineal."
       ],
-      "id": "74b32dc3"
+      "id": "a0d5806d"
     },
     {
       "cell_type": "code",
@@ -772,7 +772,7 @@
         "  nn.Softmax(dim=-1)\n",
         ")"
       ],
-      "id": "d470c734",
+      "id": "ab346625",
       "execution_count": null,
       "outputs": []
     },
@@ -782,7 +782,7 @@
       "source": [
         "Usamos Softmax en lugar de Sigmoid, con $dim = -1$ para indicar los 5 animales. Los anímales tiene la misma última dimensión que la salida de la última capa lineal."
       ],
-      "id": "d0c8bac7"
+      "id": "18427bbc"
     },
     {
       "cell_type": "code",
@@ -791,7 +791,7 @@
         "output = model(input_data)\n",
         "print(output.shape)"
       ],
-      "id": "53e0d704",
+      "id": "030a5f74",
       "execution_count": null,
       "outputs": []
     },
@@ -801,7 +801,7 @@
       "source": [
         "Utilizando la misma entrada que antes, la forma de salida es $5\\times 3$."
       ],
-      "id": "98241b91"
+      "id": "2955d6ad"
     },
     {
       "cell_type": "code",
@@ -809,7 +809,7 @@
       "source": [
         "print(output)"
       ],
-      "id": "8c1aa3fb",
+      "id": "1f5f87df",
       "execution_count": null,
       "outputs": []
     },
@@ -827,7 +827,7 @@
         "\n",
         "Ahora usaremos las mismos datos para predecir el peso de los animales en función de sus propiedades."
       ],
-      "id": "688a6630"
+      "id": "4ea1a40f"
     },
     {
       "cell_type": "code",
@@ -841,7 +841,7 @@
         "output = model(input_data)\n",
         "print(output)"
       ],
-      "id": "31d56d8d",
+      "id": "c1fb6328",
       "execution_count": null,
       "outputs": []
     },
@@ -901,7 +901,7 @@
         "\n",
         "Podemos importar `torch.nn.functional` como `F` para evitar la codificación one-hot manual."
       ],
-      "id": "5337adf0"
+      "id": "d3e3dc16"
     },
     {
       "cell_type": "code",
@@ -911,7 +911,7 @@
         "\n",
         "print(F.one_hot(torch.tensor(0), num_classes = 3))"
       ],
-      "id": "abf97bad",
+      "id": "6e5340c1",
       "execution_count": null,
       "outputs": []
     },
@@ -921,7 +921,7 @@
       "source": [
         "En el primer ejemplo, la verdad fundamental es cero (la primera clase). Tenemos 3 clases, por lo que la función genera un tensor de tres elementos con uno en la primera posición y ceros en el resto."
       ],
-      "id": "8728536a"
+      "id": "41489b0d"
     },
     {
       "cell_type": "code",
@@ -929,7 +929,7 @@
       "source": [
         "print(F.one_hot(torch.tensor(1), num_classes = 3))"
       ],
-      "id": "a8df41e4",
+      "id": "add2e8a8",
       "execution_count": null,
       "outputs": []
     },
@@ -939,7 +939,7 @@
       "source": [
         "Notemos ahora que si $y=1$ (la segunda clase), el tensor de salida tiene un uno en la segunda posición y ceros en caso contrario."
       ],
-      "id": "3f14ce20"
+      "id": "82caefa5"
     },
     {
       "cell_type": "code",
@@ -947,7 +947,7 @@
       "source": [
         "print(F.one_hot(torch.tensor(2), num_classes = 3))"
       ],
-      "id": "09218fd1",
+      "id": "4203f003",
       "execution_count": null,
       "outputs": []
     },
@@ -961,7 +961,7 @@
         "\n",
         "Una vez completada la codificación, podemos pasarla junto con nuestras predicciones a una función de pérdida. Lo que almacenaríamos será el tensor de *\"puntuaciones\"*."
       ],
-      "id": "8f390fdb"
+      "id": "dd6ccc92"
     },
     {
       "cell_type": "code",
@@ -972,7 +972,7 @@
         "scores = torch.tensor([-5.2, 4.6, 0.8])\n",
         "one_hot_target = torch.tensor([1,0,0])"
       ],
-      "id": "c1be1e26",
+      "id": "e7bb066e",
       "execution_count": null,
       "outputs": []
     },
@@ -984,7 +984,7 @@
         "\n",
         "Comencemos definiendo nuestra función de pérdida como *\"criterio\".* Luego le pasamos el método `.double()` del tensor de puntuaciones y del tensor `one_hot_target.`"
       ],
-      "id": "05f502c0"
+      "id": "427b9820"
     },
     {
       "cell_type": "code",
@@ -993,7 +993,7 @@
         "criterion = CrossEntropyLoss()\n",
         "print(criterion(scores.double(), one_hot_target.double()))"
       ],
-      "id": "29b6cbe6",
+      "id": "e9f46e32",
       "execution_count": null,
       "outputs": []
     },
@@ -1118,7 +1118,7 @@
         "\n",
         "-   PyTorch simplifica esto con optimizadores, como el descenso de gradiente estocástico (SGD)."
       ],
-      "id": "40a8cf6e"
+      "id": "639a192b"
     },
     {
       "cell_type": "code",
@@ -1129,7 +1129,7 @@
         "# Creamos el optimizador\n",
         "optimizer = optim.SGD(model.parameters(), lr = 0.001)"
       ],
-      "id": "d709a67c",
+      "id": "58559e9c",
       "execution_count": null,
       "outputs": []
     },
@@ -1145,7 +1145,7 @@
         "\n",
         "El optimizador calcula automáticamente los gradientes y actualiza los parámetros del modelo con `.step()`"
       ],
-      "id": "8876a374"
+      "id": "bce3af6e"
     },
     {
       "cell_type": "code",
@@ -1153,7 +1153,7 @@
       "source": [
         "optimizer.step()"
       ],
-      "id": "c2fa864e",
+      "id": "c0718fc1",
       "execution_count": null,
       "outputs": []
     },
@@ -1179,7 +1179,7 @@
         "\n",
         "Nuestros datos de clasificación de animales estan en un archivo csv y se pueden cargar utilizando `pd.read_csv()`."
       ],
-      "id": "8a3f5dca"
+      "id": "c5cd0a47"
     },
     {
       "cell_type": "code",
@@ -1189,7 +1189,7 @@
         "import numpy as np\n",
         "animals = pd.read_csv('animal_dataset.csv', sep = \";\")"
       ],
-      "id": "eb9d2d88",
+      "id": "7837a7bc",
       "execution_count": null,
       "outputs": []
     },
@@ -1203,7 +1203,7 @@
         "\n",
         "-   Tenga en cuenta que la columna **type** tiene tres categorías: ave (0), mamífero (1) y reptil (2)."
       ],
-      "id": "32ed7bb9"
+      "id": "208834a9"
     },
     {
       "cell_type": "code",
@@ -1213,7 +1213,7 @@
         "X = features.to_numpy()\n",
         "print(X)"
       ],
-      "id": "ced5353d",
+      "id": "3a4a6974",
       "execution_count": null,
       "outputs": []
     },
@@ -1227,7 +1227,7 @@
         "\n",
         "De manera similar, podemos extraer la última columna (type) y almacenarla como una matriz de nuestros valores objetivo, que representan las etiquetas de clase para cada animal, a esto lo llamaremos **y**."
       ],
-      "id": "24f9b80a"
+      "id": "6bc36e67"
     },
     {
       "cell_type": "code",
@@ -1237,7 +1237,7 @@
         "y = target.to_numpy()\n",
         "print(y)"
       ],
-      "id": "c8104a5e",
+      "id": "d1af57d3",
       "execution_count": null,
       "outputs": []
     },
@@ -1249,7 +1249,7 @@
         "\n",
         "Usaremos TensorDataset para preparar datos para los modelos de PyTorch."
       ],
-      "id": "8c1eeff5"
+      "id": "f8d2dc24"
     },
     {
       "cell_type": "code",
@@ -1258,7 +1258,7 @@
         "import torch \n",
         "from torch.utils.data import TensorDataset"
       ],
-      "id": "2e2bc028",
+      "id": "9b03c9c9",
       "execution_count": null,
       "outputs": []
     },
@@ -1270,7 +1270,7 @@
         "\n",
         "1.  Convertimos $X$ e $y$ en tensores usando el método tensor de PyTorch y los pasamos a TensorDataset"
       ],
-      "id": "4ccdbb76"
+      "id": "ea39647a"
     },
     {
       "cell_type": "code",
@@ -1280,7 +1280,7 @@
       "source": [
         "dataset = TensorDataset(torch.tensor(X), torch.tensor(y))"
       ],
-      "id": "34c1e981",
+      "id": "c06a5f52",
       "execution_count": null,
       "outputs": []
     },
@@ -1290,7 +1290,7 @@
       "source": [
         "2.  Para acceder a una muestra individual, utilizamos la indexación de corchetes."
       ],
-      "id": "a712ab2a"
+      "id": "ab4bb31a"
     },
     {
       "cell_type": "code",
@@ -1302,7 +1302,7 @@
         "print('input sample:', input_sample)\n",
         "print('input_sample:', label_sample)"
       ],
-      "id": "b8d2b2e2",
+      "id": "5d934c10",
       "execution_count": null,
       "outputs": []
     },
@@ -1343,7 +1343,7 @@
         "\n",
         "Podemos utilizar la pérdida de error cuadrático medio (MSE) para problemas de regresión. La pérdida de MSE es la media de la diferencia al cuadrado entre predicciones y el dato real o verdad fundamental, como se muestra en esta implementación en Python:"
       ],
-      "id": "0fc8ae4e"
+      "id": "030e375d"
     },
     {
       "cell_type": "code",
@@ -1352,7 +1352,7 @@
         "def mean_squared_loss(prediction, target):\n",
         "  return np.mean((prediction - target)**2)"
       ],
-      "id": "a01817d3",
+      "id": "a57be0dc",
       "execution_count": null,
       "outputs": []
     },
@@ -1371,7 +1371,7 @@
         "\n",
         "Pongamos todo junto ahora, tenemos dos matrices NumPy, \"características\" y \"objetivo\", que tienen nuestros datos y etiquetas."
       ],
-      "id": "1a218e2c"
+      "id": "59f9d151"
     },
     {
       "cell_type": "code",
@@ -1380,7 +1380,7 @@
         "data = pd.read_csv(\"salary_datascince.csv\", sep = \";\")\n",
         "data"
       ],
-      "id": "a75a5349",
+      "id": "c558191f",
       "execution_count": null,
       "outputs": []
     },
@@ -1392,7 +1392,7 @@
         "X = features.to_numpy()\n",
         "print(X)"
       ],
-      "id": "d4f79101",
+      "id": "b0e7442b",
       "execution_count": null,
       "outputs": []
     },
@@ -1404,7 +1404,7 @@
         "y = target.to_numpy()\n",
         "print(y)"
       ],
-      "id": "41008116",
+      "id": "cbf57c40",
       "execution_count": null,
       "outputs": []
     },
@@ -1419,7 +1419,7 @@
         "\n",
         "dataloader = DataLoader(dataset, batch_size = 4, shuffle = True)"
       ],
-      "id": "824e943a",
+      "id": "b5b0d1e0",
       "execution_count": null,
       "outputs": []
     },
@@ -1433,7 +1433,7 @@
         "\n",
         "A continuación creamos nuestro modelo, este conjunto de datos tiene cuatro características de entrada y un destino (salida)."
       ],
-      "id": "f32fc1b2"
+      "id": "1cda5a04"
     },
     {
       "cell_type": "code",
@@ -1442,7 +1442,7 @@
         "model = nn.Sequential(nn.Linear(4, 2), \n",
         "nn.Linear(2, 1))"
       ],
-      "id": "8ffc5f9b",
+      "id": "1627ca2e",
       "execution_count": null,
       "outputs": []
     },
@@ -1454,7 +1454,7 @@
         "\n",
         "Finalmente, creamos el criterio de pérdida MSE y el optimizador, con una taza de aprendizaje predeterminada para la mayoría de los problemas de deep learning."
       ],
-      "id": "6229e1af"
+      "id": "ed445a77"
     },
     {
       "cell_type": "code",
@@ -1463,7 +1463,7 @@
         "criterio = nn.MSELoss()\n",
         "optimizer = optim.SGD(model.parameters(), lr = 0.001)"
       ],
-      "id": "008a265a",
+      "id": "85ac3d00",
       "execution_count": null,
       "outputs": []
     },
@@ -1529,7 +1529,7 @@
         "\n",
         "En PyTorch, ReLU se puede utilizar a través del módulo torch.nn"
       ],
-      "id": "327c329b"
+      "id": "7e11d6be"
     },
     {
       "cell_type": "code",
@@ -1537,7 +1537,7 @@
       "source": [
         "relu = nn.ReLU()"
       ],
-      "id": "9946b9e7",
+      "id": "0e1c41a8",
       "execution_count": null,
       "outputs": []
     },
@@ -1559,7 +1559,7 @@
         "\n",
         "En PyTorch, la función ReLU con fugas se implementa utilizando el módulo torch.nn."
       ],
-      "id": "07ae8338"
+      "id": "fbe9f2ab"
     },
     {
       "cell_type": "code",
@@ -1569,7 +1569,7 @@
         "  negative_slope = 0.05\n",
         ")"
       ],
-      "id": "4b6fe589",
+      "id": "b3d4d39e",
       "execution_count": null,
       "outputs": []
     },
@@ -1589,7 +1589,7 @@
         "    \\\n",
         "    - Para ello utilizamos un algoritmo llamado **descenso de gradiente estocástico, o SGD**, implementado en PyTorch."
       ],
-      "id": "b259812a"
+      "id": "3b9f3719"
     },
     {
       "cell_type": "code",
@@ -1599,7 +1599,7 @@
       "source": [
         "sgd = optim.SGD(model.parameters(), lr = 0.01, momentum = 0.95)"
       ],
-      "id": "ebeef7c7",
+      "id": "dff25327",
       "execution_count": null,
       "outputs": []
     },
@@ -1690,7 +1690,7 @@
         "\n",
         "Creemos una pequeña capa lineal y verifiquemos su rango de peso."
       ],
-      "id": "5c15146d"
+      "id": "8ceda9e6"
     },
     {
       "cell_type": "code",
@@ -1701,7 +1701,7 @@
         "layer = nn.Linear(64, 128)\n",
         "print(layer.weight.min(), layer.weight.max())"
       ],
-      "id": "ff55fe51",
+      "id": "dd037b1a",
       "execution_count": null,
       "outputs": []
     },
@@ -1721,7 +1721,7 @@
         "\n",
         "PyTorch proporciona una forma sencilla de inicializar los pesos de las capas con el módulo `nn.init.`"
       ],
-      "id": "6ac69b8f"
+      "id": "11b218fb"
     },
     {
       "cell_type": "code",
@@ -1732,7 +1732,7 @@
         "\n",
         "print(layer.weight.min(), layer.weight.max())"
       ],
-      "id": "f69e2eb9",
+      "id": "0d75f8e9",
       "execution_count": null,
       "outputs": []
     },
@@ -1775,7 +1775,7 @@
         "\n",
         "Esto se puede lograr estableciendo el atributo `requires_grad` de cada parámetro en Falso."
       ],
-      "id": "dd4905e5"
+      "id": "57636a70"
     },
     {
       "cell_type": "code",
@@ -1788,7 +1788,7 @@
         "  if name == '0.weight':\n",
         "    param.requires_grad = False"
       ],
-      "id": "8fbfa956",
+      "id": "ac00e562",
       "execution_count": null,
       "outputs": []
     },
@@ -1936,7 +1936,7 @@
         "\n",
         "-   Las capas dropout normalmente se agregan después de las funciones de activación."
       ],
-      "id": "7d5cfc26"
+      "id": "f9b61333"
     },
     {
       "cell_type": "code",
@@ -1949,7 +1949,7 @@
         "features = torch.randn((1, 8))\n",
         "print(model(features))"
       ],
-      "id": "ac81f4ed",
+      "id": "ee630682",
       "execution_count": null,
       "outputs": []
     },
@@ -2030,7 +2030,7 @@
         "\n",
         "La busqueda de cuadrícula prueba parámetros a intervalos fijos. Por ejemplo, valores de impulso de 0.85 a 0.99 y tasas de aprendizaje de diez elvado a menos seís"
       ],
-      "id": "2feea1d5"
+      "id": "b72a81b9"
     },
     {
       "cell_type": "code",
@@ -2040,7 +2040,7 @@
         "for factor in range(2, 6): \n",
         "  lr = 10 ** -factor"
       ],
-      "id": "39563b7b",
+      "id": "c9a0fad7",
       "execution_count": null,
       "outputs": []
     },
@@ -2052,7 +2052,7 @@
         "\n",
         "La búsqueda aleatoria adopta un enfoque diferente. En lugar de probar valores establecidos, los seleccionamos aleatoriamente dentro de un rango determinado. La función `np.random.uniform(2, 6)`, por ejemplo, elige un número entre 2 y 6, lo que nos permite explorar una variedad más amplia de ritmos de aprendizaje."
       ],
-      "id": "4f95ee66"
+      "id": "fe1fab5c"
     },
     {
       "cell_type": "code",
@@ -2061,7 +2061,7 @@
         "factor = np.random.uniform(2, 6)\n",
         "lr = 10** - factor"
       ],
-      "id": "34550de1",
+      "id": "69ff6927",
       "execution_count": null,
       "outputs": []
     },
@@ -2073,7 +2073,7 @@
         "\n",
         "La búsqueda aleatoria suele ser más eficiente, ya que evita pruebas innecesarias y aumenta la posibilidad de encontrar configuraciones óptimas."
       ],
-      "id": "aab0f313"
+      "id": "85bcecb9"
     }
   ],
   "metadata": {

@@ -111,7 +111,7 @@
         "\n",
         "Ahora, encontremos estos resultados en Python:"
       ],
-      "id": "7fb9a875"
+      "id": "301fcdab"
     },
     {
       "cell_type": "code",
@@ -131,7 +131,7 @@
         "\n",
         "CM = diff(CT,Q)"
       ],
-      "id": "54246abe",
+      "id": "76a6e039",
       "execution_count": null,
       "outputs": []
     },
@@ -142,7 +142,7 @@
         "# igualar costo marginal y costo variable promedio \n",
         "solve(Eq(CM,CV))"
       ],
-      "id": "481ac555",
+      "id": "3e4beb45",
       "execution_count": null,
       "outputs": []
     },
@@ -153,7 +153,7 @@
         "cantidad = solve(Eq(CM,CV))\n",
         "cantidad[0]"
       ],
-      "id": "015dae5e",
+      "id": "63034ace",
       "execution_count": null,
       "outputs": []
     },
@@ -164,7 +164,7 @@
         "P = CV.subs({Q:cantidad[0]})\n",
         "P"
       ],
-      "id": "9943dbbf",
+      "id": "0acc2e85",
       "execution_count": null,
       "outputs": []
     },
@@ -174,7 +174,7 @@
       "source": [
         "plot(CT, CT/Q, CV, CM, (Q,0,100), xlim = (0, 100), ylim = (0,100), xlabel = \"Q\", ylabel = \"P\")"
       ],
-      "id": "9c2cec18",
+      "id": "116ac4de",
       "execution_count": null,
       "outputs": []
     },
@@ -234,7 +234,7 @@
         "\n",
         "Ahora veamos esta solución en Python:"
       ],
-      "id": "917b8553"
+      "id": "b83a7c32"
     },
     {
       "cell_type": "code",
@@ -253,7 +253,7 @@
         "cantidad = solve(Eq(IM,CM))\n",
         "print(\"El valor de la producción que garantiza un equilibrio será:\", cantidad[0])"
       ],
-      "id": "70e81866",
+      "id": "b02237c4",
       "execution_count": null,
       "outputs": []
     },
@@ -263,7 +263,7 @@
       "source": [
         "Este resultado lo que nos dice es que la empresa oferta una unidad de producción $Q = 1$."
       ],
-      "id": "75d626cc"
+      "id": "a6f793a7"
     },
     {
       "cell_type": "code",
@@ -273,7 +273,7 @@
         "costo = CT.subs({Q:cantidad[0]})\n",
         "costo"
       ],
-      "id": "a446d788",
+      "id": "34f38ae0",
       "execution_count": null,
       "outputs": []
     },
@@ -284,7 +284,7 @@
         "ingreso = R.subs({Q:cantidad[0]})\n",
         "ingreso "
       ],
-      "id": "82b206d3",
+      "id": "7429d4e5",
       "execution_count": null,
       "outputs": []
     },
@@ -296,7 +296,7 @@
         "pi = Beneficios.subs({Q:cantidad[0]})\n",
         "pi"
       ],
-      "id": "0fd08f04",
+      "id": "270c92c7",
       "execution_count": null,
       "outputs": []
     },
@@ -306,7 +306,7 @@
       "source": [
         "plot(CT,CM,CT/Q,(Q,0,60), xlim=(0,5), ylim=(0,30), xlabel='Q', ylabel='CT,CM')"
       ],
-      "id": "349e6850",
+      "id": "03468e47",
       "execution_count": null,
       "outputs": []
     },
@@ -318,7 +318,7 @@
         "\n",
         "`Pronto actualizare para el mercado en competencia perfecta a largo plazo, monopolio, e introducirnos un poco a la teoria de juegos.`"
       ],
-      "id": "18f51851"
+      "id": "3cacae84"
     }
   ],
   "metadata": {
