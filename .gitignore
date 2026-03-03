@@ -10,3 +10,5 @@
 /.quarto/
 posts/Unsupervised_Learning/wikipedia_utf8_filtered_20pageviews.csv
 posts/Unsupervised_Learning/wikipedia_utf8_filtered_20pageviews.csv
+
+**/*.quarto_ipynb

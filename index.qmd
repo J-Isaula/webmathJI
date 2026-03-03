@@ -1,7 +1,7 @@
 ---
 title: "Juan Isaula"
 subtitle: "Assistant Manager - Data Science "
-image: perfil_ovalado.png
+image: foto_perfil.jpeg
 about:
   template: trestles
   image-shape: rounded
