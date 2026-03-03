@@ -1,6 +1,6 @@
 ---
 title: "Juan Isaula"
-subtitle: "Assistant Manager - Data Science "
+subtitle: "Subgerente - Data Science "
 image: foto_perfil.jpeg
 about:
   template: trestles
