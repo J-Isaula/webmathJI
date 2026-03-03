@@ -9,8 +9,118 @@
 <link>https://j-isaula.github.io/Web_JI/blog.html</link>
 <atom:link href="https://j-isaula.github.io/Web_JI/blog.xml" rel="self" type="application/rss+xml"/>
 <description>Technology and the Environment</description>
-<generator>quarto-1.7.32</generator>
-<lastBuildDate>Fri, 07 Nov 2025 06:00:00 GMT</lastBuildDate>
+<generator>quarto-1.8.25</generator>
+<lastBuildDate>Sun, 01 Mar 2026 06:00:00 GMT</lastBuildDate>
+<item>
+  <title>Visualización de Datos con Matplotlib</title>
+  <dc:creator>Juan Isaula</dc:creator>
+  <link>https://j-isaula.github.io/Web_JI/posts/Matplotlib/</link>
+  <description><![CDATA[ 
+
+
+
+
+<p>La idea de esté artículo es que el lector aprenda a crear, personalizar y compartir visualizaciones de datos con Matplotlib.</p>
+<section id="introducción-a-matplotlib" class="level1">
+<h1>Introducción a Matplotlib</h1>
+<p>Las visualizaciones de datos nos permiten extraer conclusiones a partir de los datos y comunicar sobre ellos con otras personas.</p>
+<p>Existen muchas bibliotecas de Software para visualizar datos. Una de las principales ventajas de Matplotlib es que te brinda control total sobre las propiedades de los gráficos que desarrollamos.</p>
+<section id="interfaz-pyplot" class="level2">
+<h2 class="anchored" data-anchor-id="interfaz-pyplot">Interfaz Pyplot</h2>
+<p>Hay muchas formas de usar Matplotlib. En este caso, utilizaremos la interfaz principal orientada a objetos. Esta interfaz se ofrece a través del submódulo <code>pyplot</code>. Aquí importamos este submódulo y lo nombramos <code>plt.</code></p>
+<div id="dc8bb81f" class="cell" data-execution_count="1">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">import</span> matplotlib.pyplot <span class="im" style="color: #00769E;
+background-color: null;
+font-style: inherit;">as</span> plt</span>
+<span id="cb1-2">fig, ax <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> plt.subplots()</span>
+<span id="cb1-3">plt.show()</span></code></pre></div></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="https://j-isaula.github.io/Web_JI/posts/Matplotlib/index_files/figure-html/cell-2-output-1.png" width="581" height="416" class="figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Aunque no es necesario usar el nombre <code>plt</code> para que el programa funcione, es una convención muy extendida, y la seguiremos aquí también.</p>
+<p>El comando <code>plt.subplots()</code>, cuando se llama sin argumentos, crea dos objetos diferentes:</p>
+<ol type="1">
+<li>un objeto <strong>fig</strong> (contenedor que agrupa todo lo que se ve en la página ) y</li>
+<li>un objeto <strong>ax</strong> (parte de la página que contiene los datos). Es el lienzo sobre el que dibujaremos con nuestros datos para visualizarlos.</li>
+</ol>
+<p>Aún no se ha añadido ningún dato.</p>
+<section id="añadir-datos-a-los-ejes" class="level3">
+<h3 class="anchored" data-anchor-id="añadir-datos-a-los-ejes">Añadir datos a los ejes</h3>
+<p>Añadamos algunos datos a nuestra figura. Aquí tenemos algunos datos. Este es un DataFrame que contiene información sobre el tiempo en la ciudad de Seattle en los distintos meses del año.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1">seattle_weather[<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"MONTH"</span>]</span></code></pre></div></div>
+<div class="quarto-figure quarto-figure-left">
+<figure class="figure">
+<p><img src="https://j-isaula.github.io/Web_JI/posts/Matplotlib/fig1.png" class="img-fluid quarto-figure quarto-figure-left figure-img" width="200"></p>
+</figure>
+</div>
+<p>La columna <strong>MONTH</strong> contiene los nombres de tres letras de los meses del año. Y la columna <strong>MLY-TAVG-NORMAL</strong> contiene las temperaturas de esos meses, en grados Fahrenheit, promediadas a lo largo de un periodo de diez años.</p>
+<p><img src="https://j-isaula.github.io/Web_JI/posts/Matplotlib/fig2.png" class="img-fluid" width="200"></p>
+<p>Para añadir los datos a los ejees, llamamos a un comando de trazado. Los <strong>comandos de trazado</strong> son métodos del objeto <code>ax</code>. Por ejemplo, aquí llamamos al método <code>plot</code> con la columna <strong>MONTH</strong> como primer argumento y la columna <strong>MLY-TAVG-NORMAL</strong> como segundo argumento. Por último, llamamos a la función <code>plt.show()</code> para mostrar el efecto del comando trazado. Este añade una línea al gráfico.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1">ax.plot(seattle_weather[<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"MONTH"</span>], seattle_weather[<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"MLY-TAVG-NORMAL"</span>])</span>
+<span id="cb3-2">plt.show()</span></code></pre></div></div>
+<div class="quarto-figure quarto-figure-left">
+<figure class="figure">
+<p><img src="https://j-isaula.github.io/Web_JI/posts/Matplotlib/fig3.png" class="img-fluid quarto-figure quarto-figure-left figure-img" width="400"></p>
+</figure>
+</div>
+<p>La dimensión horizontal del gráfico representa los meses según su orden y la altura de la línea en cada mes representa la temperatura media. Las tendencias de los datos ahora son mucho más claras que cuando simplemente leíamos las temperaturas en la tabla.</p>
+</section>
+<section id="añadir-más-datos" class="level3">
+<h3 class="anchored" data-anchor-id="añadir-más-datos">Añadir más datos</h3>
+<p>Si quieres, puedes añadir más datos al gráfico. Por ejemplo, también tenemos una tabla con datos sobre las temperaturas medias en la ciudad de Austin Texas.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1">ax.plot(austin_weather[<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"MONTH"</span>], austin_weather[<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"MLY-TAVG-NORMAL"</span>])</span>
+<span id="cb4-2">plt.show()</span></code></pre></div></div>
+<p>Así es como se vería todo el código para crear esta figura. Primero, creamos los objetos fig, ax. Llamamos al método plot de ax para añadir primero las temperaturas de Seattle y luego las de Austin a los ax. Por último, le pedimos a Matplotlib que nos muestre la figura.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1">fig, ax <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> plt.subplots()ax.plot(seattle_weather[<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"MONTH"</span>], seattle_weather[<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"MLY-TAVG-NORMAL"</span>])</span>
+<span id="cb5-2">ax.plot(austin_weather[<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"MONTH"</span>], austin_weather[<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"MLY-TAVG-NORMAL"</span>])</span>
+<span id="cb5-3">plt.show()</span></code></pre></div></div>
+<div class="quarto-figure quarto-figure-left">
+<figure class="figure">
+<p><img src="https://j-isaula.github.io/Web_JI/posts/Matplotlib/fig4.png" class="img-fluid quarto-figure quarto-figure-left figure-img" width="400"></p>
+</figure>
+</div>
+
+
+</section>
+</section>
+</section>
+
+ ]]></description>
+  <category>Python</category>
+  <category>Plot</category>
+  <guid>https://j-isaula.github.io/Web_JI/posts/Matplotlib/</guid>
+  <pubDate>Sun, 01 Mar 2026 06:00:00 GMT</pubDate>
+  <media:content url="https://j-isaula.github.io/Web_JI/posts/Matplotlib/fondo.jpeg" medium="image" type="image/jpeg"/>
+</item>
 <item>
   <title>Teorema de Bayes Aplicado al Credit Scoring</title>
   <dc:creator>Juan Isaula</dc:creator>

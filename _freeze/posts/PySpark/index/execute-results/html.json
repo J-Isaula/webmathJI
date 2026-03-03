@@ -1,0 +1,12 @@
+{
+  "hash": "b1c43321f89323c89f43ddf32d9e7fcd",
+  "result": {
+    "engine": "jupyter",
+    "markdown": "---\ntitle: \"Visualización de Datos con Matplotlib\"\nsubtitle: \"Python\"\nauthor: \"Juan Isaula\"\ndate: \"2026-03-01\"\ncategories: [Python, Plot]\nimage: \"fondo.jpeg\"\n---\n\nLa idea de esté artículo es que el lector aprenda a crear, personalizar y compartir visualizaciones de datos con Matplotlib.\n\n# Introducción a Matplotlib\n\nLas visualizaciones de datos nos permiten extraer conclusiones a partir de los datos y comunicar sobre ellos con otras personas.\n\nExisten muchas bibliotecas de Software para visualizar datos. Una de las principales ventajas de Matplotlib es que te brinda control total sobre las propiedades de los gráficos que desarrollamos.\n\n## Interfaz Pyplot \n\nHay muchas formas de usar Matplotlib. En este caso, utilizaremos la interfaz principal orientada a objetos. Esta interfaz se ofrece a través del submódulo `pyplot`. Aquí importamos este submódulo y lo nombramos `plt.`\n\n::: {#784484f9 .cell execution_count=1}\n``` {.python .cell-code}\nimport matplotlib.pyplot as plt\nfig, ax = plt.subplots()\nplt.show()\n```\n\n::: {.cell-output .cell-output-display}\n![](index_files/figure-html/cell-2-output-1.png){width=581 height=416}\n:::\n:::\n\n\nAunque no es necesario usar el nombre `plt` para que el programa funcione, es una convención muy extendida, y la seguiremos aquí también.\n\nEl comando `plt.subplots()`, cuando se llama sin argumentos, crea dos objetos diferentes:\n\n1.  un objeto **fig** (contenedor que agrupa todo lo que se ve en la página ) y\n2.  un objeto **ax** (parte de la página que contiene los datos). Es el lienzo sobre el que dibujaremos con nuestros datos para visualizarlos.\n\nAún no se ha añadido ningún dato.\n\n### Añadir datos a los ejes\n\nAñadamos algunos datos a nuestra figura. Aquí tenemos algunos datos. Este es un DataFrame que contiene información sobre el tiempo en la ciudad de Seattle en los distintos meses del año.\n\n``` Python\nseattle_weather[\"MONTH\"]\n```\n\n![](fig1.png){fig-align=\"left\" width=\"200\"}\n\n",
+    "supporting": [
+      "index_files"
+    ],
+    "filters": [],
+    "includes": {}
+  }
+}
