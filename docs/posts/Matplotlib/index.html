@@ -237,7 +237,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="interfaz-pyplot" class="level2">
 <h2 class="anchored" data-anchor-id="interfaz-pyplot">Interfaz Pyplot</h2>
 <p>Hay muchas formas de usar Matplotlib. En este caso, utilizaremos la interfaz principal orientada a objetos. Esta interfaz se ofrece a través del submódulo <code>pyplot</code>. Aquí importamos este submódulo y lo nombramos <code>plt.</code></p>
-<div id="dc8bb81f" class="cell" data-execution_count="1">
+<div id="8bd55dd9" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots()</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
@@ -283,9 +283,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>ax.plot(austin_weather[<span class="st">"MONTH"</span>], austin_weather[<span class="st">"MLY-TAVG-NORMAL"</span>])</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Así es como se vería todo el código para crear esta figura. Primero, creamos los objetos fig, ax. Llamamos al método plot de ax para añadir primero las temperaturas de Seattle y luego las de Austin a los ax. Por último, le pedimos a Matplotlib que nos muestre la figura.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots()ax.plot(seattle_weather[<span class="st">"MONTH"</span>], seattle_weather[<span class="st">"MLY-TAVG-NORMAL"</span>])</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>ax.plot(austin_weather[<span class="st">"MONTH"</span>], austin_weather[<span class="st">"MLY-TAVG-NORMAL"</span>])</span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots()</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>ax.plot(seattle_weather[<span class="st">"MONTH"</span>], seattle_weather[<span class="st">"MLY-TAVG-NORMAL"</span>])</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>ax.plot(austin_weather[<span class="st">"MONTH"</span>], austin_weather[<span class="st">"MLY-TAVG-NORMAL"</span>])</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="quarto-figure quarto-figure-left">
 <figure class="figure">
 <p><img src="fig4.png" class="img-fluid quarto-figure quarto-figure-left figure-img" width="400"></p>

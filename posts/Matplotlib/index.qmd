@@ -71,7 +71,8 @@ plt.show()
 Así es como se vería todo el código para crear esta figura. Primero, creamos los objetos fig, ax. Llamamos al método plot de ax para añadir primero las temperaturas de Seattle y luego las de Austin a los ax. Por último, le pedimos a Matplotlib que nos muestre la figura.
 
 ``` Python
-fig, ax = plt.subplots()ax.plot(seattle_weather["MONTH"], seattle_weather["MLY-TAVG-NORMAL"])
+fig, ax = plt.subplots()
+ax.plot(seattle_weather["MONTH"], seattle_weather["MLY-TAVG-NORMAL"])
 ax.plot(austin_weather["MONTH"], austin_weather["MLY-TAVG-NORMAL"])
 plt.show()
 ```

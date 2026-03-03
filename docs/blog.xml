@@ -28,7 +28,7 @@
 <section id="interfaz-pyplot" class="level2">
 <h2 class="anchored" data-anchor-id="interfaz-pyplot">Interfaz Pyplot</h2>
 <p>Hay muchas formas de usar Matplotlib. En este caso, utilizaremos la interfaz principal orientada a objetos. Esta interfaz se ofrece a través del submódulo <code>pyplot</code>. Aquí importamos este submódulo y lo nombramos <code>plt.</code></p>
-<div id="dc8bb81f" class="cell" data-execution_count="1">
+<div id="8bd55dd9" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><span class="im" style="color: #00769E;
 background-color: null;
 font-style: inherit;">import</span> matplotlib.pyplot <span class="im" style="color: #00769E;
@@ -92,17 +92,18 @@ font-style: inherit;">"MLY-TAVG-NORMAL"</span>])</span>
 <p>Así es como se vería todo el código para crear esta figura. Primero, creamos los objetos fig, ax. Llamamos al método plot de ax para añadir primero las temperaturas de Seattle y luego las de Austin a los ax. Por último, le pedimos a Matplotlib que nos muestre la figura.</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1">fig, ax <span class="op" style="color: #5E5E5E;
 background-color: null;
-font-style: inherit;">=</span> plt.subplots()ax.plot(seattle_weather[<span class="st" style="color: #20794D;
+font-style: inherit;">=</span> plt.subplots()</span>
+<span id="cb5-2">ax.plot(seattle_weather[<span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">"MONTH"</span>], seattle_weather[<span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">"MLY-TAVG-NORMAL"</span>])</span>
-<span id="cb5-2">ax.plot(austin_weather[<span class="st" style="color: #20794D;
+<span id="cb5-3">ax.plot(austin_weather[<span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">"MONTH"</span>], austin_weather[<span class="st" style="color: #20794D;
 background-color: null;
 font-style: inherit;">"MLY-TAVG-NORMAL"</span>])</span>
-<span id="cb5-3">plt.show()</span></code></pre></div></div>
+<span id="cb5-4">plt.show()</span></code></pre></div></div>
 <div class="quarto-figure quarto-figure-left">
 <figure class="figure">
 <p><img src="https://j-isaula.github.io/Web_JI/posts/Matplotlib/fig4.png" class="img-fluid quarto-figure quarto-figure-left figure-img" width="400"></p>
