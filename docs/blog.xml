@@ -28,7 +28,7 @@
 <section id="interfaz-pyplot" class="level2">
 <h2 class="anchored" data-anchor-id="interfaz-pyplot">Interfaz Pyplot</h2>
 <p>Hay muchas formas de usar Matplotlib. En este caso, utilizaremos la interfaz principal orientada a objetos. Esta interfaz se ofrece a través del submódulo <code>pyplot</code>. Aquí importamos este submódulo y lo nombramos <code>plt.</code></p>
-<div id="8bd55dd9" class="cell" data-execution_count="1">
+<div id="0cf4827e" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><span class="im" style="color: #00769E;
 background-color: null;
 font-style: inherit;">import</span> matplotlib.pyplot <span class="im" style="color: #00769E;
@@ -109,6 +109,129 @@ font-style: inherit;">"MLY-TAVG-NORMAL"</span>])</span>
 <p><img src="https://j-isaula.github.io/Web_JI/posts/Matplotlib/fig4.png" class="img-fluid quarto-figure quarto-figure-left figure-img" width="400"></p>
 </figure>
 </div>
+</section>
+</section>
+<section id="personalización-de-gráficos" class="level2">
+<h2 class="anchored" data-anchor-id="personalización-de-gráficos">Personalización de Gráficos</h2>
+<p>Ahora que ya sabemos cómo añadir datos a una gráfica, vamos a empezar a personalizarlas.</p>
+<p>Primero, personalicemos el aspecto de los datos en la gráfica. Una cosa que quizá queramos mejorar es que la gráfica anterior parece continua, pero en realidad solo se midió en intervalos mensuales. Una forma de indicarlo es añadir marcadores a la gráfica que muestren dónde existen datos y qué partes son solo líneas que conectan los puntos de datos.</p>
+<p>El método <code>plot</code> admite un argumento de palabra clave opcional, marker, que te permite indicar que quieres añadir a la gráfica y también qué tipo de marcadores prefieres. Por ejemplo, pasar la letra minúscula “o” indica que quieres usar círculos como marcadores.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1">ax.plot(seattle_weather[<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"MONTH"</span>], seattle_weather[<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"MLY-PRCP-NORMAL"</span>], marker <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"o"</span>)</span>
+<span id="cb6-2">plt.show()</span></code></pre></div></div>
+<div class="quarto-figure quarto-figure-left">
+<figure class="figure">
+<p><img src="https://j-isaula.github.io/Web_JI/posts/Matplotlib/fig5.png" class="img-fluid quarto-figure quarto-figure-left figure-img" width="400"></p>
+</figure>
+</div>
+<p>Si en cambio pasaras una “v” minúscula, obtendriamos marcadores con forma de triángulos apuntando hacia abajo.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1">ax.plot(seattle_weather[<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"MONTH"</span>], seattle_weather[<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"MLY-PRCP-NORMAL"</span>], marker <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"v"</span>)</span>
+<span id="cb7-2">plt.show()</span></code></pre></div></div>
+<div class="quarto-figure quarto-figure-left">
+<figure class="figure">
+<p><img src="https://j-isaula.github.io/Web_JI/posts/Matplotlib/fig6.png" class="img-fluid quarto-figure quarto-figure-left figure-img" width="400"></p>
+</figure>
+</div>
+<p>Para ver todos los estilos de marcadores posibles, puedes visitar esta página <a href="https://matplotlib.org/stable/api/markers_api.html" class="uri">https://matplotlib.org/stable/api/markers_api.html</a> de la documentación en línea de Matplotlib.</p>
+<section id="configuración-del-estilo-de-línea" class="level3">
+<h3 class="anchored" data-anchor-id="configuración-del-estilo-de-línea">Configuración del estilo de línea</h3>
+<p>Puedes ir aún más lejos para enfatizarlo combinando el aspecto de estas líneas de conexión. Esto de hace añadiendo el argumento de palabra clave <code>linestyle</code>.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1">ax.plot(seattle_weather[<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"MONTH"</span>], seattle_weather[<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"MLY-PRCP-NORMAL"</span>], marker <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"v"</span>, linestyle <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"--"</span>)</span>
+<span id="cb8-2">plt.show()</span></code></pre></div></div>
+<div class="quarto-figure quarto-figure-left">
+<figure class="figure">
+<p><img src="https://j-isaula.github.io/Web_JI/posts/Matplotlib/fig7.png" class="img-fluid quarto-figure quarto-figure-left figure-img" width="400"></p>
+</figure>
+</div>
+<p>Aquí se usan dos guiones para indicar que la línea debe ser discontinua.</p>
+<p>Incluso puedes eliminar las líneas por completo pasando la cadena “None” como valor de este argumento de palabra clave.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1">ax.plot(seattle_weather[<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"MONTH"</span>], seattle_weather[<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"MLY-PRCP-NORMAL"</span>], marker <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"v"</span>, linestyle <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"None"</span>)</span>
+<span id="cb9-2">plt.show()</span></code></pre></div></div>
+<div class="quarto-figure quarto-figure-left">
+<figure class="figure">
+<p><img src="https://j-isaula.github.io/Web_JI/posts/Matplotlib/fig8.png" class="img-fluid quarto-figure quarto-figure-left figure-img" width="400"></p>
+</figure>
+</div>
+<p>Por último, puedes elegir el color que quieres usar para los datos. Por ejemplo, aquí hemos decidido mostrar estos datos en rojo, indicado por la letra <strong>“r”.</strong></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1">ax.plot(seattle_weather[<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"MONTH"</span>], seattle_weather[<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"MLY-PRCP-NORMAL"</span>], marker <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"v"</span>, linestyle <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"--"</span>, color <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> <span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"r"</span>)</span>
+<span id="cb10-2">plt.show()</span></code></pre></div></div>
+<div class="quarto-figure quarto-figure-left">
+<figure class="figure">
+<p><img src="https://j-isaula.github.io/Web_JI/posts/Matplotlib/fig9.png" class="img-fluid quarto-figure quarto-figure-left figure-img" width="400"></p>
+</figure>
+</div>
+<p>Otra cosa importante que personalizar son las etiquetas de los ejes. Si quieres que tus visualizaciones comuniquen bien, debes etiquetar siempre los ejes. Es realmente importante, pero a menudo se olvida. Además del método plot, el objeto ax tiene varios métodos que empiezan por la palabra set. Y para añadir un título a los ax con el método <code>set.title()</code></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1">ax.set_xlabel(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Time (months)"</span>)</span>
+<span id="cb11-2">ax.set_ylabel(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Average temperature (Fahrenheit degree)"</span>)</span>
+<span id="cb11-3">ax.set_title(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Weather in Seattle"</span>)</span>
+<span id="cb11-4">plt.show()</span></code></pre></div></div>
+<div class="quarto-figure quarto-figure-left">
+<figure class="figure">
+<p><img src="https://j-isaula.github.io/Web_JI/posts/Matplotlib/fig11.png" class="img-fluid quarto-figure quarto-figure-left figure-img" width="400"></p>
+</figure>
+</div>
+<p>Todo esto aporta otra fuente de información sobre los datos para dar contexto a la visualización.</p>
 
 
 </section>
