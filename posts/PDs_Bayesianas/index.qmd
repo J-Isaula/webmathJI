@@ -345,7 +345,7 @@ Estas extensiones matemáticas aumentan significativamente el poder predictivo d
 
 La implementación efectiva de modelos bayesianos para scoring crediticio requiere procesos rigurosos de calibración y validación para garantizar su precisión y robustez. Estos procesos son fundamentales para asegurar que las probabilidades de incumplimiento estimadas reflejen adecuadamente el riesgo real.
 
-### Calibración de probabilidades 
+### Calibración de probabilidades
 
 La calibración se refiere al grado en que las probabilidades de incumplimiento estimadas coinciden con las frecuencias de incumplimiento observadas. Un modelo bien calibrado debe satisfacer:
 
@@ -361,7 +361,7 @@ Es decir, entre todos los clientes a los que se les asigno una probabilidad de i
 
 3.  **Brier Score:** Mide el error cuadrático medio entre las probabilidades predichas y los resultados observados.
 
-### Validación del poder discriminativo 
+### Validación del poder discriminativo
 
 Además de la calibración, es crucial evaluar la capacidad del modelo para discriminar entre buenos y malos pagadores. Esto puede hacerse mediante:
 
@@ -373,7 +373,7 @@ Además de la calibración, es crucial evaluar la capacidad del modelo para disc
 
 Un modelo bayesiano bien validado debe demostrar tanto una buena calibración como un alto poder discriminativo, garantizando que las decisiones crediticias basadas en él sean tanto precisas como eficaces en la separación de clientes de alto y bajo riesgo.
 
-## Comparación con Otros Enfoques de Scoring Crediticio 
+## Comparación con Otros Enfoques de Scoring Crediticio
 
 El enfoque bayesiano para el scoring crediticio coexiste con otros métodos y de aprendizaje automático. Cada metodología tiene sus propias fortalezas y limitaciones, y la elección entre ellas depende de los objetivos específicos, restricciones y recursos disponibles.
 
@@ -411,7 +411,7 @@ La implementación de modelos bayesianos en sistemasa operativos de decisión cr
 
 La implementación técnica debe considerar varios aspectos prácticos:
 
-### Eficiencia computacional 
+### Eficiencia computacional
 
 Para aplicaciones en tiempo real, es crucial optimizar los cálculos bayesianos. Esto puede lograrse mediante:
 
@@ -431,7 +431,7 @@ Los modelos bayesianos deben manejar elegantemente situaciones donde faltan dato
 
 -   Utilizando estructuras de dependencia condicional para inferir información faltante
 
-### Integración con sistemas existentes 
+### Integración con sistemas existentes
 
 La mayoría de las instituciones financieras tienen sistemas legados que deben integrarse con nuevos modelos bayesianos:
 
@@ -441,7 +441,7 @@ La mayoría de las instituciones financieras tienen sistemas legados que deben i
 
 -   Mecanismos de transición gradual entre modelos antiguos y nuevos
 
-### Cumplimiento regulatorio 
+### Cumplimiento regulatorio
 
 Los modelos bayesianos deben satisfacer requisitos regulatorios cada vez más estrictos:
 
@@ -451,7 +451,7 @@ Los modelos bayesianos deben satisfacer requisitos regulatorios cada vez más es
 
 -   Pruebas de equidad y no discriminación en las decisiones generadas
 
-## Desafíos en la Aplicación del Teorema de Bayes 
+## Desafíos en la Aplicación del Teorema de Bayes
 
 A pesar de sus sólidos fundamentos teóricos y ventajas prácticas, la aplicación del Teorema de Bayes en el scoring crediticio enfrente varios desafíos significativos que deben ser abordados para una implementación efectiva.
 
@@ -459,7 +459,7 @@ A pesar de sus sólidos fundamentos teóricos y ventajas prácticas, la aplicaci
 
 Abordar estos desafíos requiere una combinación de rigor matemático, conocimiento del dominio financiero y pragmatismo en la implementación. Los avances en estadística computacional y el creciente poder de procesamiento están facilitando superar muchas de estas limitaciones, ampliando el alcance práctico de los modelos bayesianos en el scoring crediticio.
 
-## Innovación y Tendencias Futuras 
+## Innovación y Tendencias Futuras
 
 El campo del scoring crediticio basado en modelos bayesianos está experimentando una rápida evolución, impulsada por avances metodológicos, tecnológicos y cambios en el panorama financiero. Estas innovaciones están expandiendo las capacidades de los enfoques bayesianos en la evaluación del riesgo crediticio.
 
@@ -467,7 +467,7 @@ El campo del scoring crediticio basado en modelos bayesianos está experimentand
 
 La integración de métodos bayesianos con redes neuronales profundas está creando modelos híbridos que combinan el poder predictivo del aprendizaje profundo con la cuantificación de incertidumbre del enfoque bayesiano. Técnicas como dropout bayesiano y redes bayesianas variacional autocodificadoras permiten aplicar principios bayesianos a arquitecturas neuronales complejas.
 
-### Modelos Dinámicos 
+### Modelos Dinámicos
 
 Los modelos bayesianos dinámicos capturan la evolución temporal del riesgo crediticio, permitiendo actualizar las estimaciones no solo con nueva información transversal sino también considerando la trayectoria temporal. Filtros de partículas y métodos de MCMC secuenciales facilitan la inferencia en estos modelos para seguimiento en tiempo real del riesgo.
 
@@ -475,11 +475,11 @@ Los modelos bayesianos dinámicos capturan la evolución temporal del riesgo cre
 
 Los enfoques bayesianos están siendo adaptodas para abordar preocupaciones sobre equidad y sesgo en las decisiones crediticias. Técnicas como modelado causal bayesiano y restricciones de equidad en la inferencia permiten desarrollar modelos que balancean precisión predictiva con consideraciones éticas y regulatorias.
 
-### Datos alternativos 
+### Datos alternativos
 
 La incorporación de fuentes de datos no tradicionales (redes sociales, patrones de uso de dispositivos móviles, datos de geolocalización) está expandiendo el conjunto de información disponible para modelos bayesianos. Estos datos requieren nuevos enfoques para modelar su relación con el comportamiento crediticio y gestionar problemas de privacidad.
 
-### Automatización Bayesiana 
+### Automatización Bayesiana
 
 Plataformas de modelado probabilístico programático como Stan, PyMC3 y Edward están democratizando el acceso a métodos bayesianos avanzados. Estas herramientas permiten especificar modelos complejos en código de alto nivel y delegan la inferencia a algoritmos optimizados, reduciendo las barreras técnicas para la implementación.
 
@@ -501,7 +501,7 @@ Un banco regional de tamaño medio enfrentaba desafíos con sus sistema tradicio
 
 -   Aumentar la inclusión financiera incorporando solicitantes tradicionalmente excluidos.
 
-### Implementación técnica 
+### Implementación técnica
 
 El banco implemento un sistema bayesiano con las siguientes características:
 
@@ -525,7 +525,7 @@ El desarrollo e implementación del sistema siguió estas etapas:
 
 4.  Evaluación continua y refinanciamiento iterativo (en curso)
 
-### Resultados cuantitativos 
+### Resultados cuantitativos
 
 > -   **17% reducción de falsos rechazos.** Disminución en solicitudes rechazadas que habrían sido buenos pagadores.
 >
@@ -535,7 +535,7 @@ El desarrollo e implementación del sistema siguió estas etapas:
 
 El caso demuestra cómo un enfoque bayesiano bien implementado puede mejorar simultáneamente la inclusión financiera y la gestión del riesgo, superando las limitaciones de los sistemas tradicionales de scoring crediticio, especialmente para poblaciones con datos crediticios limitados o no tradicionales.
 
-## Recomendaciones para Analistas de Crédito 
+## Recomendaciones para Analistas de Crédito
 
 Basándonos en el análisis detallado por el Teorema de Bayes y sus aplicaciones en el scoring crediticio, ofrecemos recomendaciones prácticas para analistas de crédito y profesionales financieros que deseem implementar o mejorar enfoques bayesianos en sus procesos de evaluación.
 
@@ -571,7 +571,7 @@ Consideraciones adicionales para implementación avanzada:
 | Monitoreo del rendimiento | Implementar dashboard automatizado que rastreen divergencias entre probabilidades predichas y resultados observados | Detección temprana de cambios en las relaciones subyacentes entre variables |
 | Gobernanza del modelo | Establecer procesos claros para revisar y actualizar componentes del modelo ante cambios significativos | Cumplimiento regulatorio y mantenimiento del rendimiento a largo plazo |
 
-## Conclusiones y Perspectivas Futuras 
+## Conclusiones y Perspectivas Futuras
 
 El Teorema de Bayes proporciona un marco matemático riguroso y flexible para abordar uno de los desafíos fundamentales en el análisis crediticio: la actualización sistemática de evaluaciones de riesgo a medida que se dispone de nueva información. A lo largo de este documento, hemos explorado sus fundamentos teóricos, aplicaciones prácticas y desafíos de implementación en el contexto del scoring crediticio.
 

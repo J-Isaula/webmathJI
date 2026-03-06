@@ -45,7 +45,7 @@
         "$y = \\max (0, x)$. Aquí te proporcionó un ejemplo de uso de la función\n",
         "ReLU utilizando `PyTorch.`"
       ],
-      "id": "004a9c12"
+      "id": "95c54757"
     },
     {
       "cell_type": "code",
@@ -64,7 +64,7 @@
         "plt.plot(x.tolist(), y.tolist())\n",
         "plt.show()"
       ],
-      "id": "010354e2",
+      "id": "860bc19e",
       "execution_count": null,
       "outputs": []
     },
@@ -84,7 +84,7 @@
         "Al igual que `ReLU`, la función $\\sigma$ se puede construir simplemente\n",
         "usando `PyTorch`."
       ],
-      "id": "5da31e61"
+      "id": "54ddafa1"
     },
     {
       "cell_type": "code",
@@ -103,7 +103,7 @@
         "plt.plot(x.tolist(), y.tolist())\n",
         "plt.show()"
       ],
-      "id": "eb03d2f8",
+      "id": "33ff4e18",
       "execution_count": null,
       "outputs": []
     },
@@ -123,7 +123,7 @@
         "\\tanh(x) = \\frac{e^x - e^{-x}}{e^x + e^{-x}}\n",
         "$$"
       ],
-      "id": "d256f4b6"
+      "id": "bcd67b1a"
     },
     {
       "cell_type": "code",
@@ -140,7 +140,7 @@
         "plt.plot(x.tolist(),y.tolist())\n",
         "plt.show()"
       ],
-      "id": "66331e2c",
+      "id": "b66c5b3b",
       "execution_count": null,
       "outputs": []
     },
@@ -199,7 +199,7 @@
         "    En `PyTorch`, la función de pérdida absoluta se implementa de la\n",
         "    siguiente manera:"
       ],
-      "id": "3fe7ab21"
+      "id": "505b6939"
     },
     {
       "cell_type": "code",
@@ -213,7 +213,7 @@
         "abs_error = abs_loss(a,b)\n",
         "print(f'abs: {abs_error.item()}')"
       ],
-      "id": "98037a6c",
+      "id": "8b88e755",
       "execution_count": null,
       "outputs": []
     },
@@ -358,7 +358,7 @@
         "Ahora estamos listos para examinar una implementación de RNN utilizando\n",
         "[PyTorch](https://pytorch.org/)"
       ],
-      "id": "f8c5ebf0"
+      "id": "8fedcd1c"
     },
     {
       "cell_type": "code",
@@ -385,7 +385,7 @@
         "        out = self.fc(last_hidden_states)\n",
         "        return out, last_hidden_states"
       ],
-      "id": "39c8a23e",
+      "id": "50833741",
       "execution_count": null,
       "outputs": []
     },
@@ -399,7 +399,7 @@
         "<https://www.kaggle.com/robikscube/Hourly-energy-Consumed>) para la\n",
         "implementación de RNN."
       ],
-      "id": "8796831f"
+      "id": "70be1693"
     },
     {
       "cell_type": "code",
@@ -417,7 +417,7 @@
         "plt.plot(ts[:500])\n",
         "plt.show()"
       ],
-      "id": "a5500833",
+      "id": "21656e45",
       "execution_count": null,
       "outputs": []
     },
@@ -431,7 +431,7 @@
         "A continuación, voy a mostrarte como se desempeña RNN en la serie de\n",
         "tiempo AEP Hourly:"
       ],
-      "id": "39265b0b"
+      "id": "443ae024"
     },
     {
       "cell_type": "code",
@@ -510,7 +510,7 @@
         "model = RNN(hidden_size = rnn_hidden_size)\n",
         "model.train()\n"
       ],
-      "id": "6cfe298d",
+      "id": "e1378993",
       "execution_count": null,
       "outputs": []
     },
@@ -551,7 +551,7 @@
         "        print(f'epoch {t}: train - {round(loss.item(), 4)}, '\n",
         "              f'val: - {round(val_loss.item(), 4)}')\n"
       ],
-      "id": "8796629d",
+      "id": "a235ffc8",
       "execution_count": null,
       "outputs": []
     },
@@ -565,7 +565,7 @@
         "un estado oculto cálido a través de cada iteración y por último\n",
         "evaluamos el modelo que construimos en el conjunto de datos de prueba."
       ],
-      "id": "04b2582c"
+      "id": "fbe87289"
     },
     {
       "cell_type": "code",
@@ -592,7 +592,7 @@
         "plt.legend()\n",
         "plt.show()"
       ],
-      "id": "93c17442",
+      "id": "d054a92e",
       "execution_count": null,
       "outputs": []
     },
@@ -606,7 +606,7 @@
         "\n",
         "Y finalmente, examinamos el proceso de entrenamiento en sí."
       ],
-      "id": "18c99022"
+      "id": "f4326c1c"
     },
     {
       "cell_type": "code",
@@ -621,7 +621,7 @@
         "plt.legend()\n",
         "plt.show()"
       ],
-      "id": "f976bb77",
+      "id": "35754830",
       "execution_count": null,
       "outputs": []
     },
@@ -795,7 +795,7 @@
         "El modelo de predicción `GRU` es muy similar al `RNN`. Veamos su\n",
         "desempeño utilizando la misma data que el casa `RNN`."
       ],
-      "id": "2abaae37"
+      "id": "9fcdd121"
     },
     {
       "cell_type": "code",
@@ -881,7 +881,7 @@
         "    unscaled = scaler.inverse_transform(np.array(y.item()).reshape(-1, 1))[0][0]\n",
         "    predicted.append(unscaled)\n"
       ],
-      "id": "9b68b9a3",
+      "id": "2b0a3467",
       "execution_count": null,
       "outputs": []
     },
@@ -896,7 +896,7 @@
         "plt.legend()\n",
         "plt.show()"
       ],
-      "id": "8d6d48f5",
+      "id": "c95b6b71",
       "execution_count": null,
       "outputs": []
     },
@@ -907,7 +907,7 @@
         "Vemos que el modelo `GRU` imita el comportamiento original de la serie\n",
         "temporal con bastante precisión."
       ],
-      "id": "9549f6b6"
+      "id": "8272978b"
     },
     {
       "cell_type": "code",
@@ -922,7 +922,7 @@
         "plt.legend()\n",
         "plt.show()"
       ],
-      "id": "5600bcb7",
+      "id": "9f8c99a4",
       "execution_count": null,
       "outputs": []
     },
@@ -1024,7 +1024,7 @@
         "Ahora examinemos la implementación de Pytorch del modelo de predicción\n",
         "LSTM:"
       ],
-      "id": "6fcb76cd"
+      "id": "01976623"
     },
     {
       "cell_type": "code",
@@ -1051,7 +1051,7 @@
         "        out = self.fc(last_hidden_states)\n",
         "        return out, h"
       ],
-      "id": "12c83010",
+      "id": "7fec5079",
       "execution_count": null,
       "outputs": []
     },
@@ -1065,7 +1065,7 @@
         "Probaremos el modelo LSTM con el siguiente conjunto de datos de la serie\n",
         "tiempo de consumo de energía por hora)."
       ],
-      "id": "c61bafd0"
+      "id": "784f53eb"
     },
     {
       "cell_type": "code",
@@ -1083,7 +1083,7 @@
         "plt.plot(ts[:500])\n",
         "plt.show()"
       ],
-      "id": "f7fa2391",
+      "id": "31e14460",
       "execution_count": null,
       "outputs": []
     },
@@ -1093,7 +1093,7 @@
       "source": [
         "Veamos el modelo en acción:"
       ],
-      "id": "2c0dea81"
+      "id": "def88de8"
     },
     {
       "cell_type": "code",
@@ -1161,7 +1161,7 @@
         "        print(f'epoch {t}: train - {round(loss.item(), 4)}, '\n",
         "              f'val: - {round(val_loss.item(), 4)}')"
       ],
-      "id": "aa86feb5",
+      "id": "6dbf1148",
       "execution_count": null,
       "outputs": []
     },
@@ -1172,7 +1172,7 @@
         "Para una evaluación del modelo LSTM, necesitamos pasar un estado celular\n",
         "y estado oculto."
       ],
-      "id": "82afd12d"
+      "id": "003030c3"
     },
     {
       "cell_type": "code",
@@ -1201,7 +1201,7 @@
         "plt.legend()\n",
         "plt.show()"
       ],
-      "id": "47734f4e",
+      "id": "bc3db974",
       "execution_count": null,
       "outputs": []
     },
@@ -1212,7 +1212,7 @@
         "LSTM captura muy bien el comportamiento de las series temporales para\n",
         "hacer predicciones precisas."
       ],
-      "id": "771891a9"
+      "id": "902ba9ed"
     },
     {
       "cell_type": "code",
@@ -1227,7 +1227,7 @@
         "plt.legend()\n",
         "plt.show()"
       ],
-      "id": "64a1aa06",
+      "id": "a22261ac",
       "execution_count": null,
       "outputs": []
     },
@@ -1282,7 +1282,7 @@
         "\n",
         "### "
       ],
-      "id": "20520fdc"
+      "id": "0b38ffa8"
     }
   ],
   "metadata": {

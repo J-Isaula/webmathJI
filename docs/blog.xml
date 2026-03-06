@@ -246,6 +246,40 @@ font-style: inherit;">"Weather in Seattle"</span>)</span>
   <media:content url="https://j-isaula.github.io/Web_JI/posts/Matplotlib/fondo.jpeg" medium="image" type="image/jpeg"/>
 </item>
 <item>
+  <title>Gestión Cuantitativa del Riesgos</title>
+  <dc:creator>Juan Isaula</dc:creator>
+  <link>https://j-isaula.github.io/Web_JI/posts/Riesgos/</link>
+  <description><![CDATA[ 
+
+
+
+
+<p>Gestionar el riesgo mediante la gestión cuantitativa de riesgos es una tarea vital en los sectores de la banca, los seguros y la gestión de activos. Es esencial que los analistas de riesgos financieros, los reguladores y los actuarios puedan equilibrar cuantitativamente las recompensas con su exposición al riesgo.</p>
+<p>Este artículo presenta la gestión del riesgo de portafolios financieros mediante un examen de la crisis financiera de 2007-2008 y su efecto en bancos de inversión como Goldman Sachs y J.P.Morgan. Aprenderás a utilizar Python para calcular y mitigar la exposición al riesgo utilizando las medidas Valor en Riesgo y Valor en Riesgo Condicional, a estimar el riesgo con técnicas como la simulación Montecarlo y a utilizar tecnologías de vanguardia como las redes neuronales para equilibrar el portafolio en tiempo real.</p>
+<section id="resumen-de-riesgos-y-rentabilidades" class="level1">
+<h1>Resumen de Riesgos y Rentabilidades</h1>
+<p>La gestión del riesgo empieza por comprender el riesgo y la rentabilidad. Recapitularemos cómo se relacionan entre sí el riesgo y la rentabilidad, identificaremos los factores de riesgo y los utilizaremos para volver a familiarizarnos con la teoría del portafolio moderna aplicada a la crisis financiera mundial de 2007-2008.</p>
+<blockquote class="blockquote">
+<p>La gestión de riesgos es la ciencia de mitigar el impacto de resultados adversos. Cuantificamos la incertidumbre mitigando el riesgo.</p>
+</blockquote>
+<p>La medición del riesgo identifica factores que pueden crear resultados adversos en el futuro. Esto es como identificar las principales causas de un incendio al crear un seguro contra incendios: utilizamos cosas como causas históricas de incencidio, así como las características de las viviendas propensas a incendiarse, con el fin de llegar al mejor seguro posible.</p>
+<p>En este artículo, cuantificaremos los factores que afectan el riesgo de las carteras financieras.</p>
+<p>Nos concentraremos en un período tumultoso de la historia de la humanidad: la <em>“Gran Recesión de 2007-2008” ,</em> cuando se perdieron billones de dólares de crecimiento y riqueza en un período de tres años. Este fue un período de cambios a gran escala en los activos fundamentales, lo que genera incertidumbre y una alta volatilidad en los retornos de los activos. La gestión de riesgos fue crucial para salvar (o en algunos casos, no salvar) tanto a los bancos como a las empresas privadas.</p>
+<p><strong>Una cartera financiera</strong> es un conjunto de activos con rendimientos futuros inciertos. Los ejemplos incluyen acciones, bonos y tenencias de divisas, o “forex”, otros activos más complicados incluyen las opciones sobre acciones, que analizaremos más adelante.</p>
+<p>Para las carteras financieras, cuantificamos el riesgo para poder realizar estrategias de inversión óptimas que maximizan el rendimiento de una cartera, condicionando a un nivel de riesgo que podamos tolerar (conocido como <em>“apetito de riesgo”</em>).</p>
+<p>Recuerde que el rendimiento de una cartera es la suma ponderada de los rendimientos de los activos dentro de una cartera. Podemos encontrar fácilmente este retorno colocando los datos de precios de nuestros activos en un <strong>DataFrame</strong> de <code>Pandas</code>.</p>
+
+
+</section>
+
+ ]]></description>
+  <category>Python</category>
+  <category>Risk</category>
+  <guid>https://j-isaula.github.io/Web_JI/posts/Riesgos/</guid>
+  <pubDate>Sun, 01 Mar 2026 06:00:00 GMT</pubDate>
+  <media:content url="https://j-isaula.github.io/Web_JI/posts/Riesgos/fondo.jpg" medium="image" type="image/jpeg"/>
+</item>
+<item>
   <title>Teorema de Bayes Aplicado al Credit Scoring</title>
   <dc:creator>Juan Isaula</dc:creator>
   <link>https://j-isaula.github.io/Web_JI/posts/PDs_Bayesianas/</link>
