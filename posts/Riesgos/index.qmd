@@ -11,7 +11,7 @@ Gestionar el riesgo mediante la gestión cuantitativa de riesgos es una tarea vi
 
 Este artículo presenta la gestión del riesgo de portafolios financieros mediante un examen de la crisis financiera de 2007-2008 y su efecto en bancos de inversión como Goldman Sachs y J.P.Morgan. Aprenderás a utilizar Python para calcular y mitigar la exposición al riesgo utilizando las medidas Valor en Riesgo y Valor en Riesgo Condicional, a estimar el riesgo con técnicas como la simulación Montecarlo y a utilizar tecnologías de vanguardia como las redes neuronales para equilibrar el portafolio en tiempo real.
 
-# Resumen de Riesgos y Rentabilidades 
+# Resumen de Riesgos y Rentabilidades
 
 La gestión del riesgo empieza por comprender el riesgo y la rentabilidad. Recapitularemos cómo se relacionan entre sí el riesgo y la rentabilidad, identificaremos los factores de riesgo y los utilizaremos para volver a familiarizarnos con la teoría del portafolio moderna aplicada a la crisis financiera mundial de 2007-2008.
 

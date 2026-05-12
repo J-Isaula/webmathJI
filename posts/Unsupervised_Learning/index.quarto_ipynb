@@ -79,7 +79,7 @@
         "\n",
         "Veamos KMeans en acción con el conjunto de datos iris."
       ],
-      "id": "3a2a3e65"
+      "id": "49121ac3"
     },
     {
       "cell_type": "code",
@@ -91,7 +91,7 @@
         "\n",
         "iris = pd.DataFrame(iris.data, columns = iris.feature_names) # Convertimos iris a dataframe"
       ],
-      "id": "952dccf5",
+      "id": "df3eb5da",
       "execution_count": null,
       "outputs": []
     },
@@ -109,7 +109,7 @@
         "\n",
         "4.  Por último, podemos utilizar el método de predicción del modelo en este mismo conjunto de datos."
       ],
-      "id": "dca585a1"
+      "id": "fd6a9362"
     },
     {
       "cell_type": "code",
@@ -120,7 +120,7 @@
         "model = KMeans(n_clusters = 3, random_state = 42)\n",
         "model.fit(iris)"
       ],
-      "id": "d7b5377a",
+      "id": "3bd66958",
       "execution_count": null,
       "outputs": []
     },
@@ -132,7 +132,7 @@
         "species_ = labels\n",
         "print(labels)"
       ],
-      "id": "f8b74ff4",
+      "id": "d1d5c279",
       "execution_count": null,
       "outputs": []
     },
@@ -150,7 +150,7 @@
         "\n",
         "Voy a tomar 3 registros aleatorios del dataset iris y asumiremos que estas son muestras nuevas."
       ],
-      "id": "d65ef37b"
+      "id": "bf0c12bc"
     },
     {
       "cell_type": "code",
@@ -159,7 +159,7 @@
         "new_samples = iris.sample(n = 3, random_state = 42)\n",
         "print(new_samples)"
       ],
-      "id": "899b12b5",
+      "id": "e73acaa9",
       "execution_count": null,
       "outputs": []
     },
@@ -169,7 +169,7 @@
       "source": [
         "Para asignar las nuevas muestras a los grupos existentes, pasaremos el conjunto de nueva muestra al método de predicción del modelo kmeans."
       ],
-      "id": "e168bb8c"
+      "id": "36b1f8e9"
     },
     {
       "cell_type": "code",
@@ -178,7 +178,7 @@
         "new_labels = model.predict(new_samples)\n",
         "print(new_labels)"
       ],
-      "id": "f9197bc4",
+      "id": "1e80373b",
       "execution_count": null,
       "outputs": []
     },
@@ -202,7 +202,7 @@
         "\n",
         "-   Y labels o etiquetas que encontramos previamente lo usamos para colorear por etiqueta de clúster como un paramétro en `.scatter()`."
       ],
-      "id": "edb3c709"
+      "id": "3c55eef5"
     },
     {
       "cell_type": "code",
@@ -216,7 +216,7 @@
         "plt.scatter(xs, ys, c = labels)\n",
         "plt.show()"
       ],
-      "id": "06a17b4f",
+      "id": "314b7b55",
       "execution_count": null,
       "outputs": []
     },
@@ -226,7 +226,7 @@
       "source": [
         "Ahora, calculemos las coordenadas de los centroides utilizando el atributo `.cluster_centers_` de `model`. y asignaremos la columna 0 de `centroids` a `centroids_x`, y la columna 2 de `centroids` a `centroids_y`. Posterior a ello, realizaremos un diagrama de dispersión de centroids_x y centroids_y, utilizando `marker = 'D'` (un rombo) como marcador especificando el parámetro marker. El tamaño de los marcadores en 50 utilizando `s = 50`."
       ],
-      "id": "6f4bc271"
+      "id": "7121891f"
     },
     {
       "cell_type": "code",
@@ -244,7 +244,7 @@
         "plt.scatter(centroids_x, centroids_y, marker = 'D', s = 50)\n",
         "plt.show()"
       ],
-      "id": "6068cf70",
+      "id": "402b2af2",
       "execution_count": null,
       "outputs": []
     },
@@ -280,7 +280,7 @@
         "\n",
         "Para construir uno, usareos la biblioteca `pandas.` Como podemos observar en el bloque de código siguiente, creamos un dataframe de dos columnas, donde la primera columna son las etiquetas del grupo y la segunda son las especies de iris, de modo que cada fila proporciona la etiqueta del grupo y la especie de una sola muestra."
       ],
-      "id": "406fbeca"
+      "id": "d973bd08"
     },
     {
       "cell_type": "code",
@@ -296,7 +296,7 @@
         "df = pd.DataFrame({'labels':labels, 'species':species})\n",
         "print(df)"
       ],
-      "id": "6172c865",
+      "id": "08422dc4",
       "execution_count": null,
       "outputs": []
     },
@@ -306,7 +306,7 @@
       "source": [
         "Ahora usamos la función de tabla cruzuda de pandas para crear la tubulación cruzada, pasando las dos columnas del DataFrame."
       ],
-      "id": "f7d33c12"
+      "id": "404b57db"
     },
     {
       "cell_type": "code",
@@ -315,7 +315,7 @@
         "ct = pd.crosstab(df['labels'], df['species'])\n",
         "print(ct)"
       ],
-      "id": "a997291f",
+      "id": "e734a026",
       "execution_count": null,
       "outputs": []
     },
@@ -337,7 +337,7 @@
         "\n",
         "De hecho, KMeans pretende colocar los clusters de forma que se minimice la inercia."
       ],
-      "id": "8f169f34"
+      "id": "2c642577"
     },
     {
       "cell_type": "code",
@@ -347,7 +347,7 @@
         "model.fit(iris)\n",
         "print(model.inertia_)"
       ],
-      "id": "29d8f1af",
+      "id": "82e3ed11",
       "execution_count": null,
       "outputs": []
     },
@@ -367,7 +367,7 @@
         "\n",
         "Por ejemplo, según este criterio, 3 es un buen número de grupos para el conjunto de datos del iris."
       ],
-      "id": "3f65e67e"
+      "id": "7076aa30"
     },
     {
       "cell_type": "code",
@@ -387,7 +387,7 @@
         "plt.xticks(ks)\n",
         "plt.show()"
       ],
-      "id": "d0e512f9",
+      "id": "98bd0c7d",
       "execution_count": null,
       "outputs": []
     },
@@ -405,7 +405,7 @@
         "\n",
         "-   Las muestras proceden de 3 variedades distintas de vino."
       ],
-      "id": "b24d849b"
+      "id": "ae980720"
     },
     {
       "cell_type": "code",
@@ -416,7 +416,7 @@
         "samples = samples.drop(\"class_name\", axis = 1)\n",
         "samples"
       ],
-      "id": "57e58755",
+      "id": "25a1b65a",
       "execution_count": null,
       "outputs": []
     },
@@ -428,7 +428,7 @@
         "\n",
         "Tomaremos la matriz de muestra de los vinos y usaremos KMeans para encontrar 3 grupos"
       ],
-      "id": "d6ad2563"
+      "id": "b8fdb4bf"
     },
     {
       "cell_type": "code",
@@ -437,7 +437,7 @@
         "model = KMeans(n_clusters = 3, random_state = 42)\n",
         "labels = model.fit_predict(samples)"
       ],
-      "id": "e7f1fc44",
+      "id": "56446460",
       "execution_count": null,
       "outputs": []
     },
@@ -449,7 +449,7 @@
         "\n",
         "Hay tres variedades de vinom así que usamos pandas para crear la tabla cruzada para comprobar las correspondencia entre la etiqueta del clúster y la variedad de vino."
       ],
-      "id": "4ecaee7a"
+      "id": "83c5bc94"
     },
     {
       "cell_type": "code",
@@ -459,7 +459,7 @@
         "ct = pd.crosstab(df['labels'], df['varieties'])\n",
         "print(ct)"
       ],
-      "id": "389b8da8",
+      "id": "9a0c9f89",
       "execution_count": null,
       "outputs": []
     },
@@ -503,7 +503,7 @@
         "\n",
         "Veamos StandarScaler en acción:"
       ],
-      "id": "49e3bf25"
+      "id": "c944d9f6"
     },
     {
       "cell_type": "code",
@@ -516,7 +516,7 @@
         "StandardScaler(copy = True, with_mean = True, with_std = True)\n",
         "samples_scaled = scaler.transform(samples)"
       ],
-      "id": "910d1430",
+      "id": "900a1dd5",
       "execution_count": null,
       "outputs": []
     },
@@ -546,7 +546,7 @@
         "\n",
         "#### Pipelines combinando multiples pasos"
       ],
-      "id": "dd71cd64"
+      "id": "7293a495"
     },
     {
       "cell_type": "code",
@@ -567,7 +567,7 @@
         "\n",
         "labels = pipeline.predict(samples)\n"
       ],
-      "id": "ae5f41fc",
+      "id": "de49d93d",
       "execution_count": null,
       "outputs": []
     },
@@ -577,7 +577,7 @@
       "source": [
         "Ahora, realicemos la comprobación de la correspondencia entre las etiquetas de los cluster y las variedadesd de vino"
       ],
-      "id": "c62911d9"
+      "id": "60179330"
     },
     {
       "cell_type": "code",
@@ -587,7 +587,7 @@
         "ct = pd.crosstab(df['labels'], df['varieties'])\n",
         "print(ct)"
       ],
-      "id": "26238e03",
+      "id": "337970ae",
       "execution_count": null,
       "outputs": []
     },
@@ -693,7 +693,7 @@
         "\n",
         "linkage() de SciPy realiza una agrupación jerárquica en una matriz de muestras."
       ],
-      "id": "5b9be774"
+      "id": "08f5af1d"
     },
     {
       "cell_type": "code",
@@ -723,7 +723,7 @@
         "plt.show()\n",
         "plt.show()"
       ],
-      "id": "5eb12ed8",
+      "id": "3fe58758",
       "execution_count": null,
       "outputs": []
     },
@@ -761,7 +761,7 @@
         "\n",
         "La etiquetas de clúster para cualquier etapa intermedia se pueden extraer utilizando la función `fcluster`. Vamos a probarlo, especificando la altura de 15. Despues de realizar la agrupación jerárquica de los datos de empresas, importamos la función `fcluster`. Luego, pasamos el resultado de la función de vinculación a la función fcluster, especificando la altura como segundo argumento."
       ],
-      "id": "3e85e812"
+      "id": "eecf0c7a"
     },
     {
       "cell_type": "code",
@@ -774,7 +774,7 @@
         "labels   = fcluster(mergings, 15, criterion = 'distance')\n",
         "print(labels)"
       ],
-      "id": "603204ee",
+      "id": "81f96268",
       "execution_count": null,
       "outputs": []
     },
@@ -788,7 +788,7 @@
         "\n",
         "Para inspeccionar las etiquetas de los clústeres, usaremos un DataFrame para alinear las etiquetas con los nombres de los países."
       ],
-      "id": "9e50c897"
+      "id": "3b69fc46"
     },
     {
       "cell_type": "code",
@@ -798,7 +798,7 @@
         "pairs = pd.DataFrame({'labels': labels, 'companies': companies}) \n",
         "print(pairs.sort_values('labels'))"
       ],
-      "id": "d9f1b57a",
+      "id": "74bbdbeb",
       "execution_count": null,
       "outputs": []
     },
@@ -832,7 +832,7 @@
         "\n",
         "Para comenzar, importamos `TSNE` y creamos un objeto TNSE. Aplicamos el método `fit_transform` a las muestras y luego hacemos un diagrama de dispersión del resultado, colerando los puntos según la especie."
       ],
-      "id": "7d6ce551"
+      "id": "344656b4"
     },
     {
       "cell_type": "code",
@@ -847,7 +847,7 @@
         "plt.scatter(xs, ys, c = species_)\n",
         "plt.show()"
       ],
-      "id": "0238dc6e",
+      "id": "98e33506",
       "execution_count": null,
       "outputs": []
     },
@@ -877,7 +877,7 @@
         "\n",
         "t-SNE proporciona excelentes visualizaciones cuando se pueden etiquetar las muestras individuales. En el siguiente bloque de código, se aplica t-SNE a los datos del precio de las acciones de la empresa. Un gráfico de dispersión de las características t-SNE resultantes, etiquetadas con los nombres de las empresas, te ofrece un mapa del mercado de valores. Los movimientos de las cotizaciones bursátiles de cada empresa están disponibles en `normalized_movements` las cuales normalizamos anteriormente."
       ],
-      "id": "c475a984"
+      "id": "47bd57dc"
     },
     {
       "cell_type": "code",
@@ -901,7 +901,7 @@
         "    plt.annotate(company, (x, y), fontsize=5, alpha=0.75)\n",
         "plt.show()"
       ],
-      "id": "43a9c886",
+      "id": "f38104f8",
       "execution_count": null,
       "outputs": []
     },
@@ -945,7 +945,7 @@
         "\n",
         "Veamos PCA en acción en algunas características del conjunto de datos de vino, estas características son: `total_phenols` y `od280`."
       ],
-      "id": "0ba5cc20"
+      "id": "35c2e53f"
     },
     {
       "cell_type": "code",
@@ -957,7 +957,7 @@
         "samples = samples[[\"total_phenols\", \"od280\"]]\n",
         "samples"
       ],
-      "id": "40537ff3",
+      "id": "f1cae9aa",
       "execution_count": null,
       "outputs": []
     },
@@ -971,7 +971,7 @@
         "\n",
         "2.  Luego creamos el objeto PCA y los ajustamos a las muestras o samples."
       ],
-      "id": "7e03e172"
+      "id": "9a17b5c5"
     },
     {
       "cell_type": "code",
@@ -982,7 +982,7 @@
         "model = PCA()\n",
         "model.fit(samples)"
       ],
-      "id": "77f05cbe",
+      "id": "eaa3ca96",
       "execution_count": null,
       "outputs": []
     },
@@ -992,7 +992,7 @@
       "source": [
         "Ahora utilizamos el objeto PCA ajustado para transformar las muestras. Estos nos devuelve una matriz de muestras transformadas."
       ],
-      "id": "c565e73f"
+      "id": "97e09efb"
     },
     {
       "cell_type": "code",
@@ -1001,7 +1001,7 @@
         "transformed = model.transform(samples)\n",
         "print(transformed)"
       ],
-      "id": "76f639d9",
+      "id": "60c02f36",
       "execution_count": null,
       "outputs": []
     },
@@ -1027,7 +1027,7 @@
         "\n",
         "Son los componentes principales que PCA alinea con los ejes de coordenadas. Una vez ajustado un modelo PCA, los componentes proncipales están disponibles como atributos de componentes."
       ],
-      "id": "ad206858"
+      "id": "eff76d92"
     },
     {
       "cell_type": "code",
@@ -1035,7 +1035,7 @@
       "source": [
         "print(model.components_)"
       ],
-      "id": "a9dd630d",
+      "id": "ca5b076d",
       "execution_count": null,
       "outputs": []
     },
@@ -1071,7 +1071,7 @@
         "\n",
         "-   petal width (ancho del pétalo)"
       ],
-      "id": "0fe9749c"
+      "id": "9832e4ba"
     },
     {
       "cell_type": "code",
@@ -1080,7 +1080,7 @@
         "iris_sample = iris[['sepal length (cm)', 'sepal width (cm)','petal width (cm)']]\n",
         "iris_sample"
       ],
-      "id": "da3e51cd",
+      "id": "4f487188",
       "execution_count": null,
       "outputs": []
     },
@@ -1124,7 +1124,7 @@
         "\n",
         "Veamos como gráficar las varianzas de las características del PCA en la práctica."
       ],
-      "id": "db50756d"
+      "id": "de397e7b"
     },
     {
       "cell_type": "code",
@@ -1133,7 +1133,7 @@
         "pca = PCA()\n",
         "pca.fit(iris_sample)"
       ],
-      "id": "839e2577",
+      "id": "75bc4c82",
       "execution_count": null,
       "outputs": []
     },
@@ -1143,7 +1143,7 @@
       "source": [
         "Ahora creeamos un rango que enumere las características de PCA"
       ],
-      "id": "33f89cda"
+      "id": "1085ce06"
     },
     {
       "cell_type": "code",
@@ -1151,7 +1151,7 @@
       "source": [
         "features = range(pca.n_components_)"
       ],
-      "id": "a19ac398",
+      "id": "c0cda338",
       "execution_count": null,
       "outputs": []
     },
@@ -1161,7 +1161,7 @@
       "source": [
         "Hacemos un diagrama de barras de la varianza; las varianzas están disponibles como el atributo `explained_variance` del modelo PCA."
       ],
-      "id": "b50b46aa"
+      "id": "6452cfda"
     },
     {
       "cell_type": "code",
@@ -1173,7 +1173,7 @@
         "plt.xlabel('PCA feature')\n",
         "plt.show()"
       ],
-      "id": "0a2446eb",
+      "id": "44b6cef3",
       "execution_count": null,
       "outputs": []
     },
@@ -1203,7 +1203,7 @@
         "\n",
         "El conjunto de datos del iris tiene 4 características que representan las 4 mediciones"
       ],
-      "id": "b152eca0"
+      "id": "e0206db8"
     },
     {
       "cell_type": "code",
@@ -1211,7 +1211,7 @@
       "source": [
         "iris"
       ],
-      "id": "694f0560",
+      "id": "ab58a4ee",
       "execution_count": null,
       "outputs": []
     },
@@ -1221,7 +1221,7 @@
       "source": [
         "Utilicemos un PCA para reducir la dimensión del conjunto de datos del iris a solo 2."
       ],
-      "id": "f5b8e8d3"
+      "id": "06b13ab2"
     },
     {
       "cell_type": "code",
@@ -1232,7 +1232,7 @@
         "transformed = pca.transform(iris)\n",
         "print(transformed.shape)"
       ],
-      "id": "2036420c",
+      "id": "2a798d79",
       "execution_count": null,
       "outputs": []
     },
@@ -1244,7 +1244,7 @@
         "\n",
         "Aquí se muestra un diagrama de dispersión de las características de PCA, donde los colores representan las tres especies de iris."
       ],
-      "id": "b0e71267"
+      "id": "5c275046"
     },
     {
       "cell_type": "code",
@@ -1255,7 +1255,7 @@
         "plt.scatter(xs, ys,c = species_)\n",
         "plt.show()"
       ],
-      "id": "3ff0ec91",
+      "id": "203c4643",
       "execution_count": null,
       "outputs": []
     },
@@ -1463,7 +1463,7 @@
         "\n",
         "Al observar las imágenes como muestras y los píxeles como características, podemos observar que los datos están organizados de manera similar a la matriz de frecuencia de palabras. De hecho, las entradas de esta matriz no son negativas, por lo que NMF se puede utilizar para aprender las partes de las imágenes."
       ],
-      "id": "ed3e52d4"
+      "id": "a44f3439"
     }
   ],
   "metadata": {
