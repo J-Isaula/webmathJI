@@ -268,8 +268,123 @@ font-style: inherit;">"Weather in Seattle"</span>)</span>
 <p><strong>Una cartera financiera</strong> es un conjunto de activos con rendimientos futuros inciertos. Los ejemplos incluyen acciones, bonos y tenencias de divisas, o “forex”, otros activos más complicados incluyen las opciones sobre acciones, que analizaremos más adelante.</p>
 <p>Para las carteras financieras, cuantificamos el riesgo para poder realizar estrategias de inversión óptimas que maximizan el rendimiento de una cartera, condicionando a un nivel de riesgo que podamos tolerar (conocido como <em>“apetito de riesgo”</em>).</p>
 <p>Recuerde que el rendimiento de una cartera es la suma ponderada de los rendimientos de los activos dentro de una cartera. Podemos encontrar fácilmente este retorno colocando los datos de precios de nuestros activos en un <strong>DataFrame</strong> de <code>Pandas</code>.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1">prices <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> pandas.read_csv(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"portfolio.csv"</span>)</span>
+<span id="cb1-2">returns <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> prices.pct_changes()</span>
+<span id="cb1-3">weights <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> (weight_1, weight_2, . . )</span>
+<span id="cb1-4">portfolio_returns <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> returns.dot(weights)</span></code></pre></div></div>
+<p><strong><code>pct_change():</code></strong> método para calcular el rendimiento o returno.</p>
+<p>Recuerde que el rendimiento de la cartera es el producto escalar de las ponderaciones dela cartera y los rendimientos.</p>
+<section id="cuantificación-del-riesgos" class="level3">
+<h3 class="anchored" data-anchor-id="cuantificación-del-riesgos">Cuantificación del Riesgos</h3>
+<p>Cuantificamos el riesgo a través de la volatilidad del rendimiento de una cartera. Una vez que tenemos la lista de los activos de una cartera, podemos calcular la volatilidad. Esto normalmente se hace encontrando la matriz de covarianza de todos los activos <code>.cov()</code>, y anualizar mutiplicando por el número de días de negociación (aquí 252).</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1">covariance <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> returns.cov()<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">*</span><span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">252</span></span></code></pre></div></div>
+<p>Recuerde que la diagonal de la matriz de covarianza es la varianza del activo individual,</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://j-isaula.github.io/Web_JI/posts/Riesgos/fig1.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
+</figure>
+</div>
+<p>mientras que los elementos fuera de la diagonal son las covarianzas entre los activos.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://j-isaula.github.io/Web_JI/posts/Riesgos/fig2.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
+</figure>
+</div>
+</section>
+<section id="riesgo-del-portafolio" class="level3">
+<h3 class="anchored" data-anchor-id="riesgo-del-portafolio">Riesgo del Portafolio</h3>
+<p>Para encontrar el riesgo del portafolio o cartera es necesario identificar sus ponderaciones o pesos.</p>
+<p>La varianza de la cartera es una función cuadrática de los pesos dados a la matriz de covarianza</p>
+<p><img src="https://latex.codecogs.com/png.latex?%0A%5Csigma_%7Bp%7D%5E2%20=%20w%5ET%5Ccdot%20Cov_p%5Ccdot%20w%0A">que se puede calcular en Python utilizando el operador @ .</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1">weights <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> [<span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.25</span>, <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.25</span>, <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.25</span>, <span class="fl" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">0.25</span>]</span>
+<span id="cb3-2">portfolio_variance <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> np.transpose(weights) <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">@</span> covariance <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">@</span> weights</span>
+<span id="cb3-3">portfolio_volatility <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> np.sqrt(portfolio_variance)</span></code></pre></div></div>
+<p>La varianza generalmente se transforma en desviación estándar, lo que genera la volatilidad de la cartera.</p>
+<p>Tanto la varianza como la desviación estándar se utilizan como medidas de volatilidad.</p>
+</section>
+<section id="volatilidad---series-de-tiempo" class="level3">
+<h3 class="anchored" data-anchor-id="volatilidad---series-de-tiempo">Volatilidad - Series de Tiempo</h3>
+<p>Puede ser útil observar cómo cambia la volatilidad de la cartera a lo largo del tiempo. Podemos crear una ventana de un período de tiempo fijo, como una semana o un mes, utilizando el metodo <code>rolling()</code>.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4" style="background: #f1f3f5;"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1">windowed <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> portfolio_returns.rolling(<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">30</span>)</span>
+<span id="cb4-2">volatility <span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">=</span> windowed.std()<span class="op" style="color: #5E5E5E;
+background-color: null;
+font-style: inherit;">*</span>np.sqrt(<span class="dv" style="color: #AD0000;
+background-color: null;
+font-style: inherit;">252</span>)</span>
+<span id="cb4-3">volatility.plot().set_ylabel(<span class="st" style="color: #20794D;
+background-color: null;
+font-style: inherit;">"Standard Deviation..."</span>)</span></code></pre></div></div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://j-isaula.github.io/Web_JI/posts/Riesgos/fig3.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="300"></p>
+</figure>
+</div>
+<p>Tomando la desviación estandar y anualizandola se obtiene un tiempo de volatilidad.</p>
+</section>
+<section id="factores-de-riesgo-y-crisis-financiera" class="level3">
+<h3 class="anchored" data-anchor-id="factores-de-riesgo-y-crisis-financiera">Factores de Riesgo y Crisis Financiera</h3>
+<p>Acabamos de repasar cómo cuantificar el rendimiento y el riesgo de una cartera. A continuación examinaremos los factores de riesgo de la cartera durante la crisis financiera mundial.</p>
+</section>
+<section id="factores-de-riesgo" class="level3">
+<h3 class="anchored" data-anchor-id="factores-de-riesgo">Factores de Riesgo</h3>
+<p>La cuantificación del riesgo implica la volatilidad, una medida de la dispersión de los rendimientos de la cartera en torno a una expectativa de lo que serán los rendmientos, tomando el rendimiento promedio de la muestra como la expectativa.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://j-isaula.github.io/Web_JI/posts/Riesgos/fig4.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="400"></p>
+</figure>
+</div>
+<p>Pero <strong>¿ qué variables o eventos afectarán la expectativa y la dispersión de los retornos?</strong> Estas variables o eventos se conocen como factores de riesgo de una cartera. La exposición al riesgo de una cartera es la posible pérdida de la cartera debido a la volatilidad del rendimiento.</p>
+<p>Piense en la exposición al riesgo como el impacto negativo potencial de un futuro incierto. Por ejemplo, usted puede asegurar su casa contra inundaciones, pero tener que pagar usted mismo una cantidad de pérdida inicial. Esto se llama deducible. Si el resto del daño causado por una inundación está totalmente cubierto por el seguro, su deducible es su exposición al riesgo. Construir una casa en una zona que se inunda con frecuencia aumenta el riesgo, lo que aumenta su deducible debido a la mayor exposición al riesgo.</p>
+</section>
+<section id="riesgo-sistemico" class="level3">
+<h3 class="anchored" data-anchor-id="riesgo-sistemico">Riesgo sistemico</h3>
+<p>Podemos clasificar la exposición al riesgo utilizando factores de riesgo. Algunos factores de riesgo afectan a todos los activos de la cartera de la misma manera. Esto se llama riesgo sestemático. Si se basa en una agregado del mercado, esto se llama riesgo de mercado. Imagínese estar en una avión cuando uno de los motores falla. Este fallo afecta a todos los que están en el avión, por lo que es un ejemplo de riesgos sistemático.</p>
+<p>El nivel de precios de una economía es un factor de riesgo sistemático para una cartera de bonos, porque a mayor inflación se traduce en menor rendimiento.</p>
+<p>El tipo de interés de una economía tambien es un factor de riesgo sistemático. Porque cambia el costo de oportunidad de invertir en bonos y acciones.</p>
+<p>Un auge o una recesión económica afecta a los activos de manera sistemática, impulsando índices de mercado amplios como el S&amp;P 500 o el Dow Jones Industrial Average suben o bajan.</p>
 
 
+</section>
 </section>
 
  ]]></description>

@@ -22,6 +22,41 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -71,6 +106,35 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 <link rel="stylesheet" href="../../styles.css">
 <meta property="og:title" content="Gestión Cuantitativa del Riesgos – Juan Isaula">
@@ -144,7 +208,15 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#resumen-de-riesgos-y-rentabilidades" id="toc-resumen-de-riesgos-y-rentabilidades" class="nav-link active" data-scroll-target="#resumen-de-riesgos-y-rentabilidades">Resumen de Riesgos y Rentabilidades</a></li>
+  <li><a href="#resumen-de-riesgos-y-rentabilidades" id="toc-resumen-de-riesgos-y-rentabilidades" class="nav-link active" data-scroll-target="#resumen-de-riesgos-y-rentabilidades">Resumen de Riesgos y Rentabilidades</a>
+  <ul class="collapse">
+  <li><a href="#cuantificación-del-riesgos" id="toc-cuantificación-del-riesgos" class="nav-link" data-scroll-target="#cuantificación-del-riesgos">Cuantificación del Riesgos</a></li>
+  <li><a href="#riesgo-del-portafolio" id="toc-riesgo-del-portafolio" class="nav-link" data-scroll-target="#riesgo-del-portafolio">Riesgo del Portafolio</a></li>
+  <li><a href="#volatilidad---series-de-tiempo" id="toc-volatilidad---series-de-tiempo" class="nav-link" data-scroll-target="#volatilidad---series-de-tiempo">Volatilidad - Series de Tiempo</a></li>
+  <li><a href="#factores-de-riesgo-y-crisis-financiera" id="toc-factores-de-riesgo-y-crisis-financiera" class="nav-link" data-scroll-target="#factores-de-riesgo-y-crisis-financiera">Factores de Riesgo y Crisis Financiera</a></li>
+  <li><a href="#factores-de-riesgo" id="toc-factores-de-riesgo" class="nav-link" data-scroll-target="#factores-de-riesgo">Factores de Riesgo</a></li>
+  <li><a href="#riesgo-sistemico" id="toc-riesgo-sistemico" class="nav-link" data-scroll-target="#riesgo-sistemico">Riesgo sistemico</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -201,8 +273,79 @@ ul.task-list li input[type="checkbox"] {
 <p><strong>Una cartera financiera</strong> es un conjunto de activos con rendimientos futuros inciertos. Los ejemplos incluyen acciones, bonos y tenencias de divisas, o “forex”, otros activos más complicados incluyen las opciones sobre acciones, que analizaremos más adelante.</p>
 <p>Para las carteras financieras, cuantificamos el riesgo para poder realizar estrategias de inversión óptimas que maximizan el rendimiento de una cartera, condicionando a un nivel de riesgo que podamos tolerar (conocido como <em>“apetito de riesgo”</em>).</p>
 <p>Recuerde que el rendimiento de una cartera es la suma ponderada de los rendimientos de los activos dentro de una cartera. Podemos encontrar fácilmente este retorno colocando los datos de precios de nuestros activos en un <strong>DataFrame</strong> de <code>Pandas</code>.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>prices <span class="op">=</span> pandas.read_csv(<span class="st">"portfolio.csv"</span>)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>returns <span class="op">=</span> prices.pct_changes()</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>weights <span class="op">=</span> (weight_1, weight_2, . . )</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>portfolio_returns <span class="op">=</span> returns.dot(weights)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><strong><code>pct_change():</code></strong> método para calcular el rendimiento o returno.</p>
+<p>Recuerde que el rendimiento de la cartera es el producto escalar de las ponderaciones dela cartera y los rendimientos.</p>
+<section id="cuantificación-del-riesgos" class="level3">
+<h3 class="anchored" data-anchor-id="cuantificación-del-riesgos">Cuantificación del Riesgos</h3>
+<p>Cuantificamos el riesgo a través de la volatilidad del rendimiento de una cartera. Una vez que tenemos la lista de los activos de una cartera, podemos calcular la volatilidad. Esto normalmente se hace encontrando la matriz de covarianza de todos los activos <code>.cov()</code>, y anualizar mutiplicando por el número de días de negociación (aquí 252).</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>covariance <span class="op">=</span> returns.cov()<span class="op">*</span><span class="dv">252</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Recuerde que la diagonal de la matriz de covarianza es la varianza del activo individual,</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="fig1.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
+</figure>
+</div>
+<p>mientras que los elementos fuera de la diagonal son las covarianzas entre los activos.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="fig2.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
+</figure>
+</div>
+</section>
+<section id="riesgo-del-portafolio" class="level3">
+<h3 class="anchored" data-anchor-id="riesgo-del-portafolio">Riesgo del Portafolio</h3>
+<p>Para encontrar el riesgo del portafolio o cartera es necesario identificar sus ponderaciones o pesos.</p>
+<p>La varianza de la cartera es una función cuadrática de los pesos dados a la matriz de covarianza</p>
+<p><span class="math display">\[
+\sigma_{p}^2 = w^T\cdot Cov_p\cdot w
+\]</span>que se puede calcular en Python utilizando el operador @ .</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>weights <span class="op">=</span> [<span class="fl">0.25</span>, <span class="fl">0.25</span>, <span class="fl">0.25</span>, <span class="fl">0.25</span>]</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>portfolio_variance <span class="op">=</span> np.transpose(weights) <span class="op">@</span> covariance <span class="op">@</span> weights</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>portfolio_volatility <span class="op">=</span> np.sqrt(portfolio_variance)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>La varianza generalmente se transforma en desviación estándar, lo que genera la volatilidad de la cartera.</p>
+<p>Tanto la varianza como la desviación estándar se utilizan como medidas de volatilidad.</p>
+</section>
+<section id="volatilidad---series-de-tiempo" class="level3">
+<h3 class="anchored" data-anchor-id="volatilidad---series-de-tiempo">Volatilidad - Series de Tiempo</h3>
+<p>Puede ser útil observar cómo cambia la volatilidad de la cartera a lo largo del tiempo. Podemos crear una ventana de un período de tiempo fijo, como una semana o un mes, utilizando el metodo <code>rolling()</code>.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>windowed <span class="op">=</span> portfolio_returns.rolling(<span class="dv">30</span>)</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>volatility <span class="op">=</span> windowed.std()<span class="op">*</span>np.sqrt(<span class="dv">252</span>)</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>volatility.plot().set_ylabel(<span class="st">"Standard Deviation..."</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="fig3.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="300"></p>
+</figure>
+</div>
+<p>Tomando la desviación estandar y anualizandola se obtiene un tiempo de volatilidad.</p>
+</section>
+<section id="factores-de-riesgo-y-crisis-financiera" class="level3">
+<h3 class="anchored" data-anchor-id="factores-de-riesgo-y-crisis-financiera">Factores de Riesgo y Crisis Financiera</h3>
+<p>Acabamos de repasar cómo cuantificar el rendimiento y el riesgo de una cartera. A continuación examinaremos los factores de riesgo de la cartera durante la crisis financiera mundial.</p>
+</section>
+<section id="factores-de-riesgo" class="level3">
+<h3 class="anchored" data-anchor-id="factores-de-riesgo">Factores de Riesgo</h3>
+<p>La cuantificación del riesgo implica la volatilidad, una medida de la dispersión de los rendimientos de la cartera en torno a una expectativa de lo que serán los rendmientos, tomando el rendimiento promedio de la muestra como la expectativa.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="fig4.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="400"></p>
+</figure>
+</div>
+<p>Pero <strong>¿ qué variables o eventos afectarán la expectativa y la dispersión de los retornos?</strong> Estas variables o eventos se conocen como factores de riesgo de una cartera. La exposición al riesgo de una cartera es la posible pérdida de la cartera debido a la volatilidad del rendimiento.</p>
+<p>Piense en la exposición al riesgo como el impacto negativo potencial de un futuro incierto. Por ejemplo, usted puede asegurar su casa contra inundaciones, pero tener que pagar usted mismo una cantidad de pérdida inicial. Esto se llama deducible. Si el resto del daño causado por una inundación está totalmente cubierto por el seguro, su deducible es su exposición al riesgo. Construir una casa en una zona que se inunda con frecuencia aumenta el riesgo, lo que aumenta su deducible debido a la mayor exposición al riesgo.</p>
+</section>
+<section id="riesgo-sistemico" class="level3">
+<h3 class="anchored" data-anchor-id="riesgo-sistemico">Riesgo sistemico</h3>
+<p>Podemos clasificar la exposición al riesgo utilizando factores de riesgo. Algunos factores de riesgo afectan a todos los activos de la cartera de la misma manera. Esto se llama riesgo sestemático. Si se basa en una agregado del mercado, esto se llama riesgo de mercado. Imagínese estar en una avión cuando uno de los motores falla. Este fallo afecta a todos los que están en el avión, por lo que es un ejemplo de riesgos sistemático.</p>
+<p>El nivel de precios de una economía es un factor de riesgo sistemático para una cartera de bonos, porque a mayor inflación se traduce en menor rendimiento.</p>
+<p>El tipo de interés de una economía tambien es un factor de riesgo sistemático. Porque cambia el costo de oportunidad de invertir en bonos y acciones.</p>
+<p>Un auge o una recesión económica afecta a los activos de manera sistemática, impulsando índices de mercado amplios como el S&amp;P 500 o el Dow Jones Industrial Average suben o bajan.</p>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->
